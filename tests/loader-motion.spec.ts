@@ -114,16 +114,13 @@ function rounds(rolls: Roll[]): Roll[][] {
   return out;
 }
 
-test('loader monogram: three overlapping rounds, each with two sets rolling in opposite directions, then a linked collapse', async ({ page }) => {
+test('loader monogram: three accelerating overlapping rounds, each with two sets rolling in opposite directions, then a linked collapse', async ({ page }) => {
   await letterTimeline(page);
   const classic = await measure(page, 'classic');
   const { frames, n, rolls } = await measure(page, 'monogram');
 
   // alcune lettere restano ferme
   expect(rolls.length).toBeLessThan(n);
-  // ogni rotazione dura come in classic
-  const classicDuration = classic.rolls[0].end - classic.rolls[0].start;
-  for (const r of rolls) expect(Math.abs(r.end - r.start - classicDuration)).toBeLessThan(40);
 
   // tre giri, ognuno con un set che sale e uno che scende
   const rs = rounds(rolls);
@@ -138,12 +135,19 @@ test('loader monogram: three overlapping rounds, each with two sets rolling in o
     expect(Math.abs(up[0].start - down[0].start)).toBeLessThan(25);
     for (const set of [up, down]) set.slice(1).forEach((r, k) => expect(Math.abs(r.start - set[k].start - classicDelay)).toBeLessThan(25));
   }
+  // accelerando: ogni giro ha rotazioni più brevi e parte più vicino al precedente
+  const dur = rs.map((round) => Math.max(...round.map((r) => r.end - r.start)));
+  dur.slice(1).forEach((d, k) => expect(d).toBeLessThan(dur[k] - 60));
+  const gaps = rs.slice(1).map((round, k) => round[0].start - rs[k][0].start);
+  gaps.slice(1).forEach((g, k) => expect(g).toBeLessThan(gaps[k] - 60));
+  // dentro un giro tutte le rotazioni durano uguale
+  rs.forEach((round, k) => round.forEach((r) => expect(Math.abs(r.end - r.start - dur[k])).toBeLessThan(40)));
   // ogni giro parte prima che il precedente finisca
   rs.slice(1).forEach((round, k) => expect(round[0].start).toBeLessThan(Math.max(...rs[k].map((r) => r.end))));
 
-  // la chiusura del monogram parte prima che l'ultima rotazione sia finita: un'unica animazione
+  // la chiusura del monogram segue l'ultima rotazione senza pause percepibili: un'unica animazione
   const collapseStart = frames.find((f, k) => k > 0 && f.widths.some((w, i) => w < frames[0].widths[i] - 0.5))!.t;
-  expect(collapseStart).toBeLessThan(Math.max(...rolls.map((r) => r.end)));
+  expect(collapseStart - Math.max(...rolls.map((r) => r.end))).toBeLessThan(50);
 });
 
 test('loader monogram: RGGNDR stays in place and fades out with the same blur as the subtitle', async ({ page }) => {

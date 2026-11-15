@@ -47,7 +47,8 @@ const BASE: Omit<MonogramTiming, 'label' | 'note'> = {
 
 /** Alternative di timing da confrontare in /lab/loader-timing. La prima è quella in uso. */
 export const MONOGRAM_TIMINGS: MonogramTiming[] = [
-  { ...BASE, label: 'Attuale', note: 'Rotazioni classic, giri ogni 0,5s, chiusura sovrapposta' },
+  { ...BASE, label: 'Accelerando · in uso', note: 'Ogni giro più breve e più vicino al precedente, fino alla chiusura', roundAt: [0.4, 1.1, 1.5], roll: [1, 0.75, 0.55], collapseOverlap: 0.15, collapseDuration: 0.45 },
+  { ...BASE, label: 'Classic', note: 'Rotazioni classic, giri ogni 0,5s, chiusura sovrapposta' },
   { ...BASE, label: 'Rapido', note: 'Tutto più veloce: rotazioni 0,6s, giri ogni 0,35s', roundAt: [0.4, 0.75, 1.1], roll: [0.6, 0.6, 0.6], stagger: 0.045, collapseOverlap: 0.2, collapseDuration: 0.45 },
   { ...BASE, label: 'Disteso', note: 'Rotazioni lunghe 1s, giri ogni 0,65s, pausa su RGGNDR', roundAt: [0.4, 1.05, 1.7], roll: [1, 1, 1], stagger: 0.08, collapseOverlap: 0.3, collapseDuration: 0.7, hold: 0.35, fade: 0.5 },
   { ...BASE, label: 'Onda', note: 'Ritardo tra lettere più ampio (0,14s): ogni set scorre come un\'onda', stagger: 0.14 },
@@ -56,7 +57,6 @@ export const MONOGRAM_TIMINGS: MonogramTiming[] = [
   { ...BASE, label: 'Respiro', note: 'Giri staccati, un battito tra uno e l\'altro; chiusura dopo una pausa', roundAt: [0.4, 1.3, 2.2], collapseOverlap: -0.15, hold: 0.25 },
   { ...BASE, label: 'Scatto', note: 'Ease expo: partenza e arrivo lenti, centro rapidissimo', ease: 'expo.inOut', roll: [0.9, 0.9, 0.9], roundAt: [0.4, 0.85, 1.3], collapseEase: 'expo.inOut', collapseDuration: 0.7 },
   { ...BASE, label: 'Morbido', note: 'Ease sine: movimento uniforme e calmo', ease: 'sine.inOut', roll: [0.9, 0.9, 0.9], roundAt: [0.4, 0.95, 1.5], collapseEase: 'sine.inOut', collapseDuration: 0.65 },
-  { ...BASE, label: 'Accelerando', note: 'Ogni giro più breve e più vicino al precedente, fino alla chiusura', roundAt: [0.4, 1.1, 1.5], roll: [1, 0.75, 0.55], collapseOverlap: 0.15, collapseDuration: 0.45 },
 ];
 
 /** In ogni giro due set di lettere ruotano in direzioni opposte (indici in RUGGERI ANDREA, spazio escluso). */
