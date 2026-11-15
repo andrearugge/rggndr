@@ -1,0 +1,36 @@
+---
+const socials = [
+  { label: 'Instagram', href: 'https://www.instagram.com/andrearugge/' },
+  { label: 'Linkedin', href: 'https://www.linkedin.com/in/andrerugge/' },
+  { label: 'Twitter', href: 'https://x.com/andrea_rugge' },
+];
+---
+<footer>
+  <div class="container-site pb-8">
+    <div class="relative z-10 space-y-[80px] lg:space-y-[120px]">
+      <div class="flex justify-center">
+        <img data-footer-rotator class="w-full max-w-[40px]" src="/brand/symbol.png" alt="" width="100" height="100" />
+      </div>
+      <div class="flex justify-center">
+        <!-- Card: per ora l'SVG attuale; diventerà codice interattivo in /lab/card -->
+        <img class="w-full max-w-[540px]" src="/brand/card.svg" alt="RGGNDR — biglietto da visita" width="570" height="397" loading="lazy" />
+      </div>
+      <div class="space-y-4">
+        <div class="flex flex-col items-center justify-center gap-2 lg:flex-row">
+          <div class="text-[14px] leading-none font-bold">©2025 Andrea Ruggeri. All rights reserved.</div>
+          <div class="flex flex-wrap items-center justify-center gap-1 text-sm lg:justify-start">
+            {socials.map((s) => (
+              <div class="group flex items-center gap-1">
+                <a href={s.href} target="_blank" rel="noopener" class="block">{s.label}</a>
+                <span class="group-last:hidden">/</span>
+              </div>
+            ))}
+          </div>
+        </div>
+        <div class="flex justify-center">
+          <img class="w-full max-w-[120px]" src="/brand/barcode.svg" alt="" width="103" height="41" loading="lazy" />
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>

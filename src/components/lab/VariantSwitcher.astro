@@ -8,12 +8,12 @@ interface Props {
 const { variants, defaultId = variants[0]?.id } = Astro.props;
 ---
 <nav
-  class="lab-switcher fixed bottom-4 left-1/2 -translate-x-1/2 z-50 flex gap-1 rounded-full bg-black/85 p-1 text-[11px] font-bold uppercase tracking-wide text-background backdrop-blur"
+  class="lab-switcher fixed bottom-4 left-1/2 -translate-x-1/2 z-50 flex gap-1 rounded-full bg-primary p-1 text-[12px] leading-none font-bold text-cream shadow-[0_8px_24px_rgb(137_141_127/0.35)]"
   data-default={defaultId}
   aria-label="Varianti"
 >
   {variants.map((v) => (
-    <button type="button" data-variant={v.id} aria-pressed="false" class="rounded-full px-3 py-2 transition-colors aria-pressed:bg-background aria-pressed:text-black">
+    <button type="button" data-variant={v.id} aria-pressed="false" class="rounded-full px-3 py-2 transition-colors aria-pressed:bg-cream aria-pressed:text-primary">
       {v.label}
     </button>
   ))}

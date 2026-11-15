@@ -19,7 +19,6 @@ export async function fontsReady(timeoutMs = 1200): Promise<void> {
     document.fonts.load('400 1em Montreal'),
     document.fonts.load('700 1em Montreal'),
     document.fonts.load('900 1em Compact'),
-    document.fonts.load('400 1em Editorial'),
   ]).then(() => document.fonts.ready);
   await Promise.race([loaded, new Promise((r) => setTimeout(r, timeoutMs))]);
 }

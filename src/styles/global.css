@@ -1,5 +1,8 @@
 @import "tailwindcss";
 
+/* ------------------------------------------------------------------ */
+/* Font (self-hosted). Editorial non fa parte del sito: solo nella card */
+/* ------------------------------------------------------------------ */
 @font-face {
   font-family: "Compact";
   src: url("/fonts/CompactBlack.woff2") format("woff2");
@@ -21,32 +24,97 @@
   font-style: normal;
   font-display: swap;
 }
-@font-face {
-  font-family: "Editorial";
-  src: url("/fonts/Editorial-Regular.woff2") format("woff2");
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
-}
 
+/* ------------------------------------------------------------------ */
+/* Token                                                              */
+/* La palette di default di Tailwind è disattivata: esistono solo      */
+/* i colori del sito (niente nero, niente grigi generici).             */
+/* ------------------------------------------------------------------ */
 @theme {
-  --color-primary: #898d7f;
-  --color-background: #f9f9f8;
-  --font-compact: "Compact", "Arial Narrow", sans-serif;
-  --font-montreal: "Montreal", "Helvetica Neue", Arial, sans-serif;
-  --font-editorial: "Editorial", Georgia, serif;
+  --color-*: initial;
+  --color-primary: #898d7f; /* testo, titoli, linee, superfici piene (loader, card) */
+  --color-white: #ffffff; /* sfondo pagina */
+  --color-cream: #fdfff4; /* testo su superficie primary (loader) */
+  --color-background: #f9f9f8; /* superficie alternativa leggera */
+  --color-transparent: transparent;
+  --color-current: currentColor;
+
+  --font-*: initial;
+  --font-compact: "Compact", Helvetica, Arial, sans-serif;
+  --font-montreal: "Montreal", Helvetica, Arial, sans-serif;
+
+  --ease-out-power4: cubic-bezier(0.165, 0.84, 0.44, 1);
 }
 
+/* ------------------------------------------------------------------ */
+/* Base                                                               */
+/* ------------------------------------------------------------------ */
 @layer base {
+  html {
+    overflow-x: clip;
+  }
+  html,
   body {
-    @apply bg-background font-montreal text-black antialiased;
+    @apply font-montreal font-normal uppercase;
+  }
+  body {
+    @apply bg-white text-primary antialiased;
+  }
+  p + p {
+    @apply pt-4;
+  }
+  b,
+  strong {
+    @apply font-bold;
   }
 }
 
-/*
- * Stato iniziale dei reveal: nascosti solo se JS è attivo e il motion è consentito.
- * JS li sblocca con `data-reveal-shown`. Paracadute: se JS non arriva, dopo 3s si vedono comunque.
- */
+/* ------------------------------------------------------------------ */
+/* Scala tipografica (identica al sito attuale)                        */
+/* ------------------------------------------------------------------ */
+@utility h1 {
+  @apply font-compact text-[48px] leading-[.85] font-black uppercase lg:text-[102px] 2xl:text-[120px];
+}
+@utility h2 {
+  @apply font-compact text-[36px] leading-[.85] font-black uppercase lg:text-[90px] 2xl:text-[102px];
+}
+@utility h3 {
+  @apply font-compact text-[28px] leading-[.87] font-black uppercase lg:text-[64px] 2xl:text-[72px];
+}
+@utility h4 {
+  @apply font-compact text-[24px] leading-none font-black uppercase lg:text-[32px];
+}
+@utility h5 {
+  @apply font-montreal text-[14px] leading-none font-bold uppercase lg:text-[15px];
+}
+@utility h6 {
+  @apply font-montreal text-[12px] leading-none font-bold uppercase lg:text-[14px];
+}
+
+/* ------------------------------------------------------------------ */
+/* Layout                                                             */
+/* ------------------------------------------------------------------ */
+@utility container-site {
+  @apply w-full px-4 md:px-6;
+}
+@utility grid-8 {
+  @apply grid grid-cols-8 gap-y-8 md:gap-6;
+}
+@utility grid-12 {
+  @apply grid grid-cols-12 gap-y-8 md:gap-6;
+}
+@utility space-top-big {
+  @apply pt-20 xl:pt-52;
+}
+@utility space-bottom-big {
+  @apply pb-20 xl:pb-52;
+}
+
+/* ------------------------------------------------------------------ */
+/* Reveal on scroll                                                   */
+/* Nascosti solo se JS è attivo e il motion è consentito; JS li sblocca */
+/* con `data-reveal-shown`. Paracadute: dopo 3s si vedono comunque.     */
+/* ------------------------------------------------------------------ */
 @media (prefers-reduced-motion: no-preference) {
   html.js [data-reveal]:not([data-reveal-shown]) {
     visibility: hidden;
@@ -58,6 +126,50 @@
     visibility: visible;
   }
 }
-[data-reveal='image'] {
+[data-reveal="image"] {
   overflow: hidden;
+}
+
+/* ------------------------------------------------------------------ */
+/* Intro dell'hero (stessa animazione del sito attuale)                 */
+/* Stato iniziale solo con JS + motion consentito, con paracadute.      */
+/* ------------------------------------------------------------------ */
+@media (prefers-reduced-motion: no-preference) {
+  html.js [data-hero]:not([data-hero-played]) .hero-line > span,
+  html.js [data-hero]:not([data-hero-played]) .hero-sub > span {
+    translate: 0 100%;
+    animation: hero-failsafe 0s 3s forwards;
+  }
+  html.js [data-hero]:not([data-hero-played]) .hero-info {
+    opacity: 0;
+    translate: 0 1rem;
+    filter: blur(5px);
+    animation: hero-failsafe 0s 3s forwards;
+  }
+}
+@keyframes hero-failsafe {
+  to {
+    translate: 0 0;
+    opacity: 1;
+    filter: none;
+  }
+}
+
+/* Pallino dell'orologio nell'header */
+@keyframes pulse-dot {
+  0% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgb(137 141 127 / 0.5);
+  }
+  70% {
+    transform: scale(1);
+    box-shadow: 0 0 0 5px rgb(137 141 127 / 0);
+  }
+  100% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgb(137 141 127 / 0);
+  }
+}
+.time-dot {
+  animation: pulse-dot 1s infinite;
 }

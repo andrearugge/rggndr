@@ -12,8 +12,21 @@ export interface LineSplit {
 }
 
 interface Point {
-  node: Text;
+  node: Node;
   offset: number;
+}
+
+function indexInParent(node: Node): number {
+  return Array.prototype.indexOf.call(node.parentNode!.childNodes, node);
+}
+
+function liftBoundary(root: HTMLElement, p: Point): Point {
+  let { node, offset } = p;
+  while (offset === 0 && node !== root && node.parentNode) {
+    offset = indexInParent(node);
+    node = node.parentNode;
+  }
+  return { node, offset };
 }
 
 /**
@@ -25,9 +38,16 @@ interface Point {
 const UNSPLITTABLE = 'a, button, input, select, textarea, label, [id], [tabindex], [contenteditable]';
 
 export function splitLines(el: HTMLElement, options: LineSplitOptions = {}): LineSplit | null {
-  if (el.querySelector(UNSPLITTABLE)) return null;
-  const starts = findLineStarts(el);
-  if (starts.length === 0) return null; // nascosto o senza testo misurabile
+  const found = findLineStarts(el);
+  if (found.length === 0) return null; // nascosto o senza testo misurabile
+
+  // Un confine che cade all'inizio di un elemento viene spostato prima dell'elemento:
+  // così un link che inizia una riga non lascia una copia vuota nella riga precedente.
+  const starts = found.map((p, i) => (i === 0 ? p : liftBoundary(el, p)));
+
+  // Si rifiuta lo split solo se un link/controllo/id verrebbe davvero spezzato su più righe.
+  const blockers = [...el.querySelectorAll(UNSPLITTABLE)];
+  if (starts.some((p, i) => i > 0 && blockers.some((b) => b.contains(p.node)))) return null;
 
   const original = el.innerHTML;
   const label = (el.textContent ?? '').replace(/\s+/g, ' ').trim();

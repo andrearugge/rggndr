@@ -30,6 +30,14 @@ test('links and ids are never duplicated', async ({ page }) => {
   await expect(page.locator('#link')).toBeVisible();
 });
 
+test('a link that does not wrap still allows the line split', async ({ page }) => {
+  await page.goto(`${FIXTURE}?v=mask`);
+  await ready(page);
+  expect(await page.locator('#shortlink .line').count()).toBeGreaterThan(2);
+  await expect(page.locator('#shortlink a')).toHaveCount(1);
+  await expect(page.locator('#shortlink a')).toHaveText('Beconcept');
+});
+
 test('leading non-text content survives the split', async ({ page }) => {
   await page.goto(`${FIXTURE}?v=mask`);
   await ready(page);
@@ -63,7 +71,8 @@ test('content shows even if fonts never arrive', async ({ page }) => {
   await page.route('**/fonts/*.woff2', () => {}); // richiesta appesa per sempre
   // i font in preload bloccano l'evento load: basta il DOM
   await page.goto('/lab/reveal?v=mask', { waitUntil: 'domcontentloaded' });
-  await expect(page.locator('h1 .line').first()).toBeVisible({ timeout: 2500 });
+  await expect.poll(() => page.locator('#manifesto-2 .line').count(), { timeout: 2500 }).toBeGreaterThan(0);
+  await expect(page.locator('.hero-line > span').first()).toBeInViewport({ timeout: 4000 });
 });
 
 test('content shows even if the reveal module fails', async ({ page }) => {

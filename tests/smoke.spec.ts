@@ -15,5 +15,7 @@ test('home has fonts loaded', async ({ page }) => {
   expect(loaded.montrealFace).toBe(true);
   expect(loaded.compactFace).toBe(true);
   const bg = await page.evaluate(() => getComputedStyle(document.body).backgroundColor);
-  expect(bg).toBe('rgb(249, 249, 248)');
+  expect(bg).toBe('rgb(255, 255, 255)');
+  const color = await page.evaluate(() => getComputedStyle(document.body).color);
+  expect(color).toBe('rgb(137, 141, 127)');
 });

@@ -1,0 +1,78 @@
+---
+const nav = [
+  { label: 'Home', href: '/' },
+  { label: 'About', href: '/about' },
+  { label: 'Gallery', href: '/gallery' },
+  { label: 'Beconcept', href: 'https://beconcept.studio/', external: true },
+];
+interface Props {
+  current?: string;
+}
+const { current = '/' } = Astro.props;
+---
+<!-- Desktop -->
+<header class="sticky top-0 z-50 hidden w-full items-center justify-center py-10 lg:flex">
+  <div class="container-site">
+    <div class="grid-8">
+      <div class="col-span-2 self-center">
+        <a class="block w-fit text-[14px] leading-none font-bold" href="/">RGGNDR</a>
+      </div>
+      <nav class="col-span-4 flex items-center justify-center self-center" aria-label="Principale">
+        <ul class="flex items-center justify-center gap-4">
+          {nav.map((item) => (
+            <li
+              class:list={[
+                'border-b-2 border-solid text-[14px] leading-none font-bold transition-colors duration-300 hover:border-primary',
+                item.href === current ? 'border-primary' : 'border-transparent',
+              ]}
+            >
+              <a
+                href={item.href}
+                class="flex items-center gap-[2px]"
+                {...(item.external ? { target: '_blank', rel: 'noopener' } : {})}
+                aria-current={item.href === current ? 'page' : undefined}
+              >
+                {item.label}
+                {item.external && (
+                  <svg viewBox="0 0 24 24" class="size-4" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8" fill="none" stroke="currentColor" stroke-width="2.2" /></svg>
+                )}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </nav>
+      <div class="col-span-2 flex items-center justify-end gap-2 self-center">
+        <span class="time-dot size-3 rounded-full bg-primary"></span>
+        <span data-clock class="text-sm">Asola</span>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- Mobile -->
+<header class="sticky top-0 z-50 flex w-full items-center py-5 lg:hidden">
+  <div class="container-site flex items-center justify-between">
+    <a class="text-[14px] leading-none font-bold" href="/">RGGNDR</a>
+    <button type="button" aria-label="Apri menu" class="flex h-4 w-5 flex-col justify-center gap-[5px]">
+      <span class="block h-[1.5px] w-full bg-primary"></span>
+      <span class="block h-[1.5px] w-full bg-primary"></span>
+    </button>
+  </div>
+</header>
+
+<script>
+  const clock = document.querySelector<HTMLElement>('[data-clock]');
+  if (clock) {
+    const tz = 'Europe/Rome';
+    const time = new Intl.DateTimeFormat('it-IT', { timeZone: tz, hour: '2-digit', minute: '2-digit' });
+    const abbr = new Intl.DateTimeFormat('en-GB', { timeZone: tz, timeZoneName: 'short' });
+    const render = () => {
+      const now = new Date();
+      const zone = abbr.formatToParts(now).find((p) => p.type === 'timeZoneName')?.value ?? '';
+      const label = zone.startsWith('GMT') ? (zone === 'GMT+2' ? 'CEST' : 'CET') : zone;
+      clock.textContent = `Asola ${time.format(now)} (${label})`;
+    };
+    render();
+    setInterval(render, 15_000);
+  }
+</script>

@@ -28,8 +28,13 @@ Scelto da Andrea: Astro + Sanity + GSAP/Lenis, test direttamente nel codice in `
 
 ## Decisioni
 - **Frontend:** Astro 5, output statico, `<ClientRouter />` per View Transitions (loader solo alla prima visita, header/footer persistenti).
-- **Styling:** Tailwind CSS v4, token dal sito attuale: `primary #898D7F`, `background #F9F9F8`.
-- **Font:** self-hosted in `public/fonts` (scaricati dal sito live): Compact Black, Montreal Regular/Bold, Editorial Regular. `font-display: swap` + preload dei font above-the-fold.
+- **Styling:** Tailwind CSS v4 con palette di default disattivata: esistono solo i token del sito.
+  - Colori: `primary #898D7F` (tutto il testo, titoli, linee, superfici piene), `white #FFFFFF` (sfondo pagina), `cream #FDFFF4` (testo su primary, es. loader), `background #F9F9F8` (superficie alternativa). **Niente nero.**
+  - Tipografia: tutto maiuscolo; Montreal per il testo, Compact per i titoli; scala `h1`–`h6` identica al sito attuale.
+  - Layout: `container-site` (16/24px), `grid-8`, `grid-12`, `space-top-big` / `space-bottom-big`.
+- **Font:** self-hosted in `public/fonts`: Compact Black, Montreal Regular/Bold. Editorial (PP Editorial New) **non** fa parte del sito: resta solo nella card SVG del footer.
+- **Hero:** intro identica a quella attuale (righe dalla maschera + note laterali in blur/fade). Si lavora solo sull'effetto di intro, non sul design.
+- **Reveal on scroll:** variante preferita "Soft" (opacità + blur + leggero spostamento), le altre restano nel lab per confronto.
 - **Motion:** GSAP 3.13+ (SplitText con `autoSplit`/`onSplit`, split solo dopo `document.fonts.ready`), Lenis per smooth scroll, `prefers-reduced-motion` rispettato.
 - **Card footer:** isola dedicata; varianti CSS 3D e WebGL (OGL/Three) da confrontare.
 - **CMS:** Sanity free (dopo il lab). Rebuild via webhook.

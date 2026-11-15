@@ -2,37 +2,42 @@ import { test, expect, type Page } from '@playwright/test';
 
 const VARIANTS = ['mask', 'soft', 'wipe', 'scrub'] as const;
 
-/** Linee "naturali" di un elemento, calcolate dal layout reale (nessuna animazione). */
+/** Linee "naturali" di un elemento, misurate carattere per carattere sul layout reale. */
 async function naturalLines(page: Page, selector: string): Promise<string[]> {
   return page.evaluate((sel) => {
     const el = document.querySelector(sel)!;
     const walker = document.createTreeWalker(el, NodeFilter.SHOW_TEXT);
-    const words: { text: string; top: number }[] = [];
+    const lines: string[] = [];
+    const range = document.createRange();
+    let current = '';
+    let lastLeft = Number.NaN;
     let node: Node | null;
     while ((node = walker.nextNode())) {
       if (node.parentElement?.closest('.sr-only')) continue;
       const text = node.textContent ?? '';
-      const re = /\S+/g;
-      let m: RegExpExecArray | null;
-      while ((m = re.exec(text))) {
-        const r = document.createRange();
-        r.setStart(node, m.index);
-        r.setEnd(node, m.index + m[0].length);
-        words.push({ text: m[0], top: Math.round(r.getBoundingClientRect().top) });
+      for (let i = 0; i < text.length; i++) {
+        if (/\s/.test(text[i])) {
+          current += ' ';
+          continue;
+        }
+        range.setStart(node, i);
+        range.setEnd(node, i + 1);
+        const rect = range.getClientRects()[0];
+        if (!rect) continue;
+        if (!Number.isNaN(lastLeft) && rect.left < lastLeft - 0.5) {
+          lines.push(current);
+          current = '';
+        }
+        current += text[i];
+        lastLeft = rect.left;
       }
     }
-    const lines: string[][] = [];
-    let lastTop = Number.NaN;
-    for (const w of words) {
-      if (lines.length === 0 || Math.abs(w.top - lastTop) > 4) lines.push([]);
-      lines[lines.length - 1].push(w.text);
-      lastTop = w.top;
-    }
-    return lines.map((l) => l.join(' '));
+    lines.push(current);
+    return lines.map((l) => l.replace(/\s+/g, ' ').trim()).filter(Boolean);
   }, selector);
 }
 
-/** Linee prodotte da SplitText. */
+/** Linee prodotte dallo split. */
 async function splitLines(page: Page, selector: string): Promise<string[]> {
   await page.waitForFunction((sel) => document.querySelectorAll(`${sel} .line`).length > 0, selector);
   return page.$$eval(`${selector} .line`, (els) =>
@@ -61,7 +66,7 @@ for (const width of [1440, 390]) {
     await page.setViewportSize({ width, height: 900 });
     await page.goto('/lab/reveal?static=1');
     await page.evaluate(() => document.fonts.ready);
-    const expected = await naturalLines(page, '#p-long');
+    const expected = await naturalLines(page, '#manifesto-2');
     expect(expected.length).toBeGreaterThan(2);
 
     await page.route('**/fonts/*.woff2', async (route) => {
@@ -69,21 +74,21 @@ for (const width of [1440, 390]) {
       await route.continue();
     });
     await page.goto('/lab/reveal?v=mask');
-    expect(await splitLines(page, '#p-long')).toEqual(expected);
+    expect(await splitLines(page, '#manifesto-2')).toEqual(expected);
   });
 }
 
 test('resplits on resize', async ({ page }) => {
   await page.setViewportSize({ width: 1440, height: 900 });
   await page.goto('/lab/reveal?v=mask');
-  const wide = await splitLines(page, '#p-long');
+  const wide = await splitLines(page, '#manifesto-2');
   await page.setViewportSize({ width: 500, height: 900 });
   await expect
-    .poll(async () => (await splitLines(page, '#p-long')).length, { timeout: 3000 })
-    .toBeGreaterThan(wide.length);
-  const narrow = await splitLines(page, '#p-long');
+    .poll(async () => (await splitLines(page, '#manifesto-2')).join('|'), { timeout: 3000 })
+    .not.toBe(wide.join('|'));
+  const narrow = await splitLines(page, '#manifesto-2');
   expect(narrow.join(' ')).toBe(wide.join(' '));
-  expect(narrow).toEqual(await naturalLines(page, '#p-long'));
+  expect(narrow).toEqual(await naturalLines(page, '#manifesto-2'));
 });
 
 test.describe('without javascript', () => {
@@ -92,6 +97,7 @@ test.describe('without javascript', () => {
     await page.goto('/lab/reveal');
     expect(await page.locator('[data-reveal]').count()).toBeGreaterThan(4);
     expect(await allRevealsVisible(page)).toBe(true);
+    await expect(page.locator('.hero-line > span').first()).toBeInViewport();
   });
 });
 
@@ -103,7 +109,39 @@ test.describe('reduced motion', () => {
     await page.waitForTimeout(300);
     expect(await page.locator('[data-reveal]').count()).toBeGreaterThan(4);
     expect(await allRevealsVisible(page)).toBe(true);
+    await expect(page.locator('.hero-info').first()).toHaveCSS('opacity', '1');
   });
+});
+
+test('hero intro ends with every line in place', async ({ page }) => {
+  await page.goto('/lab/reveal');
+  await page.waitForTimeout(3200);
+  const offsets = await page.$$eval('.hero-line > span, .hero-sub > span', (els) =>
+    els.map((e) => {
+      const cs = getComputedStyle(e);
+      const ty = cs.transform === 'none' ? 0 : new DOMMatrix(cs.transform).m42;
+      return { ty: Math.round(ty), translate: cs.translate };
+    }),
+  );
+  expect(offsets.every((o) => o.ty === 0 && (o.translate === 'none' || o.translate === '0px'))).toBe(true);
+  const infos = await page.$$eval('.hero-info', (els) => els.filter((e) => getComputedStyle(e).display !== 'none').map((e) => getComputedStyle(e).opacity));
+  expect(infos.every((o) => o === '1')).toBe(true);
+});
+
+test('no black anywhere: every color comes from the site palette', async ({ page }) => {
+  await page.goto('/lab/reveal');
+  await page.waitForTimeout(500);
+  const offenders = await page.$$eval('body, body *', (els) =>
+    els
+      .filter((e) => !e.closest('svg') || e.tagName === 'svg')
+      .flatMap((e) => {
+        const cs = getComputedStyle(e);
+        return [cs.color, cs.backgroundColor, cs.borderTopColor]
+          .filter((c) => /^rgba?\(0, 0, 0(, 1)?\)$/.test(c))
+          .map((c) => `${e.tagName.toLowerCase()}.${e.className}: ${c}`);
+      }),
+  );
+  expect(offenders).toEqual([]);
 });
 
 for (const v of VARIANTS) {
