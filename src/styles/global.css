@@ -43,10 +43,19 @@
   }
 }
 
-/* Stato iniziale dei reveal: nascosti solo se JS è attivo e il motion è consentito. */
+/*
+ * Stato iniziale dei reveal: nascosti solo se JS è attivo e il motion è consentito.
+ * JS li sblocca con `data-reveal-shown`. Paracadute: se JS non arriva, dopo 3s si vedono comunque.
+ */
 @media (prefers-reduced-motion: no-preference) {
-  html.js [data-reveal] {
+  html.js [data-reveal]:not([data-reveal-shown]) {
     visibility: hidden;
+    animation: reveal-failsafe 0s 3s forwards;
+  }
+}
+@keyframes reveal-failsafe {
+  to {
+    visibility: visible;
   }
 }
 [data-reveal='image'] {

@@ -13,7 +13,11 @@ const CLEAR = 'transform,opacity,visibility,filter,clipPath';
 type Cleanup = () => void;
 type Builder = (el: HTMLElement, done: () => void) => Cleanup;
 
-const show = (el: HTMLElement) => gsap.set(el, { visibility: 'visible' });
+/** Toglie il gate CSS `[data-reveal]:not([data-reveal-shown])`; i tween non possono annullarlo. */
+const show = (el: HTMLElement) => {
+  el.setAttribute('data-reveal-shown', '');
+  return { revert: () => el.removeAttribute('data-reveal-shown') };
+};
 
 /* ---------- testi ---------- */
 
@@ -21,9 +25,9 @@ const textOnce =
   (vars: gsap.TweenVars, mask: boolean): Builder =>
   (el, done) => {
     const visible = show(el);
-    const stop = autoSplitLines(el, { mask }, ({ lines }) => {
+    const stop = autoSplitLines(el, { mask }, (split) => {
       if (el.dataset.revealDone) return;
-      return gsap.from(lines, {
+      return gsap.from(split ? split.lines : [el], {
         ...vars,
         duration: vars.duration ?? DURATION,
         ease: vars.ease ?? EASE,
@@ -41,9 +45,9 @@ const textOnce =
 
 const textScrub: Builder = (el) => {
   const visible = show(el);
-  const stop = autoSplitLines(el, { words: true }, ({ words }) =>
+  const stop = autoSplitLines(el, { words: true }, (split) =>
     gsap.fromTo(
-      words,
+      split ? split.words : [el],
       { opacity: 0.15 },
       {
         opacity: 1,

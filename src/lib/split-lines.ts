@@ -21,14 +21,22 @@ interface Point {
  * di ogni carattere nel testo originale e taglia dove il browser va a capo.
  * Le righe risultanti coincidono per costruzione con quelle del testo non animato.
  */
-export function splitLines(el: HTMLElement, options: LineSplitOptions = {}): LineSplit {
-  const original = el.innerHTML;
+/** Elementi che non vanno mai duplicati dallo split (link, controlli, id referenziabili). */
+const UNSPLITTABLE = 'a, button, input, select, textarea, label, [id], [tabindex], [contenteditable]';
+
+export function splitLines(el: HTMLElement, options: LineSplitOptions = {}): LineSplit | null {
+  if (el.querySelector(UNSPLITTABLE)) return null;
   const starts = findLineStarts(el);
+  if (starts.length === 0) return null; // nascosto o senza testo misurabile
+
+  const original = el.innerHTML;
+  const label = (el.textContent ?? '').replace(/\s+/g, ' ').trim();
 
   const fragments: DocumentFragment[] = [];
   for (let i = 0; i < starts.length; i++) {
     const range = document.createRange();
-    range.setStart(starts[i].node, starts[i].offset);
+    if (i === 0) range.setStart(el, 0); // conserva eventuali nodi prima del primo carattere
+    else range.setStart(starts[i].node, starts[i].offset);
     if (i + 1 < starts.length) range.setEnd(starts[i + 1].node, starts[i + 1].offset);
     else range.setEnd(el, el.childNodes.length);
     fragments.push(range.cloneContents());
@@ -37,6 +45,19 @@ export function splitLines(el: HTMLElement, options: LineSplitOptions = {}): Lin
   const lines: HTMLElement[] = [];
   const words: HTMLElement[] = [];
   el.textContent = '';
+
+  // Gli screen reader leggono il testo una volta sola, non riga per riga.
+  const readable = document.createElement('span');
+  readable.className = 'sr-only';
+  Object.assign(readable.style, {
+    position: 'absolute', width: '1px', height: '1px', padding: '0', margin: '-1px',
+    overflow: 'hidden', clip: 'rect(0, 0, 0, 0)', whiteSpace: 'nowrap', border: '0',
+  });
+  readable.textContent = label;
+  const visual = document.createElement('span');
+  visual.setAttribute('aria-hidden', 'true');
+  visual.style.display = 'block';
+  el.append(readable, visual);
 
   for (const fragment of fragments) {
     const line = document.createElement('span');
@@ -51,9 +72,9 @@ export function splitLines(el: HTMLElement, options: LineSplitOptions = {}): Lin
       // un po' di respiro per non tagliare ascendenti/discendenti con interlinee strette
       Object.assign(mask.style, { display: 'block', overflow: 'clip', paddingBlock: '0.12em', marginBlock: '-0.12em' });
       mask.append(line);
-      el.append(mask);
+      visual.append(mask);
     } else {
-      el.append(line);
+      visual.append(line);
     }
     lines.push(line);
   }
@@ -71,7 +92,7 @@ function findLineStarts(el: HTMLElement): Point[] {
   const starts: Point[] = [];
   const walker = document.createTreeWalker(el, NodeFilter.SHOW_TEXT);
   const range = document.createRange();
-  let lastTop = Number.NaN;
+  let lastLeft = Number.NaN;
   let node: Node | null;
 
   while ((node = walker.nextNode())) {
@@ -84,10 +105,12 @@ function findLineStarts(el: HTMLElement): Point[] {
       range.setEnd(text, i + 1);
       const rect = range.getClientRects()[0];
       if (!rect) continue;
-      if (starts.length === 0 || Math.abs(rect.top - lastTop) > rect.height / 2) {
+      // Nuova riga quando il carattere torna a sinistra del precedente (testo LTR).
+      // Il confronto orizzontale regge anche con corpi diversi sulla stessa riga.
+      if (starts.length === 0 || rect.left < lastLeft - 0.5) {
         starts.push({ node: text, offset: i });
       }
-      lastTop = rect.top;
+      lastLeft = rect.left;
     }
   }
   return starts;
@@ -128,12 +151,13 @@ function wrapWords(fragment: DocumentFragment): HTMLElement[] {
 export function autoSplitLines(
   el: HTMLElement,
   options: LineSplitOptions,
-  onSplit: (split: LineSplit) => { revert(): unknown } | void,
+  onSplit: (split: LineSplit | null) => { revert(): unknown } | void,
 ): () => void {
   let split: LineSplit | null = null;
   let anim: { revert(): unknown } | void;
-  let width = -1;
+  let key = '';
   let frame = 0;
+  const measure = () => `${Math.round(el.getBoundingClientRect().width)}|${getComputedStyle(el).fontSize}`;
 
   const run = () => {
     if (anim) anim.revert();
@@ -147,15 +171,16 @@ export function autoSplitLines(
     frame = requestAnimationFrame(run);
   };
 
-  const observer = new ResizeObserver(([entry]) => {
-    const w = Math.round(entry.contentRect.width);
-    if (w === width) return;
-    width = w;
+  // Si rifà lo split se cambia la larghezza o il corpo del testo (es. breakpoint che cambia solo il font-size).
+  const observer = new ResizeObserver(() => {
+    const k = measure();
+    if (k === key) return;
+    key = k;
     schedule();
   });
 
   run();
-  width = Math.round(el.getBoundingClientRect().width);
+  key = measure();
   observer.observe(el);
   document.fonts.addEventListener('loadingdone', schedule);
 

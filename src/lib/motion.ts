@@ -10,15 +10,18 @@ export function prefersReducedMotion(): boolean {
   return window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 }
 
-/** Attende che i font del sito siano realmente caricati: lo split deve misurare le righe col font finale. */
-export async function fontsReady(): Promise<void> {
-  await Promise.allSettled([
+/**
+ * Attende i font del sito (lo split deve misurare le righe col font finale), ma non oltre
+ * `timeoutMs`: se un font è lento si parte comunque e lo split si rifà al `loadingdone`.
+ */
+export async function fontsReady(timeoutMs = 1200): Promise<void> {
+  const loaded = Promise.allSettled([
     document.fonts.load('400 1em Montreal'),
     document.fonts.load('700 1em Montreal'),
     document.fonts.load('900 1em Compact'),
     document.fonts.load('400 1em Editorial'),
-  ]);
-  await document.fonts.ready;
+  ]).then(() => document.fonts.ready);
+  await Promise.race([loaded, new Promise((r) => setTimeout(r, timeoutMs))]);
 }
 
 let lenis: Lenis | null = null;

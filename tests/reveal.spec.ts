@@ -10,6 +10,7 @@ async function naturalLines(page: Page, selector: string): Promise<string[]> {
     const words: { text: string; top: number }[] = [];
     let node: Node | null;
     while ((node = walker.nextNode())) {
+      if (node.parentElement?.closest('.sr-only')) continue;
       const text = node.textContent ?? '';
       const re = /\S+/g;
       let m: RegExpExecArray | null;
@@ -44,7 +45,12 @@ async function allRevealsVisible(page: Page) {
     els.every((el) =>
       [el, ...el.querySelectorAll('*')].every((n) => {
         const cs = getComputedStyle(n);
-        return Number(cs.opacity) > 0.99 && (cs.clipPath === 'none' || cs.clipPath === 'inset(0px)');
+        if (n.closest('.sr-only')) return true;
+        return (
+          cs.visibility === 'visible' &&
+          Number(cs.opacity) > 0.99 &&
+          (cs.clipPath === 'none' || cs.clipPath === 'inset(0px)')
+        );
       }),
     ),
   );
@@ -116,7 +122,9 @@ for (const v of VARIANTS) {
       els
         .filter((el) => el.getBoundingClientRect().top < window.innerHeight * 0.4)
         .every((el) =>
-          [el, ...el.querySelectorAll('*')].every((n) => Number(getComputedStyle(n).opacity) > 0.99),
+          [el, ...el.querySelectorAll('*')].every(
+            (n) => getComputedStyle(n).visibility === 'visible' && Number(getComputedStyle(n).opacity) > 0.99,
+          ),
         ),
     );
     expect(ok).toBe(true);
