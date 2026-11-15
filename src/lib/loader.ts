@@ -56,11 +56,6 @@ function prepareColumn(letter: HTMLElement, extra: string[]): HTMLElement {
 }
 
 
-/** Posizione del logo RGGNDR visibile nell'header (desktop o mobile). */
-function headerLogo(): HTMLElement | null {
-  return [...document.querySelectorAll<HTMLElement>('header a[href="/"]')].find((a) => a.offsetParent !== null) ?? null;
-}
-
 export async function playLoader(el: HTMLElement, variant: LoaderVariant, { onHandoff }: LoaderOptions = {}): Promise<void> {
   const html = document.documentElement;
   const finish = () => {
@@ -153,28 +148,13 @@ export async function playLoader(el: HTMLElement, variant: LoaderVariant, { onHa
       tl.add(() => drop.forEach((d) => (d.style.width = `${d.getBoundingClientRect().width}px`)), collapseAt);
       tl.to(drop, { width: 0, opacity: 0, duration: 0.55, ease: EASE, stagger: 0.015 }, collapseAt);
       tl.to(sub, { opacity: 0, filter: 'blur(5px)', duration: 0.4, ease: 'power2.in' }, collapseAt);
-      exitAt = collapseAt + 0.55 + 0.015 * drop.length + 0.05;
+      exitAt = collapseAt + 0.55 + 0.015 * drop.length + 0.1;
 
-      // RGGNDR vola sul logo dell'header: misurato solo a chiusura finita, allineato su bordo sinistro e larghezza
-      const FLIGHT = 0.9;
-      tl.add(() => {
-        const target = headerLogo();
-        if (!target) return;
-        const from = name.getBoundingClientRect();
-        const to = target.getBoundingClientRect();
-        gsap.set(name, { transformOrigin: 'left center' });
-        gsap.to(name, {
-          x: to.left - from.left,
-          y: to.top + to.height / 2 - (from.top + from.height / 2),
-          scale: to.width / from.width,
-          duration: FLIGHT,
-          ease: EASE,
-        });
-        gsap.to(name, { color: getComputedStyle(target).color, duration: FLIGHT * 0.5, delay: FLIGHT * 0.5, ease: 'none' });
-      }, exitAt);
-      tl.to(name, { opacity: 0, duration: 0.15, ease: 'none' }, exitAt + FLIGHT);
-      tl.to(bands, { y: () => -window.innerHeight - 2, duration: FLIGHT, ease: EASE }, exitAt);
-      tl.add(() => onHandoff?.(), exitAt + 0.3);
+      // RGGNDR resta al centro e sfuma con la stessa dissolvenza del sottotitolo, poi il pannello sale
+      tl.to(name, { opacity: 0, filter: 'blur(5px)', duration: 0.4, ease: 'power2.in' }, exitAt);
+      const panelAt = exitAt + 0.15;
+      tl.to(bands, { y: () => -window.innerHeight - 2, duration: 1, ease: EASE }, panelAt);
+      tl.add(() => onHandoff?.(), panelAt + 0.3);
       return;
     }
 

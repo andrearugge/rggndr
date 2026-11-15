@@ -19,7 +19,7 @@ async function record(page: Page) {
             const r = b.getBoundingClientRect();
             return sum + Math.max(0, Math.min(r.bottom, innerHeight) - Math.max(r.top, 0));
           }, 0),
-          name: { x: r.left, w: r.width, cy: r.top + r.height / 2, opacity: Number(getComputedStyle(name).opacity) },
+          name: { x: r.left, w: r.width, cy: r.top + r.height / 2, opacity: Number(getComputedStyle(name).opacity), filter: getComputedStyle(name).filter, transform: getComputedStyle(name).transform },
         });
       }
       requestAnimationFrame(loop);
@@ -28,7 +28,7 @@ async function record(page: Page) {
   });
 }
 
-type Frame = { t: number; panelBottom: number; panelTop: number; covered: number; name: { x: number; w: number; cy: number; opacity: number } };
+type Frame = { t: number; panelBottom: number; panelTop: number; covered: number; name: { x: number; w: number; cy: number; opacity: number; filter: string; transform: string } };
 
 for (const v of ['classic', 'slot', 'bands', 'monogram']) {
   test(`loader ${v}: the panel fully leaves the screen, smoothly, before being removed`, async ({ page }) => {
@@ -145,15 +145,22 @@ test('loader monogram: three overlapping rounds, each with two sets rolling in o
   expect(collapseStart).toBeLessThan(Math.max(...rolls.map((r) => r.end)));
 });
 
-test('loader monogram: RGGNDR lands exactly on the header logo', async ({ page }) => {
+test('loader monogram: RGGNDR stays in place and fades out with the same blur as the subtitle', async ({ page }) => {
   await page.setViewportSize({ width: 1440, height: 900 });
   await record(page);
   await page.goto('/lab/loader?v=monogram');
-  await expect(page.locator('[data-loader]')).toHaveCount(0, { timeout: 5000 });
+  await expect(page.locator('[data-loader]')).toHaveCount(0, { timeout: 6000 });
   const f: Frame[] = await page.evaluate(() => (window as any).__frames);
-  const landed = f.find((x) => x.name.opacity < 0.98 && x.panelBottom <= 0) ?? f.at(-1)!;
-  const logo = await page.locator('header a[href="/"]:visible').first().boundingBox();
-  expect(Math.abs(landed.name.x - logo!.x)).toBeLessThanOrEqual(2);
-  expect(Math.abs(landed.name.w - logo!.width)).toBeLessThanOrEqual(2);
-  expect(Math.abs(landed.name.cy - (logo!.y + logo!.height / 2))).toBeLessThanOrEqual(2);
+  const visible = f.filter((x) => x.name.opacity > 0.01);
+  // nessun volo: il nome non si sposta in verticale e non viene scalato
+  for (const x of visible) {
+    expect(Math.abs(x.name.cy - visible[0].name.cy)).toBeLessThan(1);
+    expect(['none', 'matrix(1, 0, 0, 1, 0, 0)']).toContain(x.name.transform);
+  }
+  // dopo la chiusura in RGGNDR, il nome sfuma sfocandosi, come il sottotitolo
+  const fullIdx = f.findIndex((x) => x.name.opacity > 0.99);
+  const fading = f.slice(fullIdx).filter((x) => x.name.opacity > 0.05 && x.name.opacity < 0.95);
+  expect(fading.length).toBeGreaterThan(0);
+  for (const x of fading) expect(x.name.filter).toMatch(/blur\((?!0px)/);
+  expect(f.at(-1)!.name.opacity).toBeLessThan(0.05);
 });
