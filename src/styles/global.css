@@ -1,0 +1,44 @@
+@import "tailwindcss";
+
+@font-face {
+  font-family: "Compact";
+  src: url("/fonts/CompactBlack.woff2") format("woff2");
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Montreal";
+  src: url("/fonts/Montreal-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Montreal";
+  src: url("/fonts/Montreal-Bold.woff2") format("woff2");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Editorial";
+  src: url("/fonts/Editorial-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@theme {
+  --color-primary: #898d7f;
+  --color-background: #f9f9f8;
+  --font-compact: "Compact", "Arial Narrow", sans-serif;
+  --font-montreal: "Montreal", "Helvetica Neue", Arial, sans-serif;
+  --font-editorial: "Editorial", Georgia, serif;
+}
+
+@layer base {
+  body {
+    @apply bg-background font-montreal text-black antialiased;
+  }
+}
