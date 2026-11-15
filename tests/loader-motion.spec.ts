@@ -80,23 +80,40 @@ async function letterTimeline(page: Page) {
   });
 }
 
-type Roll = { i: number; start: number; end: number };
+type Roll = { i: number; start: number; end: number; dir: 1 | -1 };
 
 async function measure(page: Page, v: string) {
   await page.goto(`/lab/loader?v=${v}`);
-  await expect(page.locator('[data-loader]')).toHaveCount(0, { timeout: 5000 });
+  await expect(page.locator('[data-loader]')).toHaveCount(0, { timeout: 6000 });
   const frames: { t: number; rolls: number[]; widths: number[] }[] = await page.evaluate(() => (window as any).__letters);
   const n = frames[0].rolls.length;
   const rolls = Array.from({ length: n }, (_, i) => {
-    const moving = frames.filter((f, k) => k > 0 && f.rolls[i] !== frames[k - 1].rolls[i]);
-    return moving.length ? { i, start: moving[0].t, end: moving.at(-1)!.t } : null;
+    // un salto di un'intera cella in un frame è un riposizionamento tra due celle uguali, non un movimento visibile
+    const moving = frames
+      .map((f, k) => ({ f, k }))
+      .filter(({ f, k }) => k > 0 && f.rolls[i] !== frames[k - 1].rolls[i] && Math.abs(f.rolls[i] - frames[k - 1].rolls[i]) < 0.5);
+    if (!moving.length) return null;
+    const before = frames[moving[0].k - 1].rolls[i];
+    const after = moving.at(-1)!.f.rolls[i];
+    return { i, start: moving[0].f.t, end: moving.at(-1)!.f.t, dir: after > before ? 1 : -1 };
   })
     .filter((r): r is Roll => r !== null)
     .sort((a, b) => a.start - b.start);
   return { frames, n, rolls };
 }
 
-test('loader monogram: two overlapping rounds with classic timing, then a linked collapse', async ({ page }) => {
+/** Raggruppa le rotazioni in giri: un nuovo giro inizia dopo una pausa di almeno 150ms tra due partenze. */
+function rounds(rolls: Roll[]): Roll[][] {
+  const out: Roll[][] = [];
+  for (const r of rolls) {
+    const cur = out.at(-1);
+    if (cur && r.start - cur.at(-1)!.start < 150) cur.push(r);
+    else out.push([r]);
+  }
+  return out;
+}
+
+test('loader monogram: three overlapping rounds, each with two sets rolling in opposite directions, then a linked collapse', async ({ page }) => {
   await letterTimeline(page);
   const classic = await measure(page, 'classic');
   const { frames, n, rolls } = await measure(page, 'monogram');
@@ -107,17 +124,21 @@ test('loader monogram: two overlapping rounds with classic timing, then a linked
   const classicDuration = classic.rolls[0].end - classic.rolls[0].start;
   for (const r of rolls) expect(Math.abs(r.end - r.start - classicDuration)).toBeLessThan(40);
 
-  // due giri: il primo di 3 lettere, il secondo di 3-4, che parte prima che il primo finisca
-  const first = rolls.slice(0, 3);
-  const second = rolls.slice(3);
-  expect(second.length).toBeGreaterThanOrEqual(3);
-  expect(second.length).toBeLessThanOrEqual(4);
-  expect(second[0].start - first.at(-1)!.start).toBeGreaterThan(150); // due giri distinti
-  expect(second[0].start).toBeLessThan(Math.max(...first.map((r) => r.end))); // ma sovrapposti
-  // dentro ogni giro, lo stesso ritardo tra lettere di classic
+  // tre giri, ognuno con un set che sale e uno che scende
+  const rs = rounds(rolls);
+  expect(rs).toHaveLength(3);
   const classicDelay = classic.rolls[1].start - classic.rolls[0].start;
-  for (const round of [first, second])
-    round.slice(1).forEach((r, k) => expect(Math.abs(r.start - round[k].start - classicDelay)).toBeLessThan(25));
+  for (const round of rs) {
+    const up = round.filter((r) => r.dir === 1);
+    const down = round.filter((r) => r.dir === -1);
+    expect(up.length).toBeGreaterThanOrEqual(1);
+    expect(down.length).toBeGreaterThanOrEqual(1);
+    // i due set partono insieme, ciascuno col ritardo tra lettere di classic
+    expect(Math.abs(up[0].start - down[0].start)).toBeLessThan(25);
+    for (const set of [up, down]) set.slice(1).forEach((r, k) => expect(Math.abs(r.start - set[k].start - classicDelay)).toBeLessThan(25));
+  }
+  // ogni giro parte prima che il precedente finisca
+  rs.slice(1).forEach((round, k) => expect(round[0].start).toBeLessThan(Math.max(...rs[k].map((r) => r.end))));
 
   // la chiusura del monogram parte prima che l'ultima rotazione sia finita: un'unica animazione
   const collapseStart = frames.find((f, k) => k > 0 && f.widths.some((w, i) => w < frames[0].widths[i] - 0.5))!.t;

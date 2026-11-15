@@ -114,20 +114,30 @@ export async function playLoader(el: HTMLElement, variant: LoaderVariant, { onHa
 
     let rollsEnd = 0;
     if (variant === 'monogram') {
-      // Due giri sovrapposti con i tempi di classic: alcune lettere ruotano, altre restano ferme,
-      // per dare il senso di lettere intercambiabili. Il secondo giro parte prima che il primo finisca.
-      const rounds: { at: number; letters: number[] }[] = [
-        { at: 0.4, letters: [1, 4, 8] }, // U, E, N
-        { at: 0.95, letters: [2, 6, 10, 12] }, // G, I, R, A
+      // Tre giri sovrapposti con i tempi di classic. In ogni giro due set di lettere ruotano
+      // in direzioni opposte (uno sale, uno scende) mentre le altre restano ferme:
+      // il senso di lettere intercambiabili. Ogni giro parte prima che il precedente finisca.
+      const ROUND_GAP = 0.5;
+      const rounds: { up: number[]; down: number[] }[] = [
+        { up: [1, 8], down: [4, 12] }, // U N ↑  E A ↓
+        { up: [2, 10], down: [0, 6] }, // G R ↑  R I ↓
+        { up: [5, 11], down: [3, 7] }, // R E ↑  G A ↓
       ];
-      for (const round of rounds) {
-        round.letters.forEach((idx, k) => {
-          const l = letters[idx];
-          const start = round.at + k * CLASSIC_STAGGER;
-          tl.add(rollColumn(l, [l.dataset.char!], { duration: CLASSIC_ROLL, ease: EASE }), start);
-          rollsEnd = Math.max(rollsEnd, start + CLASSIC_ROLL);
-        });
-      }
+      rounds.forEach((round, r) => {
+        const at = 0.4 + r * ROUND_GAP;
+        for (const [set, dir] of [[round.up, 1], [round.down, -1]] as const) {
+          set.forEach((idx, k) => {
+            const l = letters[idx];
+            const column = prepareColumn(l, [l.dataset.char!]);
+            // la colonna ha due celle uguali: sale da 0 a -50%, scende da -50% a 0
+            const from = dir === 1 ? 0 : -50;
+            gsap.set(column, { yPercent: from });
+            const start = at + k * CLASSIC_STAGGER;
+            tl.to(column, { yPercent: from === 0 ? -50 : 0, duration: CLASSIC_ROLL, ease: EASE }, start);
+            rollsEnd = Math.max(rollsEnd, start + CLASSIC_ROLL);
+          });
+        }
+      });
     }
 
     let exitAt = variant === 'slot' ? 1.6 : 1.55;
