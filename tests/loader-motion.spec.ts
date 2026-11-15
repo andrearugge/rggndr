@@ -68,6 +68,57 @@ test('loader monogram: every letter spins before the extra ones close', async ({
   expect(dropped.every((w) => w > 0)).toBe(true); // a 0.9s sono ancora tutte lì
 });
 
+test('loader monogram: classic-style rolls, three rounds of different letters, landing on its own letter', async ({ page }) => {
+  await page.goto('/lab/loader?v=monogram');
+  await page.waitForTimeout(300);
+  const columns = await page.$$eval('[data-loader-letter]', (els) =>
+    els.map((e) => ({ own: e.getAttribute('data-char'), cells: [...e.firstElementChild!.children].map((c) => c.textContent) })),
+  );
+  for (const c of columns) {
+    expect(c.cells.length).toBe(4); // lettera + 3 giri
+    expect(c.cells.at(-1)).toBe(c.own);
+    expect(c.cells.slice(1, 3).every((x) => x !== c.own)).toBe(true);
+    expect(c.cells[1]).not.toBe(c.cells[2]);
+  }
+  // i giri sono scatti distinti: tra un giro e l'altro la prima lettera è ferma su una cella intera
+  const aligned = await page.waitForFunction(() => {
+    const name = document.querySelector('[data-loader-name]');
+    if (name?.getAttribute('data-round') !== '1') return false;
+    const e = document.querySelector('[data-loader-letter]') as HTMLElement;
+    const col = e.firstElementChild as HTMLElement;
+    const cell = e.getBoundingClientRect().height;
+    const offset = (e.getBoundingClientRect().top - col.getBoundingClientRect().top) / cell;
+    return { offset: Math.round(offset * 100) / 100 };
+  });
+  expect(await aligned.jsonValue()).toEqual({ offset: 1 });
+});
+
+test('loader monogram: random letters are never clipped by their mask', async ({ page }) => {
+  await page.goto('/lab/loader?v=monogram');
+  // quando l'onda del giro 2 è arrivata all'ultima lettera; la prima può già essere nel giro 3
+  await page.waitForFunction(() => document.querySelector('[data-loader-name]')?.getAttribute('data-round-done') === '2');
+  const clipped = await page.$$eval('[data-loader-letter]', (els) =>
+    els
+      .map((e) => {
+        const cs = getComputedStyle(e);
+        // larghezza visibile: la maschera + quanto la clip-path concede ai lati
+        const m = cs.clipPath.match(/inset\(0px (-?[\d.]+)%/);
+        const side = cs.overflowX === 'visible' && m ? (-Number(m[1]) / 100) * e.getBoundingClientRect().width : 0;
+        const visible = e.getBoundingClientRect().width + 2 * side;
+        const range = document.createRange();
+        const widest = Math.max(
+          ...[...e.firstElementChild!.children].map((c) => {
+            range.selectNodeContents(c);
+            return range.getBoundingClientRect().width;
+          }),
+        );
+        return { c: e.getAttribute('data-char'), widest, visible };
+      })
+      .filter((x) => x.visible < x.widest - 0.5),
+  );
+  expect(clipped).toEqual([]);
+});
+
 test('loader monogram: RGGNDR lands exactly on the header logo', async ({ page }) => {
   await page.setViewportSize({ width: 1440, height: 900 });
   await record(page);

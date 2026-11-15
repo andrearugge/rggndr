@@ -3,14 +3,14 @@ import { test, expect } from '@playwright/test';
 const VARIANTS = ['classic', 'slot', 'bands', 'monogram'] as const;
 
 for (const v of VARIANTS) {
-  test(`loader ${v}: covers the page, then leaves in under 3.5s and hands over to the hero`, async ({ page }) => {
+  test(`loader ${v}: covers the page, then leaves in time and hands over to the hero`, async ({ page }) => {
     await page.goto(`/lab/loader?v=${v}`);
     const loader = page.locator('[data-loader]');
     await expect(loader).toBeVisible();
     await expect(loader).toHaveAttribute('aria-hidden', 'true');
     const t0 = Date.now();
-    await expect(loader).toHaveCount(0, { timeout: 4000 });
-    expect(Date.now() - t0).toBeLessThan(3500);
+    await expect(loader).toHaveCount(0, { timeout: 5000 });
+    expect(Date.now() - t0).toBeLessThan(v === 'monogram' ? 4000 : 3500);
     // scroll sbloccato
     expect(await page.evaluate(() => getComputedStyle(document.documentElement).overflow)).not.toBe('hidden');
     // l'hero termina al suo posto

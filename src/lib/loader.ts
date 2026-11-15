@@ -11,15 +11,35 @@ interface LoaderOptions {
 const ALPHABET = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
 const randomChar = () => ALPHABET[Math.floor(Math.random() * ALPHABET.length)];
 
+/** `n` lettere casuali, tutte diverse dalla lettera finale e dalla precedente. */
+function distinctRandoms(own: string, n: number): string[] {
+  const out: string[] = [];
+  while (out.length < n) {
+    const c = randomChar();
+    if (c !== own && c !== out.at(-1)) out.push(c);
+  }
+  return out;
+}
+
 /**
  * Trasforma una lettera in una colonna di celle [lettera, ...extra] dentro la sua maschera.
  * Ritorna il tween che fa scorrere la colonna fino all'ultima cella.
  */
 function rollColumn(letter: HTMLElement, extra: string[], vars: gsap.TweenVars): gsap.core.Tween {
+  const column = prepareColumn(letter, extra);
+  const cells = extra.length + 1;
+  return gsap.to(column, { yPercent: (-100 * (cells - 1)) / cells, ...vars });
+}
+
+/** Aggiunge le celle `extra` sotto la lettera, bloccando la maschera su una cella. Ritorna la colonna. */
+function prepareColumn(letter: HTMLElement, extra: string[]): HTMLElement {
   const column = letter.firstElementChild as HTMLElement;
   // La maschera resta alta una lettera: le celle aggiunte scorrono dentro, non la allargano.
   const first = (column.firstElementChild as HTMLElement).getBoundingClientRect();
   letter.style.height = `${first.height}px`;
+  // la maschera taglia solo sopra e sotto: le lettere larghe non vengono mai rifilate ai lati
+  letter.style.overflow = 'visible';
+  letter.style.clipPath = 'inset(0 -100% 0 -100%)';
   letter.style.width = `${first.width}px`; // anche le lettere casuali più larghe non spostano il nome
   column.style.textAlign = 'center';
   for (const c of extra) {
@@ -28,8 +48,16 @@ function rollColumn(letter: HTMLElement, extra: string[], vars: gsap.TweenVars):
     cell.textContent = c;
     column.append(cell);
   }
-  const cells = extra.length + 1;
-  return gsap.to(column, { yPercent: (-100 * (cells - 1)) / cells, ...vars });
+  return column;
+}
+
+/** Larghezza reale del glifo di ogni cella della colonna. */
+function cellWidths(column: HTMLElement): number[] {
+  const range = document.createRange();
+  return [...column.children].map((c) => {
+    range.selectNodeContents(c);
+    return range.getBoundingClientRect().width;
+  });
 }
 
 /** Posizione del logo RGGNDR visibile nell'header (desktop o mobile). */
@@ -81,25 +109,42 @@ export async function playLoader(el: HTMLElement, variant: LoaderVariant, { onHa
         .forEach((l, i) => tl.add(rollColumn(l, [l.dataset.char!], { duration: 0.8, ease: EASE }), 0.4 + i * 0.06));
     }
 
-    if (variant === 'slot' || variant === 'monogram') {
-      // tutte le lettere girano, a onda da sinistra, e atterrano sulla propria lettera
-      const extra = variant === 'slot' ? 3 : 2;
+    if (variant === 'slot') {
+      // scorrimento continuo su lettere casuali, a onda da sinistra
       letters.forEach((l, i) =>
-        tl.add(
-          rollColumn(l, [...Array.from({ length: extra }, randomChar), l.dataset.char!], {
-            duration: variant === 'slot' ? 0.8 : 0.8,
-            ease: variant === 'slot' ? 'expo.inOut' : EASE,
-          }),
-          (variant === 'slot' ? 0.45 : 0.3) + i * (variant === 'slot' ? 0.035 : 0.025),
-        ),
+        tl.add(rollColumn(l, [...distinctRandoms(l.dataset.char!, 3), l.dataset.char!], { duration: 0.8, ease: 'expo.inOut' }), 0.45 + i * 0.035),
       );
+    }
+
+    let rollsEnd = 0;
+    if (variant === 'monogram') {
+      // Rotazione "classic" su tutte le lettere, per 3 giri a scatti: ogni lettera sale di una cella,
+      // si ferma, poi riparte. I primi due giri mostrano lettere diverse, il terzo torna sulla propria.
+      const ROUNDS = 3;
+      const ROLL = 0.45; // durata di uno scatto
+      const INTERVAL = 0.5; // da un giro al successivo (ROLL < INTERVAL → pausa netta tra gli scatti)
+      const WAVE = 0.02; // onda da sinistra a destra
+      const START = 0.3;
+      const columns = letters.map((l) => prepareColumn(l, [...distinctRandoms(l.dataset.char!, ROUNDS - 1), l.dataset.char!]));
+      const widths = columns.map(cellWidths);
+      for (let r = 1; r <= ROUNDS; r++) {
+        columns.forEach((col, i) => {
+          const at = START + (r - 1) * INTERVAL + i * WAVE;
+          tl.to(col, { yPercent: (-100 * r) / (ROUNDS + 1), duration: ROLL, ease: EASE }, at);
+          // la maschera segue la larghezza della nuova lettera: niente tagli, niente salti
+          tl.to(letters[i], { width: widths[i][r], duration: ROLL, ease: EASE }, at);
+        });
+        tl.add(() => name.setAttribute('data-round', String(r)), START + (r - 1) * INTERVAL + ROLL + 0.02);
+        tl.add(() => name.setAttribute('data-round-done', String(r)), START + (r - 1) * INTERVAL + ROLL + (letters.length - 1) * WAVE + 0.02);
+      }
+      rollsEnd = START + (ROUNDS - 1) * INTERVAL + (letters.length - 1) * WAVE + ROLL;
     }
 
     let exitAt = variant === 'slot' ? 1.6 : 1.55;
 
     if (variant === 'monogram') {
       // RUGGERI ANDREA → RGGNDR: le lettere in più si chiudono, le altre si ricompattano
-      const collapseAt = 1.35;
+      const collapseAt = rollsEnd - 0.05;
       const drop = [
         ...letters.filter((l) => !l.hasAttribute('data-keep')),
         ...el.querySelectorAll<HTMLElement>('[data-loader-space]'),
