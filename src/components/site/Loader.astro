@@ -1,0 +1,35 @@
+---
+// "RUGGERI ANDREA": le lettere marcate `keep` compongono RGGNDR (usate dalla variante monogram),
+// quelle marcate `roll` ruotano nella variante classic (come sul sito attuale).
+const name = [
+  { c: 'R', keep: true },
+  { c: 'U', roll: true },
+  { c: 'G', keep: true },
+  { c: 'G', keep: true },
+  { c: 'E', roll: true },
+  { c: 'R', roll: true },
+  { c: 'I', roll: true },
+  { c: ' ' },
+  { c: 'A', roll: true },
+  { c: 'N', keep: true },
+  { c: 'D', keep: true },
+  { c: 'R', keep: true },
+  { c: 'E' },
+  { c: 'A' },
+];
+---
+<div data-loader aria-hidden="true" class="fixed inset-0 z-[100] text-cream">
+  <div data-loader-bands class="absolute inset-0 flex flex-col">
+    {[0, 1, 2, 3].map(() => <div class="-mb-px flex-1 bg-primary"></div>)}
+  </div>
+  <div class="relative flex h-full flex-col items-center justify-center gap-2 text-center">
+    <div data-loader-name class="h4 flex items-center leading-[.85]">
+      {name.map((l) =>
+        l.c === ' '
+          ? <span data-loader-space class="inline-block w-[.28em]"></span>
+          : <span data-loader-letter data-char={l.c} data-keep={l.keep ? '' : undefined} data-roll={l.roll ? '' : undefined} class="relative inline-block overflow-hidden"><span class="block"><span class="block">{l.c}</span></span></span>
+      )}
+    </div>
+    <p data-loader-sub class="text-sm">( Design Driven Entrepreneur )</p>
+  </div>
+</div>

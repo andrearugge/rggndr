@@ -1,0 +1,50 @@
+---
+import Lab from '../../layouts/Lab.astro';
+import Header from '../../components/site/Header.astro';
+import Hero from '../../components/site/Hero.astro';
+import Footer from '../../components/site/Footer.astro';
+import HomeSections from '../../components/site/HomeSections.astro';
+import Loader from '../../components/site/Loader.astro';
+
+const variants = [
+  { id: 'classic', label: 'Classic' },
+  { id: 'slot', label: 'Slot' },
+  { id: 'bands', label: 'Bands' },
+  { id: 'monogram', label: 'Monogram' },
+];
+---
+<Lab title="Loader" variants={variants} defaultVariant="classic" chrome={false}>
+  <Header current="/" />
+  <main class="space-bottom-big overflow-x-clip">
+    <Hero />
+    <HomeSections />
+  </main>
+  <Footer />
+  <Loader />
+</Lab>
+
+<script>
+  import { playLoader, LOADER_VARIANTS, type LoaderVariant } from '../../lib/loader';
+  import { playHeroIntro } from '../../lib/hero-intro';
+  import { initReveals } from '../../lib/reveal';
+  import { initSmoothScroll } from '../../lib/motion';
+  import { getVariant, onVariantChange } from '../../lib/lab';
+
+  const lenis = initSmoothScroll();
+  const hero = document.querySelector<HTMLElement>('[data-hero]')!;
+  const loader = document.querySelector<HTMLElement>('[data-loader]');
+  const variant = getVariant('classic', LOADER_VARIANTS) as LoaderVariant;
+
+  lenis?.stop();
+  const start = () => {
+    lenis?.start();
+    playHeroIntro(hero, { delay: 0 });
+  };
+  if (loader) playLoader(loader, variant, { onHandoff: start });
+  else start();
+
+  initReveals(document.querySelector<HTMLElement>('main')!, 'soft');
+
+  // Nel lab ogni cambio variante ricarica la pagina per rivedere l'intro da zero
+  onVariantChange(() => window.location.reload());
+</script>

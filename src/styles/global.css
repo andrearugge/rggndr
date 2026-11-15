@@ -173,3 +173,30 @@
 .time-dot {
   animation: pulse-dot 1s infinite;
 }
+
+/* ------------------------------------------------------------------ */
+/* Loader                                                             */
+/* Mai visibile senza JS o con reduced motion. Paracadute: se lo script */
+/* non parte, dopo 6s il loader sparisce comunque.                      */
+/* ------------------------------------------------------------------ */
+html:not(.js) [data-loader] {
+  display: none;
+}
+@media (prefers-reduced-motion: reduce) {
+  [data-loader] {
+    display: none;
+  }
+}
+[data-loader] {
+  animation: loader-failsafe 0s 6s forwards;
+}
+[data-loader-name],
+[data-loader-sub] {
+  opacity: 0;
+  filter: blur(5px);
+}
+@keyframes loader-failsafe {
+  to {
+    visibility: hidden;
+  }
+}

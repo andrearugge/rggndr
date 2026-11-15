@@ -1,0 +1,84 @@
+---
+// Stessi progetti e stesso ordine della homepage attuale
+const projects = [
+  { title: 'AI Journal', year: '2025', img: '/lab/ai-journal-cover.jpg', w: 1200, h: 901 },
+  { title: 'MarkLayer', year: '2025', img: '/lab/marklayer.jpg', w: 830, h: 1108 },
+  { title: 'AI Workshop', year: '2025', img: '/lab/ai-workshop.jpg', w: 550, h: 885 },
+  { title: 'Dialetto Libero', year: '2019', img: '/lab/a4.jpg', w: 550, h: 406 },
+  { title: 'Montipadel', year: '2024', img: '/lab/montipadel.jpg', w: 1200, h: 1600 },
+  { title: 'Beconcept', year: '2018 – Today', img: '/lab/beconcept.jpg', w: 1200, h: 1672 },
+  { title: 'Giulia Pampuri', year: '2024', img: '/lab/a8.jpg', w: 830, h: 623 },
+];
+// Ritmo della griglia: 2 progetti da 6 colonne, poi 3 da 4, e si ripete
+const colClass = (i: number) => ((i % 5) < 2 ? 'col-span-12 lg:col-span-6' : 'col-span-12 lg:col-span-4');
+---
+<!-- Link: info / AI Journal / letture -->
+<section class="space-top-big">
+  <div class="container-site grid-8">
+    <div class="col-span-8 space-y-2 lg:col-span-2 lg:col-start-2 lg:space-y-5">
+      <h2 data-reveal="text" class="h5">Open info</h2>
+      <p data-reveal="text" class="text-sm">
+        Andrea Ruggeri, 33 years old, italian.<br />
+        Grew up in the countryside with football and motorcycles.<br />
+        In love with giulia.<br />
+        Can’t miss any f.c. internazionale match.
+      </p>
+    </div>
+    <div class="col-span-8 space-y-2 text-right lg:col-span-2 lg:space-y-5">
+      <h2 data-reveal="text" class="h5">AI Journal</h2>
+      <div data-reveal="text">
+        <a href="#" class="block text-sm">OpenAI rivoluziona gli agenti AI, PlayStation sperimenta NPC intelligenti e l’energia geotermica salva i data center?</a>
+      </div>
+    </div>
+    <div class="col-span-8 space-y-2 text-right lg:col-span-2 lg:space-y-5">
+      <h2 data-reveal="text" class="h5">Fav readings</h2>
+      <p data-reveal="text" class="text-sm">
+        Factfullness<br />Radical candor<br />The millenium saga<br />Norwegian wood
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- Manifesto -->
+<section class="space-top-big">
+  <div class="container-site grid-8">
+    <div class="col-span-8 space-y-4 lg:col-span-6 lg:col-start-2">
+      <div class="space-y-3">
+        <p data-reveal="text" class="h5">In the game for over 8 years.</p>
+        <div class="h3">
+          <p id="manifesto-1" data-reveal="text">
+            Currently Partner &amp; Design Director at <a href="https://beconcept.studio/" target="_blank" rel="noopener">Beconcept</a>, where I design for the edge of digital innovation.
+          </p>
+          <p id="manifesto-2" data-reveal="text">
+            Meanwhile pushing boundaries with AI to rethink what’s next in human–machine collaboration.
+          </p>
+        </div>
+      </div>
+      <div class="flex flex-wrap items-center lg:gap-2">
+        <p data-reveal="text" class="h5">Also (proud) board member of</p>
+        <p data-reveal="text" class="text-[14px] leading-none lg:text-[15px]">KPI6 / Montipadel / Luc.ia / Something cool is brewing</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Progetti -->
+<section id="progetti" class="space-top-big">
+  <div class="container-site">
+    <ul class="grid-12 gap-y-5 lg:gap-y-20">
+      {projects.map((p, i) => (
+        <li class:list={[colClass(i), 'h-fit']}>
+          <a href="#" class="group block w-full space-y-2 lg:space-y-4">
+            <div data-reveal="image">
+              <img src={p.img} alt={p.title} width={p.w} height={p.h} loading="lazy" decoding="async" class="block h-auto w-full" />
+            </div>
+            <div>
+              <p data-reveal="text" class="text-sm">{p.year}</p>
+              <h3 data-reveal="text" class="h5">{p.title}</h3>
+            </div>
+          </a>
+        </li>
+      ))}
+    </ul>
+  </div>
+</section>
