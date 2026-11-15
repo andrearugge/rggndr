@@ -62,6 +62,7 @@ export async function playLoader(el: HTMLElement, variant: LoaderVariant, { onHa
   const letters = [...el.querySelectorAll<HTMLElement>('[data-loader-letter]')];
 
   return new Promise((resolve) => {
+    const EASE = 'power3.inOut'; // parte e arriva senza esitazioni (expo restava quasi fermo ai bordi)
     const tl = gsap.timeline({
       defaults: { ease: 'power4.out' },
       onComplete: () => {
@@ -70,69 +71,76 @@ export async function playLoader(el: HTMLElement, variant: LoaderVariant, { onHa
       },
     });
 
-    // 1. Il nome emerge dalla sfocatura (come oggi, ma più rapido)
-    tl.to([name, sub], { opacity: 1, filter: 'blur(0px)', duration: 0.7, stagger: 0.08 }, 0.1);
+    // 1. Il nome emerge dalla sfocatura
+    tl.to([name, sub], { opacity: 1, filter: 'blur(0px)', duration: 0.5, stagger: 0.06 }, 0.1);
 
     // 2. Gesto sul nome
     if (variant === 'classic' || variant === 'bands') {
-      const rolling = letters.filter((l) => l.hasAttribute('data-roll'));
-      rolling.forEach((l, i) =>
-        tl.add(rollColumn(l, [l.dataset.char!], { duration: 0.8, ease: 'power4.inOut' }), 0.45 + i * 0.06),
-      );
+      letters
+        .filter((l) => l.hasAttribute('data-roll'))
+        .forEach((l, i) => tl.add(rollColumn(l, [l.dataset.char!], { duration: 0.8, ease: EASE }), 0.4 + i * 0.06));
     }
 
-    if (variant === 'slot') {
+    if (variant === 'slot' || variant === 'monogram') {
+      // tutte le lettere girano, a onda da sinistra, e atterrano sulla propria lettera
+      const extra = variant === 'slot' ? 3 : 2;
       letters.forEach((l, i) =>
         tl.add(
-          rollColumn(l, [randomChar(), randomChar(), randomChar(), l.dataset.char!], {
-            duration: 0.8,
-            ease: 'expo.inOut',
+          rollColumn(l, [...Array.from({ length: extra }, randomChar), l.dataset.char!], {
+            duration: variant === 'slot' ? 0.8 : 0.8,
+            ease: variant === 'slot' ? 'expo.inOut' : EASE,
           }),
-          0.45 + i * 0.035,
+          (variant === 'slot' ? 0.45 : 0.3) + i * (variant === 'slot' ? 0.035 : 0.025),
         ),
       );
     }
 
-    if (variant === 'monogram') {
-      // RUGGERI ANDREA → RGGNDR: le lettere in più si chiudono
-      const drop = [...letters.filter((l) => !l.hasAttribute('data-keep')), ...el.querySelectorAll<HTMLElement>('[data-loader-space]')];
-      drop.forEach((d) => (d.style.width = `${d.getBoundingClientRect().width}px`));
-      tl.to(drop, { width: 0, opacity: 0, duration: 0.7, ease: 'power4.inOut', stagger: 0.025 }, 0.7);
-      tl.to(sub, { opacity: 0, y: -8, duration: 0.4, ease: 'power2.in' }, 0.7);
-    }
-
-    // 3. Uscita del pannello + passaggio all'hero
-    const exitAt = variant === 'slot' ? 1.6 : variant === 'monogram' ? 1.5 : 1.55;
+    let exitAt = variant === 'slot' ? 1.6 : 1.55;
 
     if (variant === 'monogram') {
-      // RGGNDR vola sul logo dell'header mentre il pannello sale
-      const target = headerLogo();
+      // RUGGERI ANDREA → RGGNDR: le lettere in più si chiudono, le altre si ricompattano
+      const collapseAt = 1.35;
+      const drop = [
+        ...letters.filter((l) => !l.hasAttribute('data-keep')),
+        ...el.querySelectorAll<HTMLElement>('[data-loader-space]'),
+      ];
+      tl.add(() => drop.forEach((d) => (d.style.width = `${d.getBoundingClientRect().width}px`)), collapseAt);
+      tl.to(drop, { width: 0, opacity: 0, duration: 0.55, ease: EASE, stagger: 0.015 }, collapseAt);
+      tl.to(sub, { opacity: 0, filter: 'blur(5px)', duration: 0.4, ease: 'power2.in' }, collapseAt);
+      exitAt = collapseAt + 0.55 + 0.015 * drop.length + 0.05;
+
+      // RGGNDR vola sul logo dell'header: misurato solo a chiusura finita, allineato su bordo sinistro e larghezza
+      const FLIGHT = 0.9;
       tl.add(() => {
+        const target = headerLogo();
         if (!target) return;
         const from = name.getBoundingClientRect();
         const to = target.getBoundingClientRect();
-        const scale = to.height / from.height;
+        gsap.set(name, { transformOrigin: 'left center' });
         gsap.to(name, {
-          x: to.left + to.width / 2 - (from.left + from.width / 2),
+          x: to.left - from.left,
           y: to.top + to.height / 2 - (from.top + from.height / 2),
-          scale,
-          color: 'var(--color-primary)',
-          duration: 1,
-          ease: 'power4.inOut',
+          scale: to.width / from.width,
+          duration: FLIGHT,
+          ease: EASE,
         });
+        gsap.to(name, { color: getComputedStyle(target).color, duration: FLIGHT * 0.5, delay: FLIGHT * 0.5, ease: 'none' });
       }, exitAt);
-      tl.to(name, { opacity: 0, duration: 0.25, ease: 'none' }, exitAt + 0.85);
-    } else {
-      tl.to([name, sub], { y: -24, opacity: 0, duration: 0.5, ease: 'power3.in', stagger: 0.04 }, exitAt);
+      tl.to(name, { opacity: 0, duration: 0.15, ease: 'none' }, exitAt + FLIGHT);
+      tl.to(bands, { y: () => -window.innerHeight - 2, duration: FLIGHT, ease: EASE }, exitAt);
+      tl.add(() => onHandoff?.(), exitAt + 0.3);
+      return;
     }
 
-    const bandsAt = variant === 'monogram' ? exitAt : exitAt + 0.15;
+    // 3. Uscita del testo e del pannello + passaggio all'hero
+    tl.to([name, sub], { y: -24, opacity: 0, duration: 0.45, ease: 'power3.in', stagger: 0.04 }, exitAt);
+    const panelAt = exitAt + 0.15;
     if (variant === 'bands') {
-      tl.to(bands, { yPercent: -101, duration: 0.9, ease: 'expo.inOut', stagger: 0.07 }, bandsAt);
+      // ogni fascia percorre esattamente la distanza che le serve per uscire dallo schermo
+      tl.to(bands, { y: (_i, b: HTMLElement) => -(b.offsetTop + b.offsetHeight + 2), duration: 0.85, ease: EASE, stagger: 0.07 }, panelAt);
     } else {
-      tl.to(bands, { yPercent: -101, duration: 1.05, ease: 'expo.inOut' }, bandsAt);
+      tl.to(bands, { y: () => -window.innerHeight - 2, duration: 1, ease: EASE }, panelAt);
     }
-
-    tl.add(() => onHandoff?.(), bandsAt + 0.35);
+    tl.add(() => onHandoff?.(), panelAt + 0.3);
   });
 }
