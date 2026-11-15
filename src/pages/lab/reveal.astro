@@ -1,0 +1,13 @@
+---
+import Lab from '../../layouts/Lab.astro';
+
+const variants = [
+  { id: 'mask', label: 'Mask' },
+  { id: 'soft', label: 'Soft' },
+  { id: 'wipe', label: 'Wipe' },
+  { id: 'scrub', label: 'Scrub' },
+];
+---
+<Lab title="Reveal" variants={variants}>
+  <main class="min-h-dvh px-4 pt-24"></main>
+</Lab>

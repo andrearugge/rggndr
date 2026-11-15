@@ -1,0 +1,19 @@
+---
+import Base from './Base.astro';
+import VariantSwitcher from '../components/lab/VariantSwitcher.astro';
+import type { LabVariant } from '../lib/lab';
+
+interface Props {
+  title: string;
+  variants?: LabVariant[];
+}
+const { title, variants } = Astro.props;
+---
+<Base title={`Lab — ${title}`} noindex>
+  <header class="fixed top-0 inset-x-0 z-40 flex justify-between p-4 text-xs font-bold uppercase mix-blend-difference text-background">
+    <a href="/lab">← Lab</a>
+    <span>{title}</span>
+  </header>
+  <slot />
+  {variants && variants.length > 0 && <VariantSwitcher variants={variants} />}
+</Base>

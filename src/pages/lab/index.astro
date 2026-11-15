@@ -1,0 +1,25 @@
+---
+import Lab from '../../layouts/Lab.astro';
+
+const experiments = [
+  { href: '/lab/reveal', label: 'Reveal', note: 'Testi e immagini on scroll', ready: true },
+  { href: '/lab/loader', label: 'Loader', note: 'Intro alla prima visita', ready: false },
+  { href: '/lab/gallery', label: 'Gallery', note: 'Motion della gallery', ready: false },
+  { href: '/lab/card', label: 'Card', note: 'Card del footer interattiva', ready: false },
+];
+---
+<Lab title="Index">
+  <main class="min-h-dvh px-4 pt-24 pb-10">
+    <ol class="divide-y divide-black/10 border-y border-black/10">
+      {experiments.map((e, i) => (
+        <li class="flex items-baseline gap-4 py-4">
+          <span class="text-xs font-bold">{String(i + 1).padStart(2, '0')}</span>
+          {e.ready
+            ? <a href={e.href} class="font-compact uppercase text-6xl leading-[.85] hover:text-primary">{e.label}</a>
+            : <span class="font-compact uppercase text-6xl leading-[.85] text-black/20">{e.label}</span>}
+          <span class="ml-auto text-sm text-primary">{e.ready ? e.note : 'Presto'}</span>
+        </li>
+      ))}
+    </ol>
+  </main>
+</Lab>
