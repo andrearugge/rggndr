@@ -147,11 +147,10 @@ export async function playLoader(el: HTMLElement, variant: LoaderVariant, { onHa
       ];
       tl.add(() => drop.forEach((d) => (d.style.width = `${d.getBoundingClientRect().width}px`)), collapseAt);
       tl.to(drop, { width: 0, opacity: 0, duration: 0.55, ease: EASE, stagger: 0.015 }, collapseAt);
-      tl.to(sub, { opacity: 0, filter: 'blur(5px)', duration: 0.4, ease: 'power2.in' }, collapseAt);
       exitAt = collapseAt + 0.55 + 0.015 * drop.length + 0.1;
 
-      // RGGNDR resta al centro e sfuma con la stessa dissolvenza del sottotitolo, poi il pannello sale
-      tl.to(name, { opacity: 0, filter: 'blur(5px)', duration: 0.4, ease: 'power2.in' }, exitAt);
+      // RGGNDR e il sottotitolo restano al centro e sfumano insieme, poi il pannello sale
+      tl.to([name, sub], { opacity: 0, filter: 'blur(5px)', duration: 0.4, ease: 'power2.in' }, exitAt);
       const panelAt = exitAt + 0.15;
       tl.to(bands, { y: () => -window.innerHeight - 2, duration: 1, ease: EASE }, panelAt);
       tl.add(() => onHandoff?.(), panelAt + 0.3);

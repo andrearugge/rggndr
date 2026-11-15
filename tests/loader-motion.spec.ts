@@ -19,6 +19,7 @@ async function record(page: Page) {
             const r = b.getBoundingClientRect();
             return sum + Math.max(0, Math.min(r.bottom, innerHeight) - Math.max(r.top, 0));
           }, 0),
+          subOpacity: Number(getComputedStyle(document.querySelector('[data-loader-sub]')!).opacity),
           name: { x: r.left, w: r.width, cy: r.top + r.height / 2, opacity: Number(getComputedStyle(name).opacity), filter: getComputedStyle(name).filter, transform: getComputedStyle(name).transform },
         });
       }
@@ -28,7 +29,7 @@ async function record(page: Page) {
   });
 }
 
-type Frame = { t: number; panelBottom: number; panelTop: number; covered: number; name: { x: number; w: number; cy: number; opacity: number; filter: string; transform: string } };
+type Frame = { t: number; subOpacity: number; panelBottom: number; panelTop: number; covered: number; name: { x: number; w: number; cy: number; opacity: number; filter: string; transform: string } };
 
 for (const v of ['classic', 'slot', 'bands', 'monogram']) {
   test(`loader ${v}: the panel fully leaves the screen, smoothly, before being removed`, async ({ page }) => {
@@ -163,4 +164,8 @@ test('loader monogram: RGGNDR stays in place and fades out with the same blur as
   expect(fading.length).toBeGreaterThan(0);
   for (const x of fading) expect(x.name.filter).toMatch(/blur\((?!0px)/);
   expect(f.at(-1)!.name.opacity).toBeLessThan(0.05);
+  // il sottotitolo sfuma insieme al monogramma
+  const nameFadeStart = f.slice(fullIdx).find((x) => x.name.opacity < 0.95)!.t;
+  const subFadeStart = f.slice(fullIdx).find((x) => x.subOpacity < 0.95)!.t;
+  expect(Math.abs(subFadeStart - nameFadeStart)).toBeLessThan(40);
 });
