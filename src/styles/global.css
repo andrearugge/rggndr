@@ -42,3 +42,13 @@
     @apply bg-background font-montreal text-black antialiased;
   }
 }
+
+/* Stato iniziale dei reveal: nascosti solo se JS è attivo e il motion è consentito. */
+@media (prefers-reduced-motion: no-preference) {
+  html.js [data-reveal] {
+    visibility: hidden;
+  }
+}
+[data-reveal='image'] {
+  overflow: hidden;
+}

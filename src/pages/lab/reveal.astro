@@ -7,7 +7,90 @@ const variants = [
   { id: 'wipe', label: 'Wipe' },
   { id: 'scrub', label: 'Scrub' },
 ];
+
+const projects = [
+  { title: 'AI Journal', year: '2025', img: '/lab/ai-journal-cover.jpg', w: 1200, h: 901 },
+  { title: 'MarkLayer', year: '2025', img: '/lab/marklayer.jpg', w: 830, h: 1108 },
+  { title: 'AI Workshop', year: '2025', img: '/lab/ai-workshop.jpg', w: 550, h: 885 },
+  { title: 'Montipadel', year: '2024', img: '/lab/montipadel.jpg', w: 1200, h: 1600 },
+];
 ---
 <Lab title="Reveal" variants={variants}>
-  <main class="min-h-dvh px-4 pt-24"></main>
+  <main class="px-4 pt-28 lg:px-6">
+    <!-- Hero -->
+    <section class="min-h-[80dvh] flex flex-col justify-end gap-6 pb-10">
+      <p data-reveal="text" class="text-xs font-bold uppercase">( Design Driven Entrepreneur )</p>
+      <h1 data-reveal="text" class="font-compact uppercase text-[15vw] leading-[.85] lg:text-[11vw]">
+        Who generally crafts digital experiences
+      </h1>
+    </section>
+
+    <!-- Paragrafo lungo: è quello usato dai test sulle righe -->
+    <section class="grid gap-6 border-t border-black/10 py-24 lg:grid-cols-12">
+      <p data-reveal="text" class="text-xs font-bold uppercase lg:col-span-3">About</p>
+      <p id="p-long" data-reveal="text" class="text-2xl leading-[1.15] lg:col-span-8 lg:text-4xl">
+        Andrea Ruggeri, 33 years old, italian. Grew up in the countryside with football and motorcycles.
+        In the game for over 8 years. Currently Partner &amp; Design Director at Beconcept, where I design
+        for the edge of digital innovation. Meanwhile pushing boundaries with AI to rethink what’s next in
+        human–machine collaboration.
+      </p>
+    </section>
+
+    <!-- Slogan editoriale -->
+    <section class="py-24">
+      <p data-reveal="text" class="font-editorial text-[9vw] leading-[.95] lg:text-[6vw]">
+        Combining creativity with strategic thinking to shape purposeful digital products.
+      </p>
+    </section>
+
+    <!-- Progetti -->
+    <section class="border-t border-black/10 py-24">
+      <h2 data-reveal="text" class="mb-10 font-compact uppercase text-[12vw] leading-[.85] lg:text-[7vw]">Projects</h2>
+      <ul class="grid gap-x-4 gap-y-16 sm:grid-cols-2">
+        {projects.map((p, i) => (
+          <li class:list={['flex flex-col gap-3', i % 2 === 1 && 'sm:mt-40']}>
+            <div data-reveal="image" class="bg-black/5">
+              <img src={p.img} alt={p.title} width={p.w} height={p.h} loading="lazy" decoding="async" class="block h-auto w-full" />
+            </div>
+            <div class="flex items-baseline justify-between">
+              <h3 data-reveal="text" class="font-bold uppercase">{p.title}</h3>
+              <span data-reveal="text" class="text-sm text-primary">{p.year}</span>
+            </div>
+          </li>
+        ))}
+      </ul>
+    </section>
+
+    <!-- Chiusura: spazio per far completare gli scrub -->
+    <section class="min-h-[90dvh] border-t border-black/10 py-24">
+      <p data-reveal="text" class="max-w-3xl text-2xl leading-[1.15] lg:text-4xl">
+        Also (proud) board member of KPI6, Montipadel, Luc.ia — and something cool is brewing.
+      </p>
+    </section>
+  </main>
 </Lab>
+
+<script>
+  import { initReveals, REVEAL_VARIANTS, type RevealVariant } from '../../lib/reveal';
+  import { initSmoothScroll, ScrollTrigger } from '../../lib/motion';
+  import { getVariant, onVariantChange } from '../../lib/lab';
+
+  const params = new URLSearchParams(window.location.search);
+
+  if (params.has('static')) {
+    // Layout naturale, senza animazioni: riferimento per confrontare le righe.
+    document.documentElement.classList.remove('js');
+  } else {
+    const lenis = initSmoothScroll();
+    (window as any).__ST = ScrollTrigger;
+    const root = document.querySelector<HTMLElement>('main')!;
+    let cleanup = initReveals(root, getVariant('mask', REVEAL_VARIANTS) as RevealVariant);
+
+    onVariantChange((id) => {
+      cleanup();
+      if (lenis) lenis.scrollTo(0, { immediate: true });
+      else window.scrollTo(0, 0);
+      cleanup = initReveals(root, id as RevealVariant);
+    });
+  }
+</script>
