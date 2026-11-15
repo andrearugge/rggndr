@@ -51,14 +51,6 @@ function prepareColumn(letter: HTMLElement, extra: string[]): HTMLElement {
   return column;
 }
 
-/** Larghezza reale del glifo di ogni cella della colonna. */
-function cellWidths(column: HTMLElement): number[] {
-  const range = document.createRange();
-  return [...column.children].map((c) => {
-    range.selectNodeContents(c);
-    return range.getBoundingClientRect().width;
-  });
-}
 
 /** Posizione del logo RGGNDR visibile nell'header (desktop o mobile). */
 function headerLogo(): HTMLElement | null {
@@ -118,21 +110,18 @@ export async function playLoader(el: HTMLElement, variant: LoaderVariant, { onHa
 
     let rollsEnd = 0;
     if (variant === 'monogram') {
-      // Rotazione "classic" su tutte le lettere, per 3 giri a scatti: ogni lettera sale di una cella,
-      // si ferma, poi riparte. I primi due giri mostrano lettere diverse, il terzo torna sulla propria.
+      // Rotazione "classic" su tutte le lettere, per 3 giri a scatti: ogni lettera sale di una cella
+      // su una copia di sé stessa, si ferma, poi riparte.
       const ROUNDS = 3;
       const ROLL = 0.45; // durata di uno scatto
       const INTERVAL = 0.5; // da un giro al successivo (ROLL < INTERVAL → pausa netta tra gli scatti)
       const WAVE = 0.02; // onda da sinistra a destra
       const START = 0.3;
-      const columns = letters.map((l) => prepareColumn(l, [...distinctRandoms(l.dataset.char!, ROUNDS - 1), l.dataset.char!]));
-      const widths = columns.map(cellWidths);
+      const columns = letters.map((l) => prepareColumn(l, Array(ROUNDS).fill(l.dataset.char!)));
       for (let r = 1; r <= ROUNDS; r++) {
         columns.forEach((col, i) => {
           const at = START + (r - 1) * INTERVAL + i * WAVE;
           tl.to(col, { yPercent: (-100 * r) / (ROUNDS + 1), duration: ROLL, ease: EASE }, at);
-          // la maschera segue la larghezza della nuova lettera: niente tagli, niente salti
-          tl.to(letters[i], { width: widths[i][r], duration: ROLL, ease: EASE }, at);
         });
         tl.add(() => name.setAttribute('data-round', String(r)), START + (r - 1) * INTERVAL + ROLL + 0.02);
         tl.add(() => name.setAttribute('data-round-done', String(r)), START + (r - 1) * INTERVAL + ROLL + (letters.length - 1) * WAVE + 0.02);

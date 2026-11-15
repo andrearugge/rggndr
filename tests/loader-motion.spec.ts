@@ -68,7 +68,7 @@ test('loader monogram: every letter spins before the extra ones close', async ({
   expect(dropped.every((w) => w > 0)).toBe(true); // a 0.9s sono ancora tutte lì
 });
 
-test('loader monogram: classic-style rolls, three rounds of different letters, landing on its own letter', async ({ page }) => {
+test('loader monogram: classic-style rolls, three rounds of the same letter', async ({ page }) => {
   await page.goto('/lab/loader?v=monogram');
   await page.waitForTimeout(300);
   const columns = await page.$$eval('[data-loader-letter]', (els) =>
@@ -76,9 +76,7 @@ test('loader monogram: classic-style rolls, three rounds of different letters, l
   );
   for (const c of columns) {
     expect(c.cells.length).toBe(4); // lettera + 3 giri
-    expect(c.cells.at(-1)).toBe(c.own);
-    expect(c.cells.slice(1, 3).every((x) => x !== c.own)).toBe(true);
-    expect(c.cells[1]).not.toBe(c.cells[2]);
+    expect(c.cells.every((x) => x === c.own)).toBe(true); // sempre la stessa lettera, mai lettere casuali
   }
   // i giri sono scatti distinti: tra un giro e l'altro la prima lettera è ferma su una cella intera
   const aligned = await page.waitForFunction(() => {
