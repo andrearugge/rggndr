@@ -55,66 +55,73 @@ for (const v of ['classic', 'slot', 'bands', 'monogram']) {
   });
 }
 
-test('loader monogram: every letter spins before the extra ones close', async ({ page }) => {
-  await page.goto('/lab/loader?v=monogram');
-  await page.waitForTimeout(900);
-  const spinning = await page.$$eval('[data-loader-letter]', (els) =>
-    els.map((e) => (e.firstElementChild as HTMLElement).childElementCount > 1),
-  );
-  expect(spinning.every(Boolean)).toBe(true);
-  const dropped = await page.$$eval('[data-loader-letter]:not([data-keep])', (els) =>
-    els.map((e) => Math.round(e.getBoundingClientRect().width)),
-  );
-  expect(dropped.every((w) => w > 0)).toBe(true); // a 0.9s sono ancora tutte lì
-});
-
-test('loader monogram: classic-style rolls, three rounds of the same letter', async ({ page }) => {
-  await page.goto('/lab/loader?v=monogram');
-  await page.waitForTimeout(300);
-  const columns = await page.$$eval('[data-loader-letter]', (els) =>
-    els.map((e) => ({ own: e.getAttribute('data-char'), cells: [...e.firstElementChild!.children].map((c) => c.textContent) })),
-  );
-  for (const c of columns) {
-    expect(c.cells.length).toBe(4); // lettera + 3 giri
-    expect(c.cells.every((x) => x === c.own)).toBe(true); // sempre la stessa lettera, mai lettere casuali
-  }
-  // i giri sono scatti distinti: tra un giro e l'altro la prima lettera è ferma su una cella intera
-  const aligned = await page.waitForFunction(() => {
-    const name = document.querySelector('[data-loader-name]');
-    if (name?.getAttribute('data-round') !== '1') return false;
-    const e = document.querySelector('[data-loader-letter]') as HTMLElement;
-    const col = e.firstElementChild as HTMLElement;
-    const cell = e.getBoundingClientRect().height;
-    const offset = (e.getBoundingClientRect().top - col.getBoundingClientRect().top) / cell;
-    return { offset: Math.round(offset * 100) / 100 };
-  });
-  expect(await aligned.jsonValue()).toEqual({ offset: 1 });
-});
-
-test('loader monogram: random letters are never clipped by their mask', async ({ page }) => {
-  await page.goto('/lab/loader?v=monogram');
-  // quando l'onda del giro 2 è arrivata all'ultima lettera; la prima può già essere nel giro 3
-  await page.waitForFunction(() => document.querySelector('[data-loader-name]')?.getAttribute('data-round-done') === '2');
-  const clipped = await page.$$eval('[data-loader-letter]', (els) =>
-    els
-      .map((e) => {
-        const cs = getComputedStyle(e);
-        // larghezza visibile: la maschera + quanto la clip-path concede ai lati
-        const m = cs.clipPath.match(/inset\(0px (-?[\d.]+)%/);
-        const side = cs.overflowX === 'visible' && m ? (-Number(m[1]) / 100) * e.getBoundingClientRect().width : 0;
-        const visible = e.getBoundingClientRect().width + 2 * side;
-        const range = document.createRange();
-        const widest = Math.max(
-          ...[...e.firstElementChild!.children].map((c) => {
-            range.selectNodeContents(c);
-            return range.getBoundingClientRect().width;
+/** Per ogni lettera: quando inizia e finisce la rotazione, e quando le lettere in più iniziano a chiudersi. */
+async function letterTimeline(page: Page) {
+  await page.addInitScript(() => {
+    const w = window as any;
+    w.__letters = [];
+    const loop = (t: number) => {
+      const els = [...document.querySelectorAll<HTMLElement>('[data-loader-letter]')];
+      if (els.length) {
+        w.__letters.push({
+          t,
+          rolls: els.map((e) => {
+            const col = e.firstElementChild as HTMLElement;
+            // in proporzione all'altezza della lettera: la scala del volo finale non la altera
+            const h = e.getBoundingClientRect().height;
+            return Math.round(((e.getBoundingClientRect().top - col.getBoundingClientRect().top) / h) * 1000) / 1000;
           }),
-        );
-        return { c: e.getAttribute('data-char'), widest, visible };
-      })
-      .filter((x) => x.visible < x.widest - 0.5),
-  );
-  expect(clipped).toEqual([]);
+          widths: els.map((e) => Math.round(e.getBoundingClientRect().width * 10) / 10),
+        });
+      }
+      requestAnimationFrame(loop);
+    };
+    requestAnimationFrame(loop);
+  });
+}
+
+type Roll = { i: number; start: number; end: number };
+
+async function measure(page: Page, v: string) {
+  await page.goto(`/lab/loader?v=${v}`);
+  await expect(page.locator('[data-loader]')).toHaveCount(0, { timeout: 5000 });
+  const frames: { t: number; rolls: number[]; widths: number[] }[] = await page.evaluate(() => (window as any).__letters);
+  const n = frames[0].rolls.length;
+  const rolls = Array.from({ length: n }, (_, i) => {
+    const moving = frames.filter((f, k) => k > 0 && f.rolls[i] !== frames[k - 1].rolls[i]);
+    return moving.length ? { i, start: moving[0].t, end: moving.at(-1)!.t } : null;
+  })
+    .filter((r): r is Roll => r !== null)
+    .sort((a, b) => a.start - b.start);
+  return { frames, n, rolls };
+}
+
+test('loader monogram: two overlapping rounds with classic timing, then a linked collapse', async ({ page }) => {
+  await letterTimeline(page);
+  const classic = await measure(page, 'classic');
+  const { frames, n, rolls } = await measure(page, 'monogram');
+
+  // alcune lettere restano ferme
+  expect(rolls.length).toBeLessThan(n);
+  // ogni rotazione dura come in classic
+  const classicDuration = classic.rolls[0].end - classic.rolls[0].start;
+  for (const r of rolls) expect(Math.abs(r.end - r.start - classicDuration)).toBeLessThan(40);
+
+  // due giri: il primo di 3 lettere, il secondo di 3-4, che parte prima che il primo finisca
+  const first = rolls.slice(0, 3);
+  const second = rolls.slice(3);
+  expect(second.length).toBeGreaterThanOrEqual(3);
+  expect(second.length).toBeLessThanOrEqual(4);
+  expect(second[0].start - first.at(-1)!.start).toBeGreaterThan(150); // due giri distinti
+  expect(second[0].start).toBeLessThan(Math.max(...first.map((r) => r.end))); // ma sovrapposti
+  // dentro ogni giro, lo stesso ritardo tra lettere di classic
+  const classicDelay = classic.rolls[1].start - classic.rolls[0].start;
+  for (const round of [first, second])
+    round.slice(1).forEach((r, k) => expect(Math.abs(r.start - round[k].start - classicDelay)).toBeLessThan(25));
+
+  // la chiusura del monogram parte prima che l'ultima rotazione sia finita: un'unica animazione
+  const collapseStart = frames.find((f, k) => k > 0 && f.widths.some((w, i) => w < frames[0].widths[i] - 0.5))!.t;
+  expect(collapseStart).toBeLessThan(Math.max(...rolls.map((r) => r.end)));
 });
 
 test('loader monogram: RGGNDR lands exactly on the header logo', async ({ page }) => {

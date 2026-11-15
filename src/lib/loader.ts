@@ -8,6 +8,10 @@ interface LoaderOptions {
   onHandoff?: () => void;
 }
 
+/** Tempi della rotazione "classic": durata di una rotazione e ritardo tra una lettera e la successiva. */
+const CLASSIC_ROLL = 0.8;
+const CLASSIC_STAGGER = 0.06;
+
 const ALPHABET = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
 const randomChar = () => ALPHABET[Math.floor(Math.random() * ALPHABET.length)];
 
@@ -98,7 +102,7 @@ export async function playLoader(el: HTMLElement, variant: LoaderVariant, { onHa
     if (variant === 'classic' || variant === 'bands') {
       letters
         .filter((l) => l.hasAttribute('data-roll'))
-        .forEach((l, i) => tl.add(rollColumn(l, [l.dataset.char!], { duration: 0.8, ease: EASE }), 0.4 + i * 0.06));
+        .forEach((l, i) => tl.add(rollColumn(l, [l.dataset.char!], { duration: CLASSIC_ROLL, ease: EASE }), 0.4 + i * CLASSIC_STAGGER));
     }
 
     if (variant === 'slot') {
@@ -110,30 +114,28 @@ export async function playLoader(el: HTMLElement, variant: LoaderVariant, { onHa
 
     let rollsEnd = 0;
     if (variant === 'monogram') {
-      // Rotazione "classic" su tutte le lettere, per 3 giri a scatti: ogni lettera sale di una cella
-      // su una copia di sé stessa, si ferma, poi riparte.
-      const ROUNDS = 3;
-      const ROLL = 0.45; // durata di uno scatto
-      const INTERVAL = 0.5; // da un giro al successivo (ROLL < INTERVAL → pausa netta tra gli scatti)
-      const WAVE = 0.02; // onda da sinistra a destra
-      const START = 0.3;
-      const columns = letters.map((l) => prepareColumn(l, Array(ROUNDS).fill(l.dataset.char!)));
-      for (let r = 1; r <= ROUNDS; r++) {
-        columns.forEach((col, i) => {
-          const at = START + (r - 1) * INTERVAL + i * WAVE;
-          tl.to(col, { yPercent: (-100 * r) / (ROUNDS + 1), duration: ROLL, ease: EASE }, at);
+      // Due giri sovrapposti con i tempi di classic: alcune lettere ruotano, altre restano ferme,
+      // per dare il senso di lettere intercambiabili. Il secondo giro parte prima che il primo finisca.
+      const rounds: { at: number; letters: number[] }[] = [
+        { at: 0.4, letters: [1, 4, 8] }, // U, E, N
+        { at: 0.95, letters: [2, 6, 10, 12] }, // G, I, R, A
+      ];
+      for (const round of rounds) {
+        round.letters.forEach((idx, k) => {
+          const l = letters[idx];
+          const start = round.at + k * CLASSIC_STAGGER;
+          tl.add(rollColumn(l, [l.dataset.char!], { duration: CLASSIC_ROLL, ease: EASE }), start);
+          rollsEnd = Math.max(rollsEnd, start + CLASSIC_ROLL);
         });
-        tl.add(() => name.setAttribute('data-round', String(r)), START + (r - 1) * INTERVAL + ROLL + 0.02);
-        tl.add(() => name.setAttribute('data-round-done', String(r)), START + (r - 1) * INTERVAL + ROLL + (letters.length - 1) * WAVE + 0.02);
       }
-      rollsEnd = START + (ROUNDS - 1) * INTERVAL + (letters.length - 1) * WAVE + ROLL;
     }
 
     let exitAt = variant === 'slot' ? 1.6 : 1.55;
 
     if (variant === 'monogram') {
       // RUGGERI ANDREA → RGGNDR: le lettere in più si chiudono, le altre si ricompattano
-      const collapseAt = rollsEnd - 0.05;
+      // la chiusura parte mentre le ultime lettere stanno ancora rallentando: un'unica animazione
+      const collapseAt = rollsEnd - 0.25;
       const drop = [
         ...letters.filter((l) => !l.hasAttribute('data-keep')),
         ...el.querySelectorAll<HTMLElement>('[data-loader-space]'),
