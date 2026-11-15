@@ -1,0 +1,43 @@
+---
+import Lab from '../../layouts/Lab.astro';
+import LoaderName from '../../components/site/LoaderName.astro';
+import { MONOGRAM_TIMINGS } from '../../lib/loader';
+
+const fmt = (n: number) => n.toLocaleString('it-IT', { maximumFractionDigits: 2 });
+---
+<Lab title="Loader timing">
+  <main class="container-site pt-20 pb-10">
+    <header class="mb-6 flex flex-wrap items-end justify-between gap-4">
+      <h1 class="h3">Monogram · timing</h1>
+      <p class="max-w-md text-sm">Dieci ritmi a confronto, in loop. Stesse lettere e stessi giri: cambiano solo tempi ed ease.</p>
+    </header>
+    <ol class="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+      {MONOGRAM_TIMINGS.map((t, i) => (
+        <li data-timing={i} class="flex flex-col bg-primary text-cream">
+          <div class="flex items-baseline justify-between gap-4 px-4 pt-4">
+            <h2 class="h6">{String(i + 1).padStart(2, '0')} · {t.label}</h2>
+            <a href={`/lab/loader?v=monogram&t=${i + 1}`} class="text-xs underline underline-offset-2 hover:opacity-70">Prova a pagina intera</a>
+          </div>
+          <div data-timing-stage class="flex aspect-[16/8] flex-col items-center justify-center gap-2 text-center">
+            <LoaderName />
+          </div>
+          <div class="px-4 pb-4 text-xs">
+            <p>{t.note}</p>
+            <p class="pt-1 opacity-70">
+              Rotazione {t.roll.map(fmt).join(' / ')}s · ritardo {fmt(t.stagger)}s · giri a {t.roundAt.map(fmt).join(' / ')}s · {t.ease}
+            </p>
+          </div>
+        </li>
+      ))}
+    </ol>
+  </main>
+</Lab>
+
+<script>
+  import { loopMonogram, MONOGRAM_TIMINGS } from '../../lib/loader';
+
+  for (const card of document.querySelectorAll<HTMLElement>('[data-timing]')) {
+    const stage = card.querySelector<HTMLElement>('[data-timing-stage]')!;
+    loopMonogram(stage, MONOGRAM_TIMINGS[Number(card.dataset.timing)]);
+  }
+</script>

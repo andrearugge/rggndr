@@ -24,7 +24,7 @@ const variants = [
 </Lab>
 
 <script>
-  import { playLoader, LOADER_VARIANTS, type LoaderVariant } from '../../lib/loader';
+  import { playLoader, LOADER_VARIANTS, MONOGRAM_TIMINGS, type LoaderVariant } from '../../lib/loader';
   import { playHeroIntro } from '../../lib/hero-intro';
   import { initReveals } from '../../lib/reveal';
   import { initSmoothScroll } from '../../lib/motion';
@@ -40,7 +40,10 @@ const variants = [
     lenis?.start();
     playHeroIntro(hero, { delay: 0 });
   };
-  if (loader) playLoader(loader, variant, { onHandoff: start });
+  // ?t=N prova a pagina intera l'alternativa N di /lab/loader-timing
+  const t = Number(new URLSearchParams(location.search).get('t'));
+  const timing = MONOGRAM_TIMINGS[t - 1] ?? MONOGRAM_TIMINGS[0];
+  if (loader) playLoader(loader, variant, { onHandoff: start, timing });
   else start();
 
   initReveals(document.querySelector<HTMLElement>('main')!, 'soft');
