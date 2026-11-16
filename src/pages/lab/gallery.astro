@@ -1,0 +1,36 @@
+---
+import Lab from '../../layouts/Lab.astro';
+import Header from '../../components/site/Header.astro';
+import Gallery from '../../components/site/Gallery.astro';
+import { GALLERY } from '../../data/gallery';
+
+const variants = [
+  { id: 'rullo', label: 'Rullo' },
+  { id: 'scorrimento', label: 'Scorrimento' },
+  { id: 'webgl', label: 'WebGL' },
+  { id: 'zoom', label: 'Zoom' },
+];
+---
+<Lab title="Gallery" variants={variants} defaultVariant="rullo" chrome={false}>
+  <Header current="/gallery" />
+  <main>
+    <h1 class="sr-only">Gallery</h1>
+    <Gallery items={GALLERY} />
+  </main>
+</Lab>
+
+<script>
+  import { initGallery } from '../../lib/gallery/core';
+  import { rullo } from '../../lib/gallery/rullo';
+  import { scorrimento } from '../../lib/gallery/scorrimento';
+  import { webgl } from '../../lib/gallery/webgl';
+  import { zoom } from '../../lib/gallery/zoom';
+  import { getVariant, onVariantChange } from '../../lib/lab';
+
+  const variants = { rullo, scorrimento, webgl, zoom };
+  const id = getVariant('rullo', Object.keys(variants)) as keyof typeof variants;
+  initGallery(document.querySelector<HTMLElement>('[data-gallery]')!, variants[id]);
+
+  // ogni variante riparte da una pagina pulita
+  onVariantChange(() => window.location.reload());
+</script>
