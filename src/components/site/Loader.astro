@@ -2,9 +2,7 @@
 import LoaderName from './LoaderName.astro';
 ---
 <div data-loader aria-hidden="true" class="fixed inset-0 z-[100] text-cream">
-  <div data-loader-bands class="absolute inset-0 flex flex-col">
-    {[0, 1, 2, 3].map(() => <div class="-mb-px flex-1 bg-primary"></div>)}
-  </div>
+  <div data-loader-panel class="absolute inset-0 bg-primary"></div>
   <div class="relative flex h-full flex-col items-center justify-center gap-2 text-center">
     <LoaderName />
   </div>

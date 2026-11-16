@@ -8,7 +8,7 @@ async function record(page: Page) {
     const loop = (t: number) => {
       const loader = document.querySelector('[data-loader]');
       if (loader) {
-        const bands = [...document.querySelectorAll<HTMLElement>('[data-loader-bands] > div')];
+        const bands = [...document.querySelectorAll<HTMLElement>('[data-loader-panel]')];
         const name = document.querySelector<HTMLElement>('[data-loader-name]')!;
         const r = name.getBoundingClientRect();
         w.__frames.push({
@@ -31,11 +31,11 @@ async function record(page: Page) {
 
 type Frame = { t: number; subOpacity: number; panelBottom: number; panelTop: number; covered: number; name: { x: number; w: number; cy: number; opacity: number; filter: string; transform: string } };
 
-for (const v of ['classic', 'slot', 'bands', 'monogram']) {
-  test(`loader ${v}: the panel fully leaves the screen, smoothly, before being removed`, async ({ page }) => {
+{
+  test('loader: the panel fully leaves the screen, smoothly, before being removed', async ({ page }) => {
     await page.setViewportSize({ width: 1440, height: 900 });
     await record(page);
-    await page.goto(`/lab/loader?v=${v}`);
+    await page.goto('/lab/loader');
     await expect(page.locator('[data-loader]')).toHaveCount(0, { timeout: 5000 });
     const f: Frame[] = await page.evaluate(() => (window as any).__frames);
     // l'ultimo frame prima della rimozione: niente verde a schermo
@@ -92,7 +92,7 @@ async function letterTimeline(page: Page) {
 type Roll = { i: number; start: number; end: number; dir: 1 | -1 };
 
 async function measure(page: Page, v: string) {
-  await page.goto(`/lab/loader?v=${v}`);
+  await page.goto('/lab/loader');
   await expect(page.locator('[data-loader]')).toHaveCount(0, { timeout: 6000 });
   const frames: { t: number; rolls: number[]; widths: number[]; opacities: number[]; keep: boolean[]; visible: boolean[]; boxes: { left: number; right: number; bottom: number }[] }[] = await page.evaluate(() => (window as any).__letters);
   const n = frames[0].rolls.length;
@@ -178,7 +178,7 @@ test('loader monogram (rullo): extra letters roll out of their mask, never fadin
 test('loader monogram: RGGNDR stays in place and fades out with the same blur as the subtitle', async ({ page }) => {
   await page.setViewportSize({ width: 1440, height: 900 });
   await record(page);
-  await page.goto('/lab/loader?v=monogram');
+  await page.goto('/lab/loader');
   await expect(page.locator('[data-loader]')).toHaveCount(0, { timeout: 6000 });
   const f: Frame[] = await page.evaluate(() => (window as any).__frames);
   const visible = f.filter((x) => x.name.opacity > 0.01);

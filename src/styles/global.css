@@ -176,10 +176,11 @@
 
 /* ------------------------------------------------------------------ */
 /* Loader                                                             */
-/* Mai visibile senza JS o con reduced motion. Paracadute: se lo script */
+/* Mai visibile senza JS, con reduced motion o se già visto nella sessione. Paracadute: se lo script */
 /* non parte, dopo 7s il loader sparisce comunque.                      */
 /* ------------------------------------------------------------------ */
-html:not(.js) [data-loader] {
+html:not(.js) [data-loader],
+html.loader-seen [data-loader] {
   display: none;
 }
 @media (prefers-reduced-motion: reduce) {

@@ -5,15 +5,8 @@ import Hero from '../../components/site/Hero.astro';
 import Footer from '../../components/site/Footer.astro';
 import HomeSections from '../../components/site/HomeSections.astro';
 import Loader from '../../components/site/Loader.astro';
-
-const variants = [
-  { id: 'classic', label: 'Classic' },
-  { id: 'slot', label: 'Slot' },
-  { id: 'bands', label: 'Bands' },
-  { id: 'monogram', label: 'Monogram' },
-];
 ---
-<Lab title="Loader" variants={variants} defaultVariant="classic" chrome={false}>
+<Lab title="Loader" chrome={false}>
   <Header current="/" />
   <main class="space-bottom-big overflow-x-clip">
     <Hero />
@@ -24,36 +17,22 @@ const variants = [
 </Lab>
 
 <script>
-  import { playLoader, LOADER_VARIANTS, MONOGRAM_TIMINGS, type LoaderVariant } from '../../lib/loader';
-  import { CONCEPTS } from '../../lib/monogram-concepts';
+  import { playLoader } from '../../lib/loader';
   import { playHeroIntro } from '../../lib/hero-intro';
   import { initReveals } from '../../lib/reveal';
   import { initSmoothScroll } from '../../lib/motion';
-  import { getVariant, onVariantChange } from '../../lib/lab';
 
   const lenis = initSmoothScroll();
   const hero = document.querySelector<HTMLElement>('[data-hero]')!;
   const loader = document.querySelector<HTMLElement>('[data-loader]');
-  const variant = getVariant('classic', LOADER_VARIANTS) as LoaderVariant;
 
   lenis?.stop();
   const start = () => {
     lenis?.start();
     playHeroIntro(hero, { delay: 0 });
   };
-  // ?t=N prova a pagina intera l'alternativa N di /lab/loader-timing
-  // ?c=id&compatto=1 prova a pagina intera un concept di /lab/monogram
-  const params = new URLSearchParams(location.search);
-  const t = Number(params.get('t'));
-  const timing = MONOGRAM_TIMINGS[t - 1] ?? MONOGRAM_TIMINGS[0];
-  // default: Rullo compatto; ?t=N usa la vecchia sequenza a giri, ?esteso=1 lascia RGGNDR esteso
-  const concept = params.has('t') ? null : (CONCEPTS.find((c) => c.id === params.get('c')) ?? CONCEPTS[0]);
-  const compact = !params.has('esteso');
-  if (loader) playLoader(loader, variant, { onHandoff: start, timing, concept, compact });
+  if (loader) playLoader(loader, { onHandoff: start });
   else start();
 
   initReveals(document.querySelector<HTMLElement>('main')!);
-
-  // Nel lab ogni cambio variante ricarica la pagina per rivedere l'intro da zero
-  onVariantChange(() => window.location.reload());
 </script>
