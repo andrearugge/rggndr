@@ -29,6 +29,9 @@ jobs:
       - name: Schemi di Sanity
         run: npm --prefix studio run validate
 
+      - name: Tipi delle query aggiornati
+        run: npm run typegen && git diff --exit-code src/content/sanity.types.ts
+
       - name: Browser di Playwright
         run: npx playwright install --with-deps chromium
 
@@ -39,10 +42,14 @@ jobs:
         run: npm run format:check
 
       - name: Build di produzione
-        run: npm run build
+        # fino al Task 7 di M1 (dataset vero importato) la build legge il dataset di prova
+        run: CONTENT_SOURCE=fixture npm run build
 
       - name: Niente lab nella build
         run: node scripts/check-dist.mjs
+
+      - name: Test unitari
+        run: npm run test:unit
 
       - name: Test
         run: npm test
