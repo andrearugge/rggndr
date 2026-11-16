@@ -1,5 +1,5 @@
 import type { Browser, Page } from '@playwright/test';
-import { test, expect, skipLoader } from './helpers';
+import { test, expect, skipLoader, newContext } from './helpers';
 
 test.beforeEach(async ({ page }) => skipLoader(page));
 
@@ -41,7 +41,7 @@ async function naturalLines(page: Page, selector: string): Promise<string[]> {
 /** Linee naturali di un elemento senza JavaScript (layout statico di riferimento). */
 async function staticLines(browser: Browser, width: number, url: string, selector: string): Promise<string[]> {
   const { baseURL } = test.info().project.use;
-  const ctx = await browser.newContext({ baseURL, javaScriptEnabled: false, viewport: { width, height: 900 } });
+  const ctx = await newContext(browser, { baseURL, javaScriptEnabled: false, viewport: { width, height: 900 } });
   const page = await ctx.newPage();
   await page.goto(url);
   await page.evaluate(() => document.fonts.ready);

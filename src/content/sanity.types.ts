@@ -469,9 +469,13 @@ export type HOME_QUERY_RESULT = {
 
 // Source: ../src/content/queries.ts
 // Variable: GALLERY_QUERY
-// Query: *[_type == "gallery" && _id == "gallery"][0]{ _id }
+// Query: *[_type == "gallery" && _id == "gallery"][0]{  items[]{ _key, title, image }}
 export type GALLERY_QUERY_RESULT = {
-  _id: 'gallery';
+  items: Array<{
+    _key: string;
+    title: string | null;
+    image: ImageWithAlt | null;
+  }> | null;
 } | null;
 
 // Query TypeMap
@@ -479,7 +483,7 @@ declare global {
   interface SanityQueries {
     '*[_type == "siteSettings" && _id == "siteSettings"][0]{\n  name, description, email, phone, copyright,\n  socials[]{ label, url }\n}': SITE_QUERY_RESULT;
     '*[_type == "homePage" && _id == "homePage"][0]{\n  hero,\n  linkColumns[]{ _key, title, items[]{ _key, label, url } },\n  manifesto,\n  "projects": projects[]->{ title, "slug": slug.current, year, cover }\n}': HOME_QUERY_RESULT;
-    '*[_type == "gallery" && _id == "gallery"][0]{ _id }': GALLERY_QUERY_RESULT;
+    '*[_type == "gallery" && _id == "gallery"][0]{\n  items[]{ _key, title, image }\n}': GALLERY_QUERY_RESULT;
   }
 }
 // Lets @sanity/client releases that predate the global registry read it too

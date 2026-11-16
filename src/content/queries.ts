@@ -16,4 +16,6 @@ export const HOME_QUERY = defineQuery(`*[_type == "homePage" && _id == "homePage
   "projects": projects[]->{ title, "slug": slug.current, year, cover }
 }`);
 
-export const GALLERY_QUERY = defineQuery(`*[_type == "gallery" && _id == "gallery"][0]{ _id }`);
+export const GALLERY_QUERY = defineQuery(`*[_type == "gallery" && _id == "gallery"][0]{
+  items[]{ _key, title, image }
+}`);

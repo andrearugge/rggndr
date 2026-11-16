@@ -1,5 +1,5 @@
 import type { Page } from '@playwright/test';
-import { test, expect, skipLoader } from './helpers';
+import { test, expect, skipLoader, newContext } from './helpers';
 
 /**
  * Posizioni dei blocchi sulla card originale (public/brand/card.svg), in unità della card (larga 524):
@@ -117,7 +117,7 @@ test('footer: shows the code card, not the old image', async ({ page }) => {
 });
 
 test('card: reduced motion keeps it still', async ({ browser }) => {
-  const ctx = await browser.newContext({ reducedMotion: 'reduce', viewport: { width: 1440, height: 900 } });
+  const ctx = await newContext(browser, { reducedMotion: 'reduce', viewport: { width: 1440, height: 900 } });
   const page = await ctx.newPage();
   await page.goto('/');
   await toCard(page);

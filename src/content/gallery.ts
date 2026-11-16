@@ -1,83 +1,28 @@
-/** Foto della gallery (dal sito attuale). In M1 arriveranno da Sanity (`galleryItem`). */
+/** Foto della gallery, dal documento `gallery` di Sanity, nell'ordine scelto nello Studio. */
+import { imageAttrs, type ImageAttrs } from './image';
+import { GALLERY_QUERY } from './queries';
+import type { GALLERY_QUERY_RESULT } from './sanity.types';
+import { fetchQuery, type Fetch } from './source';
+
 export interface GalleryItem {
+  key: string;
   title: string;
-  src: string;
-  thumb: string;
-  width: number;
-  height: number;
+  /** La foto grande. */
+  image: ImageAttrs;
+  /** La miniatura nella striscia in basso: stessa immagine, più piccola. */
+  thumb: ImageAttrs;
 }
 
-const GALLERY: GalleryItem[] = [
-  {
-    title: 'Giulia, Lanzarote',
-    src: '/media/gallery/01.jpg',
-    thumb: '/media/gallery/01-thumb.jpg',
-    width: 1600,
-    height: 1600,
-  },
-  {
-    title: 'Cascina Lago Scuro',
-    src: '/media/gallery/02.jpg',
-    thumb: '/media/gallery/02-thumb.jpg',
-    width: 900,
-    height: 1600,
-  },
-  { title: 'Mud Millo', src: '/media/gallery/03.jpg', thumb: '/media/gallery/03-thumb.jpg', width: 899, height: 1600 },
-  {
-    title: 'Home of dreams',
-    src: '/media/gallery/04.jpg',
-    thumb: '/media/gallery/04-thumb.jpg',
-    width: 899,
-    height: 1600,
-  },
-  { title: 'Lanzarote', src: '/media/gallery/05.jpg', thumb: '/media/gallery/05-thumb.jpg', width: 910, height: 1600 },
-  {
-    title: 'Sand in Famara',
-    src: '/media/gallery/06.jpg',
-    thumb: '/media/gallery/06-thumb.jpg',
-    width: 1200,
-    height: 1600,
-  },
-  {
-    title: 'Indian food',
-    src: '/media/gallery/07.jpg',
-    thumb: '/media/gallery/07-thumb.jpg',
-    width: 900,
-    height: 1600,
-  },
-  {
-    title: 'Istanbul Ferry',
-    src: '/media/gallery/08.jpg',
-    thumb: '/media/gallery/08-thumb.jpg',
-    width: 1280,
-    height: 1600,
-  },
-  {
-    title: 'Walking in the clouds',
-    src: '/media/gallery/09.jpg',
-    thumb: '/media/gallery/09-thumb.jpg',
-    width: 900,
-    height: 1600,
-  },
-  {
-    title: 'Sleeping at home',
-    src: '/media/gallery/10.jpg',
-    thumb: '/media/gallery/10-thumb.jpg',
-    width: 900,
-    height: 1600,
-  },
-  { title: 'Cheeeese', src: '/media/gallery/11.jpg', thumb: '/media/gallery/11-thumb.jpg', width: 1200, height: 1600 },
-  {
-    title: 'Playing Basketball',
-    src: '/media/gallery/12.jpg',
-    thumb: '/media/gallery/12-thumb.jpg',
-    width: 1600,
-    height: 1200,
-  },
-  { title: 'Formentera', src: '/media/gallery/13.jpg', thumb: '/media/gallery/13-thumb.jpg', width: 899, height: 1600 },
-  { title: 'Snowboard', src: '/media/gallery/14.jpg', thumb: '/media/gallery/14-thumb.jpg', width: 1200, height: 1600 },
-];
+export async function getGallery(fetch: Fetch = fetchQuery): Promise<GalleryItem[]> {
+  const doc = await fetch<GALLERY_QUERY_RESULT>(GALLERY_QUERY);
+  if (!doc) throw new Error('Sanity: manca il documento gallery');
+  const items = (doc.items ?? []).filter((i) => i.title && i.image);
+  if (!items.length) throw new Error('Sanity: nessuna foto nella gallery');
 
-export function getGallery(): GalleryItem[] {
-  return GALLERY;
+  return items.map((i) => ({
+    key: i._key,
+    title: i.title!,
+    image: imageAttrs(i.image, { width: 1600, widths: [800, 1200, 1600, 2400], sizes: '50vw' }),
+    thumb: imageAttrs(i.image, { width: 300, widths: [150, 300], sizes: '150px' }),
+  }));
 }

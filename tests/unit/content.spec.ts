@@ -1,4 +1,5 @@
 import { expect, test } from '@playwright/test';
+import { getGallery } from '../../src/content/gallery';
 import { getHome } from '../../src/content/home';
 import { getSite } from '../../src/content/site';
 import { createFixtureSource, readFixture, type SanityDocumentLike } from '../../src/content/source';
@@ -41,4 +42,24 @@ test('getSite builds tel href', async () => {
   const site = await getSite(withDocs());
   expect(site.phone).toBe('(+39) 393 857 6657');
   expect(site.phoneHref).toBe('tel:+393938576657');
+});
+
+const photo = (key: string, title: string) => ({
+  _type: 'galleryItem',
+  _key: key,
+  title,
+  image: { _type: 'imageWithAlt', asset: { _ref: `image-${key}-10x20-jpg` }, alt: title },
+});
+
+test('getGallery keeps editor order', async () => {
+  const fetch = createFixtureSource([
+    { _id: 'gallery', _type: 'gallery', items: [photo('c', 'C'), photo('a', 'A'), photo('b', 'B')] },
+  ]);
+  expect((await getGallery(fetch)).map((i) => i.title)).toEqual(['C', 'A', 'B']);
+});
+
+test('getGallery fails without photos', async () => {
+  await expect(getGallery(without('gallery'))).rejects.toThrow('manca il documento gallery');
+  const empty = createFixtureSource([{ _id: 'gallery', _type: 'gallery', items: [] }]);
+  await expect(getGallery(empty)).rejects.toThrow('nessuna foto');
 });

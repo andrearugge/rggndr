@@ -1,6 +1,12 @@
 import { existsSync } from 'node:fs';
 import { join } from 'node:path';
-import { test as base, type BrowserContext, type Page } from '@playwright/test';
+import {
+  test as base,
+  type Browser,
+  type BrowserContext,
+  type BrowserContextOptions,
+  type Page,
+} from '@playwright/test';
 
 /** Simula una pagina successiva alla prima nella sessione: il loader non parte (D3). Chiave: src/layouts/Base.astro. */
 export async function skipLoader(page: Page) {
@@ -22,6 +28,13 @@ export async function routeSanityCdn(target: Page | BrowserContext) {
     if (file && existsSync(file)) await route.fulfill({ path: file });
     else await route.fulfill({ status: 404, body: `asset di prova mancante: ${name}` });
   });
+}
+
+/** Contesto creato a mano (es. senza JS): sempre con le immagini del CDN servite dai file locali. */
+export async function newContext(browser: Browser, options?: BrowserContextOptions) {
+  const ctx = await browser.newContext(options);
+  await routeSanityCdn(ctx);
+  return ctx;
 }
 
 /** `test` di Playwright con le immagini del CDN servite dai file locali in ogni contesto. */
