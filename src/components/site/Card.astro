@@ -1,0 +1,252 @@
+---
+// Il biglietto da visita del footer, in codice: stessa composizione di public/brand/card.svg
+// (card davanti ruotata di -3°, card dietro al 15% ruotata di +3°), ma con testi veri e cliccabili.
+// Tutte le misure sono in unità della card (larga 524), quindi scala con qualsiasi larghezza.
+import CardWordmark from './CardWordmark.astro';
+
+/** Corpo del testo e posizione (sinistra o destra, alto) di ogni blocco, in unità della card. */
+const L = {
+  small: 13.0, // Montreal: righe di contatto e orari
+  motto: 30.57, // Editorial: (Barring Unforeseen Circumstances)
+  web: { left: 23.96, top: 24.12 },
+  ig: { right: 24.49, top: 24.18 },
+  motto_: { left: 33.26, top: 139.5 },
+  hours: { top: 186.96 },
+  shy: { left: 24.04, top: 288.06 },
+  phone: { left: 23.99, top: 302.9 },
+  shoot: { right: 24.52, top: 288.06 },
+  email: { right: 24.5, top: 302.97 },
+};
+const u = (n: number) => `calc(var(--u) * ${n})`;
+const pos = (p: { left?: number; right?: number; top: number }) =>
+  [`top:${u(p.top)}`, p.left !== undefined ? `left:${u(p.left)}` : '', p.right !== undefined ? `right:${u(p.right)}` : ''].filter(Boolean).join(';');
+---
+<div data-card class="card relative w-full" style="aspect-ratio: 570 / 397">
+  <div data-card-back class="card-sheet card-back" aria-hidden="true"></div>
+  <div data-card-front class="card-sheet card-front">
+    <div class="card-face">
+      <p data-block="web" class="card-small absolute" style={pos(L.web)}>
+        <b>Web</b> <a href="https://www.rggndr.it">www.rggndr.it</a>
+      </p>
+      <p data-block="ig" class="card-small absolute text-right" style={pos(L.ig)}>
+        <b>IG</b> <a href="https://www.instagram.com/andrearugge/">andrearugge</a>
+      </p>
+      <div class="card-wordmark absolute">
+        <CardWordmark class="block h-full w-full">
+          <defs>
+            <!-- Rilievo: luce speculare che segue il mouse (coordinate del logo) -->
+            <filter id="card-emboss" x="-4%" y="-20%" width="108%" height="150%" filterUnits="objectBoundingBox" color-interpolation-filters="sRGB">
+              <feGaussianBlur in="SourceAlpha" stdDeviation="1.1" result="bump" />
+              <feSpecularLighting in="bump" surfaceScale="4" specularConstant="1.5" specularExponent="16" lighting-color="#ffffff" result="spec">
+                <fePointLight data-card-light x="262" y="40" z="90" />
+              </feSpecularLighting>
+              <feComposite in="spec" in2="SourceAlpha" operator="in" result="shine" />
+              <feOffset in="SourceAlpha" dx="0" dy="1.6" result="drop" />
+              <feGaussianBlur in="drop" stdDeviation="0.9" result="dropBlur" />
+              <feFlood flood-color="#3c3e37" flood-opacity="0.6" />
+              <feComposite in2="dropBlur" operator="in" result="shadow" />
+              <feMerge>
+                <feMergeNode in="shadow" />
+                <feMergeNode in="SourceGraphic" />
+              </feMerge>
+              <feComposite in2="shine" operator="arithmetic" k1="0" k2="1" k3="0.9" k4="0" />
+            </filter>
+            <!-- Foil: lamina chiara che scorre con l'inclinazione -->
+            <linearGradient id="card-foil" data-card-foil gradientUnits="userSpaceOnUse" x1="24" y1="53" x2="500" y2="123">
+              <stop offset="0" stop-color="#d9dccf" />
+              <stop offset="0.35" stop-color="#ffffff" />
+              <stop offset="0.5" stop-color="#b9bcae" />
+              <stop offset="0.65" stop-color="#fdfff4" />
+              <stop offset="1" stop-color="#c9ccbe" />
+            </linearGradient>
+          </defs>
+        </CardWordmark>
+      </div>
+      <p data-block="motto" class="card-motto absolute" style={pos(L.motto_)}>(Barring Unforeseen Circumstances)</p>
+      <p data-block="hours" class="card-small absolute inset-x-0 text-center" style={`top:${u(L.hours.top)}`}>08:00 - 18:00 | Monday to Friday</p>
+      <p class="card-small absolute" style={pos(L.shy)}><b data-block="shy">Don’t be shy</b></p>
+      <p class="card-small absolute" style={pos(L.phone)}><a data-block="phone" href="tel:+393938576657">(+39) 393 857 6657</a></p>
+      <p class="card-small absolute text-right" style={pos(L.shoot)}><b data-block="shoot">Shoot an email</b></p>
+      <p class="card-small absolute text-right" style={pos(L.email)}><a data-block="email" href="mailto:hello@rggndr.it">hello@rggndr.it</a></p>
+    </div>
+    <div data-card-gloss class="card-gloss" aria-hidden="true"></div>
+    <!-- Retro (solo variante "mazzo"): il simbolo, visibile quando la card si gira -->
+    <div data-card-reverse class="card-reverse" aria-hidden="true"><span class="card-symbol"></span></div>
+  </div>
+  <button type="button" data-card-flip class="sr-only">Gira il biglietto</button>
+</div>
+
+<style define:vars={{ small: u(L.small), motto: u(L.motto) }}>
+  @font-face {
+    font-family: 'Editorial';
+    src: url('/fonts/Editorial-Regular.woff2') format('woff2');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+  }
+  .card {
+    perspective: 1400px;
+  }
+  .card-sheet {
+    position: absolute;
+    width: calc(524 / 570 * 100%);
+    height: calc(340 / 397 * 100%);
+    border-radius: calc(12 / 524 * 100%) / calc(12 / 340 * 100%);
+    transform-origin: 0 0;
+  }
+  .card-back {
+    left: calc(32.2561 / 570 * 100%);
+    top: calc(12 / 397 * 100%);
+    rotate: 3deg;
+    background: rgb(137 141 127 / 0.15);
+  }
+  .card-front {
+    left: calc(14.4619 / 570 * 100%);
+    top: calc(40.4233 / 397 * 100%);
+    rotate: -3deg;
+    background: var(--color-primary);
+    color: var(--color-background);
+    container-type: inline-size;
+    transform-style: preserve-3d;
+    box-shadow:
+      0 calc(2 / 524 * 100cqw) calc(15 / 524 * 100cqw) rgb(60 62 55 / 0.12),
+      0 calc(1 / 524 * 100cqw) calc(1 / 524 * 100cqw) rgb(60 62 55 / 0.04);
+  }
+  .card-face {
+    --u: calc(100cqw / 524);
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    overflow: hidden;
+  }
+  .card-face p {
+    margin: 0;
+    padding: 0;
+    white-space: nowrap;
+  }
+  .card-face a {
+    color: inherit;
+    text-decoration: none;
+  }
+  .card-face a:hover {
+    text-decoration: underline;
+    text-underline-offset: 0.15em;
+  }
+  .card-small {
+    font-family: var(--font-montreal);
+    font-size: var(--small);
+    line-height: 1;
+    text-transform: uppercase;
+  }
+  .card-motto {
+    font-family: 'Editorial', Georgia, serif;
+    font-size: var(--motto);
+    line-height: 1;
+    text-transform: none;
+  }
+  .card-wordmark {
+    left: calc(var(--u) * 24);
+    top: calc(var(--u) * 53);
+    width: calc(var(--u) * 476);
+    height: calc(var(--u) * 70);
+    overflow: visible;
+  }
+  .card-gloss {
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    pointer-events: none;
+    opacity: 0;
+  }
+  .card-reverse {
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background: var(--color-primary);
+    transform: rotateY(180deg);
+    backface-visibility: hidden;
+    display: none;
+    place-items: center;
+  }
+  .card-symbol {
+    width: 22%;
+    aspect-ratio: 1;
+    background: var(--color-background);
+    mask: url('/brand/symbol.png') center / contain no-repeat;
+  }
+
+  /* --- Interazione comune: inclinazione 3D e ombra che si sposta (variabili scritte da src/lib/card.ts) --- */
+  .card-front {
+    --nx: 0;
+    --ny: 0;
+    --px: 50%;
+    --py: 50%;
+    --hover: 0;
+    box-shadow:
+      calc(var(--nx) * -1.4cqw) calc(0.4cqw + var(--ny) * -1.4cqw) calc(3cqw + var(--hover) * 2cqw) rgb(60 62 55 / calc(0.12 + var(--hover) * 0.08)),
+      0 0.2cqw 0.2cqw rgb(60 62 55 / 0.04);
+  }
+
+  /* --- Lucida: un riflesso segue il puntatore --- */
+  [data-variant='lucida'] .card-gloss,
+  [data-variant='foil'] .card-gloss,
+  [data-variant='mazzo'] .card-gloss {
+    opacity: calc(0.35 + var(--hover) * 0.65);
+    background:
+      radial-gradient(circle at var(--px) var(--py), rgb(255 255 255 / 0.55), rgb(255 255 255 / 0.12) 28%, rgb(255 255 255 / 0) 55%),
+      linear-gradient(calc(115deg + var(--nx) * 20deg), rgb(255 255 255 / 0) 25%, rgb(255 255 255 / 0.16) 45%, rgb(255 255 255 / 0) 60%);
+    mix-blend-mode: overlay;
+  }
+  [data-variant='lucida'] .card-face :global(svg),
+  [data-variant='mazzo'] .card-face :global(svg) {
+    filter: drop-shadow(0 calc(var(--u) * 0.8) calc(var(--u) * 0.6) rgb(60 62 55 / 0.35));
+  }
+
+  /* --- Rilievo: carta con grana, bordi smussati, logo in rilievo illuminato dal mouse --- */
+  [data-variant='rilievo'] .card-front {
+    background-color: var(--color-primary);
+    background-image:
+      linear-gradient(160deg, rgb(255 255 255 / 0.1), rgb(255 255 255 / 0) 40%, rgb(0 0 0 / 0.06)),
+      url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 .24  0 0 0 0 .25  0 0 0 0 .22  0 0 0 .55 0'/></filter><rect width='160' height='160' filter='url(%23n)' opacity='.6'/></svg>");
+    background-blend-mode: normal, multiply;
+  }
+  [data-variant='rilievo'] .card-face {
+    box-shadow:
+      inset 0 calc(var(--u) * 1.4) calc(var(--u) * 0.6) rgb(255 255 255 / 0.3),
+      inset 0 calc(var(--u) * -1.6) calc(var(--u) * 0.8) rgb(60 62 55 / 0.35);
+  }
+  [data-variant='rilievo'] .card-face :global(svg g) {
+    filter: url(#card-emboss);
+  }
+  [data-variant='rilievo'] .card-face p {
+    text-shadow:
+      calc(var(--nx) * -0.6px) calc(1px + var(--ny) * -0.6px) 0.5px rgb(60 62 55 / 0.45),
+      0 -0.5px 0 rgb(255 255 255 / 0.25);
+  }
+
+  /* --- Foil: logo e motto in lamina che riflette con l'inclinazione --- */
+  [data-variant='foil'] .card-face :global(svg g) {
+    fill: url(#card-foil);
+  }
+  [data-variant='foil'] .card-motto {
+    background: linear-gradient(calc(100deg + var(--nx) * 40deg), #d9dccf 10%, #ffffff calc(35% + var(--nx) * 15%), #b9bcae calc(50% + var(--nx) * 15%), #fdfff4 calc(65% + var(--nx) * 15%), #c9ccbe 90%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+  }
+
+  /* --- Mazzo: le due card si aprono a ventaglio, al clic quella davanti si gira --- */
+  [data-variant='mazzo'] .card-back {
+    transition: rotate 0.6s cubic-bezier(0.22, 1, 0.36, 1), translate 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  [data-variant='mazzo'][data-hover] .card-back {
+    rotate: 7deg;
+    translate: 2% -2%;
+  }
+  [data-variant='mazzo'] .card-reverse {
+    display: grid;
+  }
+  [data-variant='mazzo'] .card-face {
+    backface-visibility: hidden;
+  }
+</style>

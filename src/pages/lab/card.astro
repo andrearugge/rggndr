@@ -1,0 +1,31 @@
+---
+import Lab from '../../layouts/Lab.astro';
+import Card from '../../components/site/Card.astro';
+
+const variants = [
+  { id: 'originale', label: 'Originale' },
+  { id: 'lucida', label: 'Lucida' },
+  { id: 'rilievo', label: 'Rilievo' },
+  { id: 'foil', label: 'Foil' },
+  { id: 'mazzo', label: 'Mazzo' },
+];
+---
+<Lab title="Card" variants={variants} defaultVariant="originale">
+  <main class="container-site flex min-h-dvh items-center justify-center py-24">
+    <div class="w-full max-w-[760px]">
+      <Card />
+    </div>
+  </main>
+</Lab>
+
+<script>
+  import { initCard, CARD_VARIANTS, type CardVariant } from '../../lib/card';
+  import { getVariant, onVariantChange } from '../../lib/lab';
+
+  const root = document.querySelector<HTMLElement>('[data-card]')!;
+  let cleanup = initCard(root, getVariant('originale', CARD_VARIANTS) as CardVariant);
+  onVariantChange((id) => {
+    cleanup();
+    cleanup = initCard(root, id as CardVariant);
+  });
+</script>
