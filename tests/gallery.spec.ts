@@ -236,3 +236,16 @@ test('gallery comes from Sanity', async ({ page }) => {
   const thumb = page.locator('[data-gallery-thumb] img').first();
   expect(await thumb.getAttribute('src')).toContain('w=300');
 });
+
+test('gallery thumbnails are decorative, with a single empty alt', async ({ page }) => {
+  const html = await (await page.request.get('/gallery/')).text();
+  const thumbs = [...html.matchAll(/<button[^>]*data-gallery-thumb[\s\S]*?<img([^>]*)>/g)].map((m) => m[1]);
+  expect(thumbs.length).toBeGreaterThan(0);
+  // un solo attributo alt (`alt` nudo equivale ad alt="")
+  for (const attrs of thumbs) expect(attrs.match(/\salt(?=[\s=>])/g)).toHaveLength(1);
+  await page.goto('/gallery/');
+  const alts = await page
+    .locator('[data-gallery-thumb] img')
+    .evaluateAll((els) => els.map((e) => e.getAttribute('alt')));
+  expect(new Set(alts)).toEqual(new Set(['']));
+});
