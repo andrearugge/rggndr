@@ -42,10 +42,10 @@ jobs:
         run: npm run format:check
 
       - name: Build di produzione
-        # fino al Task 7 di M1 (dataset vero importato) la build legge il dataset di prova
-        run: CONTENT_SOURCE=fixture npm run build
+        # legge il dataset vero di Sanity (pubblico, nessun token); i test usano quello di prova
+        run: npm run build
 
-      - name: Niente lab nella build
+      - name: Niente lab né dataset di prova nella build
         run: node scripts/check-dist.mjs
 
       - name: Test unitari

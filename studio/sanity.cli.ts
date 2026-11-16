@@ -5,5 +5,5 @@ export default defineCliConfig({
   api: { projectId: '9skjzcft', dataset: 'production' },
   // Studio pubblicato su https://rggndr.sanity.studio
   studioHost: 'rggndr',
-  deployment: { autoUpdates: true },
+  deployment: { appId: 'khljssqob0nakj58kpyb13oh', autoUpdates: true },
 });
