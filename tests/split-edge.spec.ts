@@ -90,3 +90,9 @@ test('content shows even if the reveal module fails', async ({ page }) => {
   const hidden = await page.$$eval('[data-reveal]', (els) => els.filter((e) => getComputedStyle(e).visibility !== 'visible').length);
   expect(hidden).toBe(0);
 });
+
+test('lab index loads and links to the split fixture', async ({ page }) => {
+  await page.goto('/lab/');
+  await page.getByRole('link', { name: /split/i }).click();
+  await expect(page).toHaveURL(/\/lab\/fixtures\/split\/$/);
+});

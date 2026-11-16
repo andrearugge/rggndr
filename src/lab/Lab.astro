@@ -1,0 +1,16 @@
+---
+// Layout del lab: utility interna, mai nella build di produzione (integrations/lab.mjs).
+import Base from '../layouts/Base.astro';
+
+interface Props {
+  title: string;
+}
+const { title } = Astro.props;
+---
+<Base title={`Lab — ${title}`} noindex>
+  <header class="container-site fixed inset-x-0 top-0 z-40 flex justify-between py-6 text-[14px] leading-none font-bold">
+    <a href="/lab/">← Lab</a>
+    <span>{title}</span>
+  </header>
+  <slot />
+</Base>
