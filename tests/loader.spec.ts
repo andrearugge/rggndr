@@ -62,6 +62,15 @@ test('loader plays once per session', async ({ page }) => {
   expect(await page.evaluate(() => (window as any).__loaderSeen)).toBe(false);
 });
 
+test('landing on another page first: the loader does not play later in the session (D3)', async ({ page }) => {
+  await page.goto('/gallery/');
+  await watchLoader(page);
+  await page.goto(URL);
+  await expect(page.locator('[data-hero]')).toHaveAttribute('data-hero-played', '', { timeout: 1000 });
+  await page.waitForTimeout(1000);
+  expect(await page.evaluate(() => (window as any).__loaderSeen)).toBe(false);
+});
+
 test('a new session plays the loader again', async ({ page, browser }) => {
   await page.goto(URL);
   await expect(page.locator('[data-loader]')).toHaveCount(0, { timeout: 6000 });

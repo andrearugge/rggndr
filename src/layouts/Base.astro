@@ -22,9 +22,12 @@ const { title, noindex = false } = Astro.props;
       document.documentElement.classList.add('js');
     </script>
     <script is:inline>
-      // il loader si vede una volta per sessione: dalla seconda pagina resta nascosto fin dal primo frame
+      // Il loader si vede solo alla prima pagina della sessione, qualunque essa sia (D3): ogni pagina
+      // segna la sessione, e dalla seconda il loader resta nascosto fin dal primo frame.
+      // Unico punto che scrive la chiave; i test la usano in tests/helpers.ts.
       try {
         if (sessionStorage.getItem('rggndr:loader-seen')) document.documentElement.classList.add('loader-seen');
+        sessionStorage.setItem('rggndr:loader-seen', '1');
       } catch {}
     </script>
   </head>

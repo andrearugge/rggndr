@@ -1,21 +1,9 @@
 import { gsap, fontsReady, prefersReducedMotion } from './motion';
 import { setup, buildRullo, closeUp } from './monogram';
 
-/** Chiave di sessione: il loader si vede solo alla prima pagina della sessione (D3). */
-export const LOADER_SEEN_KEY = 'rggndr:loader-seen';
-
 interface LoaderOptions {
   /** Chiamata quando l'hero deve iniziare ad animarsi (sovrapposta all'uscita del pannello). */
   onHandoff?: () => void;
-}
-
-/** Ricorda che il loader è già partito. Se lo storage non è disponibile, il loader riparte: va bene così. */
-function markSeen() {
-  try {
-    sessionStorage.setItem(LOADER_SEEN_KEY, '1');
-  } catch {
-    /* navigazione privata o storage bloccato */
-  }
 }
 
 /**
@@ -29,14 +17,13 @@ export async function playLoader(el: HTMLElement, { onHandoff }: LoaderOptions =
     html.style.overflow = '';
   };
 
-  // già visto in questa sessione (lo script nel <head> lo ha nascosto prima del primo frame) o movimento ridotto
+  // non è la prima pagina della sessione (classe messa dallo script nel <head> di Base.astro) o movimento ridotto
   if (html.classList.contains('loader-seen') || prefersReducedMotion()) {
     finish();
     onHandoff?.();
     return;
   }
 
-  markSeen();
   html.style.overflow = 'hidden';
   el.style.animation = 'none'; // il paracadute CSS non serve più: JS è partito
 
