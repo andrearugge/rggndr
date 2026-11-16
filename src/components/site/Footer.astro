@@ -1,11 +1,8 @@
 ---
 import Card from './Card.astro';
+import { getSite } from '../../content/site';
 
-const socials = [
-  { label: 'Instagram', href: 'https://www.instagram.com/andrearugge/' },
-  { label: 'Linkedin', href: 'https://www.linkedin.com/in/andrerugge/' },
-  { label: 'Twitter', href: 'https://x.com/andrea_rugge' },
-];
+const { socials } = getSite();
 ---
 <footer>
   <div class="container-site pb-8">

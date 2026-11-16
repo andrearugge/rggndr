@@ -1,14 +1,7 @@
 ---
-// Stessi progetti e stesso ordine della homepage attuale
-const projects = [
-  { title: 'AI Journal', year: '2025', img: '/lab/ai-journal-cover.jpg', w: 1200, h: 901 },
-  { title: 'MarkLayer', year: '2025', img: '/lab/marklayer.jpg', w: 830, h: 1108 },
-  { title: 'AI Workshop', year: '2025', img: '/lab/ai-workshop.jpg', w: 550, h: 885 },
-  { title: 'Dialetto Libero', year: '2019', img: '/lab/a4.jpg', w: 550, h: 406 },
-  { title: 'Montipadel', year: '2024', img: '/lab/montipadel.jpg', w: 1200, h: 1600 },
-  { title: 'Beconcept', year: '2018 – Today', img: '/lab/beconcept.jpg', w: 1200, h: 1672 },
-  { title: 'Giulia Pampuri', year: '2024', img: '/lab/a8.jpg', w: 830, h: 623 },
-];
+import { getHome } from '../../content/home';
+
+const { projects } = getHome();
 // Ritmo della griglia: 2 progetti da 6 colonne, poi 3 da 4, e si ripete
 const colClass = (i: number) => ((i % 5) < 2 ? 'col-span-12 lg:col-span-6' : 'col-span-12 lg:col-span-4');
 ---
@@ -70,7 +63,7 @@ const colClass = (i: number) => ((i % 5) < 2 ? 'col-span-12 lg:col-span-6' : 'co
         <li class:list={[colClass(i), 'h-fit']}>
           <a href="#" class="group block w-full space-y-2 lg:space-y-4">
             <div data-reveal="image">
-              <img src={p.img} alt={p.title} width={p.w} height={p.h} loading="lazy" decoding="async" class="block h-auto w-full" />
+              <img src={p.image.src} alt={p.image.alt} width={p.image.width} height={p.image.height} loading="lazy" decoding="async" class="block h-auto w-full" />
             </div>
             <div>
               <p data-reveal="text" class="text-sm">{p.year}</p>
