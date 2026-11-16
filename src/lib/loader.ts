@@ -1,4 +1,5 @@
 import { gsap, fontsReady, prefersReducedMotion } from './motion';
+import { setup, closeUp, type Concept } from './monogram-concepts';
 
 export type LoaderVariant = 'classic' | 'slot' | 'bands' | 'monogram';
 export const LOADER_VARIANTS: LoaderVariant[] = ['classic', 'slot', 'bands', 'monogram'];
@@ -8,6 +9,10 @@ interface LoaderOptions {
   onHandoff?: () => void;
   /** Timing del monogram (default: MONOGRAM_TIMINGS[0]). */
   timing?: MonogramTiming;
+  /** Monogram: uno dei concept di /lab/monogram al posto della sequenza a giri. */
+  concept?: Concept;
+  /** Monogram: chiude gli spazi lasciati dalle lettere superflue. */
+  compact?: boolean;
 }
 
 /** Ritmo della variante monogram: giri di rotazione, chiusura in RGGNDR e dissolvenza. */
@@ -173,7 +178,7 @@ function rollColumn(letter: HTMLElement, extra: string[], vars: gsap.TweenVars):
 }
 
 /** Aggiunge le celle `extra` sotto la lettera, bloccando la maschera su una cella. Ritorna la colonna. */
-function prepareColumn(letter: HTMLElement, extra: string[]): HTMLElement {
+export function prepareColumn(letter: HTMLElement, extra: string[]): HTMLElement {
   const column = letter.firstElementChild as HTMLElement;
   // La maschera resta alta una lettera: le celle aggiunte scorrono dentro, non la allargano.
   const first = (column.firstElementChild as HTMLElement).getBoundingClientRect();
@@ -193,7 +198,7 @@ function prepareColumn(letter: HTMLElement, extra: string[]): HTMLElement {
 }
 
 
-export async function playLoader(el: HTMLElement, variant: LoaderVariant, { onHandoff, timing = MONOGRAM_TIMINGS[0] }: LoaderOptions = {}): Promise<void> {
+export async function playLoader(el: HTMLElement, variant: LoaderVariant, { onHandoff, timing = MONOGRAM_TIMINGS[0], concept, compact = false }: LoaderOptions = {}): Promise<void> {
   const html = document.documentElement;
   const finish = () => {
     el.remove();
@@ -247,7 +252,15 @@ export async function playLoader(el: HTMLElement, variant: LoaderVariant, { onHa
     let exitAt = variant === 'slot' ? 1.6 : 1.55;
 
     if (variant === 'monogram') {
-      const end = addMonogram(tl, el, timing);
+      let end: number;
+      if (concept) {
+        const c = setup(el);
+        end = concept.build(tl, c);
+        if (compact) end = closeUp(tl, c, end + 0.05);
+        // RGGNDR e il sottotitolo sfumano insieme dopo una breve pausa sul monogramma
+        tl.to([name, sub], { opacity: 0, filter: 'blur(5px)', duration: 0.4, ease: 'power2.in' }, end + 0.35);
+        end += 0.75;
+      } else end = addMonogram(tl, el, timing);
       const panelAt = end - 0.25; // il pannello sale mentre la dissolvenza si chiude
       tl.to(bands, { y: () => -window.innerHeight - 2, duration: 1, ease: EASE }, panelAt);
       tl.add(() => onHandoff?.(), panelAt + 0.3);

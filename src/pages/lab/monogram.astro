@@ -1,0 +1,52 @@
+---
+import Lab from '../../layouts/Lab.astro';
+import LoaderName from '../../components/site/LoaderName.astro';
+import { CONCEPTS } from '../../lib/monogram-concepts';
+
+---
+<Lab title="Monogram">
+  <main class="container-site pt-20 pb-10">
+    <header class="mb-6 flex flex-wrap items-end justify-between gap-4">
+      <h1 class="h3">Monogram · concept</h1>
+      <div class="flex flex-col items-end gap-3">
+        <p class="max-w-md text-right text-sm">Un solo gesto per concept: tre variazioni sempre più rapide, poi lo stesso gesto porta via le lettere superflue.</p>
+        <nav aria-label="Monogramma" class="flex gap-1 text-xs">
+          <a data-mode="esteso" href="/lab/monogram" aria-current="page" class="rounded-full bg-primary px-3 py-1 text-cream aria-[current=page]:bg-cream aria-[current=page]:text-primary aria-[current=page]:outline aria-[current=page]:outline-primary">Esteso</a>
+          <a data-mode="compatto" href="/lab/monogram?compatto=1" class="rounded-full bg-primary px-3 py-1 text-cream aria-[current=page]:bg-cream aria-[current=page]:text-primary aria-[current=page]:outline aria-[current=page]:outline-primary">Compatto</a>
+        </nav>
+      </div>
+    </header>
+    <ol class="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+      {CONCEPTS.map((c, i) => (
+        <li data-concept={c.id} class="flex flex-col bg-primary text-cream">
+          <div class="flex items-baseline justify-between gap-4 px-4 pt-4">
+            <h2 class="h6">{String(i + 1).padStart(2, '0')} · {c.label}</h2>
+            <a data-try href={`/lab/loader?v=monogram&c=${c.id}`} class="text-xs underline underline-offset-2 hover:opacity-70">Prova a pagina intera</a>
+          </div>
+          <div data-concept-stage class="flex aspect-[16/8] flex-col items-center justify-center gap-2 text-center">
+            <LoaderName />
+          </div>
+          <div class="px-4 pb-4 text-xs">
+            <p>{c.thread}</p>
+            <p class="pt-1 opacity-70">{c.exit}</p>
+          </div>
+        </li>
+      ))}
+    </ol>
+  </main>
+</Lab>
+
+<script>
+  import { CONCEPTS, loopConcept } from '../../lib/monogram-concepts';
+
+  const compact = new URLSearchParams(location.search).has('compatto');
+  document.querySelectorAll<HTMLAnchorElement>('[data-mode]').forEach((a) => {
+    if ((a.dataset.mode === 'compatto') === compact) a.setAttribute('aria-current', 'page');
+    else a.removeAttribute('aria-current');
+  });
+  if (compact) document.querySelectorAll<HTMLAnchorElement>('[data-try]').forEach((a) => (a.href += '&compatto=1'));
+  for (const card of document.querySelectorAll<HTMLElement>('[data-concept]')) {
+    const concept = CONCEPTS.find((c) => c.id === card.dataset.concept)!;
+    loopConcept(card.querySelector<HTMLElement>('[data-concept-stage]')!, concept, compact);
+  }
+</script>
