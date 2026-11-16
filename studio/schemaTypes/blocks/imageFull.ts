@@ -6,7 +6,12 @@ export const imageFull = defineType({
   title: 'Immagine piena',
   type: 'object',
   fields: [
-    defineField({ name: 'image', title: 'Immagine', type: 'imageWithAlt', validation: (r) => r.required() }),
+    defineField({
+      name: 'image',
+      title: 'Immagine',
+      type: 'imageWithAlt',
+      validation: (r) => r.required().assetRequired(),
+    }),
     defineField({ name: 'caption', title: 'Didascalia', type: 'string' }),
     hiddenField,
   ],

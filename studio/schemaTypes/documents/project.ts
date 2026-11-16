@@ -41,7 +41,7 @@ export const project = defineType({
       title: 'Copertina',
       type: 'imageWithAlt',
       group: 'info',
-      validation: (r) => r.required(),
+      validation: (r) => r.required().assetRequired(),
     }),
     defineField({
       name: 'content',

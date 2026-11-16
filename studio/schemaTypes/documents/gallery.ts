@@ -17,7 +17,12 @@ export const gallery = defineType({
           type: 'object',
           fields: [
             defineField({ name: 'title', title: 'Titolo', type: 'string', validation: (r) => r.required() }),
-            defineField({ name: 'image', title: 'Immagine', type: 'imageWithAlt', validation: (r) => r.required() }),
+            defineField({
+              name: 'image',
+              title: 'Immagine',
+              type: 'imageWithAlt',
+              validation: (r) => r.required().assetRequired(),
+            }),
           ],
           preview: { select: { title: 'title', media: 'image' } },
         }),

@@ -38,7 +38,13 @@ export const homePage = defineType({
         note('note1', 'Nota della riga 1', 'A destra della riga 1, visibile anche su mobile.'),
         note('note2', 'Nota della riga 2', 'A sinistra della riga 2, solo desktop.'),
         note('note3', 'Nota della riga 3', 'A destra della riga 3, solo desktop.'),
-        defineField({ name: 'subtitle', title: 'Sottotitolo', type: 'richText' }),
+        defineField({
+          name: 'subtitle',
+          title: 'Sottotitolo',
+          description: 'Un solo paragrafo: il sito mostra il sottotitolo su una riga.',
+          type: 'richText',
+          validation: (r) => r.max(1),
+        }),
       ],
     }),
     defineField({
