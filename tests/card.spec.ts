@@ -77,10 +77,11 @@ test('card: every block sits where it is on the original card (±3 units)', asyn
   });
   for (const [name, want] of Object.entries(BLOCKS)) {
     expect(got[name], name).toBeTruthy();
+    console.log(`card ${name}: dx ${(got[name].x - want.x).toFixed(2)} dw ${(got[name].w - want.w).toFixed(2)}`);
     // il Range misura le scatole dei caratteri (con gli spazi laterali), l'originale l'inchiostro:
     // 3 unità coprono gli spazi laterali; sull'inchiostro la card coincide entro 0,25 (verificato a pixel)
-    expect(Math.abs(got[name].x - want.x), `${name} x`).toBeLessThan(3);
-    expect(Math.abs(got[name].w - want.w), `${name} w`).toBeLessThan(3);
+    expect.soft(Math.abs(got[name].x - want.x), `${name} x`).toBeLessThan(3);
+    expect.soft(Math.abs(got[name].w - want.w), `${name} w`).toBeLessThan(3);
   }
 });
 
