@@ -38,3 +38,24 @@ cd studio && npx sanity dataset import ../migration/wp.ndjson --dataset producti
 - Le righe e le note dell'hero non erano in ACF, quindi lo script le scrive con i testi di oggi.
 - I campi ACF arrivano in REST perché i gruppi hanno "Show in REST API" attivo.
 - `--record tests/unit/fixtures/wp` aggiorna le risposte registrate usate dai test della migrazione.
+
+## Aggiornamento automatico
+
+Alla pubblicazione nello Studio, un webhook di Sanity chiama il deploy hook di Cloudflare Pages, che ricostruisce il sito.
+
+- **Webhook** (sanity.io/manage → progetto `9skjzcft` → API → Webhooks):
+  - dataset `production`;
+  - trigger create, update e delete;
+  - filtro `!(_id in path("drafts.**"))`, così le bozze non fanno partire build;
+  - metodo POST, nessuna proiezione.
+- **Deploy hook** (Cloudflare Pages → Settings → Builds → Deploy hooks): l'URL è un segreto e sta solo nel webhook di Sanity, mai nel repository.
+- **Tempo misurato il 16/11/2026:** un titolo della gallery pubblicato alle 22:21:51 era online sull'anteprima alle 22:23:08, cioè in circa 77 secondi.
+- **Limite:** ogni pubblicazione è una build. Il piano gratuito di Cloudflare ne concede 500 al mese.
+
+### Al merge di M1 in `master`
+
+Durante M1 l'hook punta al branch `feat/m1-sanity`. Dopo il merge:
+
+1. In Cloudflare si crea un deploy hook per `master`.
+2. Nel webhook di Sanity si sostituisce l'URL con quello nuovo.
+3. Si cancella l'hook di `feat/m1-sanity`.
