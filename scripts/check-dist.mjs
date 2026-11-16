@@ -1,4 +1,4 @@
-// Controlla la build di produzione in dist/: niente lab, niente link al lab,
+// Controlla la build di produzione in dist/: niente lab, niente link al lab, niente dataset di prova,
 // e `noindex` su tutti gli host pages.dev (produzione e anteprime) tramite dist/_headers.
 // Si esegue dopo `npm run build` (senza LAB=1). Esce con codice 1 al primo problema trovato.
 import { existsSync, readdirSync, readFileSync, statSync } from 'node:fs';
@@ -23,6 +23,8 @@ if (existsSync(join(DIST, 'lab'))) problems.push('lab nella build: dist/lab/');
 for (const file of walk(DIST).filter((f) => f.endsWith('.html'))) {
   const html = readFileSync(file, 'utf8');
   if (/(href|src)="\/lab\//.test(html) || /href="\/lab"/.test(html)) problems.push(`riferimento al lab in ${file}`);
+  // asset finti del dataset di prova (tests/fixtures): la build di produzione legge il dataset vero di Sanity
+  if (/cdn\.sanity\.io\/images\/[^"'\s]*\/fixture/.test(html)) problems.push(`dataset di prova nella build: ${file}`);
 }
 
 // Ogni host *.pages.dev resta fuori dai motori di ricerca; rggndr.it no (non corrisponde alle regole).
