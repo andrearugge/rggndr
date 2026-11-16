@@ -45,17 +45,19 @@ export function createSanitySource(client: Pick<SanityClient, 'fetch'>): Fetch {
   };
 }
 
-let source: Fetch | undefined;
-
-function currentSource(): Fetch {
-  if (source) return source;
-  if (process.env.CONTENT_SOURCE === 'fixture') {
-    source = createFixtureSource(readFixture(process.env.CONTENT_FIXTURE ?? DEFAULT_FIXTURE));
-  } else {
-    source = createSanitySource(createClient({ ...SANITY, useCdn: false, perspective: 'published' }));
+/**
+ * Sorgente scelta dalle variabili d'ambiente. Su Cloudflare Pages (CF_PAGES) il dataset di prova è
+ * rifiutato: la build che va online legge sempre Sanity, qualunque variabile sia impostata nel pannello.
+ */
+export function createSource(env: Record<string, string | undefined>): Fetch {
+  if (env.CONTENT_SOURCE === 'fixture') {
+    if (env.CF_PAGES) throw new Error('CONTENT_SOURCE=fixture non è ammesso su Cloudflare Pages: il sito legge Sanity');
+    return createFixtureSource(readFixture(env.CONTENT_FIXTURE ?? DEFAULT_FIXTURE));
   }
-  return source;
+  return createSanitySource(createClient({ ...SANITY, useCdn: false, perspective: 'published' }));
 }
 
+let source: Fetch | undefined;
+
 /** Esegue una query sulla sorgente scelta da CONTENT_SOURCE. */
-export const fetchQuery: Fetch = (query, params) => currentSource()(query, params);
+export const fetchQuery: Fetch = (query, params) => (source ??= createSource(process.env))(query, params);

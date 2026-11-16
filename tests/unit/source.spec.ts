@@ -2,7 +2,7 @@ import { mkdtempSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { expect, test } from '@playwright/test';
-import { createFixtureSource, createSanitySource, readFixture } from '../../src/content/source';
+import { createFixtureSource, createSanitySource, createSource, readFixture } from '../../src/content/source';
 
 test('fixture source evaluates GROQ', async () => {
   const fetch = createFixtureSource([
@@ -40,4 +40,13 @@ test('sanity source reports unreachable API', async () => {
   expect(err).toBeInstanceOf(Error);
   expect((err as Error).message).toContain('Sanity:');
   expect((err as Error).message).toContain('ECONNREFUSED');
+});
+
+test('the fixture source is refused on Cloudflare Pages', () => {
+  expect(() => createSource({ CONTENT_SOURCE: 'fixture', CF_PAGES: '1' })).toThrow(/Cloudflare/);
+});
+
+test('the fixture source works outside Cloudflare', async () => {
+  const fetch = createSource({ CONTENT_SOURCE: 'fixture' });
+  expect(await fetch('*[_id == "homePage"][0].hero.line1')).toBe('Andrea Ruggeri');
 });
