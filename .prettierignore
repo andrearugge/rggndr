@@ -7,3 +7,9 @@ package-lock.json
 test-results/
 playwright-report/
 .superpowers/
+studio/dist/
+studio/.sanity/
+studio/package-lock.json
+schema.json
+migration/
+src/content/sanity.types.ts

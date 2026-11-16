@@ -1,4 +1,4 @@
-import { test, expect } from '@playwright/test';
+import { test, expect } from './helpers';
 
 test('lab pages are noindex', async ({ page }) => {
   for (const path of ['/lab/']) {

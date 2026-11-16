@@ -25,3 +25,12 @@ pnpm-debug.log*
 .superpowers/
 test-results/
 playwright-report/
+
+# Sanity Studio (pacchetto separato in studio/)
+studio/node_modules/
+studio/dist/
+studio/.sanity/
+# schema estratto per TypeGen (si rigenera con npm run typegen)
+schema.json
+# NDJSON della migrazione da WordPress
+migration/

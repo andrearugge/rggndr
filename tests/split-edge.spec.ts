@@ -1,5 +1,5 @@
-import { test, expect, type Page } from '@playwright/test';
-import { skipLoader } from './helpers';
+import type { Page } from '@playwright/test';
+import { test, expect, skipLoader, newContext } from './helpers';
 
 const FIXTURE = '/lab/fixtures/split/';
 
@@ -18,7 +18,7 @@ test.beforeEach(async ({ page }) => page.setViewportSize({ width: 1280, height: 
 test('split keeps the natural height (mixed inline sizes included)', async ({ page, browser }) => {
   // riferimento: lo stesso layout senza JavaScript
   const { baseURL } = test.info().project.use;
-  const ctx = await browser.newContext({ baseURL, javaScriptEnabled: false, viewport: { width: 1280, height: 900 } });
+  const ctx = await newContext(browser, { baseURL, javaScriptEnabled: false, viewport: { width: 1280, height: 900 } });
   const plain = await ctx.newPage();
   await plain.goto(FIXTURE);
   await plain.evaluate(() => document.fonts.ready);

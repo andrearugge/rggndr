@@ -1,4 +1,5 @@
-import { test, expect, type Page } from '@playwright/test';
+import type { Page } from '@playwright/test';
+import { test, expect, newContext } from './helpers';
 
 const TITLES = ['Giulia, Lanzarote', 'Cascina Lago Scuro', 'Mud Millo', 'Home of dreams'];
 const N = 14;
@@ -91,7 +92,7 @@ async function expectAt(page: Page, i: number) {
 }
 
 test('gallery: all titles and images are in the HTML, first photo visible without javascript', async ({ browser }) => {
-  const ctx = await browser.newContext({ javaScriptEnabled: false });
+  const ctx = await newContext(browser, { javaScriptEnabled: false });
   const page = await ctx.newPage();
   await page.goto('/gallery/');
   await expect(page.locator('[data-gallery-title]')).toHaveCount(N);
@@ -213,10 +214,38 @@ test.describe('gallery slider', () => {
 });
 
 test('gallery: reduced motion still navigates', async ({ browser }) => {
-  const ctx = await browser.newContext({ reducedMotion: 'reduce' });
+  const ctx = await newContext(browser, { reducedMotion: 'reduce' });
   const page = await ctx.newPage();
   await page.goto('/gallery/');
   await page.locator('[data-gallery-thumb]:not([aria-hidden])').nth(2).click();
   await expectAt(page, 2);
   await ctx.close();
+});
+
+test('gallery comes from Sanity', async ({ page }) => {
+  await page.setViewportSize({ width: 1440, height: 900 });
+  await page.goto('/gallery/');
+  await expect(page.locator('[data-gallery-slide]')).toHaveCount(N);
+  const titles = await page.locator('[data-gallery-title]').allTextContents();
+  expect(titles.map((t) => t.trim()).slice(0, TITLES.length)).toEqual(TITLES);
+  const first = page.locator('[data-gallery-slide] img').first();
+  expect(await first.getAttribute('src')).toContain('https://cdn.sanity.io/images/');
+  await expect(first).toHaveAttribute('width', '1600');
+  await expect(first).toHaveAttribute('height', '1600');
+  await expect.poll(() => first.evaluate((e: HTMLImageElement) => e.naturalWidth)).toBeGreaterThan(0);
+  const thumb = page.locator('[data-gallery-thumb] img').first();
+  expect(await thumb.getAttribute('src')).toContain('w=300');
+});
+
+test('gallery thumbnails are decorative, with a single empty alt', async ({ page }) => {
+  const html = await (await page.request.get('/gallery/')).text();
+  const thumbs = [...html.matchAll(/<button[^>]*data-gallery-thumb[\s\S]*?<img([^>]*)>/g)].map((m) => m[1]);
+  expect(thumbs.length).toBeGreaterThan(0);
+  // un solo attributo alt (`alt` nudo equivale ad alt="")
+  for (const attrs of thumbs) expect(attrs.match(/\salt(?=[\s=>])/g)).toHaveLength(1);
+  await page.goto('/gallery/');
+  const alts = await page
+    .locator('[data-gallery-thumb] img')
+    .evaluateAll((els) => els.map((e) => e.getAttribute('alt')));
+  expect(new Set(alts)).toEqual(new Set(['']));
 });

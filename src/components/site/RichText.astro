@@ -1,0 +1,79 @@
+---
+// Testo formattato di Sanity (schema `richText`): paragrafi, grassetto, corsivo, link.
+// Il markup è quello che reveal e split si aspettano: un <p> per paragrafo, <b>/<em>/<a> in linea.
+// Uno stile o un mark che il sito non conosce fa fallire la build, invece di sparire in silenzio.
+import type { RichText } from '../../content/sanity.types';
+
+interface Props {
+  value: RichText;
+  /** Solo gli span del primo paragrafo, senza <p> (es. il sottotitolo dell'hero, già dentro un suo blocco). */
+  inline?: boolean;
+  /** Attributi per il paragrafo i-esimo (es. id e data-reveal). */
+  blockAttrs?: (i: number) => Record<string, string>;
+}
+const { value, inline = false, blockAttrs = () => ({}) } = Astro.props;
+
+type Block = RichText[number];
+type Span = NonNullable<Block['children']>[number];
+type Part = { text: string; br: boolean };
+
+const blocks = inline ? value.slice(0, 1) : value;
+for (const b of blocks) {
+  if (b.style && b.style !== 'normal') throw new Error(`RichText: stile non gestito "${b.style}"`);
+}
+
+/** Il testo di uno span, con gli a capo come <br />. */
+const parts = (text = ''): Part[] => text.split('\n').map((t, i) => ({ text: t, br: i > 0 }));
+
+/** Link dello span (al massimo uno) e decoratori; errore per un mark sconosciuto. */
+function marksOf(block: Block, span: Span) {
+  const defs = block.markDefs ?? [];
+  let href: string | undefined;
+  const decorators = new Set<string>();
+  for (const m of span.marks ?? []) {
+    if (m === 'strong' || m === 'em') decorators.add(m);
+    else {
+      const def = defs.find((d) => d._key === m);
+      if (!def || def._type !== 'link') throw new Error(`RichText: mark non gestito "${m}"`);
+      href = def.href;
+    }
+  }
+  return { href, strong: decorators.has('strong'), em: decorators.has('em') };
+}
+
+/** I link verso altri siti si aprono in una nuova scheda, come sul sito attuale. */
+const external = (href: string) => /^https?:\/\//.test(href) && !/^https?:\/\/(www\.)?rggndr\.it(\/|$)/.test(href);
+---
+
+{blocks.map((block, i) => {
+  const spans = (block.children ?? []).map((span) => ({ ...marksOf(block, span), parts: parts(span.text) }));
+  const content = spans.map((s) => {
+    const inner = s.parts.map((p) => (
+      <Fragment>
+        {p.br && <br />}
+        {p.text}
+      </Fragment>
+    ));
+    const decorated = s.strong ? (
+      s.em ? (
+        <b>
+          <em>{inner}</em>
+        </b>
+      ) : (
+        <b>{inner}</b>
+      )
+    ) : s.em ? (
+      <em>{inner}</em>
+    ) : (
+      inner
+    );
+    return s.href ? (
+      <a href={s.href} {...(external(s.href) ? { target: '_blank', rel: 'noopener' } : {})}>
+        {decorated}
+      </a>
+    ) : (
+      decorated
+    );
+  });
+  return inline ? content : <p {...blockAttrs(i)}>{content}</p>;
+})}

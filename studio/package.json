@@ -1,0 +1,24 @@
+{
+  "name": "rggndr-studio",
+  "private": true,
+  "type": "module",
+  "version": "0.0.1",
+  "scripts": {
+    "dev": "sanity dev",
+    "build": "sanity build",
+    "deploy": "sanity deploy",
+    "validate": "sanity schemas validate",
+    "extract": "sanity schemas extract --path ../schema.json --force",
+    "typegen": "npm run extract && sanity typegen generate"
+  },
+  "dependencies": {
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1",
+    "sanity": "^6.23.0",
+    "styled-components": "^6.6.0"
+  },
+  "devDependencies": {
+    "@types/react": "^19.3.0",
+    "typescript": "^6.0.3"
+  }
+}

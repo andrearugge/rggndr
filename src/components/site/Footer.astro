@@ -1,8 +1,11 @@
 ---
 import Card from './Card.astro';
-import { getSite } from '../../content/site';
+import type { Site } from '../../content/site';
 
-const { socials } = getSite();
+interface Props {
+  site: Site;
+}
+const { site } = Astro.props;
 ---
 
 <footer>
@@ -13,14 +16,14 @@ const { socials } = getSite();
       </div>
       <div class="flex justify-center">
         <div class="w-full max-w-[540px]">
-          <Card />
+          <Card site={site} />
         </div>
       </div>
       <div class="space-y-4">
         <div class="flex flex-col items-center justify-center gap-2 lg:flex-row">
-          <div class="text-[14px] leading-none font-bold">©2025 Andrea Ruggeri. All rights reserved.</div>
+          <div class="text-[14px] leading-none font-bold">{site.copyright}</div>
           <div class="flex flex-wrap items-center justify-center gap-1 text-sm lg:justify-start">
-            {socials.map((s) => (
+            {site.socials.map((s) => (
               <div class="group flex items-center gap-1">
                 <a href={s.href} target="_blank" rel="noopener" class="block">
                   {s.label}

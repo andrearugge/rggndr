@@ -1,0 +1,902 @@
+[
+  {
+    "id": 399,
+    "date": "2025-05-15T11:23:49",
+    "date_gmt": "2025-05-15T09:23:49",
+    "guid": {
+      "rendered": "https://rggndr.it/wp-content/uploads/2025/02/beconcept.jpg"
+    },
+    "modified": "2025-05-15T11:23:49",
+    "modified_gmt": "2025-05-15T09:23:49",
+    "slug": "beconcept-2",
+    "status": "inherit",
+    "type": "attachment",
+    "link": "https://rggndr.it/progetto/beconcept/beconcept-2/",
+    "title": {
+      "rendered": "beconcept"
+    },
+    "author": 1,
+    "featured_media": 0,
+    "comment_status": "",
+    "ping_status": "closed",
+    "template": "",
+    "meta": {
+      "_acf_changed": false,
+      "inline_featured_image": false
+    },
+    "class_list": ["post-399", "attachment", "type-attachment", "status-inherit", "hentry"],
+    "acf": [],
+    "description": {
+      "rendered": "<p class=\"attachment\"><a href='https://rggndr.it/wp-content/uploads/2025/02/beconcept.jpg'><img loading=\"lazy\" decoding=\"async\" width=\"215\" height=\"300\" src=\"https://rggndr.it/wp-content/uploads/2025/02/beconcept-215x300.jpg\" class=\"attachment-medium size-medium\" alt=\"\" srcset=\"https://rggndr.it/wp-content/uploads/2025/02/beconcept-215x300.jpg 215w, https://rggndr.it/wp-content/uploads/2025/02/beconcept-735x1024.jpg 735w, https://rggndr.it/wp-content/uploads/2025/02/beconcept-768x1070.jpg 768w, https://rggndr.it/wp-content/uploads/2025/02/beconcept-1102x1536.jpg 1102w, https://rggndr.it/wp-content/uploads/2025/02/beconcept.jpg 1200w\" sizes=\"auto, (max-width: 215px) 100vw, 215px\" /></a></p>\n"
+    },
+    "caption": {
+      "rendered": ""
+    },
+    "alt_text": "",
+    "media_type": "image",
+    "mime_type": "image/jpeg",
+    "media_details": {
+      "width": 1200,
+      "height": 1672,
+      "file": "2025/02/beconcept.jpg",
+      "filesize": 67798,
+      "sizes": {
+        "medium": {
+          "file": "beconcept-215x300.jpg",
+          "width": 215,
+          "height": 300,
+          "filesize": 4718,
+          "mime_type": "image/jpeg",
+          "source_url": "https://rggndr.it/wp-content/uploads/2025/02/beconcept-215x300.jpg"
+        },
+        "large": {
+          "file": "beconcept-735x1024.jpg",
+          "width": 735,
+          "height": 1024,
+          "filesize": 29985,
+          "mime_type": "image/jpeg",
+          "source_url": "https://rggndr.it/wp-content/uploads/2025/02/beconcept-735x1024.jpg"
+        },
+        "thumbnail": {
+          "file": "beconcept-150x150.jpg",
+          "width": 150,
+          "height": 150,
+          "filesize": 2749,
+          "mime_type": "image/jpeg",
+          "source_url": "https://rggndr.it/wp-content/uploads/2025/02/beconcept-150x150.jpg"
+        },
+        "medium_large": {
+          "file": "beconcept-768x1070.jpg",
+          "width": 768,
+          "height": 1070,
+          "filesize": 32079,
+          "mime_type": "image/jpeg",
+          "source_url": "https://rggndr.it/wp-content/uploads/2025/02/beconcept-768x1070.jpg"
+        },
+        "1536x1536": {
+          "file": "beconcept-1102x1536.jpg",
+          "width": 1102,
+          "height": 1536,
+          "filesize": 57024,
+          "mime_type": "image/jpeg",
+          "source_url": "https://rggndr.it/wp-content/uploads/2025/02/beconcept-1102x1536.jpg"
+        },
+        "full": {
+          "file": "beconcept.jpg",
+          "width": 1200,
+          "height": 1672,
+          "mime_type": "image/jpeg",
+          "source_url": "https://rggndr.it/wp-content/uploads/2025/02/beconcept.jpg"
+        }
+      },
+      "image_meta": {
+        "aperture": "0",
+        "credit": "",
+        "camera": "",
+        "caption": "",
+        "created_timestamp": "0",
+        "copyright": "",
+        "focal_length": "0",
+        "iso": "0",
+        "shutter_speed": "0",
+        "title": "",
+        "orientation": "0",
+        "keywords": []
+      }
+    },
+    "post": 264,
+    "source_url": "https://rggndr.it/wp-content/uploads/2025/02/beconcept.jpg",
+    "_links": {
+      "self": [
+        {
+          "href": "https://rggndr.it/wp-json/wp/v2/media/399",
+          "targetHints": {
+            "allow": ["GET"]
+          }
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://rggndr.it/wp-json/wp/v2/media"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://rggndr.it/wp-json/wp/v2/types/attachment"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://rggndr.it/wp-json/wp/v2/users/1"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://rggndr.it/wp-json/wp/v2/comments?post=399"
+        }
+      ]
+    }
+  },
+  {
+    "id": 397,
+    "date": "2025-05-15T10:53:21",
+    "date_gmt": "2025-05-15T08:53:21",
+    "guid": {
+      "rendered": "https://rggndr.it/wp-content/uploads/2025/02/montipadel.jpg"
+    },
+    "modified": "2025-05-15T10:53:21",
+    "modified_gmt": "2025-05-15T08:53:21",
+    "slug": "montipadel",
+    "status": "inherit",
+    "type": "attachment",
+    "link": "https://rggndr.it/progetto/montipadel/montipadel/",
+    "title": {
+      "rendered": "montipadel"
+    },
+    "author": 1,
+    "featured_media": 0,
+    "comment_status": "",
+    "ping_status": "closed",
+    "template": "",
+    "meta": {
+      "_acf_changed": false,
+      "inline_featured_image": false
+    },
+    "class_list": ["post-397", "attachment", "type-attachment", "status-inherit", "hentry"],
+    "acf": [],
+    "description": {
+      "rendered": "<p class=\"attachment\"><a href='https://rggndr.it/wp-content/uploads/2025/02/montipadel.jpg'><img loading=\"lazy\" decoding=\"async\" width=\"225\" height=\"300\" src=\"https://rggndr.it/wp-content/uploads/2025/02/montipadel-225x300.jpg\" class=\"attachment-medium size-medium\" alt=\"\" srcset=\"https://rggndr.it/wp-content/uploads/2025/02/montipadel-225x300.jpg 225w, https://rggndr.it/wp-content/uploads/2025/02/montipadel-768x1024.jpg 768w, https://rggndr.it/wp-content/uploads/2025/02/montipadel-1152x1536.jpg 1152w, https://rggndr.it/wp-content/uploads/2025/02/montipadel.jpg 1200w\" sizes=\"auto, (max-width: 225px) 100vw, 225px\" /></a></p>\n"
+    },
+    "caption": {
+      "rendered": ""
+    },
+    "alt_text": "",
+    "media_type": "image",
+    "mime_type": "image/jpeg",
+    "media_details": {
+      "width": 1200,
+      "height": 1600,
+      "file": "2025/02/montipadel.jpg",
+      "filesize": 172136,
+      "sizes": {
+        "medium": {
+          "file": "montipadel-225x300.jpg",
+          "width": 225,
+          "height": 300,
+          "filesize": 14050,
+          "mime_type": "image/jpeg",
+          "source_url": "https://rggndr.it/wp-content/uploads/2025/02/montipadel-225x300.jpg"
+        },
+        "large": {
+          "file": "montipadel-768x1024.jpg",
+          "width": 768,
+          "height": 1024,
+          "filesize": 74610,
+          "mime_type": "image/jpeg",
+          "source_url": "https://rggndr.it/wp-content/uploads/2025/02/montipadel-768x1024.jpg"
+        },
+        "thumbnail": {
+          "file": "montipadel-150x150.jpg",
+          "width": 150,
+          "height": 150,
+          "filesize": 6727,
+          "mime_type": "image/jpeg",
+          "source_url": "https://rggndr.it/wp-content/uploads/2025/02/montipadel-150x150.jpg"
+        },
+        "medium_large": {
+          "file": "montipadel-768x1024.jpg",
+          "width": 768,
+          "height": 1024,
+          "filesize": 74610,
+          "mime_type": "image/jpeg",
+          "source_url": "https://rggndr.it/wp-content/uploads/2025/02/montipadel-768x1024.jpg"
+        },
+        "1536x1536": {
+          "file": "montipadel-1152x1536.jpg",
+          "width": 1152,
+          "height": 1536,
+          "filesize": 130199,
+          "mime_type": "image/jpeg",
+          "source_url": "https://rggndr.it/wp-content/uploads/2025/02/montipadel-1152x1536.jpg"
+        },
+        "full": {
+          "file": "montipadel.jpg",
+          "width": 1200,
+          "height": 1600,
+          "mime_type": "image/jpeg",
+          "source_url": "https://rggndr.it/wp-content/uploads/2025/02/montipadel.jpg"
+        }
+      },
+      "image_meta": {
+        "aperture": "0",
+        "credit": "",
+        "camera": "",
+        "caption": "",
+        "created_timestamp": "0",
+        "copyright": "",
+        "focal_length": "0",
+        "iso": "0",
+        "shutter_speed": "0",
+        "title": "",
+        "orientation": "0",
+        "keywords": []
+      }
+    },
+    "post": 262,
+    "source_url": "https://rggndr.it/wp-content/uploads/2025/02/montipadel.jpg",
+    "_links": {
+      "self": [
+        {
+          "href": "https://rggndr.it/wp-json/wp/v2/media/397",
+          "targetHints": {
+            "allow": ["GET"]
+          }
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://rggndr.it/wp-json/wp/v2/media"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://rggndr.it/wp-json/wp/v2/types/attachment"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://rggndr.it/wp-json/wp/v2/users/1"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://rggndr.it/wp-json/wp/v2/comments?post=397"
+        }
+      ]
+    }
+  },
+  {
+    "id": 395,
+    "date": "2025-05-14T08:40:14",
+    "date_gmt": "2025-05-14T06:40:14",
+    "guid": {
+      "rendered": "https://rggndr.it/wp-content/uploads/2025/02/ai-workshop.jpg"
+    },
+    "modified": "2025-05-14T08:40:14",
+    "modified_gmt": "2025-05-14T06:40:14",
+    "slug": "ai-workshop",
+    "status": "inherit",
+    "type": "attachment",
+    "link": "https://rggndr.it/progetto/beconcept-pantacon-ai-workshop/ai-workshop/",
+    "title": {
+      "rendered": "ai-workshop"
+    },
+    "author": 1,
+    "featured_media": 0,
+    "comment_status": "",
+    "ping_status": "closed",
+    "template": "",
+    "meta": {
+      "_acf_changed": false,
+      "inline_featured_image": false
+    },
+    "class_list": ["post-395", "attachment", "type-attachment", "status-inherit", "hentry"],
+    "acf": [],
+    "description": {
+      "rendered": "<p class=\"attachment\"><a href='https://rggndr.it/wp-content/uploads/2025/02/ai-workshop.jpg'><img loading=\"lazy\" decoding=\"async\" width=\"186\" height=\"300\" src=\"https://rggndr.it/wp-content/uploads/2025/02/ai-workshop-186x300.jpg\" class=\"attachment-medium size-medium\" alt=\"\" srcset=\"https://rggndr.it/wp-content/uploads/2025/02/ai-workshop-186x300.jpg 186w, https://rggndr.it/wp-content/uploads/2025/02/ai-workshop.jpg 550w\" sizes=\"auto, (max-width: 186px) 100vw, 186px\" /></a></p>\n"
+    },
+    "caption": {
+      "rendered": ""
+    },
+    "alt_text": "",
+    "media_type": "image",
+    "mime_type": "image/jpeg",
+    "media_details": {
+      "width": 550,
+      "height": 885,
+      "file": "2025/02/ai-workshop.jpg",
+      "filesize": 334196,
+      "sizes": {
+        "medium": {
+          "file": "ai-workshop-186x300.jpg",
+          "width": 186,
+          "height": 300,
+          "filesize": 8691,
+          "mime_type": "image/jpeg",
+          "source_url": "https://rggndr.it/wp-content/uploads/2025/02/ai-workshop-186x300.jpg"
+        },
+        "thumbnail": {
+          "file": "ai-workshop-150x150.jpg",
+          "width": 150,
+          "height": 150,
+          "filesize": 5133,
+          "mime_type": "image/jpeg",
+          "source_url": "https://rggndr.it/wp-content/uploads/2025/02/ai-workshop-150x150.jpg"
+        },
+        "full": {
+          "file": "ai-workshop.jpg",
+          "width": 550,
+          "height": 885,
+          "mime_type": "image/jpeg",
+          "source_url": "https://rggndr.it/wp-content/uploads/2025/02/ai-workshop.jpg"
+        }
+      },
+      "image_meta": {
+        "aperture": "0",
+        "credit": "",
+        "camera": "",
+        "caption": "",
+        "created_timestamp": "0",
+        "copyright": "",
+        "focal_length": "0",
+        "iso": "0",
+        "shutter_speed": "0",
+        "title": "",
+        "orientation": "0",
+        "keywords": []
+      }
+    },
+    "post": 258,
+    "source_url": "https://rggndr.it/wp-content/uploads/2025/02/ai-workshop.jpg",
+    "_links": {
+      "self": [
+        {
+          "href": "https://rggndr.it/wp-json/wp/v2/media/395",
+          "targetHints": {
+            "allow": ["GET"]
+          }
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://rggndr.it/wp-json/wp/v2/media"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://rggndr.it/wp-json/wp/v2/types/attachment"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://rggndr.it/wp-json/wp/v2/users/1"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://rggndr.it/wp-json/wp/v2/comments?post=395"
+        }
+      ]
+    }
+  },
+  {
+    "id": 394,
+    "date": "2025-05-14T08:39:05",
+    "date_gmt": "2025-05-14T06:39:05",
+    "guid": {
+      "rendered": "https://rggndr.it/wp-content/uploads/2025/02/marklayer.jpg"
+    },
+    "modified": "2025-05-14T08:39:05",
+    "modified_gmt": "2025-05-14T06:39:05",
+    "slug": "marklayer",
+    "status": "inherit",
+    "type": "attachment",
+    "link": "https://rggndr.it/progetto/marklayer/marklayer/",
+    "title": {
+      "rendered": "marklayer"
+    },
+    "author": 1,
+    "featured_media": 0,
+    "comment_status": "",
+    "ping_status": "closed",
+    "template": "",
+    "meta": {
+      "_acf_changed": false,
+      "inline_featured_image": false
+    },
+    "class_list": ["post-394", "attachment", "type-attachment", "status-inherit", "hentry"],
+    "acf": [],
+    "description": {
+      "rendered": "<p class=\"attachment\"><a href='https://rggndr.it/wp-content/uploads/2025/02/marklayer.jpg'><img loading=\"lazy\" decoding=\"async\" width=\"225\" height=\"300\" src=\"https://rggndr.it/wp-content/uploads/2025/02/marklayer-225x300.jpg\" class=\"attachment-medium size-medium\" alt=\"\" srcset=\"https://rggndr.it/wp-content/uploads/2025/02/marklayer-225x300.jpg 225w, https://rggndr.it/wp-content/uploads/2025/02/marklayer-767x1024.jpg 767w, https://rggndr.it/wp-content/uploads/2025/02/marklayer-768x1025.jpg 768w, https://rggndr.it/wp-content/uploads/2025/02/marklayer.jpg 830w\" sizes=\"auto, (max-width: 225px) 100vw, 225px\" /></a></p>\n"
+    },
+    "caption": {
+      "rendered": ""
+    },
+    "alt_text": "",
+    "media_type": "image",
+    "mime_type": "image/jpeg",
+    "media_details": {
+      "width": 830,
+      "height": 1108,
+      "file": "2025/02/marklayer.jpg",
+      "filesize": 1342967,
+      "sizes": {
+        "medium": {
+          "file": "marklayer-225x300.jpg",
+          "width": 225,
+          "height": 300,
+          "filesize": 12897,
+          "mime_type": "image/jpeg",
+          "source_url": "https://rggndr.it/wp-content/uploads/2025/02/marklayer-225x300.jpg"
+        },
+        "large": {
+          "file": "marklayer-767x1024.jpg",
+          "width": 767,
+          "height": 1024,
+          "filesize": 140977,
+          "mime_type": "image/jpeg",
+          "source_url": "https://rggndr.it/wp-content/uploads/2025/02/marklayer-767x1024.jpg"
+        },
+        "thumbnail": {
+          "file": "marklayer-150x150.jpg",
+          "width": 150,
+          "height": 150,
+          "filesize": 5813,
+          "mime_type": "image/jpeg",
+          "source_url": "https://rggndr.it/wp-content/uploads/2025/02/marklayer-150x150.jpg"
+        },
+        "medium_large": {
+          "file": "marklayer-768x1025.jpg",
+          "width": 768,
+          "height": 1025,
+          "filesize": 142968,
+          "mime_type": "image/jpeg",
+          "source_url": "https://rggndr.it/wp-content/uploads/2025/02/marklayer-768x1025.jpg"
+        },
+        "full": {
+          "file": "marklayer.jpg",
+          "width": 830,
+          "height": 1108,
+          "mime_type": "image/jpeg",
+          "source_url": "https://rggndr.it/wp-content/uploads/2025/02/marklayer.jpg"
+        }
+      },
+      "image_meta": {
+        "aperture": "0",
+        "credit": "",
+        "camera": "",
+        "caption": "",
+        "created_timestamp": "0",
+        "copyright": "",
+        "focal_length": "0",
+        "iso": "0",
+        "shutter_speed": "0",
+        "title": "",
+        "orientation": "0",
+        "keywords": []
+      }
+    },
+    "post": 256,
+    "source_url": "https://rggndr.it/wp-content/uploads/2025/02/marklayer.jpg",
+    "_links": {
+      "self": [
+        {
+          "href": "https://rggndr.it/wp-json/wp/v2/media/394",
+          "targetHints": {
+            "allow": ["GET"]
+          }
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://rggndr.it/wp-json/wp/v2/media"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://rggndr.it/wp-json/wp/v2/types/attachment"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://rggndr.it/wp-json/wp/v2/users/1"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://rggndr.it/wp-json/wp/v2/comments?post=394"
+        }
+      ]
+    }
+  },
+  {
+    "id": 358,
+    "date": "2025-05-11T21:23:50",
+    "date_gmt": "2025-05-11T19:23:50",
+    "guid": {
+      "rendered": "https://rggndr.be-dev.it/wp-content/uploads/2025/02/ai-journal-cover.jpg"
+    },
+    "modified": "2025-05-11T21:23:50",
+    "modified_gmt": "2025-05-11T19:23:50",
+    "slug": "ai-journal-cover",
+    "status": "inherit",
+    "type": "attachment",
+    "link": "https://rggndr.it/progetto/ai-journal/ai-journal-cover/",
+    "title": {
+      "rendered": "ai-journal-cover"
+    },
+    "author": 1,
+    "featured_media": 0,
+    "comment_status": "",
+    "ping_status": "closed",
+    "template": "",
+    "meta": {
+      "_acf_changed": false,
+      "inline_featured_image": false
+    },
+    "class_list": ["post-358", "attachment", "type-attachment", "status-inherit", "hentry"],
+    "acf": [],
+    "description": {
+      "rendered": "<p class=\"attachment\"><a href='https://rggndr.it/wp-content/uploads/2025/02/ai-journal-cover.jpg'><img loading=\"lazy\" decoding=\"async\" width=\"300\" height=\"225\" src=\"https://rggndr.it/wp-content/uploads/2025/02/ai-journal-cover-300x225.jpg\" class=\"attachment-medium size-medium\" alt=\"\" srcset=\"https://rggndr.it/wp-content/uploads/2025/02/ai-journal-cover-300x225.jpg 300w, https://rggndr.it/wp-content/uploads/2025/02/ai-journal-cover-1024x769.jpg 1024w, https://rggndr.it/wp-content/uploads/2025/02/ai-journal-cover-768x577.jpg 768w, https://rggndr.it/wp-content/uploads/2025/02/ai-journal-cover.jpg 1200w\" sizes=\"auto, (max-width: 300px) 100vw, 300px\" /></a></p>\n"
+    },
+    "caption": {
+      "rendered": ""
+    },
+    "alt_text": "",
+    "media_type": "image",
+    "mime_type": "image/jpeg",
+    "media_details": {
+      "width": 1200,
+      "height": 901,
+      "file": "2025/02/ai-journal-cover.jpg",
+      "filesize": 581163,
+      "sizes": {
+        "medium": {
+          "file": "ai-journal-cover-300x225.jpg",
+          "width": 300,
+          "height": 225,
+          "filesize": 12374,
+          "mime_type": "image/jpeg",
+          "source_url": "https://rggndr.it/wp-content/uploads/2025/02/ai-journal-cover-300x225.jpg"
+        },
+        "large": {
+          "file": "ai-journal-cover-1024x769.jpg",
+          "width": 1024,
+          "height": 769,
+          "filesize": 207273,
+          "mime_type": "image/jpeg",
+          "source_url": "https://rggndr.it/wp-content/uploads/2025/02/ai-journal-cover-1024x769.jpg"
+        },
+        "thumbnail": {
+          "file": "ai-journal-cover-150x150.jpg",
+          "width": 150,
+          "height": 150,
+          "filesize": 4109,
+          "mime_type": "image/jpeg",
+          "source_url": "https://rggndr.it/wp-content/uploads/2025/02/ai-journal-cover-150x150.jpg"
+        },
+        "medium_large": {
+          "file": "ai-journal-cover-768x577.jpg",
+          "width": 768,
+          "height": 577,
+          "filesize": 111104,
+          "mime_type": "image/jpeg",
+          "source_url": "https://rggndr.it/wp-content/uploads/2025/02/ai-journal-cover-768x577.jpg"
+        },
+        "full": {
+          "file": "ai-journal-cover.jpg",
+          "width": 1200,
+          "height": 901,
+          "mime_type": "image/jpeg",
+          "source_url": "https://rggndr.it/wp-content/uploads/2025/02/ai-journal-cover.jpg"
+        }
+      },
+      "image_meta": {
+        "aperture": "0",
+        "credit": "",
+        "camera": "",
+        "caption": "",
+        "created_timestamp": "0",
+        "copyright": "",
+        "focal_length": "0",
+        "iso": "0",
+        "shutter_speed": "0",
+        "title": "",
+        "orientation": "0",
+        "keywords": []
+      }
+    },
+    "post": 194,
+    "source_url": "https://rggndr.it/wp-content/uploads/2025/02/ai-journal-cover.jpg",
+    "_links": {
+      "self": [
+        {
+          "href": "https://rggndr.it/wp-json/wp/v2/media/358",
+          "targetHints": {
+            "allow": ["GET"]
+          }
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://rggndr.it/wp-json/wp/v2/media"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://rggndr.it/wp-json/wp/v2/types/attachment"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://rggndr.it/wp-json/wp/v2/users/1"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://rggndr.it/wp-json/wp/v2/comments?post=358"
+        }
+      ]
+    }
+  },
+  {
+    "id": 267,
+    "date": "2025-02-14T09:24:41",
+    "date_gmt": "2025-02-14T08:24:41",
+    "guid": {
+      "rendered": "https://rggndr.be-dev.it/wp-content/uploads/2025/02/a8.jpg"
+    },
+    "modified": "2025-02-14T09:24:41",
+    "modified_gmt": "2025-02-14T08:24:41",
+    "slug": "a8",
+    "status": "inherit",
+    "type": "attachment",
+    "link": "https://rggndr.it/progetto/giulia-pampuri/a8/",
+    "title": {
+      "rendered": "a8"
+    },
+    "author": 1,
+    "featured_media": 0,
+    "comment_status": "",
+    "ping_status": "closed",
+    "template": "",
+    "meta": {
+      "_acf_changed": false,
+      "inline_featured_image": false
+    },
+    "class_list": ["post-267", "attachment", "type-attachment", "status-inherit", "hentry"],
+    "acf": [],
+    "description": {
+      "rendered": "<p class=\"attachment\"><a href='https://rggndr.it/wp-content/uploads/2025/02/a8.jpg'><img loading=\"lazy\" decoding=\"async\" width=\"300\" height=\"225\" src=\"https://rggndr.it/wp-content/uploads/2025/02/a8-300x225.jpg\" class=\"attachment-medium size-medium\" alt=\"\" srcset=\"https://rggndr.it/wp-content/uploads/2025/02/a8-300x225.jpg 300w, https://rggndr.it/wp-content/uploads/2025/02/a8-768x576.jpg 768w, https://rggndr.it/wp-content/uploads/2025/02/a8.jpg 830w\" sizes=\"auto, (max-width: 300px) 100vw, 300px\" /></a></p>\n"
+    },
+    "caption": {
+      "rendered": ""
+    },
+    "alt_text": "",
+    "media_type": "image",
+    "mime_type": "image/jpeg",
+    "media_details": {
+      "width": 830,
+      "height": 623,
+      "file": "2025/02/a8.jpg",
+      "filesize": 102948,
+      "sizes": {
+        "medium": {
+          "file": "a8-300x225.jpg",
+          "width": 300,
+          "height": 225,
+          "filesize": 7021,
+          "mime_type": "image/jpeg",
+          "source_url": "https://rggndr.it/wp-content/uploads/2025/02/a8-300x225.jpg"
+        },
+        "thumbnail": {
+          "file": "a8-150x150.jpg",
+          "width": 150,
+          "height": 150,
+          "filesize": 3659,
+          "mime_type": "image/jpeg",
+          "source_url": "https://rggndr.it/wp-content/uploads/2025/02/a8-150x150.jpg"
+        },
+        "medium_large": {
+          "file": "a8-768x576.jpg",
+          "width": 768,
+          "height": 576,
+          "filesize": 23507,
+          "mime_type": "image/jpeg",
+          "source_url": "https://rggndr.it/wp-content/uploads/2025/02/a8-768x576.jpg"
+        },
+        "full": {
+          "file": "a8.jpg",
+          "width": 830,
+          "height": 623,
+          "mime_type": "image/jpeg",
+          "source_url": "https://rggndr.it/wp-content/uploads/2025/02/a8.jpg"
+        }
+      },
+      "image_meta": {
+        "aperture": "0",
+        "credit": "",
+        "camera": "",
+        "caption": "",
+        "created_timestamp": "0",
+        "copyright": "",
+        "focal_length": "0",
+        "iso": "0",
+        "shutter_speed": "0",
+        "title": "",
+        "orientation": "0",
+        "keywords": []
+      }
+    },
+    "post": 266,
+    "source_url": "https://rggndr.it/wp-content/uploads/2025/02/a8.jpg",
+    "_links": {
+      "self": [
+        {
+          "href": "https://rggndr.it/wp-json/wp/v2/media/267",
+          "targetHints": {
+            "allow": ["GET"]
+          }
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://rggndr.it/wp-json/wp/v2/media"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://rggndr.it/wp-json/wp/v2/types/attachment"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://rggndr.it/wp-json/wp/v2/users/1"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://rggndr.it/wp-json/wp/v2/comments?post=267"
+        }
+      ]
+    }
+  },
+  {
+    "id": 261,
+    "date": "2025-02-14T09:23:37",
+    "date_gmt": "2025-02-14T08:23:37",
+    "guid": {
+      "rendered": "https://rggndr.be-dev.it/wp-content/uploads/2025/02/a4.jpg"
+    },
+    "modified": "2025-02-14T09:23:37",
+    "modified_gmt": "2025-02-14T08:23:37",
+    "slug": "a4",
+    "status": "inherit",
+    "type": "attachment",
+    "link": "https://rggndr.it/progetto/dialetto-libero/a4/",
+    "title": {
+      "rendered": "a4"
+    },
+    "author": 1,
+    "featured_media": 0,
+    "comment_status": "",
+    "ping_status": "closed",
+    "template": "",
+    "meta": {
+      "_acf_changed": false,
+      "inline_featured_image": false
+    },
+    "class_list": ["post-261", "attachment", "type-attachment", "status-inherit", "hentry"],
+    "acf": [],
+    "description": {
+      "rendered": "<p class=\"attachment\"><a href='https://rggndr.it/wp-content/uploads/2025/02/a4.jpg'><img loading=\"lazy\" decoding=\"async\" width=\"300\" height=\"221\" src=\"https://rggndr.it/wp-content/uploads/2025/02/a4-300x221.jpg\" class=\"attachment-medium size-medium\" alt=\"\" srcset=\"https://rggndr.it/wp-content/uploads/2025/02/a4-300x221.jpg 300w, https://rggndr.it/wp-content/uploads/2025/02/a4.jpg 550w\" sizes=\"auto, (max-width: 300px) 100vw, 300px\" /></a></p>\n"
+    },
+    "caption": {
+      "rendered": ""
+    },
+    "alt_text": "",
+    "media_type": "image",
+    "mime_type": "image/jpeg",
+    "media_details": {
+      "width": 550,
+      "height": 406,
+      "file": "2025/02/a4.jpg",
+      "filesize": 201991,
+      "sizes": {
+        "medium": {
+          "file": "a4-300x221.jpg",
+          "width": 300,
+          "height": 221,
+          "filesize": 17701,
+          "mime_type": "image/jpeg",
+          "source_url": "https://rggndr.it/wp-content/uploads/2025/02/a4-300x221.jpg"
+        },
+        "thumbnail": {
+          "file": "a4-150x150.jpg",
+          "width": 150,
+          "height": 150,
+          "filesize": 7881,
+          "mime_type": "image/jpeg",
+          "source_url": "https://rggndr.it/wp-content/uploads/2025/02/a4-150x150.jpg"
+        },
+        "full": {
+          "file": "a4.jpg",
+          "width": 550,
+          "height": 406,
+          "mime_type": "image/jpeg",
+          "source_url": "https://rggndr.it/wp-content/uploads/2025/02/a4.jpg"
+        }
+      },
+      "image_meta": {
+        "aperture": "0",
+        "credit": "",
+        "camera": "",
+        "caption": "",
+        "created_timestamp": "0",
+        "copyright": "",
+        "focal_length": "0",
+        "iso": "0",
+        "shutter_speed": "0",
+        "title": "",
+        "orientation": "0",
+        "keywords": []
+      }
+    },
+    "post": 260,
+    "source_url": "https://rggndr.it/wp-content/uploads/2025/02/a4.jpg",
+    "_links": {
+      "self": [
+        {
+          "href": "https://rggndr.it/wp-json/wp/v2/media/261",
+          "targetHints": {
+            "allow": ["GET"]
+          }
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://rggndr.it/wp-json/wp/v2/media"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://rggndr.it/wp-json/wp/v2/types/attachment"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://rggndr.it/wp-json/wp/v2/users/1"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://rggndr.it/wp-json/wp/v2/comments?post=261"
+        }
+      ]
+    }
+  }
+]

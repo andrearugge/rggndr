@@ -5,12 +5,15 @@
 // nelle sue proporzioni.
 // Tutto il contenuto è nell'HTML (indicizzabile, leggibile senza JS).
 import type { GalleryItem } from '../../content/gallery';
+import type { ImageAttrs } from '../../content/image';
 
 interface Props {
   items: GalleryItem[];
 }
 const { items } = Astro.props;
 const pad = (n: number) => String(n).padStart(2, '0');
+// la miniatura sta in un bottone che ha già il suo aria-label: per i lettori di schermo è decorativa
+const decorative = (img: ImageAttrs) => ({ ...img, alt: '' });
 ---
 
 <section
@@ -46,10 +49,7 @@ const pad = (n: number) => String(n).padStart(2, '0');
             class="absolute inset-0 flex items-center justify-center p-[6%]"
           >
             <img
-              src={item.src}
-              alt={item.title}
-              width={item.width}
-              height={item.height}
+              {...item.image}
               loading={i === 0 ? 'eager' : 'lazy'}
               decoding="async"
               draggable="false"
@@ -75,14 +75,11 @@ const pad = (n: number) => String(n).padStart(2, '0');
             >
               <span class="text-xs font-bold">{pad(i + 1)}</span>
               <img
-                src={item.thumb}
-                alt=""
-                width={item.width}
-                height={item.height}
+                {...decorative(item.thumb)}
                 loading="lazy"
                 decoding="async"
                 draggable="false"
-                style={`aspect-ratio: ${item.width} / ${item.height}`}
+                style={`aspect-ratio: ${item.thumb.width} / ${item.thumb.height}`}
                 class="block h-[calc(100%-20px)] w-auto max-w-none transition-opacity duration-500 motion-reduce:transition-none"
               />
             </button>

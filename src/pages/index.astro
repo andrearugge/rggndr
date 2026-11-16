@@ -5,15 +5,19 @@ import Hero from '../components/site/Hero.astro';
 import HomeSections from '../components/site/HomeSections.astro';
 import Footer from '../components/site/Footer.astro';
 import Loader from '../components/site/Loader.astro';
+import { getHome } from '../content/home';
+import { getSite } from '../content/site';
+
+const [home, site] = await Promise.all([getHome(), getSite()]);
 ---
 
 <Base title="Andrea Ruggeri">
   <Header current="/" />
   <main class="space-bottom-big overflow-x-clip">
-    <Hero />
-    <HomeSections />
+    <Hero hero={home.hero} />
+    <HomeSections home={home} />
   </main>
-  <Footer />
+  <Footer site={site} />
   <Loader />
 </Base>
 

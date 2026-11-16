@@ -1,4 +1,4 @@
-import { test, expect } from '@playwright/test';
+import { test, expect } from './helpers';
 
 test('home has fonts loaded', async ({ page }) => {
   await page.goto('/');

@@ -1,4 +1,5 @@
-import { test, expect, type Page } from '@playwright/test';
+import type { Page } from '@playwright/test';
+import { test, expect, newContext } from './helpers';
 
 const URL = '/';
 
@@ -75,7 +76,7 @@ test('a new session plays the loader again', async ({ page, browser }) => {
   await page.goto(URL);
   await expect(page.locator('[data-loader]')).toHaveCount(0, { timeout: 6000 });
   const { baseURL } = test.info().project.use;
-  const ctx = await browser.newContext({ baseURL });
+  const ctx = await newContext(browser, { baseURL });
   const fresh = await ctx.newPage();
   await fresh.goto(URL);
   await expect(fresh.locator('[data-loader]')).toBeVisible({ timeout: 300 });

@@ -3,7 +3,8 @@
 Il nuovo sito personale di Andrea Ruggeri: una bio, non un sito professionale. Sostituisce il WordPress in `../rggndr-website`, live su https://rggndr.it.
 
 - **Stack:** Astro 7 statico, Tailwind CSS v4, GSAP + ScrollTrigger, Lenis.
-- **Pubblicazione:** Cloudflare Pages (produzione su `master`, anteprima per ogni branch, `noindex` su tutti gli host `pages.dev`). In arrivo Sanity (M1).
+- **Pubblicazione:** Cloudflare Pages (produzione su `master`, anteprima per ogni branch, `noindex` su tutti gli host `pages.dev`).
+- **Contenuti:** Sanity (progetto `9skjzcft`, dataset `production` pubblico), Studio su https://rggndr.sanity.studio con il codice in `studio/`. Una pubblicazione nello Studio ricostruisce il sito da sola (webhook → deploy hook di Cloudflare, circa un minuto). Dettagli in `docs/sanity.md`.
 - **Roadmap e decisioni prese:** `docs/superpowers/plans/2026-11-16-roadmap-v1-v2.md`. Lo spec del lab è in `docs/superpowers/specs/`.
 
 ## Regole di design (vincolanti)
@@ -31,17 +32,20 @@ Il nuovo sito personale di Andrea Ruggeri: una bio, non un sito professionale. S
 ## Struttura
 
 - `src/pages/`: pagine pubblicate (`/`, `/gallery/`). Indirizzi con la barra finale (`trailingSlash: 'always'`).
-- `src/components/site/`: componenti. `src/lib/`: motion e logica. `src/content/`: contenuti, oggi in codice, da M1 adattatore Sanity.
+- `src/components/site/`: componenti. `src/lib/`: motion e logica. `src/content/`: adattatore Sanity (query GROQ in `queries.ts`, tipi generati in `sanity.types.ts`, immagini in `image.ts`). Si legge solo in fase di build, con `fetchQuery` (`source.ts`).
+- `studio/`: Sanity Studio, pacchetto npm separato (non un workspace). `scripts/migrate-wp/`: migrazione dal WordPress.
 - `src/lab/`: utility interna (pagine di prova per i test). Entra solo con `astro dev` o `LAB=1` (`integrations/lab.mjs`); `scripts/check-dist.mjs` verifica che la build di produzione non la contenga.
 
 ## Comandi
 
 - `npm run dev`: sviluppo su http://localhost:4321 (spesso c'è già un server di Andrea su 4321).
 - `npm run build`, `npm run preview`.
-- `npm test`: Playwright. Costruisce con `LAB=1` e serve su **porta 4329** con `--ignore-lock`, così non va in conflitto con il server di Andrea. Per i test che non riguardano il loader usare `skipLoader` (`tests/helpers.ts`).
+- `npm test`: Playwright. Costruisce con `LAB=1` e `CONTENT_SOURCE=fixture` e serve su **porta 4329** con `--ignore-lock`, così non va in conflitto con il server di Andrea. Per i test che non riguardano il loader usare `skipLoader` (`tests/helpers.ts`). Importare `test` ed `expect` da `./helpers`, e creare i contesti con `newContext(browser, …)`: servono le immagini del dataset di prova dai file locali.
+- `npm run test:unit`: test senza browser (adattatori, immagini, migrazione), `playwright.unit.config.ts`.
+- `npm run typegen`: rigenera i tipi delle query dopo una modifica a schemi o query. `npm run studio`: Studio in locale. `npm run migrate:wp`: migrazione dal WordPress (vedi `docs/sanity.md`).
 - `npm run typecheck`: `astro check` con `@astrojs/check` installato, quindi senza prompt. **Non usare `npx astro check`.**
 - `npm run format` / `format:check`: Prettier.
-- `npm run check`: tipi, formattazione, build, `check-dist` e test. È quello che esegue la CI (`.github/workflows/ci.yml`) a ogni push e PR.
+- `npm run check`: tipi, formattazione, build (sul dataset vero), `check-dist`, test unitari e test. È quello che esegue la CI (`.github/workflows/ci.yml`) a ogni push e PR.
 
 ## Modo di lavorare
 
@@ -53,6 +57,8 @@ Il nuovo sito personale di Andrea Ruggeri: una bio, non un sito professionale. S
 - **Commit:** frequenti e piccoli. Merge e push solo su richiesta di Andrea.
 
 ## Attenzioni tecniche emerse
+
+- **Contenuti nei test:** i test leggono `tests/fixtures/dataset.ndjson` (valutato con `groq-js`), mai Sanity: una modifica nello Studio non rompe la CI. Le immagini di prova hanno asset `fixture…`, e `check-dist` rifiuta una build di produzione che li contiene.
 
 - **GSAP e `translate`:** se un elemento ha un `translate` CSS, GSAP lo assorbe in `y`. Prima si toglie lo stato CSS, poi `gsap.set({ y: 0, yPercent })`.
 - **Font:** le misure (maschere delle lettere, larghezze) vanno prese a font caricati (`fontsReady` in `src/lib/motion.ts`). Editorial si carica a parte.

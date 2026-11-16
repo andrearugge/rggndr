@@ -1,0 +1,309 @@
+{
+  "id": 269,
+  "date": "2025-02-17T13:49:01",
+  "date_gmt": "2025-02-17T12:49:01",
+  "guid": {
+    "rendered": "https://rggndr.be-dev.it/?page_id=269"
+  },
+  "modified": "2025-05-15T10:56:32",
+  "modified_gmt": "2025-05-15T08:56:32",
+  "slug": "about",
+  "status": "publish",
+  "type": "page",
+  "link": "https://rggndr.it/about/",
+  "title": {
+    "rendered": "About"
+  },
+  "content": {
+    "rendered": "",
+    "protected": false
+  },
+  "excerpt": {
+    "rendered": "",
+    "protected": false
+  },
+  "author": 1,
+  "featured_media": 0,
+  "parent": 0,
+  "menu_order": 0,
+  "comment_status": "closed",
+  "ping_status": "closed",
+  "template": "templates/about.php",
+  "meta": {
+    "_acf_changed": false,
+    "inline_featured_image": false,
+    "footnotes": ""
+  },
+  "class_list": ["post-269", "page", "type-page", "status-publish", "hentry"],
+  "acf": {
+    "attivare_intro": true,
+    "intro_presentazione": "Andrea Ruggeri<br />\r\nA.K.A. Rugge.<br />\r\n33 years old <br />\r\nItalian, living in Asola (MN).",
+    "intro_immagine": {
+      "ID": 352,
+      "id": 352,
+      "title": "andrea-ruggeri-portrait",
+      "filename": "andrea-ruggeri-portrait.jpg",
+      "filesize": 534192,
+      "url": "https://rggndr.it/wp-content/uploads/2025/05/andrea-ruggeri-portrait.jpg",
+      "link": "https://rggndr.it/about/andrea-ruggeri-portrait/",
+      "alt": "",
+      "author": "1",
+      "description": "",
+      "caption": "",
+      "name": "andrea-ruggeri-portrait",
+      "status": "inherit",
+      "uploaded_to": 269,
+      "date": "2025-05-11 15:29:12",
+      "modified": "2025-05-11 15:29:12",
+      "menu_order": 0,
+      "mime_type": "image/jpeg",
+      "type": "image",
+      "subtype": "jpeg",
+      "icon": "https://rggndr.it/wp-includes/images/media/default.png",
+      "width": 1400,
+      "height": 1696,
+      "sizes": {
+        "thumbnail": "https://rggndr.it/wp-content/uploads/2025/05/andrea-ruggeri-portrait-150x150.jpg",
+        "thumbnail-width": 150,
+        "thumbnail-height": 150,
+        "medium": "https://rggndr.it/wp-content/uploads/2025/05/andrea-ruggeri-portrait-248x300.jpg",
+        "medium-width": 248,
+        "medium-height": 300,
+        "medium_large": "https://rggndr.it/wp-content/uploads/2025/05/andrea-ruggeri-portrait-768x930.jpg",
+        "medium_large-width": 768,
+        "medium_large-height": 930,
+        "large": "https://rggndr.it/wp-content/uploads/2025/05/andrea-ruggeri-portrait-845x1024.jpg",
+        "large-width": 845,
+        "large-height": 1024,
+        "1536x1536": "https://rggndr.it/wp-content/uploads/2025/05/andrea-ruggeri-portrait-1268x1536.jpg",
+        "1536x1536-width": 1268,
+        "1536x1536-height": 1536,
+        "2048x2048": "https://rggndr.it/wp-content/uploads/2025/05/andrea-ruggeri-portrait.jpg",
+        "2048x2048-width": 1400,
+        "2048x2048-height": 1696
+      }
+    },
+    "intro_work": [
+      {
+        "label": "Beconcept®",
+        "link": "https://beconcept.studio/"
+      },
+      {
+        "label": "Montipadel",
+        "link": "https://montipadel.it/"
+      },
+      {
+        "label": "Luc.ia",
+        "link": "https://luciasoftware.com/"
+      },
+      {
+        "label": "Something cool is brewing",
+        "link": ""
+      }
+    ],
+    "intro_email": [
+      {
+        "label": "hello@rggndr.it",
+        "link": "mailto:hello@rggndr.it"
+      },
+      {
+        "label": "andrea@beconcept.studio",
+        "link": "mailto:andrea@beconcept.studio"
+      }
+    ],
+    "intro_telefono": [
+      {
+        "label": "(+39) 393 857 6657",
+        "link": "tel:+393938576657"
+      }
+    ],
+    "intro_social": [
+      {
+        "label": "Instagram",
+        "link": "https://www.instagram.com/andrearugge/"
+      },
+      {
+        "label": "Linkedin",
+        "link": "https://www.linkedin.com/in/andrerugge/"
+      },
+      {
+        "label": "Twitter",
+        "link": "https://x.com/andrea_rugge"
+      }
+    ],
+    "attivare_descrizione": true,
+    "descrizione_titolino": "My path in few words",
+    "descrizione_contenuto": "<p>Hey, I’m Andrea Ruggeri.<br />\nI apologize for what you’ll read, but i’m not so used to get an intro of myself. My background is in UI Design and Development.<br />\nEssentially i’m in love with everything related to web design.</p>\n<p>In the last six years I’ve found my path: helping visionary brands flourish.<br />\nI currently work at <a href=\"https://beconcept.studio/\">Beconcept</a>, a creative agency that aims to achieve tangible results for its clients as they make their way through the digitization process.</p>\n<p>I’m also deeply passionate about artificial intelligence.<br />\nI regularly host workshops exploring how this technology is reshaping our lives, work, and creative processes.<br />\nRegarding AI, I created <a href=\"https://www.spreaker.com/podcast/ai-journal--6565070\">AI Journal</a>, a weekly 5-minute podcast where I share updates and insights on the evolving world of tech, with a special focus on AI.</p>\n<p>Before that, I co-founded <a href=\"https://kpi6.com/en/\">KPI6</a>.<br />\nKPI6 is where i started my adventure in the digital world.<br />\nAs Head of product I learnt how to grow a business from scratch.</p>\n<p>In my free time i immerse myself in the world of gastronomy and artisanal wines, enjoying the conviviality of a classic osteria with friends. Photography is another personal pursuit that accompanies most of these experiences.</p>\n<p>I live with <a href=\"https://www.instagram.com/giulia.pampuri/\">Giulia</a> in Asola, a small (and beauty) city in the north of Italy.</p>\n<p>You can fine me on various platforms like:</p>\n<p><a href=\"https://www.linkedin.com/in/andrerugge/\">Linkedin</a>, <a href=\"https://www.instagram.com/andrearugge/\">Instagram</a>, <a href=\"https://www.cosmos.so/andrearugge\">Cosmos</a>.</p>\n"
+  },
+  "yoast_head": "<!-- This site is optimized with the Yoast SEO plugin v27.9 - https://yoast.com/product/yoast-seo-wordpress/ -->\n<title>Andrea Ruggeri – Who I am</title>\n<meta name=\"description\" content=\"Andrea Ruggeri, UI/UX designer and AI expert, helps visionary brands thrive through digital design, strategy, and innovation.\" />\n<meta name=\"robots\" content=\"index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1\" />\n<link rel=\"canonical\" href=\"https://rggndr.it/about/\" />\n<meta property=\"og:locale\" content=\"it_IT\" />\n<meta property=\"og:type\" content=\"article\" />\n<meta property=\"og:title\" content=\"Andrea Ruggeri – Who I am\" />\n<meta property=\"og:description\" content=\"Andrea Ruggeri, UI/UX designer and AI expert, helps visionary brands thrive through digital design, strategy, and innovation.\" />\n<meta property=\"og:url\" content=\"https://rggndr.it/about/\" />\n<meta property=\"og:site_name\" content=\"RGGNDR\" />\n<meta property=\"article:modified_time\" content=\"2025-05-15T08:56:32+00:00\" />\n<meta name=\"twitter:card\" content=\"summary_large_image\" />\n<meta name=\"twitter:site\" content=\"@andrea_rugge\" />\n<script type=\"application/ld+json\" class=\"yoast-schema-graph\">{\"@context\":\"https:\\/\\/schema.org\",\"@graph\":[{\"@type\":\"WebPage\",\"@id\":\"https:\\/\\/rggndr.it\\/about\\/\",\"url\":\"https:\\/\\/rggndr.it\\/about\\/\",\"name\":\"Andrea Ruggeri – Who I am\",\"isPartOf\":{\"@id\":\"https:\\/\\/rggndr.it\\/#website\"},\"datePublished\":\"2025-02-17T12:49:01+00:00\",\"dateModified\":\"2025-05-15T08:56:32+00:00\",\"description\":\"Andrea Ruggeri, UI\\/UX designer and AI expert, helps visionary brands thrive through digital design, strategy, and innovation.\",\"breadcrumb\":{\"@id\":\"https:\\/\\/rggndr.it\\/about\\/#breadcrumb\"},\"inLanguage\":\"it-IT\",\"potentialAction\":[{\"@type\":\"ReadAction\",\"target\":[\"https:\\/\\/rggndr.it\\/about\\/\"]}]},{\"@type\":\"BreadcrumbList\",\"@id\":\"https:\\/\\/rggndr.it\\/about\\/#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Home\",\"item\":\"https:\\/\\/rggndr.it\\/\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"About\"}]},{\"@type\":\"WebSite\",\"@id\":\"https:\\/\\/rggndr.it\\/#website\",\"url\":\"https:\\/\\/rggndr.it\\/\",\"name\":\"RGGNDR\",\"description\":\"Andrea Ruggeri — Design Driven Entrepreneur\",\"publisher\":{\"@id\":\"https:\\/\\/rggndr.it\\/#organization\"},\"potentialAction\":[{\"@type\":\"SearchAction\",\"target\":{\"@type\":\"EntryPoint\",\"urlTemplate\":\"https:\\/\\/rggndr.it\\/?s={search_term_string}\"},\"query-input\":{\"@type\":\"PropertyValueSpecification\",\"valueRequired\":true,\"valueName\":\"search_term_string\"}}],\"inLanguage\":\"it-IT\"},{\"@type\":\"Organization\",\"@id\":\"https:\\/\\/rggndr.it\\/#organization\",\"name\":\"RGGNDR\",\"url\":\"https:\\/\\/rggndr.it\\/\",\"logo\":{\"@type\":\"ImageObject\",\"inLanguage\":\"it-IT\",\"@id\":\"https:\\/\\/rggndr.it\\/#\\/schema\\/logo\\/image\\/\",\"url\":\"https:\\/\\/rggndr.be-dev.it\\/wp-content\\/uploads\\/2025\\/02\\/screenshot.png\",\"contentUrl\":\"https:\\/\\/rggndr.be-dev.it\\/wp-content\\/uploads\\/2025\\/02\\/screenshot.png\",\"width\":1200,\"height\":900,\"caption\":\"RGGNDR\"},\"image\":{\"@id\":\"https:\\/\\/rggndr.it\\/#\\/schema\\/logo\\/image\\/\"},\"sameAs\":[\"https:\\/\\/x.com\\/andrea_rugge\",\"https:\\/\\/www.instagram.com\\/andrearugge\\/\",\"https:\\/\\/www.linkedin.com\\/in\\/andrerugge\\/\"]}]}</script>\n<!-- / Yoast SEO plugin. -->",
+  "yoast_head_json": {
+    "title": "Andrea Ruggeri – Who I am",
+    "description": "Andrea Ruggeri, UI/UX designer and AI expert, helps visionary brands thrive through digital design, strategy, and innovation.",
+    "robots": {
+      "index": "index",
+      "follow": "follow",
+      "max-snippet": "max-snippet:-1",
+      "max-image-preview": "max-image-preview:large",
+      "max-video-preview": "max-video-preview:-1"
+    },
+    "canonical": "https://rggndr.it/about/",
+    "og_locale": "it_IT",
+    "og_type": "article",
+    "og_title": "Andrea Ruggeri – Who I am",
+    "og_description": "Andrea Ruggeri, UI/UX designer and AI expert, helps visionary brands thrive through digital design, strategy, and innovation.",
+    "og_url": "https://rggndr.it/about/",
+    "og_site_name": "RGGNDR",
+    "article_modified_time": "2025-05-15T08:56:32+00:00",
+    "twitter_card": "summary_large_image",
+    "twitter_site": "@andrea_rugge",
+    "schema": {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "WebPage",
+          "@id": "https://rggndr.it/about/",
+          "url": "https://rggndr.it/about/",
+          "name": "Andrea Ruggeri – Who I am",
+          "isPartOf": {
+            "@id": "https://rggndr.it/#website"
+          },
+          "datePublished": "2025-02-17T12:49:01+00:00",
+          "dateModified": "2025-05-15T08:56:32+00:00",
+          "description": "Andrea Ruggeri, UI/UX designer and AI expert, helps visionary brands thrive through digital design, strategy, and innovation.",
+          "breadcrumb": {
+            "@id": "https://rggndr.it/about/#breadcrumb"
+          },
+          "inLanguage": "it-IT",
+          "potentialAction": [
+            {
+              "@type": "ReadAction",
+              "target": ["https://rggndr.it/about/"]
+            }
+          ]
+        },
+        {
+          "@type": "BreadcrumbList",
+          "@id": "https://rggndr.it/about/#breadcrumb",
+          "itemListElement": [
+            {
+              "@type": "ListItem",
+              "position": 1,
+              "name": "Home",
+              "item": "https://rggndr.it/"
+            },
+            {
+              "@type": "ListItem",
+              "position": 2,
+              "name": "About"
+            }
+          ]
+        },
+        {
+          "@type": "WebSite",
+          "@id": "https://rggndr.it/#website",
+          "url": "https://rggndr.it/",
+          "name": "RGGNDR",
+          "description": "Andrea Ruggeri — Design Driven Entrepreneur",
+          "publisher": {
+            "@id": "https://rggndr.it/#organization"
+          },
+          "potentialAction": [
+            {
+              "@type": "SearchAction",
+              "target": {
+                "@type": "EntryPoint",
+                "urlTemplate": "https://rggndr.it/?s={search_term_string}"
+              },
+              "query-input": {
+                "@type": "PropertyValueSpecification",
+                "valueRequired": true,
+                "valueName": "search_term_string"
+              }
+            }
+          ],
+          "inLanguage": "it-IT"
+        },
+        {
+          "@type": "Organization",
+          "@id": "https://rggndr.it/#organization",
+          "name": "RGGNDR",
+          "url": "https://rggndr.it/",
+          "logo": {
+            "@type": "ImageObject",
+            "inLanguage": "it-IT",
+            "@id": "https://rggndr.it/#/schema/logo/image/",
+            "url": "https://rggndr.be-dev.it/wp-content/uploads/2025/02/screenshot.png",
+            "contentUrl": "https://rggndr.be-dev.it/wp-content/uploads/2025/02/screenshot.png",
+            "width": 1200,
+            "height": 900,
+            "caption": "RGGNDR"
+          },
+          "image": {
+            "@id": "https://rggndr.it/#/schema/logo/image/"
+          },
+          "sameAs": [
+            "https://x.com/andrea_rugge",
+            "https://www.instagram.com/andrearugge/",
+            "https://www.linkedin.com/in/andrerugge/"
+          ]
+        }
+      ]
+    }
+  },
+  "_links": {
+    "self": [
+      {
+        "href": "https://rggndr.it/wp-json/wp/v2/pages/269",
+        "targetHints": {
+          "allow": ["GET"]
+        }
+      }
+    ],
+    "collection": [
+      {
+        "href": "https://rggndr.it/wp-json/wp/v2/pages"
+      }
+    ],
+    "about": [
+      {
+        "href": "https://rggndr.it/wp-json/wp/v2/types/page"
+      }
+    ],
+    "author": [
+      {
+        "embeddable": true,
+        "href": "https://rggndr.it/wp-json/wp/v2/users/1"
+      }
+    ],
+    "replies": [
+      {
+        "embeddable": true,
+        "href": "https://rggndr.it/wp-json/wp/v2/comments?post=269"
+      }
+    ],
+    "version-history": [
+      {
+        "count": 11,
+        "href": "https://rggndr.it/wp-json/wp/v2/pages/269/revisions"
+      }
+    ],
+    "predecessor-version": [
+      {
+        "id": 366,
+        "href": "https://rggndr.it/wp-json/wp/v2/pages/269/revisions/366"
+      }
+    ],
+    "wp:attachment": [
+      {
+        "href": "https://rggndr.it/wp-json/wp/v2/media?parent=269"
+      }
+    ],
+    "curies": [
+      {
+        "name": "wp",
+        "href": "https://api.w.org/{rel}",
+        "templated": true
+      }
+    ]
+  }
+}

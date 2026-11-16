@@ -23,6 +23,15 @@ jobs:
 
       - run: npm ci
 
+      - name: Dipendenze dello Studio
+        run: npm ci --prefix studio
+
+      - name: Schemi di Sanity
+        run: npm --prefix studio run validate
+
+      - name: Tipi delle query aggiornati
+        run: npm run typegen && git diff --exit-code src/content/sanity.types.ts
+
       - name: Browser di Playwright
         run: npx playwright install --with-deps chromium
 
@@ -33,10 +42,14 @@ jobs:
         run: npm run format:check
 
       - name: Build di produzione
+        # legge il dataset vero di Sanity (pubblico, nessun token); i test usano quello di prova
         run: npm run build
 
-      - name: Niente lab nella build
+      - name: Niente lab né dataset di prova nella build
         run: node scripts/check-dist.mjs
+
+      - name: Test unitari
+        run: npm run test:unit
 
       - name: Test
         run: npm test
