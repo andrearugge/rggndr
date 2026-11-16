@@ -1,4 +1,6 @@
 ---
+import Card from './Card.astro';
+
 const socials = [
   { label: 'Instagram', href: 'https://www.instagram.com/andrearugge/' },
   { label: 'Linkedin', href: 'https://www.linkedin.com/in/andrerugge/' },
@@ -12,8 +14,7 @@ const socials = [
         <img data-footer-rotator class="w-full max-w-[40px]" src="/brand/symbol.png" alt="" width="100" height="100" />
       </div>
       <div class="flex justify-center">
-        <!-- Card: per ora l'SVG attuale; diventerà codice interattivo in /lab/card -->
-        <img class="w-full max-w-[540px]" src="/brand/card.svg" alt="RGGNDR — biglietto da visita" width="570" height="397" loading="lazy" />
+        <div class="w-full max-w-[540px]"><Card /></div>
       </div>
       <div class="space-y-4">
         <div class="flex flex-col items-center justify-center gap-2 lg:flex-row">

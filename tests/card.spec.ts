@@ -1,7 +1,5 @@
 import { test, expect, type Page } from '@playwright/test';
 
-const VARIANTS = ['originale', 'lucida', 'rilievo', 'foil', 'mazzo'] as const;
-
 /**
  * Posizioni dei blocchi sulla card originale (public/brand/card.svg), in unità della card (larga 524):
  * x = bordo sinistro, w = larghezza dell'inchiostro.
@@ -18,9 +16,9 @@ const BLOCKS: Record<string, { x: number; w: number }> = {
   email: { x: 381, w: 118.5 },
 };
 
-async function ready(page: Page, v: string) {
+async function ready(page: Page) {
   await page.setViewportSize({ width: 1440, height: 900 });
-  await page.goto(`/lab/card?v=${v}`);
+  await page.goto('/lab/card');
   await expect(page.locator('[data-card]')).toHaveAttribute('data-ready', '');
 }
 
@@ -32,7 +30,7 @@ const tilt = (page: Page) =>
   });
 
 test('card: real text and links, wordmark with an accessible name', async ({ page }) => {
-  await ready(page, 'originale');
+  await ready(page);
   const card = page.locator('[data-card]');
   await expect(card.getByRole('img', { name: 'RGGNDR' })).toBeVisible();
   await expect(card.getByText('(Barring Unforeseen Circumstances)')).toBeVisible();
@@ -44,7 +42,7 @@ test('card: real text and links, wordmark with an accessible name', async ({ pag
 });
 
 test('card: every block sits where it is on the original card (±3 units)', async ({ page }) => {
-  await ready(page, 'originale');
+  await ready(page);
   const got = await page.locator('[data-card-front]').evaluate((front) => {
     const f = front as HTMLElement;
     // misure sulla card dritta: si toglie la rotazione per leggere le posizioni nel suo sistema
@@ -76,27 +74,41 @@ test('card: every block sits where it is on the original card (±3 units)', asyn
   }
 });
 
-for (const v of VARIANTS) {
-  test(`card ${v}: follows the mouse in 3D and settles back when it leaves`, async ({ page }) => {
-    await ready(page, v);
-    const box = (await page.locator('[data-card-front]').boundingBox())!;
-    const rest = await tilt(page);
-    await page.mouse.move(box.x + box.width * 0.9, box.y + box.height * 0.15, { steps: 8 });
-    await page.waitForTimeout(700);
-    const tilted = await tilt(page);
-    expect(Math.max(tilted.x, tilted.y)).toBeGreaterThan(Math.max(rest.x, rest.y) + 3);
-    await page.mouse.move(5, 5, { steps: 4 });
-    await page.waitForTimeout(1500);
-    const back = await tilt(page);
-    expect(Math.abs(back.x - rest.x)).toBeLessThan(0.5);
-    expect(Math.abs(back.y - rest.y)).toBeLessThan(0.5);
-  });
-}
+test('card: follows the mouse with a gentle 3D tilt (at most 5°) and settles back when it leaves', async ({ page }) => {
+  await ready(page);
+  const box = (await page.locator('[data-card-front]').boundingBox())!;
+  const rest = await tilt(page);
+  await page.mouse.move(box.x + box.width * 0.98, box.y + box.height * 0.02, { steps: 8 });
+  await page.waitForTimeout(900);
+  const tilted = await tilt(page);
+  expect(Math.max(tilted.x, tilted.y)).toBeGreaterThan(Math.max(rest.x, rest.y) + 1.5);
+  expect(Math.max(tilted.x, tilted.y)).toBeLessThanOrEqual(5.05);
+  await page.mouse.move(5, 5, { steps: 4 });
+  await page.waitForTimeout(1500);
+  const back = await tilt(page);
+  expect(Math.abs(back.x - rest.x)).toBeLessThan(0.5);
+  expect(Math.abs(back.y - rest.y)).toBeLessThan(0.5);
+});
+
+test('card: the motto and the hours ignore the pointer, links stay clickable', async ({ page }) => {
+  await ready(page);
+  const card = page.locator('[data-card]');
+  for (const sel of ['[data-block="motto"]', '[data-block="hours"]']) await expect(card.locator(sel)).toHaveCSS('pointer-events', 'none');
+  await expect(card.locator('a[href="mailto:hello@rggndr.it"]')).toHaveCSS('pointer-events', 'auto');
+});
+
+test('footer: shows the code card, not the old image', async ({ page }) => {
+  await page.goto('/lab/reveal');
+  const footer = page.locator('footer');
+  await expect(footer.locator('[data-card]')).toHaveCount(1);
+  await expect(footer.locator('img[src="/brand/card.svg"]')).toHaveCount(0);
+  await expect(footer.locator('[data-card] a[href="mailto:hello@rggndr.it"]')).toBeAttached();
+});
 
 test('card: reduced motion keeps it still', async ({ browser }) => {
   const ctx = await browser.newContext({ reducedMotion: 'reduce', viewport: { width: 1440, height: 900 } });
   const page = await ctx.newPage();
-  await page.goto('/lab/card?v=lucida');
+  await page.goto('/lab/card');
   await expect(page.locator('[data-card]')).toHaveAttribute('data-ready', '');
   const box = (await page.locator('[data-card-front]').boundingBox())!;
   await page.mouse.move(box.x + box.width * 0.9, box.y + box.height * 0.15, { steps: 8 });
