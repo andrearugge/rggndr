@@ -1,0 +1,1822 @@
+[
+  {
+    "id": 194,
+    "date": "2025-02-13T14:59:28",
+    "date_gmt": "2025-02-13T13:59:28",
+    "guid": {
+      "rendered": "https://rggndr.be-dev.it/?post_type=progetto&#038;p=194"
+    },
+    "modified": "2025-05-14T08:59:48",
+    "modified_gmt": "2025-05-14T06:59:48",
+    "slug": "ai-journal",
+    "status": "publish",
+    "type": "progetto",
+    "link": "https://rggndr.it/progetto/ai-journal/",
+    "title": {
+      "rendered": "AI Journal"
+    },
+    "featured_media": 358,
+    "template": "",
+    "meta": {
+      "_acf_changed": false,
+      "inline_featured_image": false
+    },
+    "class_list": ["post-194", "progetto", "type-progetto", "status-publish", "has-post-thumbnail", "hentry"],
+    "acf": {
+      "descrizione_progetto": "",
+      "link_progetto": [
+        {
+          "testo": "Live Website",
+          "link": "https://www.spreaker.com/podcast/ai-journal--6565070"
+        }
+      ],
+      "anno_progetto": "2025",
+      "tipo_progetto": "Personal Project",
+      "contenuto_pagina": [
+        {
+          "acf_fc_layout": "immagine_full",
+          "mostra_sezione": true,
+          "immagine": {
+            "ID": 396,
+            "id": 396,
+            "title": "coming-soon",
+            "filename": "coming-soon.jpg",
+            "filesize": 59341,
+            "url": "https://rggndr.it/wp-content/uploads/2025/02/coming-soon.jpg",
+            "link": "https://rggndr.it/progetto/ai-journal/coming-soon/",
+            "alt": "",
+            "author": "1",
+            "description": "",
+            "caption": "",
+            "name": "coming-soon",
+            "status": "inherit",
+            "uploaded_to": 194,
+            "date": "2025-05-14 06:59:43",
+            "modified": "2025-05-14 06:59:43",
+            "menu_order": 0,
+            "mime_type": "image/jpeg",
+            "type": "image",
+            "subtype": "jpeg",
+            "icon": "https://rggndr.it/wp-includes/images/media/default.png",
+            "width": 1680,
+            "height": 1206,
+            "sizes": {
+              "thumbnail": "https://rggndr.it/wp-content/uploads/2025/02/coming-soon-150x150.jpg",
+              "thumbnail-width": 150,
+              "thumbnail-height": 150,
+              "medium": "https://rggndr.it/wp-content/uploads/2025/02/coming-soon-300x215.jpg",
+              "medium-width": 300,
+              "medium-height": 215,
+              "medium_large": "https://rggndr.it/wp-content/uploads/2025/02/coming-soon-768x551.jpg",
+              "medium_large-width": 768,
+              "medium_large-height": 551,
+              "large": "https://rggndr.it/wp-content/uploads/2025/02/coming-soon-1024x735.jpg",
+              "large-width": 1024,
+              "large-height": 735,
+              "1536x1536": "https://rggndr.it/wp-content/uploads/2025/02/coming-soon-1536x1103.jpg",
+              "1536x1536-width": 1536,
+              "1536x1536-height": 1103,
+              "2048x2048": "https://rggndr.it/wp-content/uploads/2025/02/coming-soon.jpg",
+              "2048x2048-width": 1680,
+              "2048x2048-height": 1206
+            }
+          },
+          "caption": ""
+        }
+      ]
+    },
+    "yoast_head": "<!-- This site is optimized with the Yoast SEO plugin v27.9 - https://yoast.com/product/yoast-seo-wordpress/ -->\n<title>AI Journal - RGGNDR</title>\n<meta name=\"robots\" content=\"index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1\" />\n<link rel=\"canonical\" href=\"https://rggndr.it/progetto/ai-journal/\" />\n<meta property=\"og:locale\" content=\"it_IT\" />\n<meta property=\"og:type\" content=\"article\" />\n<meta property=\"og:title\" content=\"AI Journal - RGGNDR\" />\n<meta property=\"og:url\" content=\"https://rggndr.it/progetto/ai-journal/\" />\n<meta property=\"og:site_name\" content=\"RGGNDR\" />\n<meta property=\"article:modified_time\" content=\"2025-05-14T06:59:48+00:00\" />\n<meta property=\"og:image\" content=\"https://rggndr.it/wp-content/uploads/2025/02/ai-journal-cover.jpg\" />\n\t<meta property=\"og:image:width\" content=\"1200\" />\n\t<meta property=\"og:image:height\" content=\"901\" />\n\t<meta property=\"og:image:type\" content=\"image/jpeg\" />\n<meta name=\"twitter:card\" content=\"summary_large_image\" />\n<meta name=\"twitter:site\" content=\"@andrea_rugge\" />\n<meta name=\"twitter:label1\" content=\"Tempo di lettura stimato\" />\n\t<meta name=\"twitter:data1\" content=\"1 minuto\" />\n<script type=\"application/ld+json\" class=\"yoast-schema-graph\">{\"@context\":\"https:\\/\\/schema.org\",\"@graph\":[{\"@type\":\"WebPage\",\"@id\":\"https:\\/\\/rggndr.it\\/progetto\\/ai-journal\\/\",\"url\":\"https:\\/\\/rggndr.it\\/progetto\\/ai-journal\\/\",\"name\":\"AI Journal - RGGNDR\",\"isPartOf\":{\"@id\":\"https:\\/\\/rggndr.it\\/#website\"},\"primaryImageOfPage\":{\"@id\":\"https:\\/\\/rggndr.it\\/progetto\\/ai-journal\\/#primaryimage\"},\"image\":{\"@id\":\"https:\\/\\/rggndr.it\\/progetto\\/ai-journal\\/#primaryimage\"},\"thumbnailUrl\":\"https:\\/\\/rggndr.it\\/wp-content\\/uploads\\/2025\\/02\\/ai-journal-cover.jpg\",\"datePublished\":\"2025-02-13T13:59:28+00:00\",\"dateModified\":\"2025-05-14T06:59:48+00:00\",\"breadcrumb\":{\"@id\":\"https:\\/\\/rggndr.it\\/progetto\\/ai-journal\\/#breadcrumb\"},\"inLanguage\":\"it-IT\",\"potentialAction\":[{\"@type\":\"ReadAction\",\"target\":[\"https:\\/\\/rggndr.it\\/progetto\\/ai-journal\\/\"]}]},{\"@type\":\"ImageObject\",\"inLanguage\":\"it-IT\",\"@id\":\"https:\\/\\/rggndr.it\\/progetto\\/ai-journal\\/#primaryimage\",\"url\":\"https:\\/\\/rggndr.it\\/wp-content\\/uploads\\/2025\\/02\\/ai-journal-cover.jpg\",\"contentUrl\":\"https:\\/\\/rggndr.it\\/wp-content\\/uploads\\/2025\\/02\\/ai-journal-cover.jpg\",\"width\":1200,\"height\":901},{\"@type\":\"BreadcrumbList\",\"@id\":\"https:\\/\\/rggndr.it\\/progetto\\/ai-journal\\/#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Home\",\"item\":\"https:\\/\\/rggndr.it\\/\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"AI Journal\"}]},{\"@type\":\"WebSite\",\"@id\":\"https:\\/\\/rggndr.it\\/#website\",\"url\":\"https:\\/\\/rggndr.it\\/\",\"name\":\"RGGNDR\",\"description\":\"Andrea Ruggeri — Design Driven Entrepreneur\",\"publisher\":{\"@id\":\"https:\\/\\/rggndr.it\\/#organization\"},\"potentialAction\":[{\"@type\":\"SearchAction\",\"target\":{\"@type\":\"EntryPoint\",\"urlTemplate\":\"https:\\/\\/rggndr.it\\/?s={search_term_string}\"},\"query-input\":{\"@type\":\"PropertyValueSpecification\",\"valueRequired\":true,\"valueName\":\"search_term_string\"}}],\"inLanguage\":\"it-IT\"},{\"@type\":\"Organization\",\"@id\":\"https:\\/\\/rggndr.it\\/#organization\",\"name\":\"RGGNDR\",\"url\":\"https:\\/\\/rggndr.it\\/\",\"logo\":{\"@type\":\"ImageObject\",\"inLanguage\":\"it-IT\",\"@id\":\"https:\\/\\/rggndr.it\\/#\\/schema\\/logo\\/image\\/\",\"url\":\"https:\\/\\/rggndr.be-dev.it\\/wp-content\\/uploads\\/2025\\/02\\/screenshot.png\",\"contentUrl\":\"https:\\/\\/rggndr.be-dev.it\\/wp-content\\/uploads\\/2025\\/02\\/screenshot.png\",\"width\":1200,\"height\":900,\"caption\":\"RGGNDR\"},\"image\":{\"@id\":\"https:\\/\\/rggndr.it\\/#\\/schema\\/logo\\/image\\/\"},\"sameAs\":[\"https:\\/\\/x.com\\/andrea_rugge\",\"https:\\/\\/www.instagram.com\\/andrearugge\\/\",\"https:\\/\\/www.linkedin.com\\/in\\/andrerugge\\/\"]}]}</script>\n<!-- / Yoast SEO plugin. -->",
+    "yoast_head_json": {
+      "title": "AI Journal - RGGNDR",
+      "robots": {
+        "index": "index",
+        "follow": "follow",
+        "max-snippet": "max-snippet:-1",
+        "max-image-preview": "max-image-preview:large",
+        "max-video-preview": "max-video-preview:-1"
+      },
+      "canonical": "https://rggndr.it/progetto/ai-journal/",
+      "og_locale": "it_IT",
+      "og_type": "article",
+      "og_title": "AI Journal - RGGNDR",
+      "og_url": "https://rggndr.it/progetto/ai-journal/",
+      "og_site_name": "RGGNDR",
+      "article_modified_time": "2025-05-14T06:59:48+00:00",
+      "og_image": [
+        {
+          "width": 1200,
+          "height": 901,
+          "url": "https://rggndr.it/wp-content/uploads/2025/02/ai-journal-cover.jpg",
+          "type": "image/jpeg"
+        }
+      ],
+      "twitter_card": "summary_large_image",
+      "twitter_site": "@andrea_rugge",
+      "twitter_misc": {
+        "Tempo di lettura stimato": "1 minuto"
+      },
+      "schema": {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "WebPage",
+            "@id": "https://rggndr.it/progetto/ai-journal/",
+            "url": "https://rggndr.it/progetto/ai-journal/",
+            "name": "AI Journal - RGGNDR",
+            "isPartOf": {
+              "@id": "https://rggndr.it/#website"
+            },
+            "primaryImageOfPage": {
+              "@id": "https://rggndr.it/progetto/ai-journal/#primaryimage"
+            },
+            "image": {
+              "@id": "https://rggndr.it/progetto/ai-journal/#primaryimage"
+            },
+            "thumbnailUrl": "https://rggndr.it/wp-content/uploads/2025/02/ai-journal-cover.jpg",
+            "datePublished": "2025-02-13T13:59:28+00:00",
+            "dateModified": "2025-05-14T06:59:48+00:00",
+            "breadcrumb": {
+              "@id": "https://rggndr.it/progetto/ai-journal/#breadcrumb"
+            },
+            "inLanguage": "it-IT",
+            "potentialAction": [
+              {
+                "@type": "ReadAction",
+                "target": ["https://rggndr.it/progetto/ai-journal/"]
+              }
+            ]
+          },
+          {
+            "@type": "ImageObject",
+            "inLanguage": "it-IT",
+            "@id": "https://rggndr.it/progetto/ai-journal/#primaryimage",
+            "url": "https://rggndr.it/wp-content/uploads/2025/02/ai-journal-cover.jpg",
+            "contentUrl": "https://rggndr.it/wp-content/uploads/2025/02/ai-journal-cover.jpg",
+            "width": 1200,
+            "height": 901
+          },
+          {
+            "@type": "BreadcrumbList",
+            "@id": "https://rggndr.it/progetto/ai-journal/#breadcrumb",
+            "itemListElement": [
+              {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Home",
+                "item": "https://rggndr.it/"
+              },
+              {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "AI Journal"
+              }
+            ]
+          },
+          {
+            "@type": "WebSite",
+            "@id": "https://rggndr.it/#website",
+            "url": "https://rggndr.it/",
+            "name": "RGGNDR",
+            "description": "Andrea Ruggeri — Design Driven Entrepreneur",
+            "publisher": {
+              "@id": "https://rggndr.it/#organization"
+            },
+            "potentialAction": [
+              {
+                "@type": "SearchAction",
+                "target": {
+                  "@type": "EntryPoint",
+                  "urlTemplate": "https://rggndr.it/?s={search_term_string}"
+                },
+                "query-input": {
+                  "@type": "PropertyValueSpecification",
+                  "valueRequired": true,
+                  "valueName": "search_term_string"
+                }
+              }
+            ],
+            "inLanguage": "it-IT"
+          },
+          {
+            "@type": "Organization",
+            "@id": "https://rggndr.it/#organization",
+            "name": "RGGNDR",
+            "url": "https://rggndr.it/",
+            "logo": {
+              "@type": "ImageObject",
+              "inLanguage": "it-IT",
+              "@id": "https://rggndr.it/#/schema/logo/image/",
+              "url": "https://rggndr.be-dev.it/wp-content/uploads/2025/02/screenshot.png",
+              "contentUrl": "https://rggndr.be-dev.it/wp-content/uploads/2025/02/screenshot.png",
+              "width": 1200,
+              "height": 900,
+              "caption": "RGGNDR"
+            },
+            "image": {
+              "@id": "https://rggndr.it/#/schema/logo/image/"
+            },
+            "sameAs": [
+              "https://x.com/andrea_rugge",
+              "https://www.instagram.com/andrearugge/",
+              "https://www.linkedin.com/in/andrerugge/"
+            ]
+          }
+        ]
+      }
+    },
+    "_links": {
+      "self": [
+        {
+          "href": "https://rggndr.it/wp-json/wp/v2/progetto/194",
+          "targetHints": {
+            "allow": ["GET"]
+          }
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://rggndr.it/wp-json/wp/v2/progetto"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://rggndr.it/wp-json/wp/v2/types/progetto"
+        }
+      ],
+      "wp:featuredmedia": [
+        {
+          "embeddable": true,
+          "href": "https://rggndr.it/wp-json/wp/v2/media/358"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://rggndr.it/wp-json/wp/v2/media?parent=194"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 256,
+    "date": "2025-02-14T09:23:10",
+    "date_gmt": "2025-02-14T08:23:10",
+    "guid": {
+      "rendered": "https://rggndr.be-dev.it/?post_type=progetto&#038;p=256"
+    },
+    "modified": "2025-05-14T09:00:26",
+    "modified_gmt": "2025-05-14T07:00:26",
+    "slug": "marklayer",
+    "status": "publish",
+    "type": "progetto",
+    "link": "https://rggndr.it/progetto/marklayer/",
+    "title": {
+      "rendered": "MarkLayer"
+    },
+    "featured_media": 394,
+    "template": "",
+    "meta": {
+      "_acf_changed": false,
+      "inline_featured_image": false
+    },
+    "class_list": ["post-256", "progetto", "type-progetto", "status-publish", "has-post-thumbnail", "hentry"],
+    "acf": {
+      "descrizione_progetto": "",
+      "link_progetto": [
+        {
+          "testo": "Website",
+          "link": "https://marklayer.ai/"
+        }
+      ],
+      "anno_progetto": "2025",
+      "tipo_progetto": "Side Project",
+      "contenuto_pagina": [
+        {
+          "acf_fc_layout": "immagine_full",
+          "mostra_sezione": true,
+          "immagine": {
+            "ID": 396,
+            "id": 396,
+            "title": "coming-soon",
+            "filename": "coming-soon.jpg",
+            "filesize": 59341,
+            "url": "https://rggndr.it/wp-content/uploads/2025/02/coming-soon.jpg",
+            "link": "https://rggndr.it/progetto/ai-journal/coming-soon/",
+            "alt": "",
+            "author": "1",
+            "description": "",
+            "caption": "",
+            "name": "coming-soon",
+            "status": "inherit",
+            "uploaded_to": 194,
+            "date": "2025-05-14 06:59:43",
+            "modified": "2025-05-14 06:59:43",
+            "menu_order": 0,
+            "mime_type": "image/jpeg",
+            "type": "image",
+            "subtype": "jpeg",
+            "icon": "https://rggndr.it/wp-includes/images/media/default.png",
+            "width": 1680,
+            "height": 1206,
+            "sizes": {
+              "thumbnail": "https://rggndr.it/wp-content/uploads/2025/02/coming-soon-150x150.jpg",
+              "thumbnail-width": 150,
+              "thumbnail-height": 150,
+              "medium": "https://rggndr.it/wp-content/uploads/2025/02/coming-soon-300x215.jpg",
+              "medium-width": 300,
+              "medium-height": 215,
+              "medium_large": "https://rggndr.it/wp-content/uploads/2025/02/coming-soon-768x551.jpg",
+              "medium_large-width": 768,
+              "medium_large-height": 551,
+              "large": "https://rggndr.it/wp-content/uploads/2025/02/coming-soon-1024x735.jpg",
+              "large-width": 1024,
+              "large-height": 735,
+              "1536x1536": "https://rggndr.it/wp-content/uploads/2025/02/coming-soon-1536x1103.jpg",
+              "1536x1536-width": 1536,
+              "1536x1536-height": 1103,
+              "2048x2048": "https://rggndr.it/wp-content/uploads/2025/02/coming-soon.jpg",
+              "2048x2048-width": 1680,
+              "2048x2048-height": 1206
+            }
+          },
+          "caption": ""
+        }
+      ]
+    },
+    "yoast_head": "<!-- This site is optimized with the Yoast SEO plugin v27.9 - https://yoast.com/product/yoast-seo-wordpress/ -->\n<title>MarkLayer - RGGNDR</title>\n<meta name=\"robots\" content=\"index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1\" />\n<link rel=\"canonical\" href=\"https://rggndr.it/progetto/marklayer/\" />\n<meta property=\"og:locale\" content=\"it_IT\" />\n<meta property=\"og:type\" content=\"article\" />\n<meta property=\"og:title\" content=\"MarkLayer - RGGNDR\" />\n<meta property=\"og:url\" content=\"https://rggndr.it/progetto/marklayer/\" />\n<meta property=\"og:site_name\" content=\"RGGNDR\" />\n<meta property=\"article:modified_time\" content=\"2025-05-14T07:00:26+00:00\" />\n<meta property=\"og:image\" content=\"https://rggndr.it/wp-content/uploads/2025/02/marklayer.jpg\" />\n\t<meta property=\"og:image:width\" content=\"830\" />\n\t<meta property=\"og:image:height\" content=\"1108\" />\n\t<meta property=\"og:image:type\" content=\"image/jpeg\" />\n<meta name=\"twitter:card\" content=\"summary_large_image\" />\n<meta name=\"twitter:site\" content=\"@andrea_rugge\" />\n<meta name=\"twitter:label1\" content=\"Tempo di lettura stimato\" />\n\t<meta name=\"twitter:data1\" content=\"1 minuto\" />\n<script type=\"application/ld+json\" class=\"yoast-schema-graph\">{\"@context\":\"https:\\/\\/schema.org\",\"@graph\":[{\"@type\":\"WebPage\",\"@id\":\"https:\\/\\/rggndr.it\\/progetto\\/marklayer\\/\",\"url\":\"https:\\/\\/rggndr.it\\/progetto\\/marklayer\\/\",\"name\":\"MarkLayer - RGGNDR\",\"isPartOf\":{\"@id\":\"https:\\/\\/rggndr.it\\/#website\"},\"primaryImageOfPage\":{\"@id\":\"https:\\/\\/rggndr.it\\/progetto\\/marklayer\\/#primaryimage\"},\"image\":{\"@id\":\"https:\\/\\/rggndr.it\\/progetto\\/marklayer\\/#primaryimage\"},\"thumbnailUrl\":\"https:\\/\\/rggndr.it\\/wp-content\\/uploads\\/2025\\/02\\/marklayer.jpg\",\"datePublished\":\"2025-02-14T08:23:10+00:00\",\"dateModified\":\"2025-05-14T07:00:26+00:00\",\"breadcrumb\":{\"@id\":\"https:\\/\\/rggndr.it\\/progetto\\/marklayer\\/#breadcrumb\"},\"inLanguage\":\"it-IT\",\"potentialAction\":[{\"@type\":\"ReadAction\",\"target\":[\"https:\\/\\/rggndr.it\\/progetto\\/marklayer\\/\"]}]},{\"@type\":\"ImageObject\",\"inLanguage\":\"it-IT\",\"@id\":\"https:\\/\\/rggndr.it\\/progetto\\/marklayer\\/#primaryimage\",\"url\":\"https:\\/\\/rggndr.it\\/wp-content\\/uploads\\/2025\\/02\\/marklayer.jpg\",\"contentUrl\":\"https:\\/\\/rggndr.it\\/wp-content\\/uploads\\/2025\\/02\\/marklayer.jpg\",\"width\":830,\"height\":1108},{\"@type\":\"BreadcrumbList\",\"@id\":\"https:\\/\\/rggndr.it\\/progetto\\/marklayer\\/#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Home\",\"item\":\"https:\\/\\/rggndr.it\\/\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"MarkLayer\"}]},{\"@type\":\"WebSite\",\"@id\":\"https:\\/\\/rggndr.it\\/#website\",\"url\":\"https:\\/\\/rggndr.it\\/\",\"name\":\"RGGNDR\",\"description\":\"Andrea Ruggeri — Design Driven Entrepreneur\",\"publisher\":{\"@id\":\"https:\\/\\/rggndr.it\\/#organization\"},\"potentialAction\":[{\"@type\":\"SearchAction\",\"target\":{\"@type\":\"EntryPoint\",\"urlTemplate\":\"https:\\/\\/rggndr.it\\/?s={search_term_string}\"},\"query-input\":{\"@type\":\"PropertyValueSpecification\",\"valueRequired\":true,\"valueName\":\"search_term_string\"}}],\"inLanguage\":\"it-IT\"},{\"@type\":\"Organization\",\"@id\":\"https:\\/\\/rggndr.it\\/#organization\",\"name\":\"RGGNDR\",\"url\":\"https:\\/\\/rggndr.it\\/\",\"logo\":{\"@type\":\"ImageObject\",\"inLanguage\":\"it-IT\",\"@id\":\"https:\\/\\/rggndr.it\\/#\\/schema\\/logo\\/image\\/\",\"url\":\"https:\\/\\/rggndr.be-dev.it\\/wp-content\\/uploads\\/2025\\/02\\/screenshot.png\",\"contentUrl\":\"https:\\/\\/rggndr.be-dev.it\\/wp-content\\/uploads\\/2025\\/02\\/screenshot.png\",\"width\":1200,\"height\":900,\"caption\":\"RGGNDR\"},\"image\":{\"@id\":\"https:\\/\\/rggndr.it\\/#\\/schema\\/logo\\/image\\/\"},\"sameAs\":[\"https:\\/\\/x.com\\/andrea_rugge\",\"https:\\/\\/www.instagram.com\\/andrearugge\\/\",\"https:\\/\\/www.linkedin.com\\/in\\/andrerugge\\/\"]}]}</script>\n<!-- / Yoast SEO plugin. -->",
+    "yoast_head_json": {
+      "title": "MarkLayer - RGGNDR",
+      "robots": {
+        "index": "index",
+        "follow": "follow",
+        "max-snippet": "max-snippet:-1",
+        "max-image-preview": "max-image-preview:large",
+        "max-video-preview": "max-video-preview:-1"
+      },
+      "canonical": "https://rggndr.it/progetto/marklayer/",
+      "og_locale": "it_IT",
+      "og_type": "article",
+      "og_title": "MarkLayer - RGGNDR",
+      "og_url": "https://rggndr.it/progetto/marklayer/",
+      "og_site_name": "RGGNDR",
+      "article_modified_time": "2025-05-14T07:00:26+00:00",
+      "og_image": [
+        {
+          "width": 830,
+          "height": 1108,
+          "url": "https://rggndr.it/wp-content/uploads/2025/02/marklayer.jpg",
+          "type": "image/jpeg"
+        }
+      ],
+      "twitter_card": "summary_large_image",
+      "twitter_site": "@andrea_rugge",
+      "twitter_misc": {
+        "Tempo di lettura stimato": "1 minuto"
+      },
+      "schema": {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "WebPage",
+            "@id": "https://rggndr.it/progetto/marklayer/",
+            "url": "https://rggndr.it/progetto/marklayer/",
+            "name": "MarkLayer - RGGNDR",
+            "isPartOf": {
+              "@id": "https://rggndr.it/#website"
+            },
+            "primaryImageOfPage": {
+              "@id": "https://rggndr.it/progetto/marklayer/#primaryimage"
+            },
+            "image": {
+              "@id": "https://rggndr.it/progetto/marklayer/#primaryimage"
+            },
+            "thumbnailUrl": "https://rggndr.it/wp-content/uploads/2025/02/marklayer.jpg",
+            "datePublished": "2025-02-14T08:23:10+00:00",
+            "dateModified": "2025-05-14T07:00:26+00:00",
+            "breadcrumb": {
+              "@id": "https://rggndr.it/progetto/marklayer/#breadcrumb"
+            },
+            "inLanguage": "it-IT",
+            "potentialAction": [
+              {
+                "@type": "ReadAction",
+                "target": ["https://rggndr.it/progetto/marklayer/"]
+              }
+            ]
+          },
+          {
+            "@type": "ImageObject",
+            "inLanguage": "it-IT",
+            "@id": "https://rggndr.it/progetto/marklayer/#primaryimage",
+            "url": "https://rggndr.it/wp-content/uploads/2025/02/marklayer.jpg",
+            "contentUrl": "https://rggndr.it/wp-content/uploads/2025/02/marklayer.jpg",
+            "width": 830,
+            "height": 1108
+          },
+          {
+            "@type": "BreadcrumbList",
+            "@id": "https://rggndr.it/progetto/marklayer/#breadcrumb",
+            "itemListElement": [
+              {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Home",
+                "item": "https://rggndr.it/"
+              },
+              {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "MarkLayer"
+              }
+            ]
+          },
+          {
+            "@type": "WebSite",
+            "@id": "https://rggndr.it/#website",
+            "url": "https://rggndr.it/",
+            "name": "RGGNDR",
+            "description": "Andrea Ruggeri — Design Driven Entrepreneur",
+            "publisher": {
+              "@id": "https://rggndr.it/#organization"
+            },
+            "potentialAction": [
+              {
+                "@type": "SearchAction",
+                "target": {
+                  "@type": "EntryPoint",
+                  "urlTemplate": "https://rggndr.it/?s={search_term_string}"
+                },
+                "query-input": {
+                  "@type": "PropertyValueSpecification",
+                  "valueRequired": true,
+                  "valueName": "search_term_string"
+                }
+              }
+            ],
+            "inLanguage": "it-IT"
+          },
+          {
+            "@type": "Organization",
+            "@id": "https://rggndr.it/#organization",
+            "name": "RGGNDR",
+            "url": "https://rggndr.it/",
+            "logo": {
+              "@type": "ImageObject",
+              "inLanguage": "it-IT",
+              "@id": "https://rggndr.it/#/schema/logo/image/",
+              "url": "https://rggndr.be-dev.it/wp-content/uploads/2025/02/screenshot.png",
+              "contentUrl": "https://rggndr.be-dev.it/wp-content/uploads/2025/02/screenshot.png",
+              "width": 1200,
+              "height": 900,
+              "caption": "RGGNDR"
+            },
+            "image": {
+              "@id": "https://rggndr.it/#/schema/logo/image/"
+            },
+            "sameAs": [
+              "https://x.com/andrea_rugge",
+              "https://www.instagram.com/andrearugge/",
+              "https://www.linkedin.com/in/andrerugge/"
+            ]
+          }
+        ]
+      }
+    },
+    "_links": {
+      "self": [
+        {
+          "href": "https://rggndr.it/wp-json/wp/v2/progetto/256",
+          "targetHints": {
+            "allow": ["GET"]
+          }
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://rggndr.it/wp-json/wp/v2/progetto"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://rggndr.it/wp-json/wp/v2/types/progetto"
+        }
+      ],
+      "wp:featuredmedia": [
+        {
+          "embeddable": true,
+          "href": "https://rggndr.it/wp-json/wp/v2/media/394"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://rggndr.it/wp-json/wp/v2/media?parent=256"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 258,
+    "date": "2025-02-14T09:23:25",
+    "date_gmt": "2025-02-14T08:23:25",
+    "guid": {
+      "rendered": "https://rggndr.be-dev.it/?post_type=progetto&#038;p=258"
+    },
+    "modified": "2025-05-19T16:51:07",
+    "modified_gmt": "2025-05-19T14:51:07",
+    "slug": "beconcept-pantacon-ai-workshop",
+    "status": "publish",
+    "type": "progetto",
+    "link": "https://rggndr.it/progetto/beconcept-pantacon-ai-workshop/",
+    "title": {
+      "rendered": "AI Workshop"
+    },
+    "featured_media": 395,
+    "template": "",
+    "meta": {
+      "_acf_changed": false,
+      "inline_featured_image": false
+    },
+    "class_list": ["post-258", "progetto", "type-progetto", "status-publish", "has-post-thumbnail", "hentry"],
+    "acf": {
+      "descrizione_progetto": "",
+      "link_progetto": false,
+      "anno_progetto": "2025",
+      "tipo_progetto": "Workshop",
+      "contenuto_pagina": [
+        {
+          "acf_fc_layout": "immagine_full",
+          "mostra_sezione": true,
+          "immagine": {
+            "ID": 396,
+            "id": 396,
+            "title": "coming-soon",
+            "filename": "coming-soon.jpg",
+            "filesize": 59341,
+            "url": "https://rggndr.it/wp-content/uploads/2025/02/coming-soon.jpg",
+            "link": "https://rggndr.it/progetto/ai-journal/coming-soon/",
+            "alt": "",
+            "author": "1",
+            "description": "",
+            "caption": "",
+            "name": "coming-soon",
+            "status": "inherit",
+            "uploaded_to": 194,
+            "date": "2025-05-14 06:59:43",
+            "modified": "2025-05-14 06:59:43",
+            "menu_order": 0,
+            "mime_type": "image/jpeg",
+            "type": "image",
+            "subtype": "jpeg",
+            "icon": "https://rggndr.it/wp-includes/images/media/default.png",
+            "width": 1680,
+            "height": 1206,
+            "sizes": {
+              "thumbnail": "https://rggndr.it/wp-content/uploads/2025/02/coming-soon-150x150.jpg",
+              "thumbnail-width": 150,
+              "thumbnail-height": 150,
+              "medium": "https://rggndr.it/wp-content/uploads/2025/02/coming-soon-300x215.jpg",
+              "medium-width": 300,
+              "medium-height": 215,
+              "medium_large": "https://rggndr.it/wp-content/uploads/2025/02/coming-soon-768x551.jpg",
+              "medium_large-width": 768,
+              "medium_large-height": 551,
+              "large": "https://rggndr.it/wp-content/uploads/2025/02/coming-soon-1024x735.jpg",
+              "large-width": 1024,
+              "large-height": 735,
+              "1536x1536": "https://rggndr.it/wp-content/uploads/2025/02/coming-soon-1536x1103.jpg",
+              "1536x1536-width": 1536,
+              "1536x1536-height": 1103,
+              "2048x2048": "https://rggndr.it/wp-content/uploads/2025/02/coming-soon.jpg",
+              "2048x2048-width": 1680,
+              "2048x2048-height": 1206
+            }
+          },
+          "caption": ""
+        }
+      ]
+    },
+    "yoast_head": "<!-- This site is optimized with the Yoast SEO plugin v27.9 - https://yoast.com/product/yoast-seo-wordpress/ -->\n<title>AI Workshop - RGGNDR</title>\n<meta name=\"robots\" content=\"index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1\" />\n<link rel=\"canonical\" href=\"https://rggndr.it/progetto/beconcept-pantacon-ai-workshop/\" />\n<meta property=\"og:locale\" content=\"it_IT\" />\n<meta property=\"og:type\" content=\"article\" />\n<meta property=\"og:title\" content=\"AI Workshop - RGGNDR\" />\n<meta property=\"og:url\" content=\"https://rggndr.it/progetto/beconcept-pantacon-ai-workshop/\" />\n<meta property=\"og:site_name\" content=\"RGGNDR\" />\n<meta property=\"article:modified_time\" content=\"2025-05-19T14:51:07+00:00\" />\n<meta property=\"og:image\" content=\"https://rggndr.it/wp-content/uploads/2025/02/ai-workshop.jpg\" />\n\t<meta property=\"og:image:width\" content=\"550\" />\n\t<meta property=\"og:image:height\" content=\"885\" />\n\t<meta property=\"og:image:type\" content=\"image/jpeg\" />\n<meta name=\"twitter:card\" content=\"summary_large_image\" />\n<meta name=\"twitter:site\" content=\"@andrea_rugge\" />\n<meta name=\"twitter:label1\" content=\"Tempo di lettura stimato\" />\n\t<meta name=\"twitter:data1\" content=\"1 minuto\" />\n<script type=\"application/ld+json\" class=\"yoast-schema-graph\">{\"@context\":\"https:\\/\\/schema.org\",\"@graph\":[{\"@type\":\"WebPage\",\"@id\":\"https:\\/\\/rggndr.it\\/progetto\\/beconcept-pantacon-ai-workshop\\/\",\"url\":\"https:\\/\\/rggndr.it\\/progetto\\/beconcept-pantacon-ai-workshop\\/\",\"name\":\"AI Workshop - RGGNDR\",\"isPartOf\":{\"@id\":\"https:\\/\\/rggndr.it\\/#website\"},\"primaryImageOfPage\":{\"@id\":\"https:\\/\\/rggndr.it\\/progetto\\/beconcept-pantacon-ai-workshop\\/#primaryimage\"},\"image\":{\"@id\":\"https:\\/\\/rggndr.it\\/progetto\\/beconcept-pantacon-ai-workshop\\/#primaryimage\"},\"thumbnailUrl\":\"https:\\/\\/rggndr.it\\/wp-content\\/uploads\\/2025\\/02\\/ai-workshop.jpg\",\"datePublished\":\"2025-02-14T08:23:25+00:00\",\"dateModified\":\"2025-05-19T14:51:07+00:00\",\"breadcrumb\":{\"@id\":\"https:\\/\\/rggndr.it\\/progetto\\/beconcept-pantacon-ai-workshop\\/#breadcrumb\"},\"inLanguage\":\"it-IT\",\"potentialAction\":[{\"@type\":\"ReadAction\",\"target\":[\"https:\\/\\/rggndr.it\\/progetto\\/beconcept-pantacon-ai-workshop\\/\"]}]},{\"@type\":\"ImageObject\",\"inLanguage\":\"it-IT\",\"@id\":\"https:\\/\\/rggndr.it\\/progetto\\/beconcept-pantacon-ai-workshop\\/#primaryimage\",\"url\":\"https:\\/\\/rggndr.it\\/wp-content\\/uploads\\/2025\\/02\\/ai-workshop.jpg\",\"contentUrl\":\"https:\\/\\/rggndr.it\\/wp-content\\/uploads\\/2025\\/02\\/ai-workshop.jpg\",\"width\":550,\"height\":885},{\"@type\":\"BreadcrumbList\",\"@id\":\"https:\\/\\/rggndr.it\\/progetto\\/beconcept-pantacon-ai-workshop\\/#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Home\",\"item\":\"https:\\/\\/rggndr.it\\/\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"AI Workshop\"}]},{\"@type\":\"WebSite\",\"@id\":\"https:\\/\\/rggndr.it\\/#website\",\"url\":\"https:\\/\\/rggndr.it\\/\",\"name\":\"RGGNDR\",\"description\":\"Andrea Ruggeri — Design Driven Entrepreneur\",\"publisher\":{\"@id\":\"https:\\/\\/rggndr.it\\/#organization\"},\"potentialAction\":[{\"@type\":\"SearchAction\",\"target\":{\"@type\":\"EntryPoint\",\"urlTemplate\":\"https:\\/\\/rggndr.it\\/?s={search_term_string}\"},\"query-input\":{\"@type\":\"PropertyValueSpecification\",\"valueRequired\":true,\"valueName\":\"search_term_string\"}}],\"inLanguage\":\"it-IT\"},{\"@type\":\"Organization\",\"@id\":\"https:\\/\\/rggndr.it\\/#organization\",\"name\":\"RGGNDR\",\"url\":\"https:\\/\\/rggndr.it\\/\",\"logo\":{\"@type\":\"ImageObject\",\"inLanguage\":\"it-IT\",\"@id\":\"https:\\/\\/rggndr.it\\/#\\/schema\\/logo\\/image\\/\",\"url\":\"https:\\/\\/rggndr.be-dev.it\\/wp-content\\/uploads\\/2025\\/02\\/screenshot.png\",\"contentUrl\":\"https:\\/\\/rggndr.be-dev.it\\/wp-content\\/uploads\\/2025\\/02\\/screenshot.png\",\"width\":1200,\"height\":900,\"caption\":\"RGGNDR\"},\"image\":{\"@id\":\"https:\\/\\/rggndr.it\\/#\\/schema\\/logo\\/image\\/\"},\"sameAs\":[\"https:\\/\\/x.com\\/andrea_rugge\",\"https:\\/\\/www.instagram.com\\/andrearugge\\/\",\"https:\\/\\/www.linkedin.com\\/in\\/andrerugge\\/\"]}]}</script>\n<!-- / Yoast SEO plugin. -->",
+    "yoast_head_json": {
+      "title": "AI Workshop - RGGNDR",
+      "robots": {
+        "index": "index",
+        "follow": "follow",
+        "max-snippet": "max-snippet:-1",
+        "max-image-preview": "max-image-preview:large",
+        "max-video-preview": "max-video-preview:-1"
+      },
+      "canonical": "https://rggndr.it/progetto/beconcept-pantacon-ai-workshop/",
+      "og_locale": "it_IT",
+      "og_type": "article",
+      "og_title": "AI Workshop - RGGNDR",
+      "og_url": "https://rggndr.it/progetto/beconcept-pantacon-ai-workshop/",
+      "og_site_name": "RGGNDR",
+      "article_modified_time": "2025-05-19T14:51:07+00:00",
+      "og_image": [
+        {
+          "width": 550,
+          "height": 885,
+          "url": "https://rggndr.it/wp-content/uploads/2025/02/ai-workshop.jpg",
+          "type": "image/jpeg"
+        }
+      ],
+      "twitter_card": "summary_large_image",
+      "twitter_site": "@andrea_rugge",
+      "twitter_misc": {
+        "Tempo di lettura stimato": "1 minuto"
+      },
+      "schema": {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "WebPage",
+            "@id": "https://rggndr.it/progetto/beconcept-pantacon-ai-workshop/",
+            "url": "https://rggndr.it/progetto/beconcept-pantacon-ai-workshop/",
+            "name": "AI Workshop - RGGNDR",
+            "isPartOf": {
+              "@id": "https://rggndr.it/#website"
+            },
+            "primaryImageOfPage": {
+              "@id": "https://rggndr.it/progetto/beconcept-pantacon-ai-workshop/#primaryimage"
+            },
+            "image": {
+              "@id": "https://rggndr.it/progetto/beconcept-pantacon-ai-workshop/#primaryimage"
+            },
+            "thumbnailUrl": "https://rggndr.it/wp-content/uploads/2025/02/ai-workshop.jpg",
+            "datePublished": "2025-02-14T08:23:25+00:00",
+            "dateModified": "2025-05-19T14:51:07+00:00",
+            "breadcrumb": {
+              "@id": "https://rggndr.it/progetto/beconcept-pantacon-ai-workshop/#breadcrumb"
+            },
+            "inLanguage": "it-IT",
+            "potentialAction": [
+              {
+                "@type": "ReadAction",
+                "target": ["https://rggndr.it/progetto/beconcept-pantacon-ai-workshop/"]
+              }
+            ]
+          },
+          {
+            "@type": "ImageObject",
+            "inLanguage": "it-IT",
+            "@id": "https://rggndr.it/progetto/beconcept-pantacon-ai-workshop/#primaryimage",
+            "url": "https://rggndr.it/wp-content/uploads/2025/02/ai-workshop.jpg",
+            "contentUrl": "https://rggndr.it/wp-content/uploads/2025/02/ai-workshop.jpg",
+            "width": 550,
+            "height": 885
+          },
+          {
+            "@type": "BreadcrumbList",
+            "@id": "https://rggndr.it/progetto/beconcept-pantacon-ai-workshop/#breadcrumb",
+            "itemListElement": [
+              {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Home",
+                "item": "https://rggndr.it/"
+              },
+              {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "AI Workshop"
+              }
+            ]
+          },
+          {
+            "@type": "WebSite",
+            "@id": "https://rggndr.it/#website",
+            "url": "https://rggndr.it/",
+            "name": "RGGNDR",
+            "description": "Andrea Ruggeri — Design Driven Entrepreneur",
+            "publisher": {
+              "@id": "https://rggndr.it/#organization"
+            },
+            "potentialAction": [
+              {
+                "@type": "SearchAction",
+                "target": {
+                  "@type": "EntryPoint",
+                  "urlTemplate": "https://rggndr.it/?s={search_term_string}"
+                },
+                "query-input": {
+                  "@type": "PropertyValueSpecification",
+                  "valueRequired": true,
+                  "valueName": "search_term_string"
+                }
+              }
+            ],
+            "inLanguage": "it-IT"
+          },
+          {
+            "@type": "Organization",
+            "@id": "https://rggndr.it/#organization",
+            "name": "RGGNDR",
+            "url": "https://rggndr.it/",
+            "logo": {
+              "@type": "ImageObject",
+              "inLanguage": "it-IT",
+              "@id": "https://rggndr.it/#/schema/logo/image/",
+              "url": "https://rggndr.be-dev.it/wp-content/uploads/2025/02/screenshot.png",
+              "contentUrl": "https://rggndr.be-dev.it/wp-content/uploads/2025/02/screenshot.png",
+              "width": 1200,
+              "height": 900,
+              "caption": "RGGNDR"
+            },
+            "image": {
+              "@id": "https://rggndr.it/#/schema/logo/image/"
+            },
+            "sameAs": [
+              "https://x.com/andrea_rugge",
+              "https://www.instagram.com/andrearugge/",
+              "https://www.linkedin.com/in/andrerugge/"
+            ]
+          }
+        ]
+      }
+    },
+    "_links": {
+      "self": [
+        {
+          "href": "https://rggndr.it/wp-json/wp/v2/progetto/258",
+          "targetHints": {
+            "allow": ["GET"]
+          }
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://rggndr.it/wp-json/wp/v2/progetto"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://rggndr.it/wp-json/wp/v2/types/progetto"
+        }
+      ],
+      "wp:featuredmedia": [
+        {
+          "embeddable": true,
+          "href": "https://rggndr.it/wp-json/wp/v2/media/395"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://rggndr.it/wp-json/wp/v2/media?parent=258"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 260,
+    "date": "2025-02-14T09:23:38",
+    "date_gmt": "2025-02-14T08:23:38",
+    "guid": {
+      "rendered": "https://rggndr.be-dev.it/?post_type=progetto&#038;p=260"
+    },
+    "modified": "2025-05-14T09:00:54",
+    "modified_gmt": "2025-05-14T07:00:54",
+    "slug": "dialetto-libero",
+    "status": "publish",
+    "type": "progetto",
+    "link": "https://rggndr.it/progetto/dialetto-libero/",
+    "title": {
+      "rendered": "Dialetto Libero"
+    },
+    "featured_media": 261,
+    "template": "",
+    "meta": {
+      "_acf_changed": false,
+      "inline_featured_image": false
+    },
+    "class_list": ["post-260", "progetto", "type-progetto", "status-publish", "has-post-thumbnail", "hentry"],
+    "acf": {
+      "descrizione_progetto": "",
+      "link_progetto": false,
+      "anno_progetto": "2019",
+      "tipo_progetto": "Personal",
+      "contenuto_pagina": [
+        {
+          "acf_fc_layout": "immagine_full",
+          "mostra_sezione": true,
+          "immagine": {
+            "ID": 396,
+            "id": 396,
+            "title": "coming-soon",
+            "filename": "coming-soon.jpg",
+            "filesize": 59341,
+            "url": "https://rggndr.it/wp-content/uploads/2025/02/coming-soon.jpg",
+            "link": "https://rggndr.it/progetto/ai-journal/coming-soon/",
+            "alt": "",
+            "author": "1",
+            "description": "",
+            "caption": "",
+            "name": "coming-soon",
+            "status": "inherit",
+            "uploaded_to": 194,
+            "date": "2025-05-14 06:59:43",
+            "modified": "2025-05-14 06:59:43",
+            "menu_order": 0,
+            "mime_type": "image/jpeg",
+            "type": "image",
+            "subtype": "jpeg",
+            "icon": "https://rggndr.it/wp-includes/images/media/default.png",
+            "width": 1680,
+            "height": 1206,
+            "sizes": {
+              "thumbnail": "https://rggndr.it/wp-content/uploads/2025/02/coming-soon-150x150.jpg",
+              "thumbnail-width": 150,
+              "thumbnail-height": 150,
+              "medium": "https://rggndr.it/wp-content/uploads/2025/02/coming-soon-300x215.jpg",
+              "medium-width": 300,
+              "medium-height": 215,
+              "medium_large": "https://rggndr.it/wp-content/uploads/2025/02/coming-soon-768x551.jpg",
+              "medium_large-width": 768,
+              "medium_large-height": 551,
+              "large": "https://rggndr.it/wp-content/uploads/2025/02/coming-soon-1024x735.jpg",
+              "large-width": 1024,
+              "large-height": 735,
+              "1536x1536": "https://rggndr.it/wp-content/uploads/2025/02/coming-soon-1536x1103.jpg",
+              "1536x1536-width": 1536,
+              "1536x1536-height": 1103,
+              "2048x2048": "https://rggndr.it/wp-content/uploads/2025/02/coming-soon.jpg",
+              "2048x2048-width": 1680,
+              "2048x2048-height": 1206
+            }
+          },
+          "caption": ""
+        }
+      ]
+    },
+    "yoast_head": "<!-- This site is optimized with the Yoast SEO plugin v27.9 - https://yoast.com/product/yoast-seo-wordpress/ -->\n<title>Dialetto Libero - RGGNDR</title>\n<meta name=\"robots\" content=\"index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1\" />\n<link rel=\"canonical\" href=\"https://rggndr.it/progetto/dialetto-libero/\" />\n<meta property=\"og:locale\" content=\"it_IT\" />\n<meta property=\"og:type\" content=\"article\" />\n<meta property=\"og:title\" content=\"Dialetto Libero - RGGNDR\" />\n<meta property=\"og:url\" content=\"https://rggndr.it/progetto/dialetto-libero/\" />\n<meta property=\"og:site_name\" content=\"RGGNDR\" />\n<meta property=\"article:modified_time\" content=\"2025-05-14T07:00:54+00:00\" />\n<meta property=\"og:image\" content=\"https://rggndr.it/wp-content/uploads/2025/02/a4.jpg\" />\n\t<meta property=\"og:image:width\" content=\"550\" />\n\t<meta property=\"og:image:height\" content=\"406\" />\n\t<meta property=\"og:image:type\" content=\"image/jpeg\" />\n<meta name=\"twitter:card\" content=\"summary_large_image\" />\n<meta name=\"twitter:site\" content=\"@andrea_rugge\" />\n<meta name=\"twitter:label1\" content=\"Tempo di lettura stimato\" />\n\t<meta name=\"twitter:data1\" content=\"1 minuto\" />\n<script type=\"application/ld+json\" class=\"yoast-schema-graph\">{\"@context\":\"https:\\/\\/schema.org\",\"@graph\":[{\"@type\":\"WebPage\",\"@id\":\"https:\\/\\/rggndr.it\\/progetto\\/dialetto-libero\\/\",\"url\":\"https:\\/\\/rggndr.it\\/progetto\\/dialetto-libero\\/\",\"name\":\"Dialetto Libero - RGGNDR\",\"isPartOf\":{\"@id\":\"https:\\/\\/rggndr.it\\/#website\"},\"primaryImageOfPage\":{\"@id\":\"https:\\/\\/rggndr.it\\/progetto\\/dialetto-libero\\/#primaryimage\"},\"image\":{\"@id\":\"https:\\/\\/rggndr.it\\/progetto\\/dialetto-libero\\/#primaryimage\"},\"thumbnailUrl\":\"https:\\/\\/rggndr.it\\/wp-content\\/uploads\\/2025\\/02\\/a4.jpg\",\"datePublished\":\"2025-02-14T08:23:38+00:00\",\"dateModified\":\"2025-05-14T07:00:54+00:00\",\"breadcrumb\":{\"@id\":\"https:\\/\\/rggndr.it\\/progetto\\/dialetto-libero\\/#breadcrumb\"},\"inLanguage\":\"it-IT\",\"potentialAction\":[{\"@type\":\"ReadAction\",\"target\":[\"https:\\/\\/rggndr.it\\/progetto\\/dialetto-libero\\/\"]}]},{\"@type\":\"ImageObject\",\"inLanguage\":\"it-IT\",\"@id\":\"https:\\/\\/rggndr.it\\/progetto\\/dialetto-libero\\/#primaryimage\",\"url\":\"https:\\/\\/rggndr.it\\/wp-content\\/uploads\\/2025\\/02\\/a4.jpg\",\"contentUrl\":\"https:\\/\\/rggndr.it\\/wp-content\\/uploads\\/2025\\/02\\/a4.jpg\",\"width\":550,\"height\":406},{\"@type\":\"BreadcrumbList\",\"@id\":\"https:\\/\\/rggndr.it\\/progetto\\/dialetto-libero\\/#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Home\",\"item\":\"https:\\/\\/rggndr.it\\/\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Dialetto Libero\"}]},{\"@type\":\"WebSite\",\"@id\":\"https:\\/\\/rggndr.it\\/#website\",\"url\":\"https:\\/\\/rggndr.it\\/\",\"name\":\"RGGNDR\",\"description\":\"Andrea Ruggeri — Design Driven Entrepreneur\",\"publisher\":{\"@id\":\"https:\\/\\/rggndr.it\\/#organization\"},\"potentialAction\":[{\"@type\":\"SearchAction\",\"target\":{\"@type\":\"EntryPoint\",\"urlTemplate\":\"https:\\/\\/rggndr.it\\/?s={search_term_string}\"},\"query-input\":{\"@type\":\"PropertyValueSpecification\",\"valueRequired\":true,\"valueName\":\"search_term_string\"}}],\"inLanguage\":\"it-IT\"},{\"@type\":\"Organization\",\"@id\":\"https:\\/\\/rggndr.it\\/#organization\",\"name\":\"RGGNDR\",\"url\":\"https:\\/\\/rggndr.it\\/\",\"logo\":{\"@type\":\"ImageObject\",\"inLanguage\":\"it-IT\",\"@id\":\"https:\\/\\/rggndr.it\\/#\\/schema\\/logo\\/image\\/\",\"url\":\"https:\\/\\/rggndr.be-dev.it\\/wp-content\\/uploads\\/2025\\/02\\/screenshot.png\",\"contentUrl\":\"https:\\/\\/rggndr.be-dev.it\\/wp-content\\/uploads\\/2025\\/02\\/screenshot.png\",\"width\":1200,\"height\":900,\"caption\":\"RGGNDR\"},\"image\":{\"@id\":\"https:\\/\\/rggndr.it\\/#\\/schema\\/logo\\/image\\/\"},\"sameAs\":[\"https:\\/\\/x.com\\/andrea_rugge\",\"https:\\/\\/www.instagram.com\\/andrearugge\\/\",\"https:\\/\\/www.linkedin.com\\/in\\/andrerugge\\/\"]}]}</script>\n<!-- / Yoast SEO plugin. -->",
+    "yoast_head_json": {
+      "title": "Dialetto Libero - RGGNDR",
+      "robots": {
+        "index": "index",
+        "follow": "follow",
+        "max-snippet": "max-snippet:-1",
+        "max-image-preview": "max-image-preview:large",
+        "max-video-preview": "max-video-preview:-1"
+      },
+      "canonical": "https://rggndr.it/progetto/dialetto-libero/",
+      "og_locale": "it_IT",
+      "og_type": "article",
+      "og_title": "Dialetto Libero - RGGNDR",
+      "og_url": "https://rggndr.it/progetto/dialetto-libero/",
+      "og_site_name": "RGGNDR",
+      "article_modified_time": "2025-05-14T07:00:54+00:00",
+      "og_image": [
+        {
+          "width": 550,
+          "height": 406,
+          "url": "https://rggndr.it/wp-content/uploads/2025/02/a4.jpg",
+          "type": "image/jpeg"
+        }
+      ],
+      "twitter_card": "summary_large_image",
+      "twitter_site": "@andrea_rugge",
+      "twitter_misc": {
+        "Tempo di lettura stimato": "1 minuto"
+      },
+      "schema": {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "WebPage",
+            "@id": "https://rggndr.it/progetto/dialetto-libero/",
+            "url": "https://rggndr.it/progetto/dialetto-libero/",
+            "name": "Dialetto Libero - RGGNDR",
+            "isPartOf": {
+              "@id": "https://rggndr.it/#website"
+            },
+            "primaryImageOfPage": {
+              "@id": "https://rggndr.it/progetto/dialetto-libero/#primaryimage"
+            },
+            "image": {
+              "@id": "https://rggndr.it/progetto/dialetto-libero/#primaryimage"
+            },
+            "thumbnailUrl": "https://rggndr.it/wp-content/uploads/2025/02/a4.jpg",
+            "datePublished": "2025-02-14T08:23:38+00:00",
+            "dateModified": "2025-05-14T07:00:54+00:00",
+            "breadcrumb": {
+              "@id": "https://rggndr.it/progetto/dialetto-libero/#breadcrumb"
+            },
+            "inLanguage": "it-IT",
+            "potentialAction": [
+              {
+                "@type": "ReadAction",
+                "target": ["https://rggndr.it/progetto/dialetto-libero/"]
+              }
+            ]
+          },
+          {
+            "@type": "ImageObject",
+            "inLanguage": "it-IT",
+            "@id": "https://rggndr.it/progetto/dialetto-libero/#primaryimage",
+            "url": "https://rggndr.it/wp-content/uploads/2025/02/a4.jpg",
+            "contentUrl": "https://rggndr.it/wp-content/uploads/2025/02/a4.jpg",
+            "width": 550,
+            "height": 406
+          },
+          {
+            "@type": "BreadcrumbList",
+            "@id": "https://rggndr.it/progetto/dialetto-libero/#breadcrumb",
+            "itemListElement": [
+              {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Home",
+                "item": "https://rggndr.it/"
+              },
+              {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "Dialetto Libero"
+              }
+            ]
+          },
+          {
+            "@type": "WebSite",
+            "@id": "https://rggndr.it/#website",
+            "url": "https://rggndr.it/",
+            "name": "RGGNDR",
+            "description": "Andrea Ruggeri — Design Driven Entrepreneur",
+            "publisher": {
+              "@id": "https://rggndr.it/#organization"
+            },
+            "potentialAction": [
+              {
+                "@type": "SearchAction",
+                "target": {
+                  "@type": "EntryPoint",
+                  "urlTemplate": "https://rggndr.it/?s={search_term_string}"
+                },
+                "query-input": {
+                  "@type": "PropertyValueSpecification",
+                  "valueRequired": true,
+                  "valueName": "search_term_string"
+                }
+              }
+            ],
+            "inLanguage": "it-IT"
+          },
+          {
+            "@type": "Organization",
+            "@id": "https://rggndr.it/#organization",
+            "name": "RGGNDR",
+            "url": "https://rggndr.it/",
+            "logo": {
+              "@type": "ImageObject",
+              "inLanguage": "it-IT",
+              "@id": "https://rggndr.it/#/schema/logo/image/",
+              "url": "https://rggndr.be-dev.it/wp-content/uploads/2025/02/screenshot.png",
+              "contentUrl": "https://rggndr.be-dev.it/wp-content/uploads/2025/02/screenshot.png",
+              "width": 1200,
+              "height": 900,
+              "caption": "RGGNDR"
+            },
+            "image": {
+              "@id": "https://rggndr.it/#/schema/logo/image/"
+            },
+            "sameAs": [
+              "https://x.com/andrea_rugge",
+              "https://www.instagram.com/andrearugge/",
+              "https://www.linkedin.com/in/andrerugge/"
+            ]
+          }
+        ]
+      }
+    },
+    "_links": {
+      "self": [
+        {
+          "href": "https://rggndr.it/wp-json/wp/v2/progetto/260",
+          "targetHints": {
+            "allow": ["GET"]
+          }
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://rggndr.it/wp-json/wp/v2/progetto"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://rggndr.it/wp-json/wp/v2/types/progetto"
+        }
+      ],
+      "wp:featuredmedia": [
+        {
+          "embeddable": true,
+          "href": "https://rggndr.it/wp-json/wp/v2/media/261"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://rggndr.it/wp-json/wp/v2/media?parent=260"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 262,
+    "date": "2025-02-14T09:23:59",
+    "date_gmt": "2025-02-14T08:23:59",
+    "guid": {
+      "rendered": "https://rggndr.be-dev.it/?post_type=progetto&#038;p=262"
+    },
+    "modified": "2025-05-15T10:53:35",
+    "modified_gmt": "2025-05-15T08:53:35",
+    "slug": "montipadel",
+    "status": "publish",
+    "type": "progetto",
+    "link": "https://rggndr.it/progetto/montipadel/",
+    "title": {
+      "rendered": "Montipadel"
+    },
+    "featured_media": 397,
+    "template": "",
+    "meta": {
+      "_acf_changed": false,
+      "inline_featured_image": false
+    },
+    "class_list": ["post-262", "progetto", "type-progetto", "status-publish", "has-post-thumbnail", "hentry"],
+    "acf": {
+      "descrizione_progetto": "",
+      "link_progetto": false,
+      "anno_progetto": "2024",
+      "tipo_progetto": "Co-Founded",
+      "contenuto_pagina": [
+        {
+          "acf_fc_layout": "immagine_full",
+          "mostra_sezione": true,
+          "immagine": {
+            "ID": 396,
+            "id": 396,
+            "title": "coming-soon",
+            "filename": "coming-soon.jpg",
+            "filesize": 59341,
+            "url": "https://rggndr.it/wp-content/uploads/2025/02/coming-soon.jpg",
+            "link": "https://rggndr.it/progetto/ai-journal/coming-soon/",
+            "alt": "",
+            "author": "1",
+            "description": "",
+            "caption": "",
+            "name": "coming-soon",
+            "status": "inherit",
+            "uploaded_to": 194,
+            "date": "2025-05-14 06:59:43",
+            "modified": "2025-05-14 06:59:43",
+            "menu_order": 0,
+            "mime_type": "image/jpeg",
+            "type": "image",
+            "subtype": "jpeg",
+            "icon": "https://rggndr.it/wp-includes/images/media/default.png",
+            "width": 1680,
+            "height": 1206,
+            "sizes": {
+              "thumbnail": "https://rggndr.it/wp-content/uploads/2025/02/coming-soon-150x150.jpg",
+              "thumbnail-width": 150,
+              "thumbnail-height": 150,
+              "medium": "https://rggndr.it/wp-content/uploads/2025/02/coming-soon-300x215.jpg",
+              "medium-width": 300,
+              "medium-height": 215,
+              "medium_large": "https://rggndr.it/wp-content/uploads/2025/02/coming-soon-768x551.jpg",
+              "medium_large-width": 768,
+              "medium_large-height": 551,
+              "large": "https://rggndr.it/wp-content/uploads/2025/02/coming-soon-1024x735.jpg",
+              "large-width": 1024,
+              "large-height": 735,
+              "1536x1536": "https://rggndr.it/wp-content/uploads/2025/02/coming-soon-1536x1103.jpg",
+              "1536x1536-width": 1536,
+              "1536x1536-height": 1103,
+              "2048x2048": "https://rggndr.it/wp-content/uploads/2025/02/coming-soon.jpg",
+              "2048x2048-width": 1680,
+              "2048x2048-height": 1206
+            }
+          },
+          "caption": ""
+        }
+      ]
+    },
+    "yoast_head": "<!-- This site is optimized with the Yoast SEO plugin v27.9 - https://yoast.com/product/yoast-seo-wordpress/ -->\n<title>Montipadel - RGGNDR</title>\n<meta name=\"robots\" content=\"index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1\" />\n<link rel=\"canonical\" href=\"https://rggndr.it/progetto/montipadel/\" />\n<meta property=\"og:locale\" content=\"it_IT\" />\n<meta property=\"og:type\" content=\"article\" />\n<meta property=\"og:title\" content=\"Montipadel - RGGNDR\" />\n<meta property=\"og:url\" content=\"https://rggndr.it/progetto/montipadel/\" />\n<meta property=\"og:site_name\" content=\"RGGNDR\" />\n<meta property=\"article:modified_time\" content=\"2025-05-15T08:53:35+00:00\" />\n<meta property=\"og:image\" content=\"https://rggndr.it/wp-content/uploads/2025/02/montipadel.jpg\" />\n\t<meta property=\"og:image:width\" content=\"1200\" />\n\t<meta property=\"og:image:height\" content=\"1600\" />\n\t<meta property=\"og:image:type\" content=\"image/jpeg\" />\n<meta name=\"twitter:card\" content=\"summary_large_image\" />\n<meta name=\"twitter:site\" content=\"@andrea_rugge\" />\n<meta name=\"twitter:label1\" content=\"Tempo di lettura stimato\" />\n\t<meta name=\"twitter:data1\" content=\"1 minuto\" />\n<script type=\"application/ld+json\" class=\"yoast-schema-graph\">{\"@context\":\"https:\\/\\/schema.org\",\"@graph\":[{\"@type\":\"WebPage\",\"@id\":\"https:\\/\\/rggndr.it\\/progetto\\/montipadel\\/\",\"url\":\"https:\\/\\/rggndr.it\\/progetto\\/montipadel\\/\",\"name\":\"Montipadel - RGGNDR\",\"isPartOf\":{\"@id\":\"https:\\/\\/rggndr.it\\/#website\"},\"primaryImageOfPage\":{\"@id\":\"https:\\/\\/rggndr.it\\/progetto\\/montipadel\\/#primaryimage\"},\"image\":{\"@id\":\"https:\\/\\/rggndr.it\\/progetto\\/montipadel\\/#primaryimage\"},\"thumbnailUrl\":\"https:\\/\\/rggndr.it\\/wp-content\\/uploads\\/2025\\/02\\/montipadel.jpg\",\"datePublished\":\"2025-02-14T08:23:59+00:00\",\"dateModified\":\"2025-05-15T08:53:35+00:00\",\"breadcrumb\":{\"@id\":\"https:\\/\\/rggndr.it\\/progetto\\/montipadel\\/#breadcrumb\"},\"inLanguage\":\"it-IT\",\"potentialAction\":[{\"@type\":\"ReadAction\",\"target\":[\"https:\\/\\/rggndr.it\\/progetto\\/montipadel\\/\"]}]},{\"@type\":\"ImageObject\",\"inLanguage\":\"it-IT\",\"@id\":\"https:\\/\\/rggndr.it\\/progetto\\/montipadel\\/#primaryimage\",\"url\":\"https:\\/\\/rggndr.it\\/wp-content\\/uploads\\/2025\\/02\\/montipadel.jpg\",\"contentUrl\":\"https:\\/\\/rggndr.it\\/wp-content\\/uploads\\/2025\\/02\\/montipadel.jpg\",\"width\":1200,\"height\":1600},{\"@type\":\"BreadcrumbList\",\"@id\":\"https:\\/\\/rggndr.it\\/progetto\\/montipadel\\/#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Home\",\"item\":\"https:\\/\\/rggndr.it\\/\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Montipadel\"}]},{\"@type\":\"WebSite\",\"@id\":\"https:\\/\\/rggndr.it\\/#website\",\"url\":\"https:\\/\\/rggndr.it\\/\",\"name\":\"RGGNDR\",\"description\":\"Andrea Ruggeri — Design Driven Entrepreneur\",\"publisher\":{\"@id\":\"https:\\/\\/rggndr.it\\/#organization\"},\"potentialAction\":[{\"@type\":\"SearchAction\",\"target\":{\"@type\":\"EntryPoint\",\"urlTemplate\":\"https:\\/\\/rggndr.it\\/?s={search_term_string}\"},\"query-input\":{\"@type\":\"PropertyValueSpecification\",\"valueRequired\":true,\"valueName\":\"search_term_string\"}}],\"inLanguage\":\"it-IT\"},{\"@type\":\"Organization\",\"@id\":\"https:\\/\\/rggndr.it\\/#organization\",\"name\":\"RGGNDR\",\"url\":\"https:\\/\\/rggndr.it\\/\",\"logo\":{\"@type\":\"ImageObject\",\"inLanguage\":\"it-IT\",\"@id\":\"https:\\/\\/rggndr.it\\/#\\/schema\\/logo\\/image\\/\",\"url\":\"https:\\/\\/rggndr.be-dev.it\\/wp-content\\/uploads\\/2025\\/02\\/screenshot.png\",\"contentUrl\":\"https:\\/\\/rggndr.be-dev.it\\/wp-content\\/uploads\\/2025\\/02\\/screenshot.png\",\"width\":1200,\"height\":900,\"caption\":\"RGGNDR\"},\"image\":{\"@id\":\"https:\\/\\/rggndr.it\\/#\\/schema\\/logo\\/image\\/\"},\"sameAs\":[\"https:\\/\\/x.com\\/andrea_rugge\",\"https:\\/\\/www.instagram.com\\/andrearugge\\/\",\"https:\\/\\/www.linkedin.com\\/in\\/andrerugge\\/\"]}]}</script>\n<!-- / Yoast SEO plugin. -->",
+    "yoast_head_json": {
+      "title": "Montipadel - RGGNDR",
+      "robots": {
+        "index": "index",
+        "follow": "follow",
+        "max-snippet": "max-snippet:-1",
+        "max-image-preview": "max-image-preview:large",
+        "max-video-preview": "max-video-preview:-1"
+      },
+      "canonical": "https://rggndr.it/progetto/montipadel/",
+      "og_locale": "it_IT",
+      "og_type": "article",
+      "og_title": "Montipadel - RGGNDR",
+      "og_url": "https://rggndr.it/progetto/montipadel/",
+      "og_site_name": "RGGNDR",
+      "article_modified_time": "2025-05-15T08:53:35+00:00",
+      "og_image": [
+        {
+          "width": 1200,
+          "height": 1600,
+          "url": "https://rggndr.it/wp-content/uploads/2025/02/montipadel.jpg",
+          "type": "image/jpeg"
+        }
+      ],
+      "twitter_card": "summary_large_image",
+      "twitter_site": "@andrea_rugge",
+      "twitter_misc": {
+        "Tempo di lettura stimato": "1 minuto"
+      },
+      "schema": {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "WebPage",
+            "@id": "https://rggndr.it/progetto/montipadel/",
+            "url": "https://rggndr.it/progetto/montipadel/",
+            "name": "Montipadel - RGGNDR",
+            "isPartOf": {
+              "@id": "https://rggndr.it/#website"
+            },
+            "primaryImageOfPage": {
+              "@id": "https://rggndr.it/progetto/montipadel/#primaryimage"
+            },
+            "image": {
+              "@id": "https://rggndr.it/progetto/montipadel/#primaryimage"
+            },
+            "thumbnailUrl": "https://rggndr.it/wp-content/uploads/2025/02/montipadel.jpg",
+            "datePublished": "2025-02-14T08:23:59+00:00",
+            "dateModified": "2025-05-15T08:53:35+00:00",
+            "breadcrumb": {
+              "@id": "https://rggndr.it/progetto/montipadel/#breadcrumb"
+            },
+            "inLanguage": "it-IT",
+            "potentialAction": [
+              {
+                "@type": "ReadAction",
+                "target": ["https://rggndr.it/progetto/montipadel/"]
+              }
+            ]
+          },
+          {
+            "@type": "ImageObject",
+            "inLanguage": "it-IT",
+            "@id": "https://rggndr.it/progetto/montipadel/#primaryimage",
+            "url": "https://rggndr.it/wp-content/uploads/2025/02/montipadel.jpg",
+            "contentUrl": "https://rggndr.it/wp-content/uploads/2025/02/montipadel.jpg",
+            "width": 1200,
+            "height": 1600
+          },
+          {
+            "@type": "BreadcrumbList",
+            "@id": "https://rggndr.it/progetto/montipadel/#breadcrumb",
+            "itemListElement": [
+              {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Home",
+                "item": "https://rggndr.it/"
+              },
+              {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "Montipadel"
+              }
+            ]
+          },
+          {
+            "@type": "WebSite",
+            "@id": "https://rggndr.it/#website",
+            "url": "https://rggndr.it/",
+            "name": "RGGNDR",
+            "description": "Andrea Ruggeri — Design Driven Entrepreneur",
+            "publisher": {
+              "@id": "https://rggndr.it/#organization"
+            },
+            "potentialAction": [
+              {
+                "@type": "SearchAction",
+                "target": {
+                  "@type": "EntryPoint",
+                  "urlTemplate": "https://rggndr.it/?s={search_term_string}"
+                },
+                "query-input": {
+                  "@type": "PropertyValueSpecification",
+                  "valueRequired": true,
+                  "valueName": "search_term_string"
+                }
+              }
+            ],
+            "inLanguage": "it-IT"
+          },
+          {
+            "@type": "Organization",
+            "@id": "https://rggndr.it/#organization",
+            "name": "RGGNDR",
+            "url": "https://rggndr.it/",
+            "logo": {
+              "@type": "ImageObject",
+              "inLanguage": "it-IT",
+              "@id": "https://rggndr.it/#/schema/logo/image/",
+              "url": "https://rggndr.be-dev.it/wp-content/uploads/2025/02/screenshot.png",
+              "contentUrl": "https://rggndr.be-dev.it/wp-content/uploads/2025/02/screenshot.png",
+              "width": 1200,
+              "height": 900,
+              "caption": "RGGNDR"
+            },
+            "image": {
+              "@id": "https://rggndr.it/#/schema/logo/image/"
+            },
+            "sameAs": [
+              "https://x.com/andrea_rugge",
+              "https://www.instagram.com/andrearugge/",
+              "https://www.linkedin.com/in/andrerugge/"
+            ]
+          }
+        ]
+      }
+    },
+    "_links": {
+      "self": [
+        {
+          "href": "https://rggndr.it/wp-json/wp/v2/progetto/262",
+          "targetHints": {
+            "allow": ["GET"]
+          }
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://rggndr.it/wp-json/wp/v2/progetto"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://rggndr.it/wp-json/wp/v2/types/progetto"
+        }
+      ],
+      "wp:featuredmedia": [
+        {
+          "embeddable": true,
+          "href": "https://rggndr.it/wp-json/wp/v2/media/397"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://rggndr.it/wp-json/wp/v2/media?parent=262"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 264,
+    "date": "2025-02-14T09:24:29",
+    "date_gmt": "2025-02-14T08:24:29",
+    "guid": {
+      "rendered": "https://rggndr.be-dev.it/?post_type=progetto&#038;p=264"
+    },
+    "modified": "2025-05-15T11:23:51",
+    "modified_gmt": "2025-05-15T09:23:51",
+    "slug": "beconcept",
+    "status": "publish",
+    "type": "progetto",
+    "link": "https://rggndr.it/progetto/beconcept/",
+    "title": {
+      "rendered": "Beconcept"
+    },
+    "featured_media": 399,
+    "template": "",
+    "meta": {
+      "_acf_changed": false,
+      "inline_featured_image": false
+    },
+    "class_list": ["post-264", "progetto", "type-progetto", "status-publish", "has-post-thumbnail", "hentry"],
+    "acf": {
+      "descrizione_progetto": "",
+      "link_progetto": false,
+      "anno_progetto": "2018 – Today",
+      "tipo_progetto": "Co-Founder",
+      "contenuto_pagina": [
+        {
+          "acf_fc_layout": "immagine_full",
+          "mostra_sezione": true,
+          "immagine": {
+            "ID": 396,
+            "id": 396,
+            "title": "coming-soon",
+            "filename": "coming-soon.jpg",
+            "filesize": 59341,
+            "url": "https://rggndr.it/wp-content/uploads/2025/02/coming-soon.jpg",
+            "link": "https://rggndr.it/progetto/ai-journal/coming-soon/",
+            "alt": "",
+            "author": "1",
+            "description": "",
+            "caption": "",
+            "name": "coming-soon",
+            "status": "inherit",
+            "uploaded_to": 194,
+            "date": "2025-05-14 06:59:43",
+            "modified": "2025-05-14 06:59:43",
+            "menu_order": 0,
+            "mime_type": "image/jpeg",
+            "type": "image",
+            "subtype": "jpeg",
+            "icon": "https://rggndr.it/wp-includes/images/media/default.png",
+            "width": 1680,
+            "height": 1206,
+            "sizes": {
+              "thumbnail": "https://rggndr.it/wp-content/uploads/2025/02/coming-soon-150x150.jpg",
+              "thumbnail-width": 150,
+              "thumbnail-height": 150,
+              "medium": "https://rggndr.it/wp-content/uploads/2025/02/coming-soon-300x215.jpg",
+              "medium-width": 300,
+              "medium-height": 215,
+              "medium_large": "https://rggndr.it/wp-content/uploads/2025/02/coming-soon-768x551.jpg",
+              "medium_large-width": 768,
+              "medium_large-height": 551,
+              "large": "https://rggndr.it/wp-content/uploads/2025/02/coming-soon-1024x735.jpg",
+              "large-width": 1024,
+              "large-height": 735,
+              "1536x1536": "https://rggndr.it/wp-content/uploads/2025/02/coming-soon-1536x1103.jpg",
+              "1536x1536-width": 1536,
+              "1536x1536-height": 1103,
+              "2048x2048": "https://rggndr.it/wp-content/uploads/2025/02/coming-soon.jpg",
+              "2048x2048-width": 1680,
+              "2048x2048-height": 1206
+            }
+          },
+          "caption": ""
+        }
+      ]
+    },
+    "yoast_head": "<!-- This site is optimized with the Yoast SEO plugin v27.9 - https://yoast.com/product/yoast-seo-wordpress/ -->\n<title>Beconcept - RGGNDR</title>\n<meta name=\"robots\" content=\"index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1\" />\n<link rel=\"canonical\" href=\"https://rggndr.it/progetto/beconcept/\" />\n<meta property=\"og:locale\" content=\"it_IT\" />\n<meta property=\"og:type\" content=\"article\" />\n<meta property=\"og:title\" content=\"Beconcept - RGGNDR\" />\n<meta property=\"og:url\" content=\"https://rggndr.it/progetto/beconcept/\" />\n<meta property=\"og:site_name\" content=\"RGGNDR\" />\n<meta property=\"article:modified_time\" content=\"2025-05-15T09:23:51+00:00\" />\n<meta property=\"og:image\" content=\"https://rggndr.it/wp-content/uploads/2025/02/beconcept.jpg\" />\n\t<meta property=\"og:image:width\" content=\"1200\" />\n\t<meta property=\"og:image:height\" content=\"1672\" />\n\t<meta property=\"og:image:type\" content=\"image/jpeg\" />\n<meta name=\"twitter:card\" content=\"summary_large_image\" />\n<meta name=\"twitter:site\" content=\"@andrea_rugge\" />\n<script type=\"application/ld+json\" class=\"yoast-schema-graph\">{\"@context\":\"https:\\/\\/schema.org\",\"@graph\":[{\"@type\":\"WebPage\",\"@id\":\"https:\\/\\/rggndr.it\\/progetto\\/beconcept\\/\",\"url\":\"https:\\/\\/rggndr.it\\/progetto\\/beconcept\\/\",\"name\":\"Beconcept - RGGNDR\",\"isPartOf\":{\"@id\":\"https:\\/\\/rggndr.it\\/#website\"},\"primaryImageOfPage\":{\"@id\":\"https:\\/\\/rggndr.it\\/progetto\\/beconcept\\/#primaryimage\"},\"image\":{\"@id\":\"https:\\/\\/rggndr.it\\/progetto\\/beconcept\\/#primaryimage\"},\"thumbnailUrl\":\"https:\\/\\/rggndr.it\\/wp-content\\/uploads\\/2025\\/02\\/beconcept.jpg\",\"datePublished\":\"2025-02-14T08:24:29+00:00\",\"dateModified\":\"2025-05-15T09:23:51+00:00\",\"breadcrumb\":{\"@id\":\"https:\\/\\/rggndr.it\\/progetto\\/beconcept\\/#breadcrumb\"},\"inLanguage\":\"it-IT\",\"potentialAction\":[{\"@type\":\"ReadAction\",\"target\":[\"https:\\/\\/rggndr.it\\/progetto\\/beconcept\\/\"]}]},{\"@type\":\"ImageObject\",\"inLanguage\":\"it-IT\",\"@id\":\"https:\\/\\/rggndr.it\\/progetto\\/beconcept\\/#primaryimage\",\"url\":\"https:\\/\\/rggndr.it\\/wp-content\\/uploads\\/2025\\/02\\/beconcept.jpg\",\"contentUrl\":\"https:\\/\\/rggndr.it\\/wp-content\\/uploads\\/2025\\/02\\/beconcept.jpg\",\"width\":1200,\"height\":1672},{\"@type\":\"BreadcrumbList\",\"@id\":\"https:\\/\\/rggndr.it\\/progetto\\/beconcept\\/#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Home\",\"item\":\"https:\\/\\/rggndr.it\\/\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Beconcept\"}]},{\"@type\":\"WebSite\",\"@id\":\"https:\\/\\/rggndr.it\\/#website\",\"url\":\"https:\\/\\/rggndr.it\\/\",\"name\":\"RGGNDR\",\"description\":\"Andrea Ruggeri — Design Driven Entrepreneur\",\"publisher\":{\"@id\":\"https:\\/\\/rggndr.it\\/#organization\"},\"potentialAction\":[{\"@type\":\"SearchAction\",\"target\":{\"@type\":\"EntryPoint\",\"urlTemplate\":\"https:\\/\\/rggndr.it\\/?s={search_term_string}\"},\"query-input\":{\"@type\":\"PropertyValueSpecification\",\"valueRequired\":true,\"valueName\":\"search_term_string\"}}],\"inLanguage\":\"it-IT\"},{\"@type\":\"Organization\",\"@id\":\"https:\\/\\/rggndr.it\\/#organization\",\"name\":\"RGGNDR\",\"url\":\"https:\\/\\/rggndr.it\\/\",\"logo\":{\"@type\":\"ImageObject\",\"inLanguage\":\"it-IT\",\"@id\":\"https:\\/\\/rggndr.it\\/#\\/schema\\/logo\\/image\\/\",\"url\":\"https:\\/\\/rggndr.be-dev.it\\/wp-content\\/uploads\\/2025\\/02\\/screenshot.png\",\"contentUrl\":\"https:\\/\\/rggndr.be-dev.it\\/wp-content\\/uploads\\/2025\\/02\\/screenshot.png\",\"width\":1200,\"height\":900,\"caption\":\"RGGNDR\"},\"image\":{\"@id\":\"https:\\/\\/rggndr.it\\/#\\/schema\\/logo\\/image\\/\"},\"sameAs\":[\"https:\\/\\/x.com\\/andrea_rugge\",\"https:\\/\\/www.instagram.com\\/andrearugge\\/\",\"https:\\/\\/www.linkedin.com\\/in\\/andrerugge\\/\"]}]}</script>\n<!-- / Yoast SEO plugin. -->",
+    "yoast_head_json": {
+      "title": "Beconcept - RGGNDR",
+      "robots": {
+        "index": "index",
+        "follow": "follow",
+        "max-snippet": "max-snippet:-1",
+        "max-image-preview": "max-image-preview:large",
+        "max-video-preview": "max-video-preview:-1"
+      },
+      "canonical": "https://rggndr.it/progetto/beconcept/",
+      "og_locale": "it_IT",
+      "og_type": "article",
+      "og_title": "Beconcept - RGGNDR",
+      "og_url": "https://rggndr.it/progetto/beconcept/",
+      "og_site_name": "RGGNDR",
+      "article_modified_time": "2025-05-15T09:23:51+00:00",
+      "og_image": [
+        {
+          "width": 1200,
+          "height": 1672,
+          "url": "https://rggndr.it/wp-content/uploads/2025/02/beconcept.jpg",
+          "type": "image/jpeg"
+        }
+      ],
+      "twitter_card": "summary_large_image",
+      "twitter_site": "@andrea_rugge",
+      "schema": {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "WebPage",
+            "@id": "https://rggndr.it/progetto/beconcept/",
+            "url": "https://rggndr.it/progetto/beconcept/",
+            "name": "Beconcept - RGGNDR",
+            "isPartOf": {
+              "@id": "https://rggndr.it/#website"
+            },
+            "primaryImageOfPage": {
+              "@id": "https://rggndr.it/progetto/beconcept/#primaryimage"
+            },
+            "image": {
+              "@id": "https://rggndr.it/progetto/beconcept/#primaryimage"
+            },
+            "thumbnailUrl": "https://rggndr.it/wp-content/uploads/2025/02/beconcept.jpg",
+            "datePublished": "2025-02-14T08:24:29+00:00",
+            "dateModified": "2025-05-15T09:23:51+00:00",
+            "breadcrumb": {
+              "@id": "https://rggndr.it/progetto/beconcept/#breadcrumb"
+            },
+            "inLanguage": "it-IT",
+            "potentialAction": [
+              {
+                "@type": "ReadAction",
+                "target": ["https://rggndr.it/progetto/beconcept/"]
+              }
+            ]
+          },
+          {
+            "@type": "ImageObject",
+            "inLanguage": "it-IT",
+            "@id": "https://rggndr.it/progetto/beconcept/#primaryimage",
+            "url": "https://rggndr.it/wp-content/uploads/2025/02/beconcept.jpg",
+            "contentUrl": "https://rggndr.it/wp-content/uploads/2025/02/beconcept.jpg",
+            "width": 1200,
+            "height": 1672
+          },
+          {
+            "@type": "BreadcrumbList",
+            "@id": "https://rggndr.it/progetto/beconcept/#breadcrumb",
+            "itemListElement": [
+              {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Home",
+                "item": "https://rggndr.it/"
+              },
+              {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "Beconcept"
+              }
+            ]
+          },
+          {
+            "@type": "WebSite",
+            "@id": "https://rggndr.it/#website",
+            "url": "https://rggndr.it/",
+            "name": "RGGNDR",
+            "description": "Andrea Ruggeri — Design Driven Entrepreneur",
+            "publisher": {
+              "@id": "https://rggndr.it/#organization"
+            },
+            "potentialAction": [
+              {
+                "@type": "SearchAction",
+                "target": {
+                  "@type": "EntryPoint",
+                  "urlTemplate": "https://rggndr.it/?s={search_term_string}"
+                },
+                "query-input": {
+                  "@type": "PropertyValueSpecification",
+                  "valueRequired": true,
+                  "valueName": "search_term_string"
+                }
+              }
+            ],
+            "inLanguage": "it-IT"
+          },
+          {
+            "@type": "Organization",
+            "@id": "https://rggndr.it/#organization",
+            "name": "RGGNDR",
+            "url": "https://rggndr.it/",
+            "logo": {
+              "@type": "ImageObject",
+              "inLanguage": "it-IT",
+              "@id": "https://rggndr.it/#/schema/logo/image/",
+              "url": "https://rggndr.be-dev.it/wp-content/uploads/2025/02/screenshot.png",
+              "contentUrl": "https://rggndr.be-dev.it/wp-content/uploads/2025/02/screenshot.png",
+              "width": 1200,
+              "height": 900,
+              "caption": "RGGNDR"
+            },
+            "image": {
+              "@id": "https://rggndr.it/#/schema/logo/image/"
+            },
+            "sameAs": [
+              "https://x.com/andrea_rugge",
+              "https://www.instagram.com/andrearugge/",
+              "https://www.linkedin.com/in/andrerugge/"
+            ]
+          }
+        ]
+      }
+    },
+    "_links": {
+      "self": [
+        {
+          "href": "https://rggndr.it/wp-json/wp/v2/progetto/264",
+          "targetHints": {
+            "allow": ["GET"]
+          }
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://rggndr.it/wp-json/wp/v2/progetto"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://rggndr.it/wp-json/wp/v2/types/progetto"
+        }
+      ],
+      "wp:featuredmedia": [
+        {
+          "embeddable": true,
+          "href": "https://rggndr.it/wp-json/wp/v2/media/399"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://rggndr.it/wp-json/wp/v2/media?parent=264"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 266,
+    "date": "2025-02-14T09:24:43",
+    "date_gmt": "2025-02-14T08:24:43",
+    "guid": {
+      "rendered": "https://rggndr.be-dev.it/?post_type=progetto&#038;p=266"
+    },
+    "modified": "2025-05-15T10:54:15",
+    "modified_gmt": "2025-05-15T08:54:15",
+    "slug": "giulia-pampuri",
+    "status": "publish",
+    "type": "progetto",
+    "link": "https://rggndr.it/progetto/giulia-pampuri/",
+    "title": {
+      "rendered": "Giulia Pampuri"
+    },
+    "featured_media": 267,
+    "template": "",
+    "meta": {
+      "_acf_changed": false,
+      "inline_featured_image": false
+    },
+    "class_list": ["post-266", "progetto", "type-progetto", "status-publish", "has-post-thumbnail", "hentry"],
+    "acf": {
+      "descrizione_progetto": "",
+      "link_progetto": false,
+      "anno_progetto": "2024",
+      "tipo_progetto": "Brand Identity",
+      "contenuto_pagina": [
+        {
+          "acf_fc_layout": "immagine_full",
+          "mostra_sezione": true,
+          "immagine": {
+            "ID": 396,
+            "id": 396,
+            "title": "coming-soon",
+            "filename": "coming-soon.jpg",
+            "filesize": 59341,
+            "url": "https://rggndr.it/wp-content/uploads/2025/02/coming-soon.jpg",
+            "link": "https://rggndr.it/progetto/ai-journal/coming-soon/",
+            "alt": "",
+            "author": "1",
+            "description": "",
+            "caption": "",
+            "name": "coming-soon",
+            "status": "inherit",
+            "uploaded_to": 194,
+            "date": "2025-05-14 06:59:43",
+            "modified": "2025-05-14 06:59:43",
+            "menu_order": 0,
+            "mime_type": "image/jpeg",
+            "type": "image",
+            "subtype": "jpeg",
+            "icon": "https://rggndr.it/wp-includes/images/media/default.png",
+            "width": 1680,
+            "height": 1206,
+            "sizes": {
+              "thumbnail": "https://rggndr.it/wp-content/uploads/2025/02/coming-soon-150x150.jpg",
+              "thumbnail-width": 150,
+              "thumbnail-height": 150,
+              "medium": "https://rggndr.it/wp-content/uploads/2025/02/coming-soon-300x215.jpg",
+              "medium-width": 300,
+              "medium-height": 215,
+              "medium_large": "https://rggndr.it/wp-content/uploads/2025/02/coming-soon-768x551.jpg",
+              "medium_large-width": 768,
+              "medium_large-height": 551,
+              "large": "https://rggndr.it/wp-content/uploads/2025/02/coming-soon-1024x735.jpg",
+              "large-width": 1024,
+              "large-height": 735,
+              "1536x1536": "https://rggndr.it/wp-content/uploads/2025/02/coming-soon-1536x1103.jpg",
+              "1536x1536-width": 1536,
+              "1536x1536-height": 1103,
+              "2048x2048": "https://rggndr.it/wp-content/uploads/2025/02/coming-soon.jpg",
+              "2048x2048-width": 1680,
+              "2048x2048-height": 1206
+            }
+          },
+          "caption": ""
+        }
+      ]
+    },
+    "yoast_head": "<!-- This site is optimized with the Yoast SEO plugin v27.9 - https://yoast.com/product/yoast-seo-wordpress/ -->\n<title>Giulia Pampuri - RGGNDR</title>\n<meta name=\"robots\" content=\"index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1\" />\n<link rel=\"canonical\" href=\"https://rggndr.it/progetto/giulia-pampuri/\" />\n<meta property=\"og:locale\" content=\"it_IT\" />\n<meta property=\"og:type\" content=\"article\" />\n<meta property=\"og:title\" content=\"Giulia Pampuri - RGGNDR\" />\n<meta property=\"og:url\" content=\"https://rggndr.it/progetto/giulia-pampuri/\" />\n<meta property=\"og:site_name\" content=\"RGGNDR\" />\n<meta property=\"article:modified_time\" content=\"2025-05-15T08:54:15+00:00\" />\n<meta property=\"og:image\" content=\"https://rggndr.it/wp-content/uploads/2025/02/a8.jpg\" />\n\t<meta property=\"og:image:width\" content=\"830\" />\n\t<meta property=\"og:image:height\" content=\"623\" />\n\t<meta property=\"og:image:type\" content=\"image/jpeg\" />\n<meta name=\"twitter:card\" content=\"summary_large_image\" />\n<meta name=\"twitter:site\" content=\"@andrea_rugge\" />\n<meta name=\"twitter:label1\" content=\"Tempo di lettura stimato\" />\n\t<meta name=\"twitter:data1\" content=\"1 minuto\" />\n<script type=\"application/ld+json\" class=\"yoast-schema-graph\">{\"@context\":\"https:\\/\\/schema.org\",\"@graph\":[{\"@type\":\"WebPage\",\"@id\":\"https:\\/\\/rggndr.it\\/progetto\\/giulia-pampuri\\/\",\"url\":\"https:\\/\\/rggndr.it\\/progetto\\/giulia-pampuri\\/\",\"name\":\"Giulia Pampuri - RGGNDR\",\"isPartOf\":{\"@id\":\"https:\\/\\/rggndr.it\\/#website\"},\"primaryImageOfPage\":{\"@id\":\"https:\\/\\/rggndr.it\\/progetto\\/giulia-pampuri\\/#primaryimage\"},\"image\":{\"@id\":\"https:\\/\\/rggndr.it\\/progetto\\/giulia-pampuri\\/#primaryimage\"},\"thumbnailUrl\":\"https:\\/\\/rggndr.it\\/wp-content\\/uploads\\/2025\\/02\\/a8.jpg\",\"datePublished\":\"2025-02-14T08:24:43+00:00\",\"dateModified\":\"2025-05-15T08:54:15+00:00\",\"breadcrumb\":{\"@id\":\"https:\\/\\/rggndr.it\\/progetto\\/giulia-pampuri\\/#breadcrumb\"},\"inLanguage\":\"it-IT\",\"potentialAction\":[{\"@type\":\"ReadAction\",\"target\":[\"https:\\/\\/rggndr.it\\/progetto\\/giulia-pampuri\\/\"]}]},{\"@type\":\"ImageObject\",\"inLanguage\":\"it-IT\",\"@id\":\"https:\\/\\/rggndr.it\\/progetto\\/giulia-pampuri\\/#primaryimage\",\"url\":\"https:\\/\\/rggndr.it\\/wp-content\\/uploads\\/2025\\/02\\/a8.jpg\",\"contentUrl\":\"https:\\/\\/rggndr.it\\/wp-content\\/uploads\\/2025\\/02\\/a8.jpg\",\"width\":830,\"height\":623},{\"@type\":\"BreadcrumbList\",\"@id\":\"https:\\/\\/rggndr.it\\/progetto\\/giulia-pampuri\\/#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Home\",\"item\":\"https:\\/\\/rggndr.it\\/\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Giulia Pampuri\"}]},{\"@type\":\"WebSite\",\"@id\":\"https:\\/\\/rggndr.it\\/#website\",\"url\":\"https:\\/\\/rggndr.it\\/\",\"name\":\"RGGNDR\",\"description\":\"Andrea Ruggeri — Design Driven Entrepreneur\",\"publisher\":{\"@id\":\"https:\\/\\/rggndr.it\\/#organization\"},\"potentialAction\":[{\"@type\":\"SearchAction\",\"target\":{\"@type\":\"EntryPoint\",\"urlTemplate\":\"https:\\/\\/rggndr.it\\/?s={search_term_string}\"},\"query-input\":{\"@type\":\"PropertyValueSpecification\",\"valueRequired\":true,\"valueName\":\"search_term_string\"}}],\"inLanguage\":\"it-IT\"},{\"@type\":\"Organization\",\"@id\":\"https:\\/\\/rggndr.it\\/#organization\",\"name\":\"RGGNDR\",\"url\":\"https:\\/\\/rggndr.it\\/\",\"logo\":{\"@type\":\"ImageObject\",\"inLanguage\":\"it-IT\",\"@id\":\"https:\\/\\/rggndr.it\\/#\\/schema\\/logo\\/image\\/\",\"url\":\"https:\\/\\/rggndr.be-dev.it\\/wp-content\\/uploads\\/2025\\/02\\/screenshot.png\",\"contentUrl\":\"https:\\/\\/rggndr.be-dev.it\\/wp-content\\/uploads\\/2025\\/02\\/screenshot.png\",\"width\":1200,\"height\":900,\"caption\":\"RGGNDR\"},\"image\":{\"@id\":\"https:\\/\\/rggndr.it\\/#\\/schema\\/logo\\/image\\/\"},\"sameAs\":[\"https:\\/\\/x.com\\/andrea_rugge\",\"https:\\/\\/www.instagram.com\\/andrearugge\\/\",\"https:\\/\\/www.linkedin.com\\/in\\/andrerugge\\/\"]}]}</script>\n<!-- / Yoast SEO plugin. -->",
+    "yoast_head_json": {
+      "title": "Giulia Pampuri - RGGNDR",
+      "robots": {
+        "index": "index",
+        "follow": "follow",
+        "max-snippet": "max-snippet:-1",
+        "max-image-preview": "max-image-preview:large",
+        "max-video-preview": "max-video-preview:-1"
+      },
+      "canonical": "https://rggndr.it/progetto/giulia-pampuri/",
+      "og_locale": "it_IT",
+      "og_type": "article",
+      "og_title": "Giulia Pampuri - RGGNDR",
+      "og_url": "https://rggndr.it/progetto/giulia-pampuri/",
+      "og_site_name": "RGGNDR",
+      "article_modified_time": "2025-05-15T08:54:15+00:00",
+      "og_image": [
+        {
+          "width": 830,
+          "height": 623,
+          "url": "https://rggndr.it/wp-content/uploads/2025/02/a8.jpg",
+          "type": "image/jpeg"
+        }
+      ],
+      "twitter_card": "summary_large_image",
+      "twitter_site": "@andrea_rugge",
+      "twitter_misc": {
+        "Tempo di lettura stimato": "1 minuto"
+      },
+      "schema": {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "WebPage",
+            "@id": "https://rggndr.it/progetto/giulia-pampuri/",
+            "url": "https://rggndr.it/progetto/giulia-pampuri/",
+            "name": "Giulia Pampuri - RGGNDR",
+            "isPartOf": {
+              "@id": "https://rggndr.it/#website"
+            },
+            "primaryImageOfPage": {
+              "@id": "https://rggndr.it/progetto/giulia-pampuri/#primaryimage"
+            },
+            "image": {
+              "@id": "https://rggndr.it/progetto/giulia-pampuri/#primaryimage"
+            },
+            "thumbnailUrl": "https://rggndr.it/wp-content/uploads/2025/02/a8.jpg",
+            "datePublished": "2025-02-14T08:24:43+00:00",
+            "dateModified": "2025-05-15T08:54:15+00:00",
+            "breadcrumb": {
+              "@id": "https://rggndr.it/progetto/giulia-pampuri/#breadcrumb"
+            },
+            "inLanguage": "it-IT",
+            "potentialAction": [
+              {
+                "@type": "ReadAction",
+                "target": ["https://rggndr.it/progetto/giulia-pampuri/"]
+              }
+            ]
+          },
+          {
+            "@type": "ImageObject",
+            "inLanguage": "it-IT",
+            "@id": "https://rggndr.it/progetto/giulia-pampuri/#primaryimage",
+            "url": "https://rggndr.it/wp-content/uploads/2025/02/a8.jpg",
+            "contentUrl": "https://rggndr.it/wp-content/uploads/2025/02/a8.jpg",
+            "width": 830,
+            "height": 623
+          },
+          {
+            "@type": "BreadcrumbList",
+            "@id": "https://rggndr.it/progetto/giulia-pampuri/#breadcrumb",
+            "itemListElement": [
+              {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Home",
+                "item": "https://rggndr.it/"
+              },
+              {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "Giulia Pampuri"
+              }
+            ]
+          },
+          {
+            "@type": "WebSite",
+            "@id": "https://rggndr.it/#website",
+            "url": "https://rggndr.it/",
+            "name": "RGGNDR",
+            "description": "Andrea Ruggeri — Design Driven Entrepreneur",
+            "publisher": {
+              "@id": "https://rggndr.it/#organization"
+            },
+            "potentialAction": [
+              {
+                "@type": "SearchAction",
+                "target": {
+                  "@type": "EntryPoint",
+                  "urlTemplate": "https://rggndr.it/?s={search_term_string}"
+                },
+                "query-input": {
+                  "@type": "PropertyValueSpecification",
+                  "valueRequired": true,
+                  "valueName": "search_term_string"
+                }
+              }
+            ],
+            "inLanguage": "it-IT"
+          },
+          {
+            "@type": "Organization",
+            "@id": "https://rggndr.it/#organization",
+            "name": "RGGNDR",
+            "url": "https://rggndr.it/",
+            "logo": {
+              "@type": "ImageObject",
+              "inLanguage": "it-IT",
+              "@id": "https://rggndr.it/#/schema/logo/image/",
+              "url": "https://rggndr.be-dev.it/wp-content/uploads/2025/02/screenshot.png",
+              "contentUrl": "https://rggndr.be-dev.it/wp-content/uploads/2025/02/screenshot.png",
+              "width": 1200,
+              "height": 900,
+              "caption": "RGGNDR"
+            },
+            "image": {
+              "@id": "https://rggndr.it/#/schema/logo/image/"
+            },
+            "sameAs": [
+              "https://x.com/andrea_rugge",
+              "https://www.instagram.com/andrearugge/",
+              "https://www.linkedin.com/in/andrerugge/"
+            ]
+          }
+        ]
+      }
+    },
+    "_links": {
+      "self": [
+        {
+          "href": "https://rggndr.it/wp-json/wp/v2/progetto/266",
+          "targetHints": {
+            "allow": ["GET"]
+          }
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://rggndr.it/wp-json/wp/v2/progetto"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://rggndr.it/wp-json/wp/v2/types/progetto"
+        }
+      ],
+      "wp:featuredmedia": [
+        {
+          "embeddable": true,
+          "href": "https://rggndr.it/wp-json/wp/v2/media/267"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://rggndr.it/wp-json/wp/v2/media?parent=266"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  }
+]

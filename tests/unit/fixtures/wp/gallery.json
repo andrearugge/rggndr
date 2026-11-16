@@ -1,0 +1,886 @@
+{
+  "id": 318,
+  "date": "2025-02-17T14:56:28",
+  "date_gmt": "2025-02-17T13:56:28",
+  "guid": {
+    "rendered": "https://rggndr.be-dev.it/?page_id=318"
+  },
+  "modified": "2025-05-15T10:56:18",
+  "modified_gmt": "2025-05-15T08:56:18",
+  "slug": "gallery",
+  "status": "publish",
+  "type": "page",
+  "link": "https://rggndr.it/gallery/",
+  "title": {
+    "rendered": "Gallery"
+  },
+  "content": {
+    "rendered": "",
+    "protected": false
+  },
+  "excerpt": {
+    "rendered": "",
+    "protected": false
+  },
+  "author": 1,
+  "featured_media": 0,
+  "parent": 0,
+  "menu_order": 0,
+  "comment_status": "closed",
+  "ping_status": "closed",
+  "template": "templates/gallery.php",
+  "meta": {
+    "_acf_changed": false,
+    "inline_featured_image": false,
+    "footnotes": ""
+  },
+  "class_list": ["post-318", "page", "type-page", "status-publish", "hentry"],
+  "acf": {
+    "attivare_gallery": true,
+    "gallery_elementi": [
+      {
+        "immagine": {
+          "ID": 373,
+          "id": 373,
+          "title": "rggndr-gallery-4",
+          "filename": "rggndr-gallery-4.jpg",
+          "filesize": 238580,
+          "url": "https://rggndr.it/wp-content/uploads/2025/05/rggndr-gallery-4.jpg",
+          "link": "https://rggndr.it/gallery/rggndr-gallery-4/",
+          "alt": "",
+          "author": "1",
+          "description": "",
+          "caption": "",
+          "name": "rggndr-gallery-4",
+          "status": "inherit",
+          "uploaded_to": 318,
+          "date": "2025-05-11 20:07:54",
+          "modified": "2025-05-11 20:07:54",
+          "menu_order": 0,
+          "mime_type": "image/jpeg",
+          "type": "image",
+          "subtype": "jpeg",
+          "icon": "https://rggndr.it/wp-includes/images/media/default.png",
+          "width": 1000,
+          "height": 1000,
+          "sizes": {
+            "thumbnail": "https://rggndr.it/wp-content/uploads/2025/05/rggndr-gallery-4-150x150.jpg",
+            "thumbnail-width": 150,
+            "thumbnail-height": 150,
+            "medium": "https://rggndr.it/wp-content/uploads/2025/05/rggndr-gallery-4-300x300.jpg",
+            "medium-width": 300,
+            "medium-height": 300,
+            "medium_large": "https://rggndr.it/wp-content/uploads/2025/05/rggndr-gallery-4-768x768.jpg",
+            "medium_large-width": 768,
+            "medium_large-height": 768,
+            "large": "https://rggndr.it/wp-content/uploads/2025/05/rggndr-gallery-4.jpg",
+            "large-width": 1000,
+            "large-height": 1000,
+            "1536x1536": "https://rggndr.it/wp-content/uploads/2025/05/rggndr-gallery-4.jpg",
+            "1536x1536-width": 1000,
+            "1536x1536-height": 1000,
+            "2048x2048": "https://rggndr.it/wp-content/uploads/2025/05/rggndr-gallery-4.jpg",
+            "2048x2048-width": 1000,
+            "2048x2048-height": 1000
+          }
+        },
+        "titolo": "Giulia, Lanzarote"
+      },
+      {
+        "immagine": {
+          "ID": 378,
+          "id": 378,
+          "title": "rggndr-gallery-9",
+          "filename": "rggndr-gallery-9.jpg",
+          "filesize": 102520,
+          "url": "https://rggndr.it/wp-content/uploads/2025/05/rggndr-gallery-9.jpg",
+          "link": "https://rggndr.it/gallery/rggndr-gallery-9/",
+          "alt": "",
+          "author": "1",
+          "description": "",
+          "caption": "",
+          "name": "rggndr-gallery-9",
+          "status": "inherit",
+          "uploaded_to": 318,
+          "date": "2025-05-11 20:07:55",
+          "modified": "2025-05-11 20:07:55",
+          "menu_order": 0,
+          "mime_type": "image/jpeg",
+          "type": "image",
+          "subtype": "jpeg",
+          "icon": "https://rggndr.it/wp-includes/images/media/default.png",
+          "width": 563,
+          "height": 1000,
+          "sizes": {
+            "thumbnail": "https://rggndr.it/wp-content/uploads/2025/05/rggndr-gallery-9-150x150.jpg",
+            "thumbnail-width": 150,
+            "thumbnail-height": 150,
+            "medium": "https://rggndr.it/wp-content/uploads/2025/05/rggndr-gallery-9-169x300.jpg",
+            "medium-width": 169,
+            "medium-height": 300,
+            "medium_large": "https://rggndr.it/wp-content/uploads/2025/05/rggndr-gallery-9.jpg",
+            "medium_large-width": 563,
+            "medium_large-height": 1000,
+            "large": "https://rggndr.it/wp-content/uploads/2025/05/rggndr-gallery-9.jpg",
+            "large-width": 563,
+            "large-height": 1000,
+            "1536x1536": "https://rggndr.it/wp-content/uploads/2025/05/rggndr-gallery-9.jpg",
+            "1536x1536-width": 563,
+            "1536x1536-height": 1000,
+            "2048x2048": "https://rggndr.it/wp-content/uploads/2025/05/rggndr-gallery-9.jpg",
+            "2048x2048-width": 563,
+            "2048x2048-height": 1000
+          }
+        },
+        "titolo": "Cascina Lago Scuro"
+      },
+      {
+        "immagine": {
+          "ID": 382,
+          "id": 382,
+          "title": "rggndr-gallery-13",
+          "filename": "rggndr-gallery-13.jpg",
+          "filesize": 192225,
+          "url": "https://rggndr.it/wp-content/uploads/2025/05/rggndr-gallery-13.jpg",
+          "link": "https://rggndr.it/gallery/rggndr-gallery-13/",
+          "alt": "",
+          "author": "1",
+          "description": "",
+          "caption": "",
+          "name": "rggndr-gallery-13",
+          "status": "inherit",
+          "uploaded_to": 318,
+          "date": "2025-05-11 20:07:57",
+          "modified": "2025-05-11 20:07:57",
+          "menu_order": 0,
+          "mime_type": "image/jpeg",
+          "type": "image",
+          "subtype": "jpeg",
+          "icon": "https://rggndr.it/wp-includes/images/media/default.png",
+          "width": 562,
+          "height": 1000,
+          "sizes": {
+            "thumbnail": "https://rggndr.it/wp-content/uploads/2025/05/rggndr-gallery-13-150x150.jpg",
+            "thumbnail-width": 150,
+            "thumbnail-height": 150,
+            "medium": "https://rggndr.it/wp-content/uploads/2025/05/rggndr-gallery-13-169x300.jpg",
+            "medium-width": 169,
+            "medium-height": 300,
+            "medium_large": "https://rggndr.it/wp-content/uploads/2025/05/rggndr-gallery-13.jpg",
+            "medium_large-width": 562,
+            "medium_large-height": 1000,
+            "large": "https://rggndr.it/wp-content/uploads/2025/05/rggndr-gallery-13.jpg",
+            "large-width": 562,
+            "large-height": 1000,
+            "1536x1536": "https://rggndr.it/wp-content/uploads/2025/05/rggndr-gallery-13.jpg",
+            "1536x1536-width": 562,
+            "1536x1536-height": 1000,
+            "2048x2048": "https://rggndr.it/wp-content/uploads/2025/05/rggndr-gallery-13.jpg",
+            "2048x2048-width": 562,
+            "2048x2048-height": 1000
+          }
+        },
+        "titolo": "Mud Millo"
+      },
+      {
+        "immagine": {
+          "ID": 387,
+          "id": 387,
+          "title": "rggndr-gallery-18",
+          "filename": "rggndr-gallery-18.jpg",
+          "filesize": 132251,
+          "url": "https://rggndr.it/wp-content/uploads/2025/05/rggndr-gallery-18.jpg",
+          "link": "https://rggndr.it/gallery/rggndr-gallery-18/",
+          "alt": "",
+          "author": "1",
+          "description": "",
+          "caption": "",
+          "name": "rggndr-gallery-18",
+          "status": "inherit",
+          "uploaded_to": 318,
+          "date": "2025-05-11 20:07:59",
+          "modified": "2025-05-11 20:07:59",
+          "menu_order": 0,
+          "mime_type": "image/jpeg",
+          "type": "image",
+          "subtype": "jpeg",
+          "icon": "https://rggndr.it/wp-includes/images/media/default.png",
+          "width": 562,
+          "height": 1000,
+          "sizes": {
+            "thumbnail": "https://rggndr.it/wp-content/uploads/2025/05/rggndr-gallery-18-150x150.jpg",
+            "thumbnail-width": 150,
+            "thumbnail-height": 150,
+            "medium": "https://rggndr.it/wp-content/uploads/2025/05/rggndr-gallery-18-169x300.jpg",
+            "medium-width": 169,
+            "medium-height": 300,
+            "medium_large": "https://rggndr.it/wp-content/uploads/2025/05/rggndr-gallery-18.jpg",
+            "medium_large-width": 562,
+            "medium_large-height": 1000,
+            "large": "https://rggndr.it/wp-content/uploads/2025/05/rggndr-gallery-18.jpg",
+            "large-width": 562,
+            "large-height": 1000,
+            "1536x1536": "https://rggndr.it/wp-content/uploads/2025/05/rggndr-gallery-18.jpg",
+            "1536x1536-width": 562,
+            "1536x1536-height": 1000,
+            "2048x2048": "https://rggndr.it/wp-content/uploads/2025/05/rggndr-gallery-18.jpg",
+            "2048x2048-width": 562,
+            "2048x2048-height": 1000
+          }
+        },
+        "titolo": "Home of dreams"
+      },
+      {
+        "immagine": {
+          "ID": 372,
+          "id": 372,
+          "title": "rggndr-gallery-3",
+          "filename": "rggndr-gallery-3.jpg",
+          "filesize": 103658,
+          "url": "https://rggndr.it/wp-content/uploads/2025/05/rggndr-gallery-3.jpg",
+          "link": "https://rggndr.it/gallery/rggndr-gallery-3/",
+          "alt": "",
+          "author": "1",
+          "description": "",
+          "caption": "",
+          "name": "rggndr-gallery-3",
+          "status": "inherit",
+          "uploaded_to": 318,
+          "date": "2025-05-11 20:07:53",
+          "modified": "2025-05-11 20:07:53",
+          "menu_order": 0,
+          "mime_type": "image/jpeg",
+          "type": "image",
+          "subtype": "jpeg",
+          "icon": "https://rggndr.it/wp-includes/images/media/default.png",
+          "width": 569,
+          "height": 1000,
+          "sizes": {
+            "thumbnail": "https://rggndr.it/wp-content/uploads/2025/05/rggndr-gallery-3-150x150.jpg",
+            "thumbnail-width": 150,
+            "thumbnail-height": 150,
+            "medium": "https://rggndr.it/wp-content/uploads/2025/05/rggndr-gallery-3-171x300.jpg",
+            "medium-width": 171,
+            "medium-height": 300,
+            "medium_large": "https://rggndr.it/wp-content/uploads/2025/05/rggndr-gallery-3.jpg",
+            "medium_large-width": 569,
+            "medium_large-height": 1000,
+            "large": "https://rggndr.it/wp-content/uploads/2025/05/rggndr-gallery-3.jpg",
+            "large-width": 569,
+            "large-height": 1000,
+            "1536x1536": "https://rggndr.it/wp-content/uploads/2025/05/rggndr-gallery-3.jpg",
+            "1536x1536-width": 569,
+            "1536x1536-height": 1000,
+            "2048x2048": "https://rggndr.it/wp-content/uploads/2025/05/rggndr-gallery-3.jpg",
+            "2048x2048-width": 569,
+            "2048x2048-height": 1000
+          }
+        },
+        "titolo": "Lanzarote"
+      },
+      {
+        "immagine": {
+          "ID": 374,
+          "id": 374,
+          "title": "rggndr-gallery-5",
+          "filename": "rggndr-gallery-5.jpg",
+          "filesize": 211565,
+          "url": "https://rggndr.it/wp-content/uploads/2025/05/rggndr-gallery-5.jpg",
+          "link": "https://rggndr.it/gallery/rggndr-gallery-5/",
+          "alt": "",
+          "author": "1",
+          "description": "",
+          "caption": "",
+          "name": "rggndr-gallery-5",
+          "status": "inherit",
+          "uploaded_to": 318,
+          "date": "2025-05-11 20:07:54",
+          "modified": "2025-05-11 20:07:54",
+          "menu_order": 0,
+          "mime_type": "image/jpeg",
+          "type": "image",
+          "subtype": "jpeg",
+          "icon": "https://rggndr.it/wp-includes/images/media/default.png",
+          "width": 750,
+          "height": 1000,
+          "sizes": {
+            "thumbnail": "https://rggndr.it/wp-content/uploads/2025/05/rggndr-gallery-5-150x150.jpg",
+            "thumbnail-width": 150,
+            "thumbnail-height": 150,
+            "medium": "https://rggndr.it/wp-content/uploads/2025/05/rggndr-gallery-5-225x300.jpg",
+            "medium-width": 225,
+            "medium-height": 300,
+            "medium_large": "https://rggndr.it/wp-content/uploads/2025/05/rggndr-gallery-5.jpg",
+            "medium_large-width": 750,
+            "medium_large-height": 1000,
+            "large": "https://rggndr.it/wp-content/uploads/2025/05/rggndr-gallery-5.jpg",
+            "large-width": 750,
+            "large-height": 1000,
+            "1536x1536": "https://rggndr.it/wp-content/uploads/2025/05/rggndr-gallery-5.jpg",
+            "1536x1536-width": 750,
+            "1536x1536-height": 1000,
+            "2048x2048": "https://rggndr.it/wp-content/uploads/2025/05/rggndr-gallery-5.jpg",
+            "2048x2048-width": 750,
+            "2048x2048-height": 1000
+          }
+        },
+        "titolo": "Sand in Famara"
+      },
+      {
+        "immagine": {
+          "ID": 388,
+          "id": 388,
+          "title": "rggndr-gallery-19",
+          "filename": "rggndr-gallery-19.jpg",
+          "filesize": 198528,
+          "url": "https://rggndr.it/wp-content/uploads/2025/05/rggndr-gallery-19.jpg",
+          "link": "https://rggndr.it/gallery/rggndr-gallery-19/",
+          "alt": "",
+          "author": "1",
+          "description": "",
+          "caption": "",
+          "name": "rggndr-gallery-19",
+          "status": "inherit",
+          "uploaded_to": 318,
+          "date": "2025-05-11 20:07:59",
+          "modified": "2025-05-11 20:07:59",
+          "menu_order": 0,
+          "mime_type": "image/jpeg",
+          "type": "image",
+          "subtype": "jpeg",
+          "icon": "https://rggndr.it/wp-includes/images/media/default.png",
+          "width": 563,
+          "height": 1000,
+          "sizes": {
+            "thumbnail": "https://rggndr.it/wp-content/uploads/2025/05/rggndr-gallery-19-150x150.jpg",
+            "thumbnail-width": 150,
+            "thumbnail-height": 150,
+            "medium": "https://rggndr.it/wp-content/uploads/2025/05/rggndr-gallery-19-169x300.jpg",
+            "medium-width": 169,
+            "medium-height": 300,
+            "medium_large": "https://rggndr.it/wp-content/uploads/2025/05/rggndr-gallery-19.jpg",
+            "medium_large-width": 563,
+            "medium_large-height": 1000,
+            "large": "https://rggndr.it/wp-content/uploads/2025/05/rggndr-gallery-19.jpg",
+            "large-width": 563,
+            "large-height": 1000,
+            "1536x1536": "https://rggndr.it/wp-content/uploads/2025/05/rggndr-gallery-19.jpg",
+            "1536x1536-width": 563,
+            "1536x1536-height": 1000,
+            "2048x2048": "https://rggndr.it/wp-content/uploads/2025/05/rggndr-gallery-19.jpg",
+            "2048x2048-width": 563,
+            "2048x2048-height": 1000
+          }
+        },
+        "titolo": "Indian food"
+      },
+      {
+        "immagine": {
+          "ID": 385,
+          "id": 385,
+          "title": "rggndr-gallery-16",
+          "filename": "rggndr-gallery-16.jpg",
+          "filesize": 207946,
+          "url": "https://rggndr.it/wp-content/uploads/2025/05/rggndr-gallery-16.jpg",
+          "link": "https://rggndr.it/gallery/rggndr-gallery-16/",
+          "alt": "",
+          "author": "1",
+          "description": "",
+          "caption": "",
+          "name": "rggndr-gallery-16",
+          "status": "inherit",
+          "uploaded_to": 318,
+          "date": "2025-05-11 20:07:58",
+          "modified": "2025-05-11 20:07:58",
+          "menu_order": 0,
+          "mime_type": "image/jpeg",
+          "type": "image",
+          "subtype": "jpeg",
+          "icon": "https://rggndr.it/wp-includes/images/media/default.png",
+          "width": 800,
+          "height": 1000,
+          "sizes": {
+            "thumbnail": "https://rggndr.it/wp-content/uploads/2025/05/rggndr-gallery-16-150x150.jpg",
+            "thumbnail-width": 150,
+            "thumbnail-height": 150,
+            "medium": "https://rggndr.it/wp-content/uploads/2025/05/rggndr-gallery-16-240x300.jpg",
+            "medium-width": 240,
+            "medium-height": 300,
+            "medium_large": "https://rggndr.it/wp-content/uploads/2025/05/rggndr-gallery-16-768x960.jpg",
+            "medium_large-width": 768,
+            "medium_large-height": 960,
+            "large": "https://rggndr.it/wp-content/uploads/2025/05/rggndr-gallery-16.jpg",
+            "large-width": 800,
+            "large-height": 1000,
+            "1536x1536": "https://rggndr.it/wp-content/uploads/2025/05/rggndr-gallery-16.jpg",
+            "1536x1536-width": 800,
+            "1536x1536-height": 1000,
+            "2048x2048": "https://rggndr.it/wp-content/uploads/2025/05/rggndr-gallery-16.jpg",
+            "2048x2048-width": 800,
+            "2048x2048-height": 1000
+          }
+        },
+        "titolo": "Istanbul Ferry"
+      },
+      {
+        "immagine": {
+          "ID": 380,
+          "id": 380,
+          "title": "rggndr-gallery-11",
+          "filename": "rggndr-gallery-11.jpg",
+          "filesize": 112764,
+          "url": "https://rggndr.it/wp-content/uploads/2025/05/rggndr-gallery-11.jpg",
+          "link": "https://rggndr.it/gallery/rggndr-gallery-11/",
+          "alt": "",
+          "author": "1",
+          "description": "",
+          "caption": "",
+          "name": "rggndr-gallery-11",
+          "status": "inherit",
+          "uploaded_to": 318,
+          "date": "2025-05-11 20:07:56",
+          "modified": "2025-05-11 20:07:56",
+          "menu_order": 0,
+          "mime_type": "image/jpeg",
+          "type": "image",
+          "subtype": "jpeg",
+          "icon": "https://rggndr.it/wp-includes/images/media/default.png",
+          "width": 563,
+          "height": 1000,
+          "sizes": {
+            "thumbnail": "https://rggndr.it/wp-content/uploads/2025/05/rggndr-gallery-11-150x150.jpg",
+            "thumbnail-width": 150,
+            "thumbnail-height": 150,
+            "medium": "https://rggndr.it/wp-content/uploads/2025/05/rggndr-gallery-11-169x300.jpg",
+            "medium-width": 169,
+            "medium-height": 300,
+            "medium_large": "https://rggndr.it/wp-content/uploads/2025/05/rggndr-gallery-11.jpg",
+            "medium_large-width": 563,
+            "medium_large-height": 1000,
+            "large": "https://rggndr.it/wp-content/uploads/2025/05/rggndr-gallery-11.jpg",
+            "large-width": 563,
+            "large-height": 1000,
+            "1536x1536": "https://rggndr.it/wp-content/uploads/2025/05/rggndr-gallery-11.jpg",
+            "1536x1536-width": 563,
+            "1536x1536-height": 1000,
+            "2048x2048": "https://rggndr.it/wp-content/uploads/2025/05/rggndr-gallery-11.jpg",
+            "2048x2048-width": 563,
+            "2048x2048-height": 1000
+          }
+        },
+        "titolo": "Walking in the clouds"
+      },
+      {
+        "immagine": {
+          "ID": 384,
+          "id": 384,
+          "title": "rggndr-gallery-15",
+          "filename": "rggndr-gallery-15.jpg",
+          "filesize": 129156,
+          "url": "https://rggndr.it/wp-content/uploads/2025/05/rggndr-gallery-15.jpg",
+          "link": "https://rggndr.it/gallery/rggndr-gallery-15/",
+          "alt": "",
+          "author": "1",
+          "description": "",
+          "caption": "",
+          "name": "rggndr-gallery-15",
+          "status": "inherit",
+          "uploaded_to": 318,
+          "date": "2025-05-11 20:07:58",
+          "modified": "2025-05-11 20:07:58",
+          "menu_order": 0,
+          "mime_type": "image/jpeg",
+          "type": "image",
+          "subtype": "jpeg",
+          "icon": "https://rggndr.it/wp-includes/images/media/default.png",
+          "width": 563,
+          "height": 1000,
+          "sizes": {
+            "thumbnail": "https://rggndr.it/wp-content/uploads/2025/05/rggndr-gallery-15-150x150.jpg",
+            "thumbnail-width": 150,
+            "thumbnail-height": 150,
+            "medium": "https://rggndr.it/wp-content/uploads/2025/05/rggndr-gallery-15-169x300.jpg",
+            "medium-width": 169,
+            "medium-height": 300,
+            "medium_large": "https://rggndr.it/wp-content/uploads/2025/05/rggndr-gallery-15.jpg",
+            "medium_large-width": 563,
+            "medium_large-height": 1000,
+            "large": "https://rggndr.it/wp-content/uploads/2025/05/rggndr-gallery-15.jpg",
+            "large-width": 563,
+            "large-height": 1000,
+            "1536x1536": "https://rggndr.it/wp-content/uploads/2025/05/rggndr-gallery-15.jpg",
+            "1536x1536-width": 563,
+            "1536x1536-height": 1000,
+            "2048x2048": "https://rggndr.it/wp-content/uploads/2025/05/rggndr-gallery-15.jpg",
+            "2048x2048-width": 563,
+            "2048x2048-height": 1000
+          }
+        },
+        "titolo": "Sleeping at home"
+      },
+      {
+        "immagine": {
+          "ID": 377,
+          "id": 377,
+          "title": "rggndr-gallery-8",
+          "filename": "rggndr-gallery-8.jpg",
+          "filesize": 144388,
+          "url": "https://rggndr.it/wp-content/uploads/2025/05/rggndr-gallery-8.jpg",
+          "link": "https://rggndr.it/gallery/rggndr-gallery-8/",
+          "alt": "",
+          "author": "1",
+          "description": "",
+          "caption": "",
+          "name": "rggndr-gallery-8",
+          "status": "inherit",
+          "uploaded_to": 318,
+          "date": "2025-05-11 20:07:55",
+          "modified": "2025-05-11 20:07:55",
+          "menu_order": 0,
+          "mime_type": "image/jpeg",
+          "type": "image",
+          "subtype": "jpeg",
+          "icon": "https://rggndr.it/wp-includes/images/media/default.png",
+          "width": 750,
+          "height": 1000,
+          "sizes": {
+            "thumbnail": "https://rggndr.it/wp-content/uploads/2025/05/rggndr-gallery-8-150x150.jpg",
+            "thumbnail-width": 150,
+            "thumbnail-height": 150,
+            "medium": "https://rggndr.it/wp-content/uploads/2025/05/rggndr-gallery-8-225x300.jpg",
+            "medium-width": 225,
+            "medium-height": 300,
+            "medium_large": "https://rggndr.it/wp-content/uploads/2025/05/rggndr-gallery-8.jpg",
+            "medium_large-width": 750,
+            "medium_large-height": 1000,
+            "large": "https://rggndr.it/wp-content/uploads/2025/05/rggndr-gallery-8.jpg",
+            "large-width": 750,
+            "large-height": 1000,
+            "1536x1536": "https://rggndr.it/wp-content/uploads/2025/05/rggndr-gallery-8.jpg",
+            "1536x1536-width": 750,
+            "1536x1536-height": 1000,
+            "2048x2048": "https://rggndr.it/wp-content/uploads/2025/05/rggndr-gallery-8.jpg",
+            "2048x2048-width": 750,
+            "2048x2048-height": 1000
+          }
+        },
+        "titolo": "Cheeeese"
+      },
+      {
+        "immagine": {
+          "ID": 371,
+          "id": 371,
+          "title": "rggndr-gallery-2",
+          "filename": "rggndr-gallery-2.jpg",
+          "filesize": 246650,
+          "url": "https://rggndr.it/wp-content/uploads/2025/05/rggndr-gallery-2.jpg",
+          "link": "https://rggndr.it/gallery/rggndr-gallery-2/",
+          "alt": "",
+          "author": "1",
+          "description": "",
+          "caption": "",
+          "name": "rggndr-gallery-2",
+          "status": "inherit",
+          "uploaded_to": 318,
+          "date": "2025-05-11 20:07:53",
+          "modified": "2025-05-11 20:07:53",
+          "menu_order": 0,
+          "mime_type": "image/jpeg",
+          "type": "image",
+          "subtype": "jpeg",
+          "icon": "https://rggndr.it/wp-includes/images/media/default.png",
+          "width": 1000,
+          "height": 750,
+          "sizes": {
+            "thumbnail": "https://rggndr.it/wp-content/uploads/2025/05/rggndr-gallery-2-150x150.jpg",
+            "thumbnail-width": 150,
+            "thumbnail-height": 150,
+            "medium": "https://rggndr.it/wp-content/uploads/2025/05/rggndr-gallery-2-300x225.jpg",
+            "medium-width": 300,
+            "medium-height": 225,
+            "medium_large": "https://rggndr.it/wp-content/uploads/2025/05/rggndr-gallery-2-768x576.jpg",
+            "medium_large-width": 768,
+            "medium_large-height": 576,
+            "large": "https://rggndr.it/wp-content/uploads/2025/05/rggndr-gallery-2.jpg",
+            "large-width": 1000,
+            "large-height": 750,
+            "1536x1536": "https://rggndr.it/wp-content/uploads/2025/05/rggndr-gallery-2.jpg",
+            "1536x1536-width": 1000,
+            "1536x1536-height": 750,
+            "2048x2048": "https://rggndr.it/wp-content/uploads/2025/05/rggndr-gallery-2.jpg",
+            "2048x2048-width": 1000,
+            "2048x2048-height": 750
+          }
+        },
+        "titolo": "Playing Basketball"
+      },
+      {
+        "immagine": {
+          "ID": 389,
+          "id": 389,
+          "title": "rggndr-gallery-20",
+          "filename": "rggndr-gallery-20.jpg",
+          "filesize": 61776,
+          "url": "https://rggndr.it/wp-content/uploads/2025/05/rggndr-gallery-20.jpg",
+          "link": "https://rggndr.it/gallery/rggndr-gallery-20/",
+          "alt": "",
+          "author": "1",
+          "description": "",
+          "caption": "",
+          "name": "rggndr-gallery-20",
+          "status": "inherit",
+          "uploaded_to": 318,
+          "date": "2025-05-11 20:08:00",
+          "modified": "2025-05-11 20:08:00",
+          "menu_order": 0,
+          "mime_type": "image/jpeg",
+          "type": "image",
+          "subtype": "jpeg",
+          "icon": "https://rggndr.it/wp-includes/images/media/default.png",
+          "width": 562,
+          "height": 1000,
+          "sizes": {
+            "thumbnail": "https://rggndr.it/wp-content/uploads/2025/05/rggndr-gallery-20-150x150.jpg",
+            "thumbnail-width": 150,
+            "thumbnail-height": 150,
+            "medium": "https://rggndr.it/wp-content/uploads/2025/05/rggndr-gallery-20-169x300.jpg",
+            "medium-width": 169,
+            "medium-height": 300,
+            "medium_large": "https://rggndr.it/wp-content/uploads/2025/05/rggndr-gallery-20.jpg",
+            "medium_large-width": 562,
+            "medium_large-height": 1000,
+            "large": "https://rggndr.it/wp-content/uploads/2025/05/rggndr-gallery-20.jpg",
+            "large-width": 562,
+            "large-height": 1000,
+            "1536x1536": "https://rggndr.it/wp-content/uploads/2025/05/rggndr-gallery-20.jpg",
+            "1536x1536-width": 562,
+            "1536x1536-height": 1000,
+            "2048x2048": "https://rggndr.it/wp-content/uploads/2025/05/rggndr-gallery-20.jpg",
+            "2048x2048-width": 562,
+            "2048x2048-height": 1000
+          }
+        },
+        "titolo": "Formentera"
+      },
+      {
+        "immagine": {
+          "ID": 376,
+          "id": 376,
+          "title": "rggndr-gallery-7",
+          "filename": "rggndr-gallery-7.jpg",
+          "filesize": 88776,
+          "url": "https://rggndr.it/wp-content/uploads/2025/05/rggndr-gallery-7.jpg",
+          "link": "https://rggndr.it/gallery/rggndr-gallery-7/",
+          "alt": "",
+          "author": "1",
+          "description": "",
+          "caption": "",
+          "name": "rggndr-gallery-7",
+          "status": "inherit",
+          "uploaded_to": 318,
+          "date": "2025-05-11 20:07:55",
+          "modified": "2025-05-11 20:07:55",
+          "menu_order": 0,
+          "mime_type": "image/jpeg",
+          "type": "image",
+          "subtype": "jpeg",
+          "icon": "https://rggndr.it/wp-includes/images/media/default.png",
+          "width": 750,
+          "height": 1000,
+          "sizes": {
+            "thumbnail": "https://rggndr.it/wp-content/uploads/2025/05/rggndr-gallery-7-150x150.jpg",
+            "thumbnail-width": 150,
+            "thumbnail-height": 150,
+            "medium": "https://rggndr.it/wp-content/uploads/2025/05/rggndr-gallery-7-225x300.jpg",
+            "medium-width": 225,
+            "medium-height": 300,
+            "medium_large": "https://rggndr.it/wp-content/uploads/2025/05/rggndr-gallery-7.jpg",
+            "medium_large-width": 750,
+            "medium_large-height": 1000,
+            "large": "https://rggndr.it/wp-content/uploads/2025/05/rggndr-gallery-7.jpg",
+            "large-width": 750,
+            "large-height": 1000,
+            "1536x1536": "https://rggndr.it/wp-content/uploads/2025/05/rggndr-gallery-7.jpg",
+            "1536x1536-width": 750,
+            "1536x1536-height": 1000,
+            "2048x2048": "https://rggndr.it/wp-content/uploads/2025/05/rggndr-gallery-7.jpg",
+            "2048x2048-width": 750,
+            "2048x2048-height": 1000
+          }
+        },
+        "titolo": "Snowboard"
+      }
+    ]
+  },
+  "yoast_head": "<!-- This site is optimized with the Yoast SEO plugin v27.9 - https://yoast.com/product/yoast-seo-wordpress/ -->\n<title>Andrea Ruggeri – Personal gallery</title>\n<meta name=\"description\" content=\"Explore the memories, projects, and key moments of Andrea Ruggeri — A personal journey through experiences, ideas, and inspirations.\" />\n<meta name=\"robots\" content=\"index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1\" />\n<link rel=\"canonical\" href=\"https://rggndr.it/gallery/\" />\n<meta property=\"og:locale\" content=\"it_IT\" />\n<meta property=\"og:type\" content=\"article\" />\n<meta property=\"og:title\" content=\"Andrea Ruggeri – Personal gallery\" />\n<meta property=\"og:description\" content=\"Explore the memories, projects, and key moments of Andrea Ruggeri — A personal journey through experiences, ideas, and inspirations.\" />\n<meta property=\"og:url\" content=\"https://rggndr.it/gallery/\" />\n<meta property=\"og:site_name\" content=\"RGGNDR\" />\n<meta property=\"article:modified_time\" content=\"2025-05-15T08:56:18+00:00\" />\n<meta name=\"twitter:card\" content=\"summary_large_image\" />\n<meta name=\"twitter:site\" content=\"@andrea_rugge\" />\n<script type=\"application/ld+json\" class=\"yoast-schema-graph\">{\"@context\":\"https:\\/\\/schema.org\",\"@graph\":[{\"@type\":\"WebPage\",\"@id\":\"https:\\/\\/rggndr.it\\/gallery\\/\",\"url\":\"https:\\/\\/rggndr.it\\/gallery\\/\",\"name\":\"Andrea Ruggeri – Personal gallery\",\"isPartOf\":{\"@id\":\"https:\\/\\/rggndr.it\\/#website\"},\"datePublished\":\"2025-02-17T13:56:28+00:00\",\"dateModified\":\"2025-05-15T08:56:18+00:00\",\"description\":\"Explore the memories, projects, and key moments of Andrea Ruggeri — A personal journey through experiences, ideas, and inspirations.\",\"breadcrumb\":{\"@id\":\"https:\\/\\/rggndr.it\\/gallery\\/#breadcrumb\"},\"inLanguage\":\"it-IT\",\"potentialAction\":[{\"@type\":\"ReadAction\",\"target\":[\"https:\\/\\/rggndr.it\\/gallery\\/\"]}]},{\"@type\":\"BreadcrumbList\",\"@id\":\"https:\\/\\/rggndr.it\\/gallery\\/#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Home\",\"item\":\"https:\\/\\/rggndr.it\\/\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Gallery\"}]},{\"@type\":\"WebSite\",\"@id\":\"https:\\/\\/rggndr.it\\/#website\",\"url\":\"https:\\/\\/rggndr.it\\/\",\"name\":\"RGGNDR\",\"description\":\"Andrea Ruggeri — Design Driven Entrepreneur\",\"publisher\":{\"@id\":\"https:\\/\\/rggndr.it\\/#organization\"},\"potentialAction\":[{\"@type\":\"SearchAction\",\"target\":{\"@type\":\"EntryPoint\",\"urlTemplate\":\"https:\\/\\/rggndr.it\\/?s={search_term_string}\"},\"query-input\":{\"@type\":\"PropertyValueSpecification\",\"valueRequired\":true,\"valueName\":\"search_term_string\"}}],\"inLanguage\":\"it-IT\"},{\"@type\":\"Organization\",\"@id\":\"https:\\/\\/rggndr.it\\/#organization\",\"name\":\"RGGNDR\",\"url\":\"https:\\/\\/rggndr.it\\/\",\"logo\":{\"@type\":\"ImageObject\",\"inLanguage\":\"it-IT\",\"@id\":\"https:\\/\\/rggndr.it\\/#\\/schema\\/logo\\/image\\/\",\"url\":\"https:\\/\\/rggndr.be-dev.it\\/wp-content\\/uploads\\/2025\\/02\\/screenshot.png\",\"contentUrl\":\"https:\\/\\/rggndr.be-dev.it\\/wp-content\\/uploads\\/2025\\/02\\/screenshot.png\",\"width\":1200,\"height\":900,\"caption\":\"RGGNDR\"},\"image\":{\"@id\":\"https:\\/\\/rggndr.it\\/#\\/schema\\/logo\\/image\\/\"},\"sameAs\":[\"https:\\/\\/x.com\\/andrea_rugge\",\"https:\\/\\/www.instagram.com\\/andrearugge\\/\",\"https:\\/\\/www.linkedin.com\\/in\\/andrerugge\\/\"]}]}</script>\n<!-- / Yoast SEO plugin. -->",
+  "yoast_head_json": {
+    "title": "Andrea Ruggeri – Personal gallery",
+    "description": "Explore the memories, projects, and key moments of Andrea Ruggeri — A personal journey through experiences, ideas, and inspirations.",
+    "robots": {
+      "index": "index",
+      "follow": "follow",
+      "max-snippet": "max-snippet:-1",
+      "max-image-preview": "max-image-preview:large",
+      "max-video-preview": "max-video-preview:-1"
+    },
+    "canonical": "https://rggndr.it/gallery/",
+    "og_locale": "it_IT",
+    "og_type": "article",
+    "og_title": "Andrea Ruggeri – Personal gallery",
+    "og_description": "Explore the memories, projects, and key moments of Andrea Ruggeri — A personal journey through experiences, ideas, and inspirations.",
+    "og_url": "https://rggndr.it/gallery/",
+    "og_site_name": "RGGNDR",
+    "article_modified_time": "2025-05-15T08:56:18+00:00",
+    "twitter_card": "summary_large_image",
+    "twitter_site": "@andrea_rugge",
+    "schema": {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "WebPage",
+          "@id": "https://rggndr.it/gallery/",
+          "url": "https://rggndr.it/gallery/",
+          "name": "Andrea Ruggeri – Personal gallery",
+          "isPartOf": {
+            "@id": "https://rggndr.it/#website"
+          },
+          "datePublished": "2025-02-17T13:56:28+00:00",
+          "dateModified": "2025-05-15T08:56:18+00:00",
+          "description": "Explore the memories, projects, and key moments of Andrea Ruggeri — A personal journey through experiences, ideas, and inspirations.",
+          "breadcrumb": {
+            "@id": "https://rggndr.it/gallery/#breadcrumb"
+          },
+          "inLanguage": "it-IT",
+          "potentialAction": [
+            {
+              "@type": "ReadAction",
+              "target": ["https://rggndr.it/gallery/"]
+            }
+          ]
+        },
+        {
+          "@type": "BreadcrumbList",
+          "@id": "https://rggndr.it/gallery/#breadcrumb",
+          "itemListElement": [
+            {
+              "@type": "ListItem",
+              "position": 1,
+              "name": "Home",
+              "item": "https://rggndr.it/"
+            },
+            {
+              "@type": "ListItem",
+              "position": 2,
+              "name": "Gallery"
+            }
+          ]
+        },
+        {
+          "@type": "WebSite",
+          "@id": "https://rggndr.it/#website",
+          "url": "https://rggndr.it/",
+          "name": "RGGNDR",
+          "description": "Andrea Ruggeri — Design Driven Entrepreneur",
+          "publisher": {
+            "@id": "https://rggndr.it/#organization"
+          },
+          "potentialAction": [
+            {
+              "@type": "SearchAction",
+              "target": {
+                "@type": "EntryPoint",
+                "urlTemplate": "https://rggndr.it/?s={search_term_string}"
+              },
+              "query-input": {
+                "@type": "PropertyValueSpecification",
+                "valueRequired": true,
+                "valueName": "search_term_string"
+              }
+            }
+          ],
+          "inLanguage": "it-IT"
+        },
+        {
+          "@type": "Organization",
+          "@id": "https://rggndr.it/#organization",
+          "name": "RGGNDR",
+          "url": "https://rggndr.it/",
+          "logo": {
+            "@type": "ImageObject",
+            "inLanguage": "it-IT",
+            "@id": "https://rggndr.it/#/schema/logo/image/",
+            "url": "https://rggndr.be-dev.it/wp-content/uploads/2025/02/screenshot.png",
+            "contentUrl": "https://rggndr.be-dev.it/wp-content/uploads/2025/02/screenshot.png",
+            "width": 1200,
+            "height": 900,
+            "caption": "RGGNDR"
+          },
+          "image": {
+            "@id": "https://rggndr.it/#/schema/logo/image/"
+          },
+          "sameAs": [
+            "https://x.com/andrea_rugge",
+            "https://www.instagram.com/andrearugge/",
+            "https://www.linkedin.com/in/andrerugge/"
+          ]
+        }
+      ]
+    }
+  },
+  "_links": {
+    "self": [
+      {
+        "href": "https://rggndr.it/wp-json/wp/v2/pages/318",
+        "targetHints": {
+          "allow": ["GET"]
+        }
+      }
+    ],
+    "collection": [
+      {
+        "href": "https://rggndr.it/wp-json/wp/v2/pages"
+      }
+    ],
+    "about": [
+      {
+        "href": "https://rggndr.it/wp-json/wp/v2/types/page"
+      }
+    ],
+    "author": [
+      {
+        "embeddable": true,
+        "href": "https://rggndr.it/wp-json/wp/v2/users/1"
+      }
+    ],
+    "replies": [
+      {
+        "embeddable": true,
+        "href": "https://rggndr.it/wp-json/wp/v2/comments?post=318"
+      }
+    ],
+    "version-history": [
+      {
+        "count": 6,
+        "href": "https://rggndr.it/wp-json/wp/v2/pages/318/revisions"
+      }
+    ],
+    "predecessor-version": [
+      {
+        "id": 391,
+        "href": "https://rggndr.it/wp-json/wp/v2/pages/318/revisions/391"
+      }
+    ],
+    "wp:attachment": [
+      {
+        "href": "https://rggndr.it/wp-json/wp/v2/media?parent=318"
+      }
+    ],
+    "curies": [
+      {
+        "name": "wp",
+        "href": "https://api.w.org/{rel}",
+        "templated": true
+      }
+    ]
+  }
+}

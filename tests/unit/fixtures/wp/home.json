@@ -1,0 +1,403 @@
+{
+  "id": 82,
+  "date": "2025-02-06T11:38:05",
+  "date_gmt": "2025-02-06T10:38:05",
+  "guid": {
+    "rendered": "https://rggndr.be-dev.it/?page_id=82"
+  },
+  "modified": "2025-05-15T10:55:55",
+  "modified_gmt": "2025-05-15T08:55:55",
+  "slug": "homepage",
+  "status": "publish",
+  "type": "page",
+  "link": "https://rggndr.it/",
+  "title": {
+    "rendered": "Homepage"
+  },
+  "content": {
+    "rendered": "",
+    "protected": false
+  },
+  "excerpt": {
+    "rendered": "",
+    "protected": false
+  },
+  "author": 1,
+  "featured_media": 0,
+  "parent": 0,
+  "menu_order": 0,
+  "comment_status": "closed",
+  "ping_status": "closed",
+  "template": "templates/homepage.php",
+  "meta": {
+    "_acf_changed": false,
+    "inline_featured_image": false,
+    "footnotes": ""
+  },
+  "class_list": ["post-82", "page", "type-page", "status-publish", "hentry"],
+  "acf": {
+    "attivare_hero": true,
+    "hero_snake": true,
+    "hero_sublabel": "Combining creativity with strategic thinking to shape <b>purposeful digital products</b>.",
+    "attivare_links": true,
+    "links_one_titolo": "Open info",
+    "links_two_titolo": "AI Journal",
+    "links_three_titolo": "Fav readings",
+    "links_link_one": [
+      {
+        "link": "",
+        "label": "Andrea Ruggeri, 33 years old, italian."
+      },
+      {
+        "link": "",
+        "label": "Grew up in the countryside with football and motorcycles."
+      },
+      {
+        "link": "",
+        "label": "In love with giulia."
+      },
+      {
+        "link": "",
+        "label": "Can’t miss any f.c. internazionale match."
+      }
+    ],
+    "links_link_two": [
+      {
+        "link": "",
+        "label": "OpenAI rivoluziona gli agenti AI, PlayStation sperimenta NPC intelligenti e l’energia geotermica salva i data center?"
+      }
+    ],
+    "links_link_three": [
+      {
+        "link": "",
+        "label": "Factfullness"
+      },
+      {
+        "link": "",
+        "label": "Radical candor"
+      },
+      {
+        "link": "",
+        "label": "The millenium saga"
+      },
+      {
+        "link": "",
+        "label": "Norwegian wood"
+      }
+    ],
+    "attivare_manifesto": true,
+    "manifesto_titolino": "In the game for over 8 years.",
+    "manifesto_contenuto": "<p>Currently Partner &amp; Design Director at <a href=\"https://beconcept.studio/\">Beconcept</a>, where I design for the edge of digital innovation.</p>\n<p>Meanwhile pushing boundaries with AI to rethink what’s next in human–machine collaboration.</p>\n",
+    "manifesto_sottotitolo_one": "Also (proud) board member of",
+    "manifesto_sottotitolo_two": "KPI6  /  Montipadel / Luc.ia  /  Something cool is brewing",
+    "attivare_progetti": true,
+    "activate_bottomfooter": true,
+    "footer_simbolo": {
+      "ID": 108,
+      "id": 108,
+      "title": "iconcina",
+      "filename": "iconcina.png",
+      "filesize": 3179,
+      "url": "https://rggndr.it/wp-content/uploads/2025/02/iconcina.png",
+      "link": "https://rggndr.it/homepage/iconcina/",
+      "alt": "",
+      "author": "1",
+      "description": "",
+      "caption": "",
+      "name": "iconcina",
+      "status": "inherit",
+      "uploaded_to": 82,
+      "date": "2025-02-06 11:46:53",
+      "modified": "2025-02-06 11:46:53",
+      "menu_order": 0,
+      "mime_type": "image/png",
+      "type": "image",
+      "subtype": "png",
+      "icon": "https://rggndr.it/wp-includes/images/media/default.png",
+      "width": 100,
+      "height": 100,
+      "sizes": {
+        "thumbnail": "https://rggndr.it/wp-content/uploads/2025/02/iconcina.png",
+        "thumbnail-width": 100,
+        "thumbnail-height": 100,
+        "medium": "https://rggndr.it/wp-content/uploads/2025/02/iconcina.png",
+        "medium-width": 100,
+        "medium-height": 100,
+        "medium_large": "https://rggndr.it/wp-content/uploads/2025/02/iconcina.png",
+        "medium_large-width": 100,
+        "medium_large-height": 100,
+        "large": "https://rggndr.it/wp-content/uploads/2025/02/iconcina.png",
+        "large-width": 100,
+        "large-height": 100,
+        "1536x1536": "https://rggndr.it/wp-content/uploads/2025/02/iconcina.png",
+        "1536x1536-width": 100,
+        "1536x1536-height": 100,
+        "2048x2048": "https://rggndr.it/wp-content/uploads/2025/02/iconcina.png",
+        "2048x2048-width": 100,
+        "2048x2048-height": 100
+      }
+    },
+    "footer_image_one": {
+      "ID": 392,
+      "id": 392,
+      "title": "S-Tickets",
+      "filename": "S-Tickets.svg",
+      "filesize": 66841,
+      "url": "https://rggndr.it/wp-content/uploads/2025/05/S-Tickets.svg",
+      "link": "https://rggndr.it/homepage/s-tickets-3/",
+      "alt": "",
+      "author": "1",
+      "description": "",
+      "caption": "",
+      "name": "s-tickets-3",
+      "status": "inherit",
+      "uploaded_to": 82,
+      "date": "2025-05-11 20:13:46",
+      "modified": "2025-05-11 20:13:46",
+      "menu_order": 0,
+      "mime_type": "image/svg+xml",
+      "type": "image",
+      "subtype": "svg+xml",
+      "icon": "https://rggndr.it/wp-includes/images/media/default.png",
+      "width": 570,
+      "height": 397,
+      "sizes": {
+        "thumbnail": "https://rggndr.it/wp-content/uploads/2025/05/S-Tickets.svg",
+        "thumbnail-width": 150,
+        "thumbnail-height": 104,
+        "medium": "https://rggndr.it/wp-content/uploads/2025/05/S-Tickets.svg",
+        "medium-width": 300,
+        "medium-height": 208,
+        "medium_large": "https://rggndr.it/wp-content/uploads/2025/05/S-Tickets.svg",
+        "medium_large-width": 768,
+        "medium_large-height": 533,
+        "large": "https://rggndr.it/wp-content/uploads/2025/05/S-Tickets.svg",
+        "large-width": 1024,
+        "large-height": 711,
+        "1536x1536": "https://rggndr.it/wp-content/uploads/2025/05/S-Tickets.svg",
+        "1536x1536-width": 570,
+        "1536x1536-height": 397,
+        "2048x2048": "https://rggndr.it/wp-content/uploads/2025/05/S-Tickets.svg",
+        "2048x2048-width": 570,
+        "2048x2048-height": 397
+      }
+    },
+    "copyright_footer": "©2025 Andrea Ruggeri. All rights reserved.",
+    "footer_image_two": {
+      "ID": 111,
+      "id": 111,
+      "title": "barcode1",
+      "filename": "barcode1.svg",
+      "filesize": 19340,
+      "url": "https://rggndr.it/wp-content/uploads/2025/02/barcode1.svg",
+      "link": "https://rggndr.it/homepage/barcode1/",
+      "alt": "",
+      "author": "1",
+      "description": "",
+      "caption": "",
+      "name": "barcode1",
+      "status": "inherit",
+      "uploaded_to": 82,
+      "date": "2025-02-06 13:02:28",
+      "modified": "2025-02-06 13:02:28",
+      "menu_order": 0,
+      "mime_type": "image/svg+xml",
+      "type": "image",
+      "subtype": "svg+xml",
+      "icon": "https://rggndr.it/wp-includes/images/media/default.png",
+      "width": 103,
+      "height": 41,
+      "sizes": {
+        "thumbnail": "https://rggndr.it/wp-content/uploads/2025/02/barcode1.svg",
+        "thumbnail-width": 150,
+        "thumbnail-height": 60,
+        "medium": "https://rggndr.it/wp-content/uploads/2025/02/barcode1.svg",
+        "medium-width": 300,
+        "medium-height": 120,
+        "medium_large": "https://rggndr.it/wp-content/uploads/2025/02/barcode1.svg",
+        "medium_large-width": 768,
+        "medium_large-height": 306,
+        "large": "https://rggndr.it/wp-content/uploads/2025/02/barcode1.svg",
+        "large-width": 1024,
+        "large-height": 408,
+        "1536x1536": "https://rggndr.it/wp-content/uploads/2025/02/barcode1.svg",
+        "1536x1536-width": 103,
+        "1536x1536-height": 41,
+        "2048x2048": "https://rggndr.it/wp-content/uploads/2025/02/barcode1.svg",
+        "2048x2048-width": 103,
+        "2048x2048-height": 41
+      }
+    }
+  },
+  "yoast_head": "<!-- This site is optimized with the Yoast SEO plugin v27.9 - https://yoast.com/product/yoast-seo-wordpress/ -->\n<title>Andrea Ruggeri – Design-driven Digital Entrepreneur</title>\n<meta name=\"description\" content=\"Andrea Ruggeri is a design-driven entrepreneur crafting purposeful digital products and experiences. Partner &amp; Design Director at Beconcept.\" />\n<meta name=\"robots\" content=\"index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1\" />\n<link rel=\"canonical\" href=\"https://rggndr.it/\" />\n<meta property=\"og:locale\" content=\"it_IT\" />\n<meta property=\"og:type\" content=\"article\" />\n<meta property=\"og:title\" content=\"Andrea Ruggeri – Design-driven Digital Entrepreneur\" />\n<meta property=\"og:description\" content=\"Andrea Ruggeri is a design-driven entrepreneur crafting purposeful digital products and experiences. Partner &amp; Design Director at Beconcept.\" />\n<meta property=\"og:url\" content=\"https://rggndr.it/\" />\n<meta property=\"og:site_name\" content=\"RGGNDR\" />\n<meta property=\"article:modified_time\" content=\"2025-05-15T08:55:55+00:00\" />\n<meta name=\"twitter:card\" content=\"summary_large_image\" />\n<meta name=\"twitter:site\" content=\"@andrea_rugge\" />\n<script type=\"application/ld+json\" class=\"yoast-schema-graph\">{\"@context\":\"https:\\/\\/schema.org\",\"@graph\":[{\"@type\":\"WebPage\",\"@id\":\"https:\\/\\/rggndr.it\\/\",\"url\":\"https:\\/\\/rggndr.it\\/\",\"name\":\"Andrea Ruggeri – Design-driven Digital Entrepreneur\",\"isPartOf\":{\"@id\":\"https:\\/\\/rggndr.it\\/#website\"},\"datePublished\":\"2025-02-06T10:38:05+00:00\",\"dateModified\":\"2025-05-15T08:55:55+00:00\",\"description\":\"Andrea Ruggeri is a design-driven entrepreneur crafting purposeful digital products and experiences. Partner & Design Director at Beconcept.\",\"breadcrumb\":{\"@id\":\"https:\\/\\/rggndr.it\\/#breadcrumb\"},\"inLanguage\":\"it-IT\",\"potentialAction\":[{\"@type\":\"ReadAction\",\"target\":[\"https:\\/\\/rggndr.it\\/\"]}]},{\"@type\":\"BreadcrumbList\",\"@id\":\"https:\\/\\/rggndr.it\\/#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Home\",\"item\":\"https:\\/\\/rggndr.it\\/\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Homepage\"}]},{\"@type\":\"WebSite\",\"@id\":\"https:\\/\\/rggndr.it\\/#website\",\"url\":\"https:\\/\\/rggndr.it\\/\",\"name\":\"RGGNDR\",\"description\":\"Andrea Ruggeri — Design Driven Entrepreneur\",\"publisher\":{\"@id\":\"https:\\/\\/rggndr.it\\/#organization\"},\"potentialAction\":[{\"@type\":\"SearchAction\",\"target\":{\"@type\":\"EntryPoint\",\"urlTemplate\":\"https:\\/\\/rggndr.it\\/?s={search_term_string}\"},\"query-input\":{\"@type\":\"PropertyValueSpecification\",\"valueRequired\":true,\"valueName\":\"search_term_string\"}}],\"inLanguage\":\"it-IT\"},{\"@type\":\"Organization\",\"@id\":\"https:\\/\\/rggndr.it\\/#organization\",\"name\":\"RGGNDR\",\"url\":\"https:\\/\\/rggndr.it\\/\",\"logo\":{\"@type\":\"ImageObject\",\"inLanguage\":\"it-IT\",\"@id\":\"https:\\/\\/rggndr.it\\/#\\/schema\\/logo\\/image\\/\",\"url\":\"https:\\/\\/rggndr.be-dev.it\\/wp-content\\/uploads\\/2025\\/02\\/screenshot.png\",\"contentUrl\":\"https:\\/\\/rggndr.be-dev.it\\/wp-content\\/uploads\\/2025\\/02\\/screenshot.png\",\"width\":1200,\"height\":900,\"caption\":\"RGGNDR\"},\"image\":{\"@id\":\"https:\\/\\/rggndr.it\\/#\\/schema\\/logo\\/image\\/\"},\"sameAs\":[\"https:\\/\\/x.com\\/andrea_rugge\",\"https:\\/\\/www.instagram.com\\/andrearugge\\/\",\"https:\\/\\/www.linkedin.com\\/in\\/andrerugge\\/\"]}]}</script>\n<!-- / Yoast SEO plugin. -->",
+  "yoast_head_json": {
+    "title": "Andrea Ruggeri – Design-driven Digital Entrepreneur",
+    "description": "Andrea Ruggeri is a design-driven entrepreneur crafting purposeful digital products and experiences. Partner & Design Director at Beconcept.",
+    "robots": {
+      "index": "index",
+      "follow": "follow",
+      "max-snippet": "max-snippet:-1",
+      "max-image-preview": "max-image-preview:large",
+      "max-video-preview": "max-video-preview:-1"
+    },
+    "canonical": "https://rggndr.it/",
+    "og_locale": "it_IT",
+    "og_type": "article",
+    "og_title": "Andrea Ruggeri – Design-driven Digital Entrepreneur",
+    "og_description": "Andrea Ruggeri is a design-driven entrepreneur crafting purposeful digital products and experiences. Partner & Design Director at Beconcept.",
+    "og_url": "https://rggndr.it/",
+    "og_site_name": "RGGNDR",
+    "article_modified_time": "2025-05-15T08:55:55+00:00",
+    "twitter_card": "summary_large_image",
+    "twitter_site": "@andrea_rugge",
+    "schema": {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "WebPage",
+          "@id": "https://rggndr.it/",
+          "url": "https://rggndr.it/",
+          "name": "Andrea Ruggeri – Design-driven Digital Entrepreneur",
+          "isPartOf": {
+            "@id": "https://rggndr.it/#website"
+          },
+          "datePublished": "2025-02-06T10:38:05+00:00",
+          "dateModified": "2025-05-15T08:55:55+00:00",
+          "description": "Andrea Ruggeri is a design-driven entrepreneur crafting purposeful digital products and experiences. Partner & Design Director at Beconcept.",
+          "breadcrumb": {
+            "@id": "https://rggndr.it/#breadcrumb"
+          },
+          "inLanguage": "it-IT",
+          "potentialAction": [
+            {
+              "@type": "ReadAction",
+              "target": ["https://rggndr.it/"]
+            }
+          ]
+        },
+        {
+          "@type": "BreadcrumbList",
+          "@id": "https://rggndr.it/#breadcrumb",
+          "itemListElement": [
+            {
+              "@type": "ListItem",
+              "position": 1,
+              "name": "Home",
+              "item": "https://rggndr.it/"
+            },
+            {
+              "@type": "ListItem",
+              "position": 2,
+              "name": "Homepage"
+            }
+          ]
+        },
+        {
+          "@type": "WebSite",
+          "@id": "https://rggndr.it/#website",
+          "url": "https://rggndr.it/",
+          "name": "RGGNDR",
+          "description": "Andrea Ruggeri — Design Driven Entrepreneur",
+          "publisher": {
+            "@id": "https://rggndr.it/#organization"
+          },
+          "potentialAction": [
+            {
+              "@type": "SearchAction",
+              "target": {
+                "@type": "EntryPoint",
+                "urlTemplate": "https://rggndr.it/?s={search_term_string}"
+              },
+              "query-input": {
+                "@type": "PropertyValueSpecification",
+                "valueRequired": true,
+                "valueName": "search_term_string"
+              }
+            }
+          ],
+          "inLanguage": "it-IT"
+        },
+        {
+          "@type": "Organization",
+          "@id": "https://rggndr.it/#organization",
+          "name": "RGGNDR",
+          "url": "https://rggndr.it/",
+          "logo": {
+            "@type": "ImageObject",
+            "inLanguage": "it-IT",
+            "@id": "https://rggndr.it/#/schema/logo/image/",
+            "url": "https://rggndr.be-dev.it/wp-content/uploads/2025/02/screenshot.png",
+            "contentUrl": "https://rggndr.be-dev.it/wp-content/uploads/2025/02/screenshot.png",
+            "width": 1200,
+            "height": 900,
+            "caption": "RGGNDR"
+          },
+          "image": {
+            "@id": "https://rggndr.it/#/schema/logo/image/"
+          },
+          "sameAs": [
+            "https://x.com/andrea_rugge",
+            "https://www.instagram.com/andrearugge/",
+            "https://www.linkedin.com/in/andrerugge/"
+          ]
+        }
+      ]
+    }
+  },
+  "_links": {
+    "self": [
+      {
+        "href": "https://rggndr.it/wp-json/wp/v2/pages/82",
+        "targetHints": {
+          "allow": ["GET"]
+        }
+      }
+    ],
+    "collection": [
+      {
+        "href": "https://rggndr.it/wp-json/wp/v2/pages"
+      }
+    ],
+    "about": [
+      {
+        "href": "https://rggndr.it/wp-json/wp/v2/types/page"
+      }
+    ],
+    "author": [
+      {
+        "embeddable": true,
+        "href": "https://rggndr.it/wp-json/wp/v2/users/1"
+      }
+    ],
+    "replies": [
+      {
+        "embeddable": true,
+        "href": "https://rggndr.it/wp-json/wp/v2/comments?post=82"
+      }
+    ],
+    "version-history": [
+      {
+        "count": 31,
+        "href": "https://rggndr.it/wp-json/wp/v2/pages/82/revisions"
+      }
+    ],
+    "predecessor-version": [
+      {
+        "id": 393,
+        "href": "https://rggndr.it/wp-json/wp/v2/pages/82/revisions/393"
+      }
+    ],
+    "wp:attachment": [
+      {
+        "href": "https://rggndr.it/wp-json/wp/v2/media?parent=82"
+      }
+    ],
+    "curies": [
+      {
+        "name": "wp",
+        "href": "https://api.w.org/{rel}",
+        "templated": true
+      }
+    ]
+  }
+}
