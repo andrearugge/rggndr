@@ -3,14 +3,8 @@ import Lab from '../../layouts/Lab.astro';
 import Header from '../../components/site/Header.astro';
 import Gallery from '../../components/site/Gallery.astro';
 import { GALLERY } from '../../data/gallery';
-
-// Le varianti cambiano solo il colore della cornice della foto
-const variants = [
-  { id: 'nero', label: 'Cornice nera' },
-  { id: 'primary', label: 'Cornice primary' },
-];
 ---
-<Lab title="Gallery" variants={variants} defaultVariant="nero" chrome={false}>
+<Lab title="Gallery" chrome={false}>
   <Header current="/gallery" />
   <main>
     <h1 class="sr-only">Gallery</h1>
@@ -20,11 +14,6 @@ const variants = [
 
 <script>
   import { initGallery } from '../../lib/gallery';
-  import { getVariant, onVariantChange } from '../../lib/lab';
 
-  const root = document.querySelector<HTMLElement>('[data-gallery]')!;
-  const apply = (id: string) => (root.dataset.frame = id);
-  apply(getVariant('nero', ['nero', 'primary']));
-  initGallery(root);
-  onVariantChange(apply);
+  initGallery(document.querySelector<HTMLElement>('[data-gallery]')!);
 </script>

@@ -1,22 +1,20 @@
 ---
 // Layout della gallery attuale (contatore + titolo a sinistra, foto a destra, miniature sotto)
 // con lo slider di Bruno Arizio: le miniature scorrono all'infinito, quella allineata all'inizio
-// è attiva e decide titolo e foto. La foto sta in una cornice di dimensione fissa, nelle sue proporzioni.
+// è attiva e decide titolo e foto. La foto sta in una cornice di dimensione fissa (primary al 10%),
+// nelle sue proporzioni.
 // Tutto il contenuto è nell'HTML (indicizzabile, leggibile senza JS).
 import type { GalleryItem } from '../../data/gallery';
 
 interface Props {
   items: GalleryItem[];
-  /** Colore della cornice della foto. */
-  frame?: 'nero' | 'primary';
 }
-const { items, frame = 'nero' } = Astro.props;
+const { items } = Astro.props;
 const pad = (n: number) => String(n).padStart(2, '0');
 ---
 <section
   data-gallery
   data-index="0"
-  data-frame={frame}
   aria-roledescription="carousel"
   aria-label="Gallery"
   class="container-site h-[calc(100dvh-52px)] overflow-hidden pt-4 pb-4 lg:h-[calc(100dvh-100px)] lg:pt-0 lg:pb-6"
@@ -88,11 +86,9 @@ const pad = (n: number) => String(n).padStart(2, '0');
 </section>
 
 <style>
+  /* cornice della foto: primary al 10% */
   [data-gallery-stage] {
-    background: #000;
-  }
-  [data-frame='primary'] [data-gallery-stage] {
-    background: var(--color-primary);
+    background: rgb(137 141 127 / 0.1); /* primary al 10% */
   }
   [data-gallery-thumbs] {
     scrollbar-width: none;

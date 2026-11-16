@@ -95,9 +95,9 @@ test.describe('gallery slider', () => {
     await page.goto('/lab/gallery');
   });
 
-  test('starts on the first photo, in a black frame, with a title smaller than the old one', async ({ page }) => {
+  test('starts on the first photo, in a primary frame at 10%, with a title smaller than the old one', async ({ page }) => {
     const s = await expectAt(page, 0);
-    expect(s.frameColor).toBe('rgb(0, 0, 0)');
+    expect(s.frameColor).toBe('rgba(137, 141, 127, 0.1)');
     expect(s.titles[0].size).toBeLessThan(102);
   });
 
@@ -177,11 +177,6 @@ test.describe('gallery slider', () => {
     expect(frames.filter((f) => f.partial)).toEqual([]);
   });
 
-  test('the frame can be primary instead of black', async ({ page }) => {
-    await page.goto('/lab/gallery?v=primary');
-    const s = await expectAt(page, 0);
-    expect(s.frameColor).toBe('rgb(137, 141, 127)');
-  });
 });
 
 test('gallery: reduced motion still navigates', async ({ browser }) => {
