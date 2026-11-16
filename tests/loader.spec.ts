@@ -10,7 +10,7 @@ for (const v of VARIANTS) {
     await expect(loader).toHaveAttribute('aria-hidden', 'true');
     const t0 = Date.now();
     await expect(loader).toHaveCount(0, { timeout: 5000 });
-    expect(Date.now() - t0).toBeLessThan(v === 'monogram' ? 4500 : 3500);
+    expect(Date.now() - t0).toBeLessThan(v === 'monogram' ? 5000 : 3500);
     // scroll sbloccato
     expect(await page.evaluate(() => getComputedStyle(document.documentElement).overflow)).not.toBe('hidden');
     // l'hero termina al suo posto

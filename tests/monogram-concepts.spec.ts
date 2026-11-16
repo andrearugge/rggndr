@@ -61,9 +61,9 @@ for (const compact of [false, true]) {
 }
 
 test('monogram concepts: a concept can be tried full-page in the real loader', async ({ page }) => {
-  await page.goto('/lab/monogram?compatto=1');
+  await page.goto('/lab/monogram');
   await page.locator('[data-concept] a').nth(1).click();
-  await expect(page).toHaveURL(/\/lab\/loader\?v=monogram&c=[a-z]+&compatto=1/);
+  await expect(page).toHaveURL(/\/lab\/loader\?v=monogram&c=[a-z]+&esteso=1/);
   await expect(page.locator('[data-loader]')).toBeVisible();
   await expect(page.locator('[data-loader]')).toHaveCount(0, { timeout: 7000 });
 });

@@ -46,8 +46,9 @@ const variants = [
   const params = new URLSearchParams(location.search);
   const t = Number(params.get('t'));
   const timing = MONOGRAM_TIMINGS[t - 1] ?? MONOGRAM_TIMINGS[0];
-  const concept = CONCEPTS.find((c) => c.id === params.get('c'));
-  const compact = params.has('compatto');
+  // default: Rullo compatto; ?t=N usa la vecchia sequenza a giri, ?esteso=1 lascia RGGNDR esteso
+  const concept = params.has('t') ? null : (CONCEPTS.find((c) => c.id === params.get('c')) ?? CONCEPTS[0]);
+  const compact = !params.has('esteso');
   if (loader) playLoader(loader, variant, { onHandoff: start, timing, concept, compact });
   else start();
 

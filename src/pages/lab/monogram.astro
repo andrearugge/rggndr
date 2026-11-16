@@ -20,7 +20,7 @@ import { CONCEPTS } from '../../lib/monogram-concepts';
       {CONCEPTS.map((c, i) => (
         <li data-concept={c.id} class="flex flex-col bg-primary text-cream">
           <div class="flex items-baseline justify-between gap-4 px-4 pt-4">
-            <h2 class="h6">{String(i + 1).padStart(2, '0')} · {c.label}</h2>
+            <h2 class="h6">{String(i + 1).padStart(2, '0')} · {c.label}{i === 0 && ' · in uso'}</h2>
             <a data-try href={`/lab/loader?v=monogram&c=${c.id}`} class="text-xs underline underline-offset-2 hover:opacity-70">Prova a pagina intera</a>
           </div>
           <div data-concept-stage class="flex aspect-[16/8] flex-col items-center justify-center gap-2 text-center">
@@ -44,7 +44,7 @@ import { CONCEPTS } from '../../lib/monogram-concepts';
     if ((a.dataset.mode === 'compatto') === compact) a.setAttribute('aria-current', 'page');
     else a.removeAttribute('aria-current');
   });
-  if (compact) document.querySelectorAll<HTMLAnchorElement>('[data-try]').forEach((a) => (a.href += '&compatto=1'));
+  if (!compact) document.querySelectorAll<HTMLAnchorElement>('[data-try]').forEach((a) => (a.href += '&esteso=1'));
   for (const card of document.querySelectorAll<HTMLElement>('[data-concept]')) {
     const concept = CONCEPTS.find((c) => c.id === card.dataset.concept)!;
     loopConcept(card.querySelector<HTMLElement>('[data-concept-stage]')!, concept, compact);

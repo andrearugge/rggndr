@@ -25,6 +25,8 @@ export interface Ctx {
   keep: HTMLElement[];
   drop: HTMLElement[];
   spaces: HTMLElement[];
+  /** Quando ogni lettera superflua è uscita del tutto (se il concept lo sa): il suo vuoto può chiudersi da lì. */
+  exitEnd: Map<HTMLElement, number>;
 }
 
 const EASE = 'power3.inOut';
@@ -57,6 +59,7 @@ export function setup(root: HTMLElement): Ctx {
     keep: letters.filter((l) => l.hasAttribute('data-keep')),
     drop: letters.filter((l) => !l.hasAttribute('data-keep')),
     spaces,
+    exitEnd: new Map(),
   };
 }
 
@@ -77,11 +80,25 @@ function scheduler() {
   };
 }
 
-/** Compatto: gli spazi lasciati dalle lettere superflue si chiudono. Ritorna la fine. */
+/**
+ * Compatto: gli spazi lasciati dalle lettere superflue si chiudono. Se il concept sa quando ogni lettera
+ * è uscita, ogni vuoto si chiude appena la sua lettera è sparita (a catena); altrimenti da `at`. Ritorna la fine.
+ */
 export function closeUp(tl: gsap.core.Timeline, c: Ctx, at: number): number {
-  const gaps = [...c.drop, ...c.spaces];
-  tl.to(gaps, { width: 0, duration: 0.6, ease: EASE, stagger: 0.02 }, at);
-  return at + 0.6 + 0.02 * (gaps.length - 1);
+  const D = 0.6;
+  let end = at;
+  const gaps = [...c.letters, ...c.spaces]
+    .filter((el) => !el.hasAttribute('data-keep'))
+    .sort((a, b) => (a.compareDocumentPosition(b) & Node.DOCUMENT_POSITION_FOLLOWING ? -1 : 1));
+  let prevReady = at;
+  gaps.forEach((el, k) => {
+    // uno spazio è pronto quando la lettera prima di lui è uscita
+    const ready = c.exitEnd.get(el) ?? (c.exitEnd.size ? prevReady : at + 0.02 * k);
+    prevReady = ready;
+    tl.to(el, { width: 0, duration: D, ease: EASE }, ready);
+    end = Math.max(end, ready + D);
+  });
+  return end;
 }
 
 export const CONCEPTS: Concept[] = [
@@ -94,15 +111,22 @@ export const CONCEPTS: Concept[] = [
       const s = scheduler();
       // ogni lettera rotola due volte: le pari al primo battito, le dispari al secondo, tutte al terzo.
       // Le superflue hanno una cella in meno: all'ultima onda escono dalla maschera verso l'alto.
+      // onde senza collisioni: la terza parte quando la seconda ha finito, con lo stesso ritardo tra lettere
+      const waves = [
+        { at: 0.4, d: 0.9, st: 0.05 },
+        { at: 0.95, d: 0.7, st: 0.035 },
+        { at: 1.75, d: 0.55, st: 0.035 },
+      ];
       c.letters.forEach((l, i) => {
         const ch = l.dataset.char!;
         const keep = l.hasAttribute('data-keep');
         prepareColumn(l, keep ? [ch, ch] : [ch]);
         const n = keep ? 3 : 2;
-        [i % 2 === 0 ? 0 : 1, 2].forEach((b, step) => {
-          const beat = BEATS[b];
-          const start = s.at(l, beat.at + i * beat.st, beat.d);
-          tl.to(c.columns[i], { yPercent: (-100 / n) * (step + 1), duration: beat.d, ease: EASE }, start);
+        [i % 2 === 0 ? 0 : 1, 2].forEach((w, step) => {
+          const wave = waves[w];
+          const start = s.at(l, wave.at + i * wave.st, wave.d);
+          tl.to(c.columns[i], { yPercent: (-100 / n) * (step + 1), duration: wave.d, ease: EASE }, start);
+          if (!keep && step === 1) c.exitEnd.set(l, start + wave.d - 0.15); // quasi uscita: il vuoto inizia a chiudersi
         });
       });
       return s.end;

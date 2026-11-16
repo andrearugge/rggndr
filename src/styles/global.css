@@ -177,7 +177,7 @@
 /* ------------------------------------------------------------------ */
 /* Loader                                                             */
 /* Mai visibile senza JS o con reduced motion. Paracadute: se lo script */
-/* non parte, dopo 6s il loader sparisce comunque.                      */
+/* non parte, dopo 7s il loader sparisce comunque.                      */
 /* ------------------------------------------------------------------ */
 html:not(.js) [data-loader] {
   display: none;
@@ -188,7 +188,7 @@ html:not(.js) [data-loader] {
   }
 }
 [data-loader] {
-  animation: loader-failsafe 0s 6s forwards;
+  animation: loader-failsafe 0s 7s forwards;
 }
 [data-loader-name],
 [data-loader-sub] {

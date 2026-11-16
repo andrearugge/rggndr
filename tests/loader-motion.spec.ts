@@ -74,6 +74,12 @@ async function letterTimeline(page: Page) {
           }),
           widths: els.map((e) => Math.round(e.getBoundingClientRect().width * 10) / 10),
           opacities: els.map((e) => Number(getComputedStyle(e).opacity)),
+          visible: els.map((e) => {
+            const b = e.getBoundingClientRect();
+            const c = (e.firstElementChild as HTMLElement).getBoundingClientRect();
+            return Math.max(0, Math.min(b.bottom, c.bottom) - Math.max(b.top, c.top)) * Math.max(0, Math.min(b.right, c.right) - Math.max(b.left, c.left)) > 1;
+          }),
+          boxes: els.map((e) => { const b = e.getBoundingClientRect(); return { left: b.left, right: b.right, bottom: b.bottom }; }),
           keep: els.map((e) => e.hasAttribute('data-keep')),
         });
       }
@@ -88,7 +94,7 @@ type Roll = { i: number; start: number; end: number; dir: 1 | -1 };
 async function measure(page: Page, v: string) {
   await page.goto(`/lab/loader?v=${v}`);
   await expect(page.locator('[data-loader]')).toHaveCount(0, { timeout: 6000 });
-  const frames: { t: number; rolls: number[]; widths: number[]; opacities: number[]; keep: boolean[] }[] = await page.evaluate(() => (window as any).__letters);
+  const frames: { t: number; rolls: number[]; widths: number[]; opacities: number[]; keep: boolean[]; visible: boolean[]; boxes: { left: number; right: number; bottom: number }[] }[] = await page.evaluate(() => (window as any).__letters);
   const n = frames[0].rolls.length;
   const rolls = Array.from({ length: n }, (_, i) => {
     // un salto di un'intera cella in un frame è un riposizionamento tra due celle uguali, non un movimento visibile
@@ -122,64 +128,51 @@ function rounds(rolls: Roll[]): Roll[][] {
   return out;
 }
 
-test('loader monogram: three accelerating overlapping rounds, each with two sets rolling in opposite directions, then a linked collapse', async ({ page }) => {
+test('loader monogram (rullo): letters only ever roll upwards, in three accelerating waves (even, odd, all)', async ({ page }) => {
   await letterTimeline(page);
-  const classic = await measure(page, 'classic');
-  const { frames, n, rolls } = await measure(page, 'monogram');
-
-  // alcune lettere restano ferme
-  expect(rolls.length).toBeLessThan(n);
-
-  // tre giri, ognuno con un set che sale e uno che scende
-  const rs = rounds(rolls);
-  expect(rs).toHaveLength(3);
-  const classicDelay = classic.rolls[1].start - classic.rolls[0].start;
-  for (const round of rs) {
-    const up = round.filter((r) => r.dir === 1);
-    const down = round.filter((r) => r.dir === -1);
-    expect(up.length).toBeGreaterThanOrEqual(1);
-    expect(down.length).toBeGreaterThanOrEqual(1);
-    // i due set partono insieme, ciascuno col ritardo tra lettere di classic
-    expect(Math.abs(up[0].start - down[0].start)).toBeLessThan(25);
-    for (const set of [up, down]) set.slice(1).forEach((r, k) => expect(Math.abs(r.start - set[k].start - classicDelay)).toBeLessThan(25));
+  const { frames, n } = await measure(page, 'monogram');
+  // ogni lettera: tutti i movimenti verso l'alto, in due rotazioni separate
+  const starts: number[][] = [];
+  const durs: number[][] = [];
+  for (let i = 0; i < n; i++) {
+    const v = frames.map((f) => f.rolls[i]);
+    for (let k = 1; k < v.length; k++) expect(v[k], `lettera ${i} scende`).toBeGreaterThanOrEqual(v[k - 1] - 0.002);
+    const moving = frames.filter((f, k) => k > 0 && f.rolls[i] > frames[k - 1].rolls[i] + 0.0005).map((f) => f.t);
+    const segs: number[][] = [];
+    for (const t of moving) {
+      const cur = segs.at(-1);
+      if (cur && t - cur.at(-1)! < 120) cur.push(t);
+      else segs.push([t]);
+    }
+    expect(segs, `lettera ${i}`).toHaveLength(2);
+    starts.push(segs.map((s) => s[0]));
+    durs.push(segs.map((s) => s.at(-1)! - s[0]));
   }
-  // accelerando: ogni giro ha rotazioni più brevi e parte più vicino al precedente
-  const dur = rs.map((round) => Math.max(...round.map((r) => r.end - r.start)));
-  dur.slice(1).forEach((d, k) => expect(d).toBeLessThan(dur[k] - 60));
-  const gaps = rs.slice(1).map((round, k) => round[0].start - rs[k][0].start);
-  gaps.slice(1).forEach((g, k) => expect(g).toBeLessThan(gaps[k] - 60));
-  // dentro un giro tutte le rotazioni durano uguale
-  rs.forEach((round, k) => round.forEach((r) => expect(Math.abs(r.end - r.start - dur[k])).toBeLessThan(40)));
-  // ogni giro parte prima che il precedente finisca
-  rs.slice(1).forEach((round, k) => expect(round[0].start).toBeLessThan(Math.max(...rs[k].map((r) => r.end))));
-
-  // l'uscita verso il monogram segue l'ultima rotazione senza pause percepibili: un'unica animazione
-  const exitStart = frames.find((f) => f.rolls.some((v) => v > 1.0005 || v < -0.0005))!.t;
-  expect(exitStart - Math.max(...rolls.map((r) => r.end))).toBeLessThan(50);
+  // prima onda: le lettere pari; seconda: le dispari; terza: tutte
+  const firstEven = Math.max(...starts.filter((_, i) => i % 2 === 0).map((s) => s[0]));
+  const firstOdd = Math.min(...starts.filter((_, i) => i % 2 === 1).map((s) => s[0]));
+  expect(firstOdd).toBeGreaterThan(Math.min(...starts.filter((_, i) => i % 2 === 0).map((s) => s[0])) + 300);
+  expect(Math.min(...starts.map((s) => s[1]))).toBeGreaterThan(Math.min(firstEven, firstOdd));
+  // accelerando: l'onda finale è più breve della prima
+  expect(Math.max(...durs.map((d) => d[1]))).toBeLessThan(Math.min(...durs.filter((_, i) => i % 2 === 0).map((d) => d[0])));
 });
 
-test('loader monogram: extra letters leave with a last roll in their own direction, never fading, then the name closes up', async ({ page }) => {
+test('loader monogram (rullo): extra letters roll out of their mask, never fading, then RGGNDR closes up on one baseline', async ({ page }) => {
   await letterTimeline(page);
-  const { frames, rolls } = await measure(page, 'monogram');
-  const last = frames.at(-1)!;
-  const drop = last.keep.map((k, i) => (k ? -1 : i)).filter((i) => i >= 0);
-  expect(drop.length).toBe(7);
-  let exitStarts: number[] = [];
-  for (const i of drop) {
-    const dir = rolls.find((r) => r.i === i)!.dir;
-    // esce dalla maschera continuando la sua direzione: sopra (2 celle) se saliva, sotto (-1) se scendeva
-    if (dir === 1) expect(last.rolls[i]).toBeGreaterThan(1.95);
-    else expect(last.rolls[i]).toBeLessThan(-0.95);
-    // nessuna dissolvenza finché la lettera è nella maschera
-    for (const f of frames) if (f.rolls[i] > -0.95 && f.rolls[i] < 1.95) expect(f.opacities[i]).toBeGreaterThan(0.99);
-    exitStarts.push(frames.find((f) => f.rolls[i] > 1.0005 || f.rolls[i] < -0.0005)!.t);
+  const { frames } = await measure(page, 'monogram');
+  const keepIdx = frames[0].keep.map((k, i) => (k ? i : -1)).filter((i) => i >= 0);
+  const dropIdx = frames[0].keep.map((k, i) => (k ? -1 : i)).filter((i) => i >= 0);
+  // ultimo frame in cui il nome è pienamente visibile
+  const last = [...frames].reverse().find((f) => keepIdx.every((i) => f.opacities[i] > 0.99) && dropIdx.every((i) => !f.visible[i]))!;
+  expect(last).toBeTruthy();
+  // le superflue non sono mai sbiadite mentre erano visibili
+  for (const f of frames) for (const i of dropIdx) if (f.visible[i]) expect(f.opacities[i]).toBeGreaterThan(0.99);
+  // RGGNDR: tutte visibili, stessa baseline, lettere attaccate
+  for (const i of keepIdx) {
+    expect(last.visible[i]).toBe(true);
+    expect(Math.abs(last.boxes[i].bottom - last.boxes[keepIdx[0]].bottom)).toBeLessThan(1);
   }
-  // l'uscita segue i giri, e l'accorpamento parte dopo l'inizio dell'uscita
-  expect(Math.min(...exitStarts)).toBeGreaterThanOrEqual(Math.max(...rolls.map((r) => r.end)) - 20);
-  // larghezze di riferimento all'inizio della prima rotazione: il font finale è già caricato
-  const ref = frames.find((f) => f.t >= rolls[0].start)!.widths;
-  const collapseStart = frames.find((f) => f.t > rolls[0].start && f.widths.some((w, i) => w < ref[i] - 0.5))!.t;
-  expect(collapseStart).toBeGreaterThan(Math.min(...exitStarts));
+  keepIdx.slice(1).forEach((i, k) => expect(Math.abs(last.boxes[i].left - last.boxes[keepIdx[k]].right)).toBeLessThan(1));
 });
 
 test('loader monogram: RGGNDR stays in place and fades out with the same blur as the subtitle', async ({ page }) => {

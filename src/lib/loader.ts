@@ -1,5 +1,5 @@
 import { gsap, fontsReady, prefersReducedMotion } from './motion';
-import { setup, closeUp, type Concept } from './monogram-concepts';
+import { setup, closeUp, CONCEPTS, type Concept } from './monogram-concepts';
 
 export type LoaderVariant = 'classic' | 'slot' | 'bands' | 'monogram';
 export const LOADER_VARIANTS: LoaderVariant[] = ['classic', 'slot', 'bands', 'monogram'];
@@ -9,9 +9,9 @@ interface LoaderOptions {
   onHandoff?: () => void;
   /** Timing del monogram (default: MONOGRAM_TIMINGS[0]). */
   timing?: MonogramTiming;
-  /** Monogram: uno dei concept di /lab/monogram al posto della sequenza a giri. */
-  concept?: Concept;
-  /** Monogram: chiude gli spazi lasciati dalle lettere superflue. */
+  /** Monogram: concept di /lab/monogram (default: Rullo). `null` = vecchia sequenza a giri (lab timing). */
+  concept?: Concept | null;
+  /** Monogram: chiude gli spazi lasciati dalle lettere superflue (default: sì, come il logo). */
   compact?: boolean;
 }
 
@@ -198,7 +198,7 @@ export function prepareColumn(letter: HTMLElement, extra: string[]): HTMLElement
 }
 
 
-export async function playLoader(el: HTMLElement, variant: LoaderVariant, { onHandoff, timing = MONOGRAM_TIMINGS[0], concept, compact = false }: LoaderOptions = {}): Promise<void> {
+export async function playLoader(el: HTMLElement, variant: LoaderVariant, { onHandoff, timing = MONOGRAM_TIMINGS[0], concept = CONCEPTS[0], compact = true }: LoaderOptions = {}): Promise<void> {
   const html = document.documentElement;
   const finish = () => {
     el.remove();
@@ -258,8 +258,8 @@ export async function playLoader(el: HTMLElement, variant: LoaderVariant, { onHa
         end = concept.build(tl, c);
         if (compact) end = closeUp(tl, c, end + 0.05);
         // RGGNDR e il sottotitolo sfumano insieme dopo una breve pausa sul monogramma
-        tl.to([name, sub], { opacity: 0, filter: 'blur(5px)', duration: 0.4, ease: 'power2.in' }, end + 0.35);
-        end += 0.75;
+        tl.to([name, sub], { opacity: 0, filter: 'blur(5px)', duration: 0.4, ease: 'power2.in' }, end + 0.2);
+        end += 0.6;
       } else end = addMonogram(tl, el, timing);
       const panelAt = end - 0.25; // il pannello sale mentre la dissolvenza si chiude
       tl.to(bands, { y: () => -window.innerHeight - 2, duration: 1, ease: EASE }, panelAt);
