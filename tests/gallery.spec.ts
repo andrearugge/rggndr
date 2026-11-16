@@ -146,6 +146,37 @@ test.describe('gallery slider', () => {
     await expectAt(page, 1);
   });
 
+  test('the big photo changes with a hard cut, like Bruno Arizio: never two photos or a half-revealed one', async ({ page }) => {
+    await page.evaluate(() => {
+      const w = window as any;
+      w.__cut = [];
+      const slides = [...document.querySelectorAll<HTMLElement>('[data-gallery-slide]')];
+      const loop = () => {
+        const shown = slides.filter((s) => getComputedStyle(s).visibility !== 'hidden');
+        const partial = slides.some((s) => {
+          const cs = getComputedStyle(s);
+          const img = getComputedStyle(s.querySelector('img')!);
+          return (cs.clipPath !== 'none' && cs.clipPath !== '') || Number(cs.opacity) < 1 || Number(img.opacity) < 1 || img.transform !== 'none';
+        });
+        w.__cut.push({ shown: shown.length, partial });
+        w.__raf = requestAnimationFrame(loop);
+      };
+      loop();
+    });
+    await expectAt(page, 0);
+    const strip = (await page.locator('[data-gallery-thumbs]').boundingBox())!;
+    await page.mouse.move(strip.x + strip.width / 2, strip.y + strip.height / 2);
+    for (let k = 0; k < 8; k++) {
+      await page.mouse.wheel(0, 80);
+      await page.waitForTimeout(16);
+    }
+    await settled(page);
+    const frames: { shown: number; partial: boolean }[] = await page.evaluate(() => (window as any).__cut);
+    expect(frames.length).toBeGreaterThan(20);
+    expect(frames.filter((f) => f.shown !== 1)).toEqual([]);
+    expect(frames.filter((f) => f.partial)).toEqual([]);
+  });
+
   test('the frame can be primary instead of black', async ({ page }) => {
     await page.goto('/lab/gallery?v=primary');
     const s = await expectAt(page, 0);

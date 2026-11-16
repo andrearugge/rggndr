@@ -4,7 +4,8 @@ import { gsap, prefersReducedMotion } from './motion';
  * Gallery con slider infinito (riferimento: brunoarizio.com).
  * Le miniature scorrono all'infinito con rotella, trascinamento (con inerzia) e frecce; a riposo si
  * assestano con una miniatura allineata all'inizio dello slider: quella è attiva e decide titolo,
- * numero e foto. Mentre scorri, titolo e foto seguono la miniatura che passa sull'inizio.
+ * numero e foto. Mentre scorri, titolo e foto seguono la miniatura che passa sull'inizio;
+ * la foto cambia con uno stacco netto, come nel riferimento.
  */
 const GAP = 8; // gap-2
 const LERP = 0.12; // inseguimento morbido della posizione (per frame a 60fps)
@@ -79,7 +80,6 @@ export function initGallery(root: HTMLElement): () => void {
 
   // --- titolo, numero, foto ---------------------------------------------------
   let titleTl: gsap.core.Timeline | null = null;
-  let slideTl: gsap.core.Timeline | null = null;
 
   function setActive(i: number, dir: 1 | -1) {
     const prev = active;
@@ -101,20 +101,8 @@ export function initGallery(root: HTMLElement): () => void {
       .fromTo(titles[i], { yPercent: 100 * dir }, { yPercent: 0, duration: d, ease: EASE }, 0)
       .set(titles[prev], { visibility: 'hidden', yPercent: 0 });
 
-    // foto: la nuova si scopre sopra la vecchia, nello stesso verso
-    slideTl?.progress(1);
-    slideTl = gsap
-      .timeline({ onComplete: () => (slideTl = null) })
-      .set(slides, { visibility: 'hidden', zIndex: 0 })
-      .set(slides[prev], { visibility: 'visible', zIndex: 1 })
-      .set(slides[i], { visibility: 'visible', zIndex: 2 })
-      .fromTo(
-        slides[i],
-        { clipPath: dir > 0 ? 'inset(0% 0% 0% 100%)' : 'inset(0% 100% 0% 0%)' },
-        { clipPath: 'inset(0% 0% 0% 0%)', duration: reduced ? 0 : 0.55, ease: EASE },
-      )
-      .set(slides[prev], { visibility: prev === i ? 'visible' : 'hidden' })
-      .set(slides[i], { clearProps: 'clipPath' });
+    // foto: stacco netto, come Bruno Arizio (nessuna transizione)
+    slides.forEach((sl, k) => (sl.style.visibility = k === i ? 'visible' : 'hidden'));
     updateMoving();
   }
 
@@ -124,7 +112,7 @@ export function initGallery(root: HTMLElement): () => void {
   let interacting = false;
 
   const updateMoving = () => {
-    const moving = raf !== 0 || interacting || titleTl !== null || slideTl !== null;
+    const moving = raf !== 0 || interacting || titleTl !== null;
     root.toggleAttribute('data-moving', moving);
   };
   gsap.ticker.add(updateMoving);
