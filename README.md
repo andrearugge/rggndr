@@ -1,43 +1,31 @@
-# Astro Starter Kit: Minimal
+# rggndr.it
 
-```sh
-npm create astro@latest -- --template minimal
-```
+Il sito personale di Andrea Ruggeri: Astro statico, Tailwind CSS v4, GSAP + ScrollTrigger, Lenis.
+Regole di design e modo di lavorare in [CLAUDE.md](CLAUDE.md); milestone e decisioni nella
+[roadmap](docs/superpowers/plans/2026-11-16-roadmap-v1-v2.md).
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+## Comandi
 
-## 🚀 Project Structure
+| Comando | Cosa fa |
+|---|---|
+| `npm install` | Installa le dipendenze (Node indicato in `.nvmrc`) |
+| `npm run dev` | Sviluppo su http://localhost:4321, lab compreso (`/lab/`) |
+| `npm run build` | Build di produzione in `dist/`, senza lab |
+| `npm run preview` | Serve `dist/` |
+| `npm run typecheck` | Controllo dei tipi (`astro check`, senza prompt) |
+| `npm run format` | Formatta con Prettier |
+| `npm test` | Playwright: costruisce con `LAB=1` e serve sulla porta 4329 |
+| `npm run check` | Tipi, formattazione, build, controllo di `dist/` e test: quello che fa la CI |
 
-Inside of your Astro project, you'll see the following folders and files:
+## Struttura
 
 ```text
-/
-├── public/
-├── src/
-│   └── pages/
-│       └── index.astro
-└── package.json
+src/
+  components/site/   componenti del sito
+  content/           contenuti (oggi in codice, da M1 adattatore Sanity)
+  lib/               motion e logica: reveal, loader, monogram, gallery, card, footer, site
+  pages/             pagine pubblicate
+  lab/               utility interna: entra solo in sviluppo e con LAB=1 (integrations/lab.mjs)
+scripts/check-dist.mjs   verifica che la build di produzione non contenga il lab
+tests/                   Playwright
 ```
-
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
-
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
-
-Any static assets, like images, can be placed in the `public/` directory.
-
-## 🧞 Commands
-
-All commands are run from the root of the project, from a terminal:
-
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
-
-## 👀 Want to learn more?
-
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).

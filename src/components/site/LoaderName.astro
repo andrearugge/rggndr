@@ -1,0 +1,41 @@
+---
+// "RUGGERI ANDREA": le lettere marcate `keep` compongono RGGNDR (src/lib/monogram.ts).
+const name = [
+  { c: 'R', keep: true },
+  { c: 'U' },
+  { c: 'G', keep: true },
+  { c: 'G', keep: true },
+  { c: 'E' },
+  { c: 'R' },
+  { c: 'I' },
+  { c: ' ' },
+  { c: 'A' },
+  { c: 'N', keep: true },
+  { c: 'D', keep: true },
+  { c: 'R', keep: true },
+  { c: 'E' },
+  { c: 'A' },
+];
+---
+
+<div data-loader-name class="h4 flex items-center leading-[.85]">
+  {name.map((l) =>
+    l.c === ' ' ? (
+      <span data-loader-space class="inline-block w-[.28em]"></span>
+    ) : (
+      <span
+        data-loader-letter
+        data-char={l.c}
+        data-keep={l.keep ? '' : undefined}
+        class="relative inline-block overflow-hidden"
+      >
+        <span class="block">
+          <span class="block">{l.c}</span>
+        </span>
+      </span>
+    ),
+  )}
+</div>
+<p data-loader-sub class="text-sm">
+  ( Design Driven Entrepreneur )
+</p>

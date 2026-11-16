@@ -1,0 +1,167 @@
+---
+// Il biglietto da visita del footer, in codice: stessa composizione di public/brand/card.svg
+// (card davanti ruotata di -3°, card dietro al 15% ruotata di +3°), ma con testi veri e cliccabili.
+// Al passaggio del mouse si inclina appena in 3D (src/lib/card.ts).
+// Tutte le misure sono in unità della card (larga 524), quindi scala con qualsiasi larghezza.
+import CardWordmark from './CardWordmark.astro';
+
+/** Corpo del testo e posizione (sinistra o destra, alto) di ogni blocco, in unità della card. */
+const L = {
+  small: 13.0, // Montreal: righe di contatto e orari
+  motto: 30.57, // Editorial: (Barring Unforeseen Circumstances)
+  web: { left: 23.96, top: 24.12 },
+  ig: { right: 24.49, top: 24.18 },
+  motto_: { left: 33.26, top: 139.5 },
+  hours: { top: 186.96 },
+  shy: { left: 24.04, top: 288.06 },
+  phone: { left: 23.99, top: 302.9 },
+  shoot: { right: 24.52, top: 288.06 },
+  email: { right: 24.5, top: 302.97 },
+};
+const u = (n: number) => `calc(var(--u) * ${n})`;
+const pos = (p: { left?: number; right?: number; top: number }) =>
+  [
+    `top:${u(p.top)}`,
+    p.left !== undefined ? `left:${u(p.left)}` : '',
+    p.right !== undefined ? `right:${u(p.right)}` : '',
+  ]
+    .filter(Boolean)
+    .join(';');
+---
+
+<div data-card class="card relative w-full" style="aspect-ratio: 570 / 397">
+  <div data-card-back class="card-sheet card-back" aria-hidden="true"></div>
+  <div data-card-front class="card-sheet card-front">
+    <div class="card-face">
+      <p data-block="web" class="card-small absolute" style={pos(L.web)}>
+        <b>Web</b> <a href="https://www.rggndr.it">www.rggndr.it</a>
+      </p>
+      <p data-block="ig" class="card-small absolute text-right" style={pos(L.ig)}>
+        <b>IG</b> <a href="https://www.instagram.com/andrearugge/">andrearugge</a>
+      </p>
+      <div class="card-wordmark absolute">
+        <CardWordmark class="block h-full w-full" />
+      </div>
+      <p data-block="motto" class="card-motto pointer-events-none absolute" style={pos(L.motto_)}>
+        (Barring Unforeseen Circumstances)
+      </p>
+      <p
+        data-block="hours"
+        class="card-small pointer-events-none absolute inset-x-0 text-center"
+        style={`top:${u(L.hours.top)}`}
+      >
+        08:00 - 18:00 | Monday to Friday
+      </p>
+      <p class="card-small absolute" style={pos(L.shy)}>
+        <b data-block="shy">Don’t be shy</b>
+      </p>
+      <p class="card-small absolute" style={pos(L.phone)}>
+        <a data-block="phone" href="tel:+393938576657">
+          (+39) 393 857 6657
+        </a>
+      </p>
+      <p class="card-small absolute text-right" style={pos(L.shoot)}>
+        <b data-block="shoot">Shoot an email</b>
+      </p>
+      <p class="card-small absolute text-right" style={pos(L.email)}>
+        <a data-block="email" href="mailto:hello@rggndr.it">
+          hello@rggndr.it
+        </a>
+      </p>
+    </div>
+  </div>
+</div>
+
+<style define:vars={{ small: u(L.small), motto: u(L.motto) }}>
+  @font-face {
+    font-family: 'Editorial';
+    src: url('/fonts/Editorial-Regular.woff2') format('woff2');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+  }
+  .card {
+    perspective: 1400px;
+    container-type: inline-size; /* 100cqw = larghezza della scena (570 unità dell'originale) */
+  }
+  .card-sheet {
+    position: absolute;
+    width: calc(524 / 570 * 100%);
+    height: calc(340 / 397 * 100%);
+    border-radius: calc(12 / 524 * 100%) / calc(12 / 340 * 100%);
+    transform-origin: 0 0;
+  }
+  .card-back {
+    left: calc(32.2561 / 570 * 100%);
+    top: calc(12 / 397 * 100%);
+    rotate: 3deg;
+    background: rgb(137 141 127 / 0.15);
+  }
+  .card-front {
+    left: calc(14.4619 / 570 * 100%);
+    top: calc(40.4233 / 397 * 100%);
+    rotate: -3deg;
+    background: var(--color-primary);
+    color: var(--color-background);
+    container-type: inline-size;
+    transform-style: preserve-3d;
+  }
+  .card-face {
+    --u: calc(100cqw / 524);
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    overflow: hidden;
+  }
+  .card-face p {
+    margin: 0;
+    padding: 0;
+    white-space: nowrap;
+  }
+  .card-face a {
+    color: inherit;
+    text-decoration: none;
+  }
+  .card-face a:hover {
+    text-decoration: underline;
+    text-underline-offset: 0.15em;
+  }
+  .card-small {
+    font-family: var(--font-montreal);
+    font-size: var(--small);
+    line-height: 1;
+    text-transform: uppercase;
+  }
+  .card-motto {
+    font-family: 'Editorial', Georgia, serif;
+    font-size: var(--motto);
+    line-height: 1;
+    text-transform: none;
+  }
+  .card-wordmark {
+    left: calc(var(--u) * 24);
+    top: calc(var(--u) * 53);
+    width: calc(var(--u) * 476);
+    height: calc(var(--u) * 70);
+    overflow: visible;
+  }
+
+  /* Ombra dell'originale (0 2 15, 0 1 1) che si sposta appena dal lato opposto all'inclinazione.
+     Variabili scritte da src/lib/card.ts; 1 unità = 100cqw / 570. */
+  .card-front {
+    --nx: 0;
+    --ny: 0;
+    --hover: 0;
+    --su: calc(100cqw / 570);
+    box-shadow:
+      calc(var(--nx) * -4 * var(--su)) calc((2 + var(--ny) * -4) * var(--su)) calc((15 + var(--hover) * 5) * var(--su))
+        rgb(60 62 55 / 0.12),
+      0 var(--su) var(--su) rgb(60 62 55 / 0.04);
+  }
+</style>
+
+<script>
+  import { initCard } from '../../lib/card';
+
+  document.querySelectorAll<HTMLElement>('[data-card]').forEach((el) => initCard(el));
+</script>

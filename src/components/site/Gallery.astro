@@ -1,0 +1,116 @@
+---
+// Layout della gallery attuale (contatore + titolo a sinistra, foto a destra, miniature sotto)
+// con lo slider di Bruno Arizio: le miniature scorrono all'infinito, quella allineata all'inizio
+// è attiva e decide titolo e foto. La foto sta in una cornice di dimensione fissa (primary al 10%),
+// nelle sue proporzioni.
+// Tutto il contenuto è nell'HTML (indicizzabile, leggibile senza JS).
+import type { GalleryItem } from '../../content/gallery';
+
+interface Props {
+  items: GalleryItem[];
+}
+const { items } = Astro.props;
+const pad = (n: number) => String(n).padStart(2, '0');
+---
+
+<section
+  data-gallery
+  data-index="0"
+  aria-roledescription="carousel"
+  aria-label="Gallery"
+  class="container-site h-[calc(100dvh-52px)] overflow-hidden pt-4 pb-4 lg:h-[calc(100dvh-100px)] lg:pt-0 lg:pb-6"
+>
+  <div class="flex h-full flex-col justify-between gap-[5%]">
+    <div class="flex h-[70%] flex-col gap-4 lg:flex-row">
+      <div class="flex flex-row items-start gap-2 lg:w-1/2 lg:flex-col lg:items-start lg:justify-end">
+        <p data-gallery-counter class="leading-[.85]" aria-live="polite">
+          <span data-gallery-index>1</span> / {items.length}
+        </p>
+        <div data-gallery-titles class="grid overflow-hidden">
+          {items.map((item, i) => (
+            <h2
+              data-gallery-title
+              data-active={i === 0 ? '' : undefined}
+              class="col-start-1 row-start-1 self-end text-[16px] leading-[.87] uppercase lg:font-compact lg:text-[64px] lg:font-black 2xl:text-[72px]"
+            >
+              {item.title}
+            </h2>
+          ))}
+        </div>
+      </div>
+      <div data-gallery-stage class="relative flex-1 overflow-hidden lg:w-1/2">
+        {items.map((item, i) => (
+          <figure
+            data-gallery-slide
+            data-active={i === 0 ? '' : undefined}
+            class="absolute inset-0 flex items-center justify-center p-[6%]"
+          >
+            <img
+              src={item.src}
+              alt={item.title}
+              width={item.width}
+              height={item.height}
+              loading={i === 0 ? 'eager' : 'lazy'}
+              decoding="async"
+              draggable="false"
+              class="block h-auto max-h-full w-auto max-w-full"
+            />
+          </figure>
+        ))}
+      </div>
+    </div>
+    <div
+      data-gallery-thumbs
+      class="relative -mx-4 h-[25%] cursor-grab md:-mx-6 touch-pan-y overflow-x-auto overflow-y-hidden select-none"
+    >
+      <ol data-gallery-track class="flex h-full gap-2">
+        {items.map((item, i) => (
+          <li data-gallery-item class="h-full shrink-0">
+            <button
+              type="button"
+              data-gallery-thumb
+              aria-current={i === 0 ? 'true' : 'false'}
+              aria-label={`Mostra ${item.title}`}
+              class="flex h-full flex-col gap-1 text-left"
+            >
+              <span class="text-xs font-bold">{pad(i + 1)}</span>
+              <img
+                src={item.thumb}
+                alt=""
+                width={item.width}
+                height={item.height}
+                loading="lazy"
+                decoding="async"
+                draggable="false"
+                style={`aspect-ratio: ${item.width} / ${item.height}`}
+                class="block h-[calc(100%-20px)] w-auto max-w-none transition-opacity duration-500 motion-reduce:transition-none"
+              />
+            </button>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </div>
+</section>
+
+<style>
+  /* cornice della foto: primary al 10% */
+  [data-gallery-stage] {
+    background: rgb(137 141 127 / 0.1); /* primary al 10% */
+  }
+  [data-gallery-thumbs] {
+    scrollbar-width: none;
+  }
+  [data-gallery-thumbs]::-webkit-scrollbar {
+    display: none;
+  }
+  /* miniature non attive attenuate */
+  [data-gallery-thumb][aria-current='false'] img {
+    opacity: 0.35;
+  }
+  /* Senza JS si vede la prima foto e il primo titolo; con JS le altre entrano scorrendo. */
+  [data-gallery-slide]:not([data-active]),
+  [data-gallery-title]:not([data-active]) {
+    visibility: hidden;
+  }
+</style>

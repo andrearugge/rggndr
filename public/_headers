@@ -1,0 +1,7 @@
+# Cloudflare Pages: nessun host pages.dev va indicizzato (produzione e anteprime dei branch).
+# Il dominio rggndr.it non corrisponde a queste regole e resta indicizzabile dopo il lancio (M4).
+https://:project.pages.dev/*
+  X-Robots-Tag: noindex
+
+https://:version.:project.pages.dev/*
+  X-Robots-Tag: noindex

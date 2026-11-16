@@ -1,0 +1,39 @@
+---
+import Card from './Card.astro';
+import { getSite } from '../../content/site';
+
+const { socials } = getSite();
+---
+
+<footer>
+  <div class="container-site pb-8">
+    <div class="relative z-10 space-y-[80px] lg:space-y-[120px]">
+      <div class="flex justify-center">
+        <img data-footer-rotator class="w-full max-w-[40px]" src="/brand/symbol.png" alt="" width="100" height="100" />
+      </div>
+      <div class="flex justify-center">
+        <div class="w-full max-w-[540px]">
+          <Card />
+        </div>
+      </div>
+      <div class="space-y-4">
+        <div class="flex flex-col items-center justify-center gap-2 lg:flex-row">
+          <div class="text-[14px] leading-none font-bold">©2025 Andrea Ruggeri. All rights reserved.</div>
+          <div class="flex flex-wrap items-center justify-center gap-1 text-sm lg:justify-start">
+            {socials.map((s) => (
+              <div class="group flex items-center gap-1">
+                <a href={s.href} target="_blank" rel="noopener" class="block">
+                  {s.label}
+                </a>
+                <span class="group-last:hidden">/</span>
+              </div>
+            ))}
+          </div>
+        </div>
+        <div class="flex justify-center">
+          <img class="w-full max-w-[120px]" src="/brand/barcode.svg" alt="" width="103" height="41" loading="lazy" />
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>

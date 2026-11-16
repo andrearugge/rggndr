@@ -1,0 +1,9 @@
+dist/
+.astro/
+public/
+docs/
+*.md
+package-lock.json
+test-results/
+playwright-report/
+.superpowers/
