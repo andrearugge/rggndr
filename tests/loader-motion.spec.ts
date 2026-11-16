@@ -91,7 +91,7 @@ async function letterTimeline(page: Page) {
 
 type Roll = { i: number; start: number; end: number; dir: 1 | -1 };
 
-async function measure(page: Page, v: string) {
+async function measure(page: Page) {
   await page.goto('/');
   await expect(page.locator('[data-loader]')).toHaveCount(0, { timeout: 6000 });
   const frames: { t: number; rolls: number[]; widths: number[]; opacities: number[]; keep: boolean[]; visible: boolean[]; boxes: { left: number; right: number; bottom: number }[] }[] = await page.evaluate(() => (window as any).__letters);
@@ -117,20 +117,9 @@ async function measure(page: Page, v: string) {
   return { frames, n, rolls };
 }
 
-/** Raggruppa le rotazioni in giri: un nuovo giro inizia dopo una pausa di almeno 150ms tra due partenze. */
-function rounds(rolls: Roll[]): Roll[][] {
-  const out: Roll[][] = [];
-  for (const r of rolls) {
-    const cur = out.at(-1);
-    if (cur && r.start - cur.at(-1)!.start < 150) cur.push(r);
-    else out.push([r]);
-  }
-  return out;
-}
-
 test('loader monogram (rullo): letters only ever roll upwards, in three accelerating waves (even, odd, all)', async ({ page }) => {
   await letterTimeline(page);
-  const { frames, n } = await measure(page, 'monogram');
+  const { frames, n } = await measure(page);
   // ogni lettera: tutti i movimenti verso l'alto, in due rotazioni separate
   const starts: number[][] = [];
   const durs: number[][] = [];
@@ -159,7 +148,7 @@ test('loader monogram (rullo): letters only ever roll upwards, in three accelera
 
 test('loader monogram (rullo): extra letters roll out of their mask, never fading, then RGGNDR closes up on one baseline', async ({ page }) => {
   await letterTimeline(page);
-  const { frames } = await measure(page, 'monogram');
+  const { frames } = await measure(page);
   const keepIdx = frames[0].keep.map((k, i) => (k ? i : -1)).filter((i) => i >= 0);
   const dropIdx = frames[0].keep.map((k, i) => (k ? -1 : i)).filter((i) => i >= 0);
   // ultimo frame in cui il nome è pienamente visibile

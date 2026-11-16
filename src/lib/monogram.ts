@@ -1,5 +1,3 @@
-import type { gsap } from './motion';
-
 /**
  * Monogram "Rullo": RUGGERI ANDREA diventa RGGNDR. Le lettere rotolano sempre verso l'alto, a onde
  * (prima le pari, poi le dispari, poi tutte); all'ultima onda le superflue rotolano su una cella vuota
