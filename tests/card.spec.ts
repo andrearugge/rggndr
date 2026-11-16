@@ -1,4 +1,5 @@
 import { test, expect, type Page } from '@playwright/test';
+import { skipLoader } from './helpers';
 
 /**
  * Posizioni dei blocchi sulla card originale (public/brand/card.svg), in unità della card (larga 524):
@@ -18,8 +19,17 @@ const BLOCKS: Record<string, { x: number; w: number }> = {
 
 async function ready(page: Page) {
   await page.setViewportSize({ width: 1440, height: 900 });
-  await page.goto('/lab/card');
-  await expect(page.locator('[data-card]')).toHaveAttribute('data-ready', '');
+  await skipLoader(page);
+  await page.goto('/');
+  await toCard(page);
+}
+
+/** Porta in vista la card del footer e aspetta che sia pronta. */
+async function toCard(page: Page) {
+  const card = page.locator('[data-card]');
+  await expect(card).toHaveAttribute('data-ready', '');
+  await card.scrollIntoViewIfNeeded();
+  await page.waitForTimeout(600); // lo smooth scroll si assesta
 }
 
 /** Rotazione 3D della card davanti (gradi attorno a X e Y). */
@@ -98,7 +108,7 @@ test('card: the motto and the hours ignore the pointer, links stay clickable', a
 });
 
 test('footer: shows the code card, not the old image', async ({ page }) => {
-  await page.goto('/lab/reveal');
+  await page.goto('/');
   const footer = page.locator('footer');
   await expect(footer.locator('[data-card]')).toHaveCount(1);
   await expect(footer.locator('img[src="/brand/card.svg"]')).toHaveCount(0);
@@ -108,8 +118,8 @@ test('footer: shows the code card, not the old image', async ({ page }) => {
 test('card: reduced motion keeps it still', async ({ browser }) => {
   const ctx = await browser.newContext({ reducedMotion: 'reduce', viewport: { width: 1440, height: 900 } });
   const page = await ctx.newPage();
-  await page.goto('/lab/card');
-  await expect(page.locator('[data-card]')).toHaveAttribute('data-ready', '');
+  await page.goto('/');
+  await toCard(page);
   const box = (await page.locator('[data-card-front]').boundingBox())!;
   await page.mouse.move(box.x + box.width * 0.9, box.y + box.height * 0.15, { steps: 8 });
   await page.waitForTimeout(700);

@@ -1,4 +1,7 @@
 import { test, expect, type Browser, type Page } from '@playwright/test';
+import { skipLoader } from './helpers';
+
+test.beforeEach(async ({ page }) => skipLoader(page));
 
 /** Linee "naturali" di un elemento, misurate carattere per carattere sul layout reale. */
 async function naturalLines(page: Page, selector: string): Promise<string[]> {
@@ -74,21 +77,21 @@ async function allRevealsVisible(page: Page) {
 for (const width of [1440, 390]) {
   test(`lines match static layout at ${width}px even with slow fonts`, async ({ page, browser }) => {
     await page.setViewportSize({ width, height: 900 });
-    const expected = await staticLines(browser, width, '/lab/reveal', '#manifesto-2');
+    const expected = await staticLines(browser, width, '/', '#manifesto-2');
     expect(expected.length).toBeGreaterThan(2);
 
     await page.route('**/fonts/*.woff2', async (route) => {
       await new Promise((r) => setTimeout(r, 800));
       await route.continue();
     });
-    await page.goto('/lab/reveal');
+    await page.goto('/');
     expect(await splitLines(page, '#manifesto-2')).toEqual(expected);
   });
 }
 
 test('resplits on resize', async ({ page }) => {
   await page.setViewportSize({ width: 1440, height: 900 });
-  await page.goto('/lab/reveal');
+  await page.goto('/');
   const wide = await splitLines(page, '#manifesto-2');
   await page.setViewportSize({ width: 500, height: 900 });
   await expect
@@ -102,7 +105,7 @@ test('resplits on resize', async ({ page }) => {
 test.describe('without javascript', () => {
   test.use({ javaScriptEnabled: false });
   test('all reveal content is visible', async ({ page }) => {
-    await page.goto('/lab/reveal');
+    await page.goto('/');
     expect(await page.locator('[data-reveal]').count()).toBeGreaterThan(4);
     expect(await allRevealsVisible(page)).toBe(true);
     await expect(page.locator('.hero-line > span').first()).toBeInViewport();
@@ -112,7 +115,7 @@ test.describe('without javascript', () => {
 test.describe('reduced motion', () => {
   test.use({ reducedMotion: 'reduce' });
   test('all reveal content is visible without scrolling', async ({ page }) => {
-    await page.goto('/lab/reveal');
+    await page.goto('/');
     await page.evaluate(() => document.fonts.ready);
     await page.waitForTimeout(300);
     expect(await page.locator('[data-reveal]').count()).toBeGreaterThan(4);
@@ -122,7 +125,7 @@ test.describe('reduced motion', () => {
 });
 
 test('hero intro ends with every line in place', async ({ page }) => {
-  await page.goto('/lab/reveal');
+  await page.goto('/');
   await page.waitForTimeout(3200);
   const offsets = await page.$$eval('.hero-line > span, .hero-sub > span', (els) =>
     els.map((e) => {
@@ -137,7 +140,7 @@ test('hero intro ends with every line in place', async ({ page }) => {
 });
 
 test('no black anywhere: every color comes from the site palette', async ({ page }) => {
-  await page.goto('/lab/reveal');
+  await page.goto('/');
   await page.waitForTimeout(500);
   const offenders = await page.$$eval('body, body *', (els) =>
     els
@@ -154,7 +157,7 @@ test('no black anywhere: every color comes from the site palette', async ({ page
 
 {
   test('soft ends fully visible after scrolling', async ({ page }) => {
-    await page.goto('/lab/reveal');
+    await page.goto('/');
     await page.waitForFunction(() => document.documentElement.dataset.revealReady === 'true');
     const height = await page.evaluate(() => document.documentElement.scrollHeight);
     for (let y = 0; y <= height; y += 300) {

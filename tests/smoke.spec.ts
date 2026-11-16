@@ -19,3 +19,10 @@ test('home has fonts loaded', async ({ page }) => {
   const color = await page.evaluate(() => getComputedStyle(document.body).color);
   expect(color).toBe('rgb(137, 141, 127)');
 });
+
+test('home is the real page: hero title and no link to the lab', async ({ page }) => {
+  await page.goto('/');
+  await expect(page.locator('h1')).toContainText('Andrea Ruggeri');
+  await expect(page.locator('a[href^="/lab"]')).toHaveCount(0);
+  await expect(page.locator('footer [data-card]')).toHaveCount(1);
+});

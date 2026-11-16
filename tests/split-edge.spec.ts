@@ -1,6 +1,7 @@
 import { test, expect, type Page } from '@playwright/test';
+import { skipLoader } from './helpers';
 
-const FIXTURE = '/lab/fixtures/split';
+const FIXTURE = '/lab/fixtures/split/';
 
 async function ready(page: Page) {
   await page.waitForFunction(() => document.documentElement.dataset.revealReady === 'true');
@@ -73,16 +74,18 @@ test('resplits when font-size changes but width does not', async ({ page }) => {
 });
 
 test('content shows even if fonts never arrive', async ({ page }) => {
+  await skipLoader(page);
   await page.route('**/fonts/*.woff2', () => {}); // richiesta appesa per sempre
   // i font in preload bloccano l'evento load: basta il DOM
-  await page.goto('/lab/reveal', { waitUntil: 'domcontentloaded' });
+  await page.goto('/', { waitUntil: 'domcontentloaded' });
   await expect.poll(() => page.locator('#manifesto-2 .line').count(), { timeout: 2500 }).toBeGreaterThan(0);
   await expect(page.locator('.hero-line > span').first()).toBeInViewport({ timeout: 4000 });
 });
 
 test('content shows even if the reveal module fails', async ({ page }) => {
+  await skipLoader(page);
   await page.route(/\.(js|ts)(\?.*)?$/, (route) => route.abort());
-  await page.goto('/lab/reveal');
+  await page.goto('/');
   await page.waitForTimeout(3500);
   const hidden = await page.$$eval('[data-reveal]', (els) => els.filter((e) => getComputedStyle(e).visibility !== 'visible').length);
   expect(hidden).toBe(0);

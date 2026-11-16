@@ -1,6 +1,6 @@
 import { test, expect, type Page } from '@playwright/test';
 
-const URL = '/lab/loader';
+const URL = '/';
 
 /** Registra a ogni frame se il loader è a schermo (esiste e non è nascosto dal CSS). */
 async function watchLoader(page: Page) {

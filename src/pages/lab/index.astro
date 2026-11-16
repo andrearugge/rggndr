@@ -1,23 +1,17 @@
 ---
 import Lab from '../../layouts/Lab.astro';
 
-const experiments = [
-  { href: '/lab/reveal', label: 'Reveal', note: 'Testi e immagini on scroll', ready: true },
-  { href: '/lab/loader', label: 'Loader', note: 'Intro alla prima visita', ready: true },
-  { href: '/lab/gallery', label: 'Gallery', note: 'Motion della gallery', ready: true },
-  { href: '/lab/card', label: 'Card', note: 'Card del footer interattiva', ready: true },
-];
+// Utility interna: pagine di prova usate dai test. Le scelte del lab sono ormai nelle pagine vere.
+const pages = [{ href: '/lab/fixtures/split/', label: 'Split', note: 'Casi limite dello split delle righe' }];
 ---
 <Lab title="Index">
   <main class="container-site min-h-dvh pt-24 pb-10">
     <ol class="divide-y divide-primary/20 border-y border-primary/20">
-      {experiments.map((e, i) => (
+      {pages.map((e, i) => (
         <li class="flex items-baseline gap-4 py-4">
           <span class="h6">{String(i + 1).padStart(2, '0')}</span>
-          {e.ready
-            ? <a href={e.href} class="h2 transition-opacity hover:opacity-60">{e.label}</a>
-            : <span class="h2 opacity-25">{e.label}</span>}
-          <span class="ml-auto text-sm">{e.ready ? e.note : 'Presto'}</span>
+          <a href={e.href} class="h2 transition-opacity hover:opacity-60">{e.label}</a>
+          <span class="ml-auto text-sm">{e.note}</span>
         </li>
       ))}
     </ol>

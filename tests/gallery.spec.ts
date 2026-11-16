@@ -86,7 +86,7 @@ async function expectAt(page: Page, i: number) {
 test('gallery: all titles and images are in the HTML, first photo visible without javascript', async ({ browser }) => {
   const ctx = await browser.newContext({ javaScriptEnabled: false });
   const page = await ctx.newPage();
-  await page.goto('/lab/gallery');
+  await page.goto('/gallery/');
   await expect(page.locator('[data-gallery-title]')).toHaveCount(N);
   await expect(page.locator('[data-gallery-slide] img')).toHaveCount(N);
   for (const t of TITLES) await expect(page.locator('[data-gallery-title]', { hasText: t })).toHaveCount(1);
@@ -99,7 +99,7 @@ test('gallery: all titles and images are in the HTML, first photo visible withou
 test.describe('gallery slider', () => {
   test.beforeEach(async ({ page }) => {
     await page.setViewportSize({ width: 1440, height: 900 });
-    await page.goto('/lab/gallery');
+    await page.goto('/gallery/');
   });
 
   test('starts on the first photo, in a primary frame at 10%, with a title smaller than the old one', async ({ page }) => {
@@ -200,7 +200,7 @@ test.describe('gallery slider', () => {
 test('gallery: reduced motion still navigates', async ({ browser }) => {
   const ctx = await browser.newContext({ reducedMotion: 'reduce' });
   const page = await ctx.newPage();
-  await page.goto('/lab/gallery');
+  await page.goto('/gallery/');
   await page.locator('[data-gallery-thumb]:not([aria-hidden])').nth(2).click();
   await expectAt(page, 2);
   await ctx.close();
