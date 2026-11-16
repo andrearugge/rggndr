@@ -23,6 +23,12 @@ jobs:
 
       - run: npm ci
 
+      - name: Dipendenze dello Studio
+        run: npm ci --prefix studio
+
+      - name: Schemi di Sanity
+        run: npm --prefix studio run validate
+
       - name: Browser di Playwright
         run: npx playwright install --with-deps chromium
 

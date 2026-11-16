@@ -14,7 +14,8 @@
     "typecheck": "astro check",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
-    "check": "npm run typecheck && npm run format:check && npm run build && node scripts/check-dist.mjs && npm test"
+    "check": "npm run typecheck && npm run format:check && npm run build && node scripts/check-dist.mjs && npm test",
+    "studio": "npm --prefix studio run dev"
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.3.5",
