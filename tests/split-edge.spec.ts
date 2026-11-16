@@ -1,5 +1,5 @@
-import { test, expect, type Page } from '@playwright/test';
-import { skipLoader } from './helpers';
+import type { Page } from '@playwright/test';
+import { test, expect, skipLoader } from './helpers';
 
 const FIXTURE = '/lab/fixtures/split/';
 

@@ -1,40 +1,97 @@
-/**
- * Progetti della homepage, stessi e nello stesso ordine del sito attuale. In M1 arriveranno da Sanity
- * (`homePage`); i testi delle sezioni restano per ora nel markup, finché non c'è il loro schema.
- */
-export interface Image {
-  src: string;
-  width: number;
-  height: number;
-  alt: string;
+/** Contenuti della home, dal documento `homePage` di Sanity e dai progetti che seleziona. */
+import { imageAttrs, type ImageAttrs } from './image';
+import { HOME_QUERY } from './queries';
+import type { HOME_QUERY_RESULT, RichText } from './sanity.types';
+import { fetchQuery, type Fetch } from './source';
+
+export type { ImageAttrs, RichText };
+
+export interface Hero {
+  line1: string;
+  line2: string;
+  line3: string;
+  line4: string;
+  line5: string;
+  note1: string[];
+  note2: string[];
+  note3: string[];
+  subtitle: RichText;
+}
+
+export interface LinkColumn {
+  key: string;
+  title: string;
+  items: { key: string; label: string; href?: string }[];
+}
+
+export interface Manifesto {
+  kicker: string;
+  body: RichText;
+  alsoTitle: string;
+  alsoText: string;
 }
 
 export interface ProjectCard {
   title: string;
+  slug: string;
   year: string;
-  image: Image;
+  image: ImageAttrs;
 }
 
-export interface HomeContent {
+export interface Home {
+  hero: Hero;
+  linkColumns: LinkColumn[];
+  manifesto: Manifesto;
   projects: ProjectCard[];
 }
 
-const project = (title: string, year: string, src: string, width: number, height: number): ProjectCard => ({
-  title,
-  year,
-  image: { src, width, height, alt: title },
-});
+export async function getHome(fetch: Fetch = fetchQuery): Promise<Home> {
+  const doc = await fetch<HOME_QUERY_RESULT>(HOME_QUERY);
+  if (!doc) throw new Error('Sanity: manca il documento homePage');
+  const hero = doc.hero ?? {};
+  const manifesto = doc.manifesto ?? {};
 
-export function getHome(): HomeContent {
   return {
-    projects: [
-      project('AI Journal', '2025', '/media/ai-journal-cover.jpg', 1200, 901),
-      project('MarkLayer', '2025', '/media/marklayer.jpg', 830, 1108),
-      project('AI Workshop', '2025', '/media/ai-workshop.jpg', 550, 885),
-      project('Dialetto Libero', '2019', '/media/a4.jpg', 550, 406),
-      project('Montipadel', '2024', '/media/montipadel.jpg', 1200, 1600),
-      project('Beconcept', '2018 – Today', '/media/beconcept.jpg', 1200, 1672),
-      project('Giulia Pampuri', '2024', '/media/a8.jpg', 830, 623),
-    ],
+    hero: {
+      line1: hero.line1 ?? '',
+      line2: hero.line2 ?? '',
+      line3: hero.line3 ?? '',
+      line4: hero.line4 ?? '',
+      line5: hero.line5 ?? '',
+      note1: hero.note1 ?? [],
+      note2: hero.note2 ?? [],
+      note3: hero.note3 ?? [],
+      subtitle: hero.subtitle ?? [],
+    },
+    linkColumns: (doc.linkColumns ?? []).map((c) => ({
+      key: c._key,
+      title: c.title ?? '',
+      items: (c.items ?? [])
+        .filter((i) => i.label)
+        .map((i) => ({ key: i._key, label: i.label!, ...(i.url ? { href: i.url } : {}) })),
+    })),
+    manifesto: {
+      kicker: manifesto.kicker ?? '',
+      body: manifesto.body ?? [],
+      alsoTitle: manifesto.alsoTitle ?? '',
+      alsoText: manifesto.alsoText ?? '',
+    },
+    // un riferimento a un progetto non pubblicato o cancellato si risolve in null: lo si salta
+    projects: (doc.projects ?? []).flatMap((p) =>
+      p?.title && p.slug
+        ? [
+            {
+              title: p.title,
+              slug: p.slug,
+              year: p.year ?? '',
+              image: imageAttrs(p.cover, {
+                width: 1200,
+                widths: [400, 800, 1200, 1600],
+                sizes: '(min-width: 1024px) 50vw, 100vw',
+              }),
+            },
+          ]
+        : [],
+    ),
   };
 }

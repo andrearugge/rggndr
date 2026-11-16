@@ -4,6 +4,12 @@
 // Al passaggio del mouse si inclina appena in 3D (src/lib/card.ts).
 // Tutte le misure sono in unità della card (larga 524), quindi scala con qualsiasi larghezza.
 import CardWordmark from './CardWordmark.astro';
+import type { Site } from '../../content/site';
+
+interface Props {
+  site: Site;
+}
+const { site } = Astro.props;
 
 /** Corpo del testo e posizione (sinistra o destra, alto) di ogni blocco, in unità della card. */
 const L = {
@@ -37,7 +43,7 @@ const pos = (p: { left?: number; right?: number; top: number }) =>
         <b>Web</b> <a href="https://www.rggndr.it">www.rggndr.it</a>
       </p>
       <p data-block="ig" class="card-small absolute text-right" style={pos(L.ig)}>
-        <b>IG</b> <a href="https://www.instagram.com/andrearugge/">andrearugge</a>
+        <b>IG</b> <a href={site.instagram?.href}>{site.instagram?.handle}</a>
       </p>
       <div class="card-wordmark absolute">
         <CardWordmark class="block h-full w-full" />
@@ -56,16 +62,16 @@ const pos = (p: { left?: number; right?: number; top: number }) =>
         <b data-block="shy">Don’t be shy</b>
       </p>
       <p class="card-small absolute" style={pos(L.phone)}>
-        <a data-block="phone" href="tel:+393938576657">
-          (+39) 393 857 6657
+        <a data-block="phone" href={site.phoneHref}>
+          {site.phone}
         </a>
       </p>
       <p class="card-small absolute text-right" style={pos(L.shoot)}>
         <b data-block="shoot">Shoot an email</b>
       </p>
       <p class="card-small absolute text-right" style={pos(L.email)}>
-        <a data-block="email" href="mailto:hello@rggndr.it">
-          hello@rggndr.it
+        <a data-block="email" href={`mailto:${site.email}`}>
+          {site.email}
         </a>
       </p>
     </div>

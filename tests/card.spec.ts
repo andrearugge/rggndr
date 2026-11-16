@@ -1,5 +1,5 @@
-import { test, expect, type Page } from '@playwright/test';
-import { skipLoader } from './helpers';
+import type { Page } from '@playwright/test';
+import { test, expect, skipLoader } from './helpers';
 
 /**
  * Posizioni dei blocchi sulla card originale (public/brand/card.svg), in unità della card (larga 524):
@@ -127,4 +127,13 @@ test('card: reduced motion keeps it still', async ({ browser }) => {
   const t = await tilt(page);
   expect(Math.max(t.x, t.y)).toBeLessThan(0.5);
   await ctx.close();
+});
+
+test('card contacts come from siteSettings', async ({ page }) => {
+  await skipLoader(page);
+  await page.goto('/');
+  await expect(page.locator('[data-block="phone"]')).toHaveAttribute('href', 'tel:+393938576657');
+  await expect(page.locator('[data-block="phone"]')).toHaveText('(+39) 393 857 6657');
+  await expect(page.locator('[data-block="email"]')).toHaveAttribute('href', 'mailto:hello@rggndr.it');
+  await expect(page.locator('[data-block="ig"] a')).toHaveText('andrearugge');
 });

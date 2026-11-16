@@ -1,4 +1,5 @@
-import { test, expect, type Page } from '@playwright/test';
+import type { Page } from '@playwright/test';
+import { test, expect } from './helpers';
 
 /** Registra a ogni frame la posizione del pannello e del nome finché il loader esiste. */
 async function record(page: Page) {

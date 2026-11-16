@@ -416,26 +416,60 @@ export type AllSanitySchemaTypes =
 
 // Source: ../src/content/queries.ts
 // Variable: SITE_QUERY
-// Query: *[_id == "siteSettings"][0]{ name }
-export type SITE_QUERY_RESULT =
-  | {
-      name: null;
-    }
-  | {
-      name: string | null;
-    }
-  | null;
+// Query: *[_type == "siteSettings" && _id == "siteSettings"][0]{  name, description, email, phone, copyright,  socials[]{ label, url }}
+export type SITE_QUERY_RESULT = {
+  name: string | null;
+  description: string | null;
+  email: string | null;
+  phone: string | null;
+  copyright: string | null;
+  socials: Array<{
+    label: string | null;
+    url: string | null;
+  }> | null;
+} | null;
 
 // Source: ../src/content/queries.ts
 // Variable: HOME_QUERY
-// Query: *[_id == "homePage"][0]{ _id }
+// Query: *[_type == "homePage" && _id == "homePage"][0]{  hero,  linkColumns[]{ _key, title, items[]{ _key, label, url } },  manifesto,  "projects": projects[]->{ title, "slug": slug.current, year, cover }}
 export type HOME_QUERY_RESULT = {
-  _id: 'homePage';
+  hero: {
+    line1?: string;
+    line2?: string;
+    line3?: string;
+    line4?: string;
+    line5?: string;
+    note1?: Array<string>;
+    note2?: Array<string>;
+    note3?: Array<string>;
+    subtitle?: RichText;
+  } | null;
+  linkColumns: Array<{
+    _key: string;
+    title: string | null;
+    items: Array<{
+      _key: string;
+      label: string | null;
+      url: string | null;
+    }> | null;
+  }> | null;
+  manifesto: {
+    kicker?: string;
+    body?: RichText;
+    alsoTitle?: string;
+    alsoText?: string;
+  } | null;
+  projects: Array<{
+    title: string | null;
+    slug: string | null;
+    year: string | null;
+    cover: ImageWithAlt | null;
+  }> | null;
 } | null;
 
 // Source: ../src/content/queries.ts
 // Variable: GALLERY_QUERY
-// Query: *[_id == "gallery"][0]{ _id }
+// Query: *[_type == "gallery" && _id == "gallery"][0]{ _id }
 export type GALLERY_QUERY_RESULT = {
   _id: 'gallery';
 } | null;
@@ -443,9 +477,9 @@ export type GALLERY_QUERY_RESULT = {
 // Query TypeMap
 declare global {
   interface SanityQueries {
-    '*[_id == "siteSettings"][0]{ name }': SITE_QUERY_RESULT;
-    '*[_id == "homePage"][0]{ _id }': HOME_QUERY_RESULT;
-    '*[_id == "gallery"][0]{ _id }': GALLERY_QUERY_RESULT;
+    '*[_type == "siteSettings" && _id == "siteSettings"][0]{\n  name, description, email, phone, copyright,\n  socials[]{ label, url }\n}': SITE_QUERY_RESULT;
+    '*[_type == "homePage" && _id == "homePage"][0]{\n  hero,\n  linkColumns[]{ _key, title, items[]{ _key, label, url } },\n  manifesto,\n  "projects": projects[]->{ title, "slug": slug.current, year, cover }\n}': HOME_QUERY_RESULT;
+    '*[_type == "gallery" && _id == "gallery"][0]{ _id }': GALLERY_QUERY_RESULT;
   }
 }
 // Lets @sanity/client releases that predate the global registry read it too

@@ -1,4 +1,5 @@
-import { test, expect, type Page } from '@playwright/test';
+import type { Page } from '@playwright/test';
+import { test, expect } from './helpers';
 
 const TITLES = ['Giulia, Lanzarote', 'Cascina Lago Scuro', 'Mud Millo', 'Home of dreams'];
 const N = 14;

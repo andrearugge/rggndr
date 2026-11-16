@@ -4,8 +4,16 @@
  */
 import { defineQuery } from 'groq';
 
-export const SITE_QUERY = defineQuery(`*[_id == "siteSettings"][0]{ name }`);
+export const SITE_QUERY = defineQuery(`*[_type == "siteSettings" && _id == "siteSettings"][0]{
+  name, description, email, phone, copyright,
+  socials[]{ label, url }
+}`);
 
-export const HOME_QUERY = defineQuery(`*[_id == "homePage"][0]{ _id }`);
+export const HOME_QUERY = defineQuery(`*[_type == "homePage" && _id == "homePage"][0]{
+  hero,
+  linkColumns[]{ _key, title, items[]{ _key, label, url } },
+  manifesto,
+  "projects": projects[]->{ title, "slug": slug.current, year, cover }
+}`);
 
-export const GALLERY_QUERY = defineQuery(`*[_id == "gallery"][0]{ _id }`);
+export const GALLERY_QUERY = defineQuery(`*[_type == "gallery" && _id == "gallery"][0]{ _id }`);

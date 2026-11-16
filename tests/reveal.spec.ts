@@ -1,5 +1,5 @@
-import { test, expect, type Browser, type Page } from '@playwright/test';
-import { skipLoader } from './helpers';
+import type { Browser, Page } from '@playwright/test';
+import { test, expect, skipLoader } from './helpers';
 
 test.beforeEach(async ({ page }) => skipLoader(page));
 
