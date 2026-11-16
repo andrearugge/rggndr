@@ -14,13 +14,13 @@ test('lab index links to reveal', async ({ page }) => {
 });
 
 test('switcher updates url and emits lab:variant', async ({ page }) => {
-  await page.goto('/lab/reveal');
+  await page.goto('/lab/loader');
   await page.evaluate(() => {
     (window as any).__variants = [];
     window.addEventListener('lab:variant', (e) => (window as any).__variants.push((e as CustomEvent).detail));
   });
-  await page.getByRole('button', { name: /soft/i }).click();
-  await expect(page).toHaveURL(/\?v=soft/);
-  expect(await page.evaluate(() => (window as any).__variants)).toEqual(['soft']);
-  await expect(page.getByRole('button', { name: /soft/i })).toHaveAttribute('aria-pressed', 'true');
+  await page.getByRole('button', { name: /monogram/i }).click();
+  await expect(page).toHaveURL(/\?v=monogram/);
+  expect(await page.evaluate(() => (window as any).__variants)).toEqual(['monogram']);
+  await expect(page.getByRole('button', { name: /monogram/i })).toHaveAttribute('aria-pressed', 'true');
 });

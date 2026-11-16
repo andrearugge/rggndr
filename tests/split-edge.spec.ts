@@ -12,18 +12,23 @@ async function heights(page: Page) {
 
 test.beforeEach(async ({ page }) => page.setViewportSize({ width: 1280, height: 900 }));
 
-test('split keeps the natural height (mixed inline sizes included)', async ({ page }) => {
-  await page.goto(`${FIXTURE}?static=1`);
-  await page.evaluate(() => document.fonts.ready);
-  const expected = await heights(page);
-  await page.goto(`${FIXTURE}?v=soft`);
+test('split keeps the natural height (mixed inline sizes included)', async ({ page, browser }) => {
+  // riferimento: lo stesso layout senza JavaScript
+  const { baseURL } = test.info().project.use;
+  const ctx = await browser.newContext({ baseURL, javaScriptEnabled: false, viewport: { width: 1280, height: 900 } });
+  const plain = await ctx.newPage();
+  await plain.goto(FIXTURE);
+  await plain.evaluate(() => document.fonts.ready);
+  const expected = await heights(plain);
+  await ctx.close();
+  await page.goto(FIXTURE);
   await ready(page);
   const actual = await heights(page);
   for (const id of Object.keys(expected)) expect.soft(Math.abs(actual[id] - expected[id]), id).toBeLessThanOrEqual(1);
 });
 
 test('links and ids are never duplicated', async ({ page }) => {
-  await page.goto(`${FIXTURE}?v=mask`);
+  await page.goto(FIXTURE);
   await ready(page);
   await expect(page.locator('#link a')).toHaveCount(1);
   await expect(page.locator('#lk')).toHaveCount(1);
@@ -31,7 +36,7 @@ test('links and ids are never duplicated', async ({ page }) => {
 });
 
 test('a link that does not wrap still allows the line split', async ({ page }) => {
-  await page.goto(`${FIXTURE}?v=mask`);
+  await page.goto(FIXTURE);
   await ready(page);
   expect(await page.locator('#shortlink .line').count()).toBeGreaterThan(2);
   await expect(page.locator('#shortlink a')).toHaveCount(1);
@@ -39,19 +44,19 @@ test('a link that does not wrap still allows the line split', async ({ page }) =
 });
 
 test('leading non-text content survives the split', async ({ page }) => {
-  await page.goto(`${FIXTURE}?v=mask`);
+  await page.goto(FIXTURE);
   await ready(page);
   await expect(page.locator('#lead svg.lead-icon')).toHaveCount(1);
 });
 
 test('hidden elements are not emptied', async ({ page }) => {
-  await page.goto(`${FIXTURE}?v=mask`);
+  await page.goto(FIXTURE);
   await ready(page);
   expect((await page.locator('#hidden').textContent())?.trim()).toBe('Hidden text stays here');
 });
 
 test('split text is read once by screen readers', async ({ page }) => {
-  await page.goto(`${FIXTURE}?v=mask`);
+  await page.goto(FIXTURE);
   await ready(page);
   const el = page.locator('#fontsize');
   await expect(el.locator('.sr-only')).toHaveText(/Combining creativity .* one line at a time\./);
@@ -60,7 +65,7 @@ test('split text is read once by screen readers', async ({ page }) => {
 });
 
 test('resplits when font-size changes but width does not', async ({ page }) => {
-  await page.goto(`${FIXTURE}?v=mask`);
+  await page.goto(FIXTURE);
   await ready(page);
   const before = await page.locator('#fontsize .line').count();
   await page.locator('#fontsize').evaluate((e) => (e.style.fontSize = '40px'));
@@ -70,14 +75,14 @@ test('resplits when font-size changes but width does not', async ({ page }) => {
 test('content shows even if fonts never arrive', async ({ page }) => {
   await page.route('**/fonts/*.woff2', () => {}); // richiesta appesa per sempre
   // i font in preload bloccano l'evento load: basta il DOM
-  await page.goto('/lab/reveal?v=mask', { waitUntil: 'domcontentloaded' });
+  await page.goto('/lab/reveal', { waitUntil: 'domcontentloaded' });
   await expect.poll(() => page.locator('#manifesto-2 .line').count(), { timeout: 2500 }).toBeGreaterThan(0);
   await expect(page.locator('.hero-line > span').first()).toBeInViewport({ timeout: 4000 });
 });
 
 test('content shows even if the reveal module fails', async ({ page }) => {
   await page.route(/\.(js|ts)(\?.*)?$/, (route) => route.abort());
-  await page.goto('/lab/reveal?v=mask');
+  await page.goto('/lab/reveal');
   await page.waitForTimeout(3500);
   const hidden = await page.$$eval('[data-reveal]', (els) => els.filter((e) => getComputedStyle(e).visibility !== 'visible').length);
   expect(hidden).toBe(0);

@@ -1,6 +1,4 @@
-import { test, expect, type Page } from '@playwright/test';
-
-const VARIANTS = ['mask', 'soft', 'wipe', 'scrub'] as const;
+import { test, expect, type Browser, type Page } from '@playwright/test';
 
 /** Linee "naturali" di un elemento, misurate carattere per carattere sul layout reale. */
 async function naturalLines(page: Page, selector: string): Promise<string[]> {
@@ -37,6 +35,18 @@ async function naturalLines(page: Page, selector: string): Promise<string[]> {
   }, selector);
 }
 
+/** Linee naturali di un elemento senza JavaScript (layout statico di riferimento). */
+async function staticLines(browser: Browser, width: number, url: string, selector: string): Promise<string[]> {
+  const { baseURL } = test.info().project.use;
+  const ctx = await browser.newContext({ baseURL, javaScriptEnabled: false, viewport: { width, height: 900 } });
+  const page = await ctx.newPage();
+  await page.goto(url);
+  await page.evaluate(() => document.fonts.ready);
+  const lines = await naturalLines(page, selector);
+  await ctx.close();
+  return lines;
+}
+
 /** Linee prodotte dallo split. */
 async function splitLines(page: Page, selector: string): Promise<string[]> {
   await page.waitForFunction((sel) => document.querySelectorAll(`${sel} .line`).length > 0, selector);
@@ -62,25 +72,23 @@ async function allRevealsVisible(page: Page) {
 }
 
 for (const width of [1440, 390]) {
-  test(`lines match static layout at ${width}px even with slow fonts`, async ({ page }) => {
+  test(`lines match static layout at ${width}px even with slow fonts`, async ({ page, browser }) => {
     await page.setViewportSize({ width, height: 900 });
-    await page.goto('/lab/reveal?static=1');
-    await page.evaluate(() => document.fonts.ready);
-    const expected = await naturalLines(page, '#manifesto-2');
+    const expected = await staticLines(browser, width, '/lab/reveal', '#manifesto-2');
     expect(expected.length).toBeGreaterThan(2);
 
     await page.route('**/fonts/*.woff2', async (route) => {
       await new Promise((r) => setTimeout(r, 800));
       await route.continue();
     });
-    await page.goto('/lab/reveal?v=mask');
+    await page.goto('/lab/reveal');
     expect(await splitLines(page, '#manifesto-2')).toEqual(expected);
   });
 }
 
 test('resplits on resize', async ({ page }) => {
   await page.setViewportSize({ width: 1440, height: 900 });
-  await page.goto('/lab/reveal?v=mask');
+  await page.goto('/lab/reveal');
   const wide = await splitLines(page, '#manifesto-2');
   await page.setViewportSize({ width: 500, height: 900 });
   await expect
@@ -104,7 +112,7 @@ test.describe('without javascript', () => {
 test.describe('reduced motion', () => {
   test.use({ reducedMotion: 'reduce' });
   test('all reveal content is visible without scrolling', async ({ page }) => {
-    await page.goto('/lab/reveal?v=mask');
+    await page.goto('/lab/reveal');
     await page.evaluate(() => document.fonts.ready);
     await page.waitForTimeout(300);
     expect(await page.locator('[data-reveal]').count()).toBeGreaterThan(4);
@@ -144,9 +152,9 @@ test('no black anywhere: every color comes from the site palette', async ({ page
   expect(offenders).toEqual([]);
 });
 
-for (const v of VARIANTS) {
-  test(`variant ${v} ends fully visible after scrolling`, async ({ page }) => {
-    await page.goto(`/lab/reveal?v=${v}`);
+{
+  test('soft ends fully visible after scrolling', async ({ page }) => {
+    await page.goto('/lab/reveal');
     await page.waitForFunction(() => document.documentElement.dataset.revealReady === 'true');
     const height = await page.evaluate(() => document.documentElement.scrollHeight);
     for (let y = 0; y <= height; y += 300) {
@@ -154,8 +162,6 @@ for (const v of VARIANTS) {
       await page.waitForTimeout(60);
     }
     await page.waitForTimeout(2500);
-    // in scrub gli elementi completano quando il loro top supera il 40% della viewport:
-    // controlliamo solo quelli già oltre la soglia
     const ok = await page.$$eval('[data-reveal]', (els) =>
       els
         .filter((el) => el.getBoundingClientRect().top < window.innerHeight * 0.4)
@@ -168,20 +174,3 @@ for (const v of VARIANTS) {
     expect(ok).toBe(true);
   });
 }
-
-test('switching variant cleans up splits and triggers', async ({ page }) => {
-  await page.goto('/lab/reveal?v=mask');
-  await page.waitForFunction(() => document.documentElement.dataset.revealReady === 'true');
-  const count = () =>
-    page.evaluate(() => ({
-      lines: document.querySelectorAll('.line').length,
-      triggers: (window as any).__ST.getAll().length,
-    }));
-  const initial = await count();
-  expect(initial.lines).toBeGreaterThan(0);
-  for (const v of ['soft', 'wipe', 'scrub', 'mask']) {
-    await page.getByRole('button', { name: new RegExp(v, 'i') }).click();
-    await page.waitForTimeout(150);
-  }
-  expect(await count()).toEqual(initial);
-});

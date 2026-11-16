@@ -4,16 +4,8 @@ import Header from '../../components/site/Header.astro';
 import Hero from '../../components/site/Hero.astro';
 import Footer from '../../components/site/Footer.astro';
 import HomeSections from '../../components/site/HomeSections.astro';
-
-const variants = [
-  { id: 'soft', label: 'Soft' },
-  { id: 'mask', label: 'Mask' },
-  { id: 'wipe', label: 'Wipe' },
-  { id: 'scrub', label: 'Scrub' },
-];
-
 ---
-<Lab title="Reveal" variants={variants} defaultVariant="soft" chrome={false}>
+<Lab title="Reveal" chrome={false}>
   <Header current="/" />
 
   <main class="space-bottom-big overflow-x-clip">
@@ -26,41 +18,24 @@ const variants = [
 </Lab>
 
 <script>
-  import { initReveals, REVEAL_VARIANTS, type RevealVariant } from '../../lib/reveal';
+  import { initReveals } from '../../lib/reveal';
   import { playHeroIntro } from '../../lib/hero-intro';
-  import { initSmoothScroll, gsap, ScrollTrigger, prefersReducedMotion } from '../../lib/motion';
-  import { getVariant, onVariantChange } from '../../lib/lab';
+  import { initSmoothScroll, gsap, prefersReducedMotion } from '../../lib/motion';
 
-  const params = new URLSearchParams(window.location.search);
   const hero = document.querySelector<HTMLElement>('[data-hero]');
+  initSmoothScroll();
 
-  if (params.has('static')) {
-    // Layout naturale, senza animazioni: riferimento per confrontare le righe.
-    document.documentElement.classList.remove('js');
-  } else {
-    const lenis = initSmoothScroll();
-    (window as any).__ST = ScrollTrigger;
+  if (hero) playHeroIntro(hero);
 
-    if (hero) playHeroIntro(hero);
-
-    // Simbolo del footer che ruota con lo scroll, come sul sito attuale
-    const rotator = document.querySelector('[data-footer-rotator]');
-    if (rotator && !prefersReducedMotion()) {
-      gsap.to(rotator, {
-        rotate: 360,
-        ease: 'none',
-        scrollTrigger: { trigger: 'footer', start: 'top bottom', end: 'bottom top', scrub: true },
-      });
-    }
-
-    const root = document.querySelector<HTMLElement>('main')!;
-    let cleanup = initReveals(root, getVariant('soft', REVEAL_VARIANTS) as RevealVariant);
-
-    onVariantChange((id) => {
-      cleanup();
-      if (lenis) lenis.scrollTo(0, { immediate: true });
-      else window.scrollTo(0, 0);
-      cleanup = initReveals(root, id as RevealVariant);
+  // Simbolo del footer che ruota con lo scroll, come sul sito attuale
+  const rotator = document.querySelector('[data-footer-rotator]');
+  if (rotator && !prefersReducedMotion()) {
+    gsap.to(rotator, {
+      rotate: 360,
+      ease: 'none',
+      scrollTrigger: { trigger: 'footer', start: 'top bottom', end: 'bottom top', scrub: true },
     });
   }
+
+  initReveals(document.querySelector<HTMLElement>('main')!);
 </script>

@@ -1,13 +1,5 @@
-export interface LineSplitOptions {
-  /** Avvolge ogni riga in un contenitore con overflow nascosto (per effetti "maschera"). */
-  mask?: boolean;
-  /** Avvolge anche le parole (inline) dentro le righe. */
-  words?: boolean;
-}
-
 export interface LineSplit {
   lines: HTMLElement[];
-  words: HTMLElement[];
   revert(): void;
 }
 
@@ -29,15 +21,16 @@ function liftBoundary(root: HTMLElement, p: Point): Point {
   return { node, offset };
 }
 
-/**
- * Divide `el` in righe usando il layout reale del browser: misura la posizione verticale
- * di ogni carattere nel testo originale e taglia dove il browser va a capo.
- * Le righe risultanti coincidono per costruzione con quelle del testo non animato.
- */
 /** Elementi che non vanno mai duplicati dallo split (link, controlli, id referenziabili). */
 const UNSPLITTABLE = 'a, button, input, select, textarea, label, [id], [tabindex], [contenteditable]';
 
-export function splitLines(el: HTMLElement, options: LineSplitOptions = {}): LineSplit | null {
+/**
+ * Divide `el` in righe usando il layout reale del browser: misura la posizione orizzontale
+ * di ogni carattere nel testo originale e taglia dove il browser va a capo.
+ * Le righe risultanti coincidono per costruzione con quelle del testo non animato.
+ */
+
+export function splitLines(el: HTMLElement): LineSplit | null {
   const found = findLineStarts(el);
   if (found.length === 0) return null; // nascosto o senza testo misurabile
 
@@ -63,7 +56,6 @@ export function splitLines(el: HTMLElement, options: LineSplitOptions = {}): Lin
   }
 
   const lines: HTMLElement[] = [];
-  const words: HTMLElement[] = [];
   el.textContent = '';
 
   // Gli screen reader leggono il testo una volta sola, non riga per riga.
@@ -83,25 +75,13 @@ export function splitLines(el: HTMLElement, options: LineSplitOptions = {}): Lin
     const line = document.createElement('span');
     line.className = 'line';
     line.style.display = 'block';
-    if (options.words) words.push(...wrapWords(fragment));
     line.append(fragment);
-
-    if (options.mask) {
-      const mask = document.createElement('span');
-      mask.className = 'line-mask';
-      // un po' di respiro per non tagliare ascendenti/discendenti con interlinee strette
-      Object.assign(mask.style, { display: 'block', overflow: 'clip', paddingBlock: '0.12em', marginBlock: '-0.12em' });
-      mask.append(line);
-      visual.append(mask);
-    } else {
-      visual.append(line);
-    }
+    visual.append(line);
     lines.push(line);
   }
 
   return {
     lines,
-    words,
     revert() {
       el.innerHTML = original;
     },
@@ -136,33 +116,6 @@ function findLineStarts(el: HTMLElement): Point[] {
   return starts;
 }
 
-function wrapWords(fragment: DocumentFragment): HTMLElement[] {
-  const words: HTMLElement[] = [];
-  const walker = document.createTreeWalker(fragment, NodeFilter.SHOW_TEXT);
-  const texts: Text[] = [];
-  let node: Node | null;
-  while ((node = walker.nextNode())) texts.push(node as Text);
-
-  for (const text of texts) {
-    const parts = text.data.split(/(\s+)/);
-    const out = document.createDocumentFragment();
-    for (const part of parts) {
-      if (!part) continue;
-      if (/^\s+$/.test(part)) {
-        out.append(part);
-      } else {
-        const word = document.createElement('span');
-        word.className = 'word';
-        word.textContent = part;
-        out.append(word);
-        words.push(word);
-      }
-    }
-    text.replaceWith(out);
-  }
-  return words;
-}
-
 /**
  * Come `splitLines`, ma rifà lo split quando cambia la larghezza dell'elemento o
  * quando finiscono di caricare dei font. `onSplit` può restituire un'animazione:
@@ -170,7 +123,6 @@ function wrapWords(fragment: DocumentFragment): HTMLElement[] {
  */
 export function autoSplitLines(
   el: HTMLElement,
-  options: LineSplitOptions,
   onSplit: (split: LineSplit | null) => { revert(): unknown } | void,
 ): () => void {
   let split: LineSplit | null = null;
@@ -182,7 +134,7 @@ export function autoSplitLines(
   const run = () => {
     if (anim) anim.revert();
     if (split) split.revert();
-    split = splitLines(el, options);
+    split = splitLines(el);
     anim = onSplit(split);
   };
 

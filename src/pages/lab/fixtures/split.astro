@@ -21,12 +21,7 @@ import Base from '../../../layouts/Base.astro';
 </Base>
 
 <script>
-  import { initReveals, REVEAL_VARIANTS, type RevealVariant } from '../../../lib/reveal';
-  import { getVariant } from '../../../lib/lab';
+  import { initReveals } from '../../../lib/reveal';
 
-  if (new URLSearchParams(window.location.search).has('static')) {
-    document.documentElement.classList.remove('js');
-  } else {
-    initReveals(document.querySelector<HTMLElement>('main')!, getVariant('mask', REVEAL_VARIANTS) as RevealVariant);
-  }
+  initReveals(document.querySelector<HTMLElement>('main')!);
 </script>

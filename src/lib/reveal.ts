@@ -1,14 +1,13 @@
 import { gsap, ScrollTrigger, fontsReady, prefersReducedMotion } from './motion';
 import { autoSplitLines } from './split-lines';
 
-export type RevealVariant = 'mask' | 'soft' | 'wipe' | 'scrub';
-export const REVEAL_VARIANTS: RevealVariant[] = ['mask', 'soft', 'wipe', 'scrub'];
-
+/** Reveal "Soft": opacità, sfocatura e un leggero spostamento verso l'alto, riga per riga. */
 const EASE = 'power4.out';
 const DURATION = 1.2;
 const STAGGER = 0.08;
 const START = 'top 85%';
-const CLEAR = 'transform,opacity,visibility,filter,clipPath';
+const CLEAR = 'transform,opacity,visibility,filter';
+const FROM = { autoAlpha: 0, y: 16, filter: 'blur(6px)' };
 
 type Cleanup = () => void;
 type Builder = (el: HTMLElement, done: () => void) => Cleanup;
@@ -19,119 +18,50 @@ const show = (el: HTMLElement) => {
   return { revert: () => el.removeAttribute('data-reveal-shown') };
 };
 
-/* ---------- testi ---------- */
-
-const textOnce =
-  (vars: gsap.TweenVars, mask: boolean): Builder =>
-  (el, done) => {
-    const visible = show(el);
-    const stop = autoSplitLines(el, { mask }, (split) => {
-      if (el.dataset.revealDone) return;
-      return gsap.from(split ? split.lines : [el], {
-        ...vars,
-        duration: vars.duration ?? DURATION,
-        ease: vars.ease ?? EASE,
-        stagger: STAGGER,
-        clearProps: CLEAR,
-        scrollTrigger: { trigger: el, start: START, once: true },
-        onComplete: done,
-      });
-    });
-    return () => {
-      stop();
-      visible.revert();
-    };
-  };
-
-const textScrub: Builder = (el) => {
+/** Testi: le righe misurate dal browser entrano una dopo l'altra. */
+const revealText: Builder = (el, done) => {
   const visible = show(el);
-  const stop = autoSplitLines(el, { words: true }, (split) =>
-    gsap.fromTo(
-      split ? split.words : [el],
-      { opacity: 0.15 },
-      {
-        opacity: 1,
-        ease: 'none',
-        stagger: 0.1,
-        scrollTrigger: { trigger: el, start: START, end: 'top 40%', scrub: 1 },
-      },
-    ),
-  );
+  const stop = autoSplitLines(el, (split) => {
+    if (el.dataset.revealDone) return;
+    return gsap.from(split ? split.lines : [el], {
+      ...FROM,
+      duration: DURATION,
+      ease: EASE,
+      stagger: STAGGER,
+      clearProps: CLEAR,
+      scrollTrigger: { trigger: el, start: START, once: true },
+      onComplete: done,
+    });
+  });
   return () => {
     stop();
     visible.revert();
   };
 };
 
-const TEXT: Record<RevealVariant, Builder> = {
-  mask: textOnce({ yPercent: 110 }, true),
-  soft: textOnce({ autoAlpha: 0, y: 16, filter: 'blur(6px)' }, false),
-  wipe: textOnce({ clipPath: 'inset(0% 0% 100% 0%)', ease: 'expo.out' }, false),
-  scrub: textScrub,
-};
-
-/* ---------- immagini ---------- */
-
-const imageOnce =
-  (wrap: gsap.TweenVars, media: gsap.TweenVars, ease = EASE): Builder =>
-  (el, done) => {
-    const target = el.querySelector('img, video');
-    const visible = show(el);
-    const tl = gsap.timeline({
-      scrollTrigger: { trigger: el, start: START, once: true },
-      defaults: { duration: DURATION * 1.25, ease },
-      onComplete: done,
-    });
-    tl.from(el, { ...wrap, clearProps: CLEAR });
-    if (target && Object.keys(media).length) tl.from(target, { ...media, clearProps: 'transform' }, 0);
-    return () => {
-      tl.revert();
-      visible.revert();
-    };
-  };
-
-const imageScrub: Builder = (el) => {
+/** Immagini: il contenitore entra come i testi, la foto si assesta da una scala appena maggiore. */
+const revealImage: Builder = (el, done) => {
   const target = el.querySelector('img, video');
   const visible = show(el);
-  const anims: gsap.core.Animation[] = [
-    gsap.fromTo(
-      el,
-      { opacity: 0.15 },
-      { opacity: 1, ease: 'none', scrollTrigger: { trigger: el, start: START, end: 'top 40%', scrub: 1 } },
-    ),
-  ];
-  if (target) {
-    anims.push(
-      gsap.fromTo(
-        target,
-        { yPercent: -6, scale: 1.14 },
-        {
-          yPercent: 6,
-          ease: 'none',
-          scrollTrigger: { trigger: el, start: 'top bottom', end: 'bottom top', scrub: true },
-        },
-      ),
-    );
-  }
+  const tl = gsap.timeline({
+    scrollTrigger: { trigger: el, start: START, once: true },
+    defaults: { duration: DURATION * 1.25, ease: EASE },
+    onComplete: done,
+  });
+  tl.from(el, { ...FROM, clearProps: CLEAR });
+  if (target) tl.from(target, { scale: 1.04, clearProps: 'transform' }, 0);
   return () => {
-    anims.forEach((a) => a.revert());
+    tl.revert();
     visible.revert();
   };
 };
 
-const IMAGE: Record<RevealVariant, Builder> = {
-  mask: imageOnce({ clipPath: 'inset(100% 0% 0% 0%)' }, { scale: 1.15 }),
-  soft: imageOnce({ autoAlpha: 0, y: 16, filter: 'blur(6px)' }, { scale: 1.04 }),
-  wipe: imageOnce({ clipPath: 'inset(0% 0% 100% 0%)' }, {}, 'expo.out'),
-  scrub: imageScrub,
-};
-
 /**
- * Applica la variante a tutti gli `[data-reveal="text|image"]` dentro `root`.
+ * Applica il reveal a tutti gli `[data-reveal="text|image"]` dentro `root`.
  * Le righe vengono calcolate solo a font caricati e ricalcolate su resize.
  * Ritorna una funzione di cleanup che ripristina DOM, tween e ScrollTrigger.
  */
-export function initReveals(root: HTMLElement, variant: RevealVariant): Cleanup {
+export function initReveals(root: HTMLElement): Cleanup {
   const html = document.documentElement;
   html.dataset.revealReady = 'false';
 
@@ -147,7 +77,7 @@ export function initReveals(root: HTMLElement, variant: RevealVariant): Cleanup 
     if (!alive) return;
     root.querySelectorAll<HTMLElement>('[data-reveal]').forEach((el) => {
       delete el.dataset.revealDone;
-      const build = el.dataset.reveal === 'image' ? IMAGE[variant] : TEXT[variant];
+      const build = el.dataset.reveal === 'image' ? revealImage : revealText;
       cleanups.push(build(el, () => (el.dataset.revealDone = 'true')));
     });
     ScrollTrigger.refresh();

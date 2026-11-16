@@ -52,7 +52,7 @@ const variants = [
   if (loader) playLoader(loader, variant, { onHandoff: start, timing, concept, compact });
   else start();
 
-  initReveals(document.querySelector<HTMLElement>('main')!, 'soft');
+  initReveals(document.querySelector<HTMLElement>('main')!);
 
   // Nel lab ogni cambio variante ricarica la pagina per rivedere l'intro da zero
   onVariantChange(() => window.location.reload());
