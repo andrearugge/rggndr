@@ -21,11 +21,18 @@ export interface MonogramTiming {
   /** Ritardo tra lettere dello stesso set (s). */
   stagger: number;
   ease: string;
-  /** Quanto prima della fine dell'ultima rotazione parte la chiusura (s; negativo = pausa). */
-  collapseOverlap: number;
+  /** Quanto prima della fine dell'ultimo giro parte la rotazione d'uscita (s; negativo = pausa). */
+  exitOverlap: number;
+  /** Durata della rotazione con cui le lettere in più escono (s). */
+  exitRoll: number;
+  /** Ritardo tra le lettere che escono (s). */
+  exitStagger: number;
+  exitEase?: string;
+  /** Quando parte l'accorpamento, in frazione della rotazione d'uscita (0 = insieme, 1 = a uscita finita). */
+  collapseDelay: number;
   collapseDuration: number;
   collapseEase?: string;
-  /** Ritardo tra le lettere che si chiudono (s). */
+  /** Ritardo tra gli spazi che si chiudono (s). */
   dropStagger: number;
   /** Pausa su RGGNDR prima della dissolvenza (s). */
   hold: number;
@@ -38,7 +45,10 @@ const BASE: Omit<MonogramTiming, 'label' | 'note'> = {
   roll: [0.8, 0.8, 0.8],
   stagger: 0.06,
   ease: 'power3.inOut',
-  collapseOverlap: 0.25,
+  exitOverlap: 0.1,
+  exitRoll: 0.55,
+  exitStagger: 0.04,
+  collapseDelay: 0.6,
   collapseDuration: 0.55,
   dropStagger: 0.015,
   hold: 0.1,
@@ -47,14 +57,14 @@ const BASE: Omit<MonogramTiming, 'label' | 'note'> = {
 
 /** Alternative di timing da confrontare in /lab/loader-timing. La prima è quella in uso. */
 export const MONOGRAM_TIMINGS: MonogramTiming[] = [
-  { ...BASE, label: 'Accelerando · in uso', note: 'Ogni giro più breve e più vicino al precedente, fino alla chiusura', roundAt: [0.4, 1.1, 1.5], roll: [1, 0.75, 0.55], collapseOverlap: 0.15, collapseDuration: 0.45 },
+  { ...BASE, label: 'Accelerando · in uso', note: 'Ogni giro più breve e più vicino al precedente, fino alla chiusura', roundAt: [0.4, 1.1, 1.5], roll: [1, 0.75, 0.55], exitRoll: 0.45, collapseDuration: 0.45 },
   { ...BASE, label: 'Classic', note: 'Rotazioni classic, giri ogni 0,5s, chiusura sovrapposta' },
-  { ...BASE, label: 'Rapido', note: 'Tutto più veloce: rotazioni 0,6s, giri ogni 0,35s', roundAt: [0.4, 0.75, 1.1], roll: [0.6, 0.6, 0.6], stagger: 0.045, collapseOverlap: 0.2, collapseDuration: 0.45 },
-  { ...BASE, label: 'Disteso', note: 'Rotazioni lunghe 1s, giri ogni 0,65s, pausa su RGGNDR', roundAt: [0.4, 1.05, 1.7], roll: [1, 1, 1], stagger: 0.08, collapseOverlap: 0.3, collapseDuration: 0.7, hold: 0.35, fade: 0.5 },
+  { ...BASE, label: 'Rapido', note: 'Tutto più veloce: rotazioni 0,6s, giri ogni 0,35s', roundAt: [0.4, 0.75, 1.1], roll: [0.6, 0.6, 0.6], stagger: 0.045, collapseDuration: 0.45 },
+  { ...BASE, label: 'Disteso', note: 'Rotazioni lunghe 1s, giri ogni 0,65s, pausa su RGGNDR', roundAt: [0.4, 1.05, 1.7], roll: [1, 1, 1], stagger: 0.08, collapseDuration: 0.7, hold: 0.35, fade: 0.5 },
   { ...BASE, label: 'Onda', note: 'Ritardo tra lettere più ampio (0,14s): ogni set scorre come un\'onda', stagger: 0.14 },
   { ...BASE, label: 'Blocchi', note: 'Le lettere di un set ruotano tutte nello stesso istante', stagger: 0 },
   { ...BASE, label: 'Serrato', note: 'Giri quasi sovrapposti (ogni 0,22s): un unico movimento fitto', roundAt: [0.4, 0.62, 0.84] },
-  { ...BASE, label: 'Respiro', note: 'Giri staccati, un battito tra uno e l\'altro; chiusura dopo una pausa', roundAt: [0.4, 1.3, 2.2], collapseOverlap: -0.15, hold: 0.25 },
+  { ...BASE, label: 'Respiro', note: 'Giri staccati, un battito tra uno e l\'altro; chiusura dopo una pausa', roundAt: [0.4, 1.3, 2.2], exitOverlap: -0.15, hold: 0.25 },
   { ...BASE, label: 'Scatto', note: 'Ease expo: partenza e arrivo lenti, centro rapidissimo', ease: 'expo.inOut', roll: [0.9, 0.9, 0.9], roundAt: [0.4, 0.85, 1.3], collapseEase: 'expo.inOut', collapseDuration: 0.7 },
   { ...BASE, label: 'Morbido', note: 'Ease sine: movimento uniforme e calmo', ease: 'sine.inOut', roll: [0.9, 0.9, 0.9], roundAt: [0.4, 0.95, 1.5], collapseEase: 'sine.inOut', collapseDuration: 0.65 },
 ];
@@ -76,6 +86,8 @@ export function addMonogram(tl: gsap.core.Timeline, root: HTMLElement, t: Monogr
   const letters = [...root.querySelectorAll<HTMLElement>('[data-loader-letter]')];
 
   let rollsEnd = 0;
+  // per ogni lettera: direzione e fine della sua ultima rotazione
+  const lastRoll = new Map<HTMLElement, { dir: 1 | -1; end: number; column: HTMLElement }>();
   MONOGRAM_ROUNDS.forEach((round, r) => {
     for (const [set, dir] of [[round.up, 1], [round.down, -1]] as const) {
       set.forEach((idx, k) => {
@@ -87,18 +99,37 @@ export function addMonogram(tl: gsap.core.Timeline, root: HTMLElement, t: Monogr
         const start = t.roundAt[r] + k * t.stagger;
         tl.to(column, { yPercent: from === 0 ? -50 : 0, duration: t.roll[r], ease: t.ease }, start);
         rollsEnd = Math.max(rollsEnd, start + t.roll[r]);
+        lastRoll.set(l, { dir, end: start + t.roll[r], column });
       });
     }
   });
 
-  // RUGGERI ANDREA → RGGNDR: le lettere in più si chiudono, le altre si ricompattano
-  const collapseAt = rollsEnd - t.collapseOverlap;
-  const drop = [...letters.filter((l) => !l.hasAttribute('data-keep')), ...root.querySelectorAll<HTMLElement>('[data-loader-space]')];
+  // RUGGERI ANDREA → RGGNDR. Ultimo giro: le lettere in più escono dalla maschera ruotando,
+  // ognuna nella direzione della sua ultima rotazione (sopra se saliva, sotto se scendeva)
+  const dropLetters = letters.filter((l) => !l.hasAttribute('data-keep'));
+  const exitAt = rollsEnd - t.exitOverlap;
+  let exitEnd = exitAt;
+  dropLetters.forEach((l, k) => {
+    let last = lastRoll.get(l);
+    if (!last) {
+      const column = prepareColumn(l, [l.dataset.char!]);
+      last = { dir: 1, end: 0, column };
+    }
+    // mai prima che la sua rotazione sia finita: due tween sulla stessa colonna si annullerebbero
+    const start = Math.max(exitAt + k * t.exitStagger, last.end);
+    // colonna di due celle: oltre -50% la lettera esce sopra, oltre 0 esce sotto
+    tl.to(last.column, { yPercent: last.dir === 1 ? -100 : 50, duration: t.exitRoll, ease: t.exitEase ?? t.ease }, start);
+    exitEnd = Math.max(exitEnd, start + t.exitRoll);
+  });
+
+  // poi gli spazi rimasti si chiudono e RGGNDR si ricompatta (nessuna dissolvenza: le lettere sono già uscite)
+  const collapseAt = exitAt + t.exitRoll * t.collapseDelay;
+  const drop = [...dropLetters, ...root.querySelectorAll<HTMLElement>('[data-loader-space]')];
   drop.forEach((d) => (d.style.width = `${d.getBoundingClientRect().width}px`));
-  tl.to(drop, { width: 0, opacity: 0, duration: t.collapseDuration, ease: t.collapseEase ?? t.ease, stagger: t.dropStagger }, collapseAt);
+  tl.to(drop, { width: 0, duration: t.collapseDuration, ease: t.collapseEase ?? t.ease, stagger: t.dropStagger }, collapseAt);
 
   // RGGNDR e il sottotitolo restano al centro e sfumano insieme
-  const fadeAt = collapseAt + t.collapseDuration + t.dropStagger * drop.length + t.hold;
+  const fadeAt = Math.max(exitEnd, collapseAt + t.collapseDuration + t.dropStagger * drop.length) + t.hold;
   tl.to([name, sub], { opacity: 0, filter: 'blur(5px)', duration: t.fade, ease: 'power2.in' }, fadeAt);
   return fadeAt + t.fade;
 }

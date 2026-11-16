@@ -73,6 +73,8 @@ async function letterTimeline(page: Page) {
             return Math.round(((e.getBoundingClientRect().top - col.getBoundingClientRect().top) / h) * 1000) / 1000;
           }),
           widths: els.map((e) => Math.round(e.getBoundingClientRect().width * 10) / 10),
+          opacities: els.map((e) => Number(getComputedStyle(e).opacity)),
+          keep: els.map((e) => e.hasAttribute('data-keep')),
         });
       }
       requestAnimationFrame(loop);
@@ -86,13 +88,19 @@ type Roll = { i: number; start: number; end: number; dir: 1 | -1 };
 async function measure(page: Page, v: string) {
   await page.goto(`/lab/loader?v=${v}`);
   await expect(page.locator('[data-loader]')).toHaveCount(0, { timeout: 6000 });
-  const frames: { t: number; rolls: number[]; widths: number[] }[] = await page.evaluate(() => (window as any).__letters);
+  const frames: { t: number; rolls: number[]; widths: number[]; opacities: number[]; keep: boolean[] }[] = await page.evaluate(() => (window as any).__letters);
   const n = frames[0].rolls.length;
   const rolls = Array.from({ length: n }, (_, i) => {
     // un salto di un'intera cella in un frame è un riposizionamento tra due celle uguali, non un movimento visibile
     const moving = frames
       .map((f, k) => ({ f, k }))
-      .filter(({ f, k }) => k > 0 && f.rolls[i] !== frames[k - 1].rolls[i] && Math.abs(f.rolls[i] - frames[k - 1].rolls[i]) < 0.5);
+      .filter(({ f, k }) => {
+        if (k === 0) return false;
+        const a = frames[k - 1].rolls[i];
+        const b = f.rolls[i];
+        const inside = (v: number) => v >= -0.0005 && v <= 1.0005; // la rotazione d'uscita porta la lettera fuori dalla colonna
+        return a !== b && Math.abs(b - a) < 0.5 && inside(a) && inside(b);
+      });
     if (!moving.length) return null;
     const before = frames[moving[0].k - 1].rolls[i];
     const after = moving.at(-1)!.f.rolls[i];
@@ -145,9 +153,33 @@ test('loader monogram: three accelerating overlapping rounds, each with two sets
   // ogni giro parte prima che il precedente finisca
   rs.slice(1).forEach((round, k) => expect(round[0].start).toBeLessThan(Math.max(...rs[k].map((r) => r.end))));
 
-  // la chiusura del monogram segue l'ultima rotazione senza pause percepibili: un'unica animazione
-  const collapseStart = frames.find((f, k) => k > 0 && f.widths.some((w, i) => w < frames[0].widths[i] - 0.5))!.t;
-  expect(collapseStart - Math.max(...rolls.map((r) => r.end))).toBeLessThan(50);
+  // l'uscita verso il monogram segue l'ultima rotazione senza pause percepibili: un'unica animazione
+  const exitStart = frames.find((f) => f.rolls.some((v) => v > 1.0005 || v < -0.0005))!.t;
+  expect(exitStart - Math.max(...rolls.map((r) => r.end))).toBeLessThan(50);
+});
+
+test('loader monogram: extra letters leave with a last roll in their own direction, never fading, then the name closes up', async ({ page }) => {
+  await letterTimeline(page);
+  const { frames, rolls } = await measure(page, 'monogram');
+  const last = frames.at(-1)!;
+  const drop = last.keep.map((k, i) => (k ? -1 : i)).filter((i) => i >= 0);
+  expect(drop.length).toBe(7);
+  let exitStarts: number[] = [];
+  for (const i of drop) {
+    const dir = rolls.find((r) => r.i === i)!.dir;
+    // esce dalla maschera continuando la sua direzione: sopra (2 celle) se saliva, sotto (-1) se scendeva
+    if (dir === 1) expect(last.rolls[i]).toBeGreaterThan(1.95);
+    else expect(last.rolls[i]).toBeLessThan(-0.95);
+    // nessuna dissolvenza finché la lettera è nella maschera
+    for (const f of frames) if (f.rolls[i] > -0.95 && f.rolls[i] < 1.95) expect(f.opacities[i]).toBeGreaterThan(0.99);
+    exitStarts.push(frames.find((f) => f.rolls[i] > 1.0005 || f.rolls[i] < -0.0005)!.t);
+  }
+  // l'uscita segue i giri, e l'accorpamento parte dopo l'inizio dell'uscita
+  expect(Math.min(...exitStarts)).toBeGreaterThanOrEqual(Math.max(...rolls.map((r) => r.end)) - 20);
+  // larghezze di riferimento all'inizio della prima rotazione: il font finale è già caricato
+  const ref = frames.find((f) => f.t >= rolls[0].start)!.widths;
+  const collapseStart = frames.find((f) => f.t > rolls[0].start && f.widths.some((w, i) => w < ref[i] - 0.5))!.t;
+  expect(collapseStart).toBeGreaterThan(Math.min(...exitStarts));
 });
 
 test('loader monogram: RGGNDR stays in place and fades out with the same blur as the subtitle', async ({ page }) => {
