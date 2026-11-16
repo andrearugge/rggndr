@@ -35,13 +35,14 @@ async function settled(page: Page) {
       };
     });
     // per ogni foto: la miniatura originale e la sua copia (aria-hidden) che chiude il loop infinito
+    const focus = root.querySelector('[data-gallery-titles]')!.getBoundingClientRect().left;
     const all = [...root.querySelectorAll<HTMLElement>('[data-gallery-thumb]')];
     const originals = all.filter((t) => !t.hasAttribute('aria-hidden'));
     const thumbs = originals.map((t, i) => {
       const pair = all.filter((_, j) => j % originals.length === i);
       return {
-        // la più vicina all'inizio dello slider (può essere la copia)
-        left: pair.map((p) => p.getBoundingClientRect().left).sort((a, b) => Math.abs(a - strip.left) - Math.abs(b - strip.left))[0],
+        // la più vicina al punto di fuoco (può essere la copia)
+        left: pair.map((p) => p.getBoundingClientRect().left).sort((a, b) => Math.abs(a - focus) - Math.abs(b - focus))[0],
         current: t.getAttribute('aria-current') === 'true',
         opacity: Math.min(...pair.map((p) => Number(getComputedStyle(p.querySelector('img')!).opacity))),
       };
@@ -53,6 +54,9 @@ async function settled(page: Page) {
       titles,
       thumbs,
       stripLeft: strip.left,
+      stripWidth: strip.width,
+      titleLeft: root.querySelector('[data-gallery-titles]')!.getBoundingClientRect().left,
+      viewport: document.documentElement.clientWidth,
       frameColor: getComputedStyle(stage).backgroundColor,
     };
   });
@@ -72,7 +76,10 @@ async function expectAt(page: Page, i: number) {
   expect(s.thumbs.map((t) => t.current)).toEqual(s.thumbs.map((_, k) => k === i));
   expect(s.thumbs[i].opacity).toBeGreaterThan(0.99);
   for (const [k, t] of s.thumbs.entries()) if (k !== i) expect(t.opacity).toBeLessThan(0.6);
-  expect(Math.abs(s.thumbs[i].left - s.stripLeft)).toBeLessThan(1.5);
+  // lo slider va da bordo a bordo dello schermo; la miniatura attiva è allineata al titolo
+  expect(s.stripLeft).toBe(0);
+  expect(s.stripWidth).toBe(s.viewport);
+  expect(Math.abs(s.thumbs[i].left - s.titleLeft)).toBeLessThan(1.5);
   return s;
 }
 
@@ -144,6 +151,17 @@ test.describe('gallery slider', () => {
     await expectAt(page, 0);
     await page.keyboard.press('ArrowRight');
     await expectAt(page, 1);
+  });
+
+  test('quick arrow presses add up: two presses move two photos', async ({ page }) => {
+    await expectAt(page, 0);
+    await page.keyboard.press('ArrowRight');
+    await page.keyboard.press('ArrowRight');
+    await expectAt(page, 2);
+    await page.keyboard.press('ArrowLeft');
+    await page.keyboard.press('ArrowLeft');
+    await page.keyboard.press('ArrowLeft');
+    await expectAt(page, N - 1);
   });
 
   test('the big photo changes with a hard cut, like Bruno Arizio: never two photos or a half-revealed one', async ({ page }) => {

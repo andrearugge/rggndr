@@ -54,7 +54,7 @@ const pad = (n: number) => String(n).padStart(2, '0');
         ))}
       </div>
     </div>
-    <div data-gallery-thumbs class="relative h-[25%] cursor-grab touch-pan-y overflow-x-auto overflow-y-hidden select-none">
+    <div data-gallery-thumbs class="relative -mx-4 h-[25%] cursor-grab md:-mx-6 touch-pan-y overflow-x-auto overflow-y-hidden select-none">
       <ol data-gallery-track class="flex h-full gap-2">
         {items.map((item, i) => (
           <li data-gallery-item class="h-full shrink-0">

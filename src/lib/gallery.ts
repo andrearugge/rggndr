@@ -44,7 +44,9 @@ export function initGallery(root: HTMLElement): () => void {
   let starts: number[] = []; // posizione di ogni miniatura originale sul nastro
   let L = 1; // lunghezza di un giro
   let maxW = 0;
+  let focus = 0; // lo slider va da bordo a bordo: la miniatura attiva si allinea al titolo (padding del contenitore)
   const measure = () => {
+    focus = parseFloat(getComputedStyle(root).paddingLeft) || 0;
     const widths = originals.map((li) => li.getBoundingClientRect().width);
     maxW = Math.max(...widths);
     starts = [];
@@ -65,7 +67,7 @@ export function initGallery(root: HTMLElement): () => void {
     items.forEach((li, j) => {
       const base = j < n ? starts[j] : L + starts[j - n];
       // ogni miniatura sta sul giro più vicino all'inizio dello slider
-      const x = wrap(base - current + maxW + GAP, total) - maxW - GAP;
+      const x = wrap(base - current + focus + maxW + GAP, total) - maxW - GAP;
       li.style.transform = `translate3d(${x}px,0,0)`;
     });
     const nearest = starts.reduce(
@@ -221,9 +223,14 @@ export function initGallery(root: HTMLElement): () => void {
   strip.addEventListener('pointercancel', onUp);
 
   // tastiera: frecce e invio/spazio sulle miniature (accessibile senza mouse)
+  // il passo parte dalla destinazione, non dalla foto attiva: pressioni rapide si sommano
+  const targetIndex = () => {
+    const p = snapNear(target);
+    return starts.findIndex((st) => Math.abs(wrap(p - st + L / 2, L) - L / 2) < 0.5);
+  };
   const onKey = (e: KeyboardEvent) => {
-    if (e.key === 'ArrowRight') goTo(wrap(active + 1, n), 1);
-    else if (e.key === 'ArrowLeft') goTo(wrap(active - 1, n), -1);
+    if (e.key === 'ArrowRight') goTo(wrap(targetIndex() + 1, n), 1);
+    else if (e.key === 'ArrowLeft') goTo(wrap(targetIndex() - 1, n), -1);
   };
   window.addEventListener('keydown', onKey);
   const onThumbKey = (e: KeyboardEvent) => {
