@@ -24,7 +24,11 @@ export async function playHeroIntro(root: HTMLElement, { delay = 0.5 } = {}): Pr
   root.querySelectorAll<HTMLElement>('[data-hero-row]').forEach((row, i) => {
     const tl = gsap.timeline({ delay: delay + i * 0.05, defaults: { ease: 'power4.out' } });
     tl.to(row.querySelectorAll('.hero-line > span'), { yPercent: 0, duration: 1.5 });
-    tl.to(row.querySelectorAll('.hero-info'), { autoAlpha: 1, y: 0, filter: 'blur(0px)', duration: 2, clearProps: 'filter' }, '<+=0.25');
+    tl.to(
+      row.querySelectorAll('.hero-info'),
+      { autoAlpha: 1, y: 0, filter: 'blur(0px)', duration: 2, clearProps: 'filter' },
+      '<+=0.25',
+    );
   });
   gsap.to(sub, { yPercent: 0, duration: 1.5, ease: 'power4.out', delay: delay + 0.5 });
 }

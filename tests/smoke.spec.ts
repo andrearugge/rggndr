@@ -4,10 +4,7 @@ test('home has fonts loaded', async ({ page }) => {
   await page.goto('/');
   const loaded = await page.evaluate(async () => {
     await document.fonts.ready;
-    await Promise.all([
-      document.fonts.load('16px Montreal'),
-      document.fonts.load('900 16px Compact'),
-    ]);
+    await Promise.all([document.fonts.load('16px Montreal'), document.fonts.load('900 16px Compact')]);
     const loadedFace = (family: string) =>
       [...document.fonts].some((f) => f.family.replace(/"/g, '') === family && f.status === 'loaded');
     return { montrealFace: loadedFace('Montreal'), compactFace: loadedFace('Compact') };

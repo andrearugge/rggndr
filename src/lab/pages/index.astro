@@ -4,13 +4,16 @@ import Lab from '../Lab.astro';
 // Utility interna: pagine di prova usate dai test. Le scelte del lab sono ormai nelle pagine vere.
 const pages = [{ href: '/lab/fixtures/split/', label: 'Split', note: 'Casi limite dello split delle righe' }];
 ---
+
 <Lab title="Index">
   <main class="container-site min-h-dvh pt-24 pb-10">
     <ol class="divide-y divide-primary/20 border-y border-primary/20">
       {pages.map((e, i) => (
         <li class="flex items-baseline gap-4 py-4">
           <span class="h6">{String(i + 1).padStart(2, '0')}</span>
-          <a href={e.href} class="h2 transition-opacity hover:opacity-60">{e.label}</a>
+          <a href={e.href} class="h2 transition-opacity hover:opacity-60">
+            {e.label}
+          </a>
           <span class="ml-auto text-sm">{e.note}</span>
         </li>
       ))}

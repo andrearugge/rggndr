@@ -10,12 +10,15 @@ interface Props {
 }
 const { current = '/' } = Astro.props;
 ---
+
 <!-- Desktop -->
 <header class="sticky top-0 z-50 hidden w-full items-center justify-center py-10 lg:flex">
   <div class="container-site">
     <div class="grid-8">
       <div class="col-span-2 self-center">
-        <a class="block w-fit text-[14px] leading-none font-bold" href="/">RGGNDR</a>
+        <a class="block w-fit text-[14px] leading-none font-bold" href="/">
+          RGGNDR
+        </a>
       </div>
       <nav class="col-span-4 flex items-center justify-center self-center" aria-label="Principale">
         <ul class="flex items-center justify-center gap-4">
@@ -34,7 +37,9 @@ const { current = '/' } = Astro.props;
               >
                 {item.label}
                 {item.external && (
-                  <svg viewBox="0 0 24 24" class="size-4" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8" fill="none" stroke="currentColor" stroke-width="2.2" /></svg>
+                  <svg viewBox="0 0 24 24" class="size-4" aria-hidden="true">
+                    <path d="M7 17 17 7M9 7h8v8" fill="none" stroke="currentColor" stroke-width="2.2" />
+                  </svg>
                 )}
               </a>
             </li>
@@ -43,7 +48,9 @@ const { current = '/' } = Astro.props;
       </nav>
       <div class="col-span-2 flex items-center justify-end gap-2 self-center">
         <span class="time-dot size-3 rounded-full bg-primary"></span>
-        <span data-clock class="text-sm">Asola</span>
+        <span data-clock class="text-sm">
+          Asola
+        </span>
       </div>
     </div>
   </div>
@@ -52,7 +59,9 @@ const { current = '/' } = Astro.props;
 <!-- Mobile -->
 <header class="sticky top-0 z-50 flex w-full items-center py-5 lg:hidden">
   <div class="container-site flex items-center justify-between">
-    <a class="text-[14px] leading-none font-bold" href="/">RGGNDR</a>
+    <a class="text-[14px] leading-none font-bold" href="/">
+      RGGNDR
+    </a>
     <button type="button" aria-label="Apri menu" class="flex h-4 w-5 flex-col justify-center gap-[5px]">
       <span class="block h-[1.5px] w-full bg-primary"></span>
       <span class="block h-[1.5px] w-full bg-primary"></span>

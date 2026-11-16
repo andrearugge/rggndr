@@ -14,13 +14,18 @@ async function settled(page: Page) {
     const stage = root.querySelector<HTMLElement>('[data-gallery-stage]')!;
     const frame = stage.getBoundingClientRect();
     const strip = root.querySelector<HTMLElement>('[data-gallery-thumbs]')!.getBoundingClientRect();
-    const shown = (el: Element) => getComputedStyle(el).visibility !== 'hidden' && Number(getComputedStyle(el).opacity) > 0.99;
+    const shown = (el: Element) =>
+      getComputedStyle(el).visibility !== 'hidden' && Number(getComputedStyle(el).opacity) > 0.99;
     const slides = [...root.querySelectorAll<HTMLElement>('[data-gallery-slide]')].map((s) => {
       const img = s.querySelector('img')!;
       const r = img.getBoundingClientRect();
       return {
         visible: shown(s) && shown(img) && r.width > 10,
-        inside: r.left >= frame.left + 1 && r.right <= frame.right - 1 && r.top >= frame.top + 1 && r.bottom <= frame.bottom - 1,
+        inside:
+          r.left >= frame.left + 1 &&
+          r.right <= frame.right - 1 &&
+          r.top >= frame.top + 1 &&
+          r.bottom <= frame.bottom - 1,
         ratio: r.width / r.height,
         natural: Number(img.getAttribute('width')) / Number(img.getAttribute('height')),
         clip: getComputedStyle(s).clipPath,
@@ -42,7 +47,9 @@ async function settled(page: Page) {
       const pair = all.filter((_, j) => j % originals.length === i);
       return {
         // la più vicina al punto di fuoco (può essere la copia)
-        left: pair.map((p) => p.getBoundingClientRect().left).sort((a, b) => Math.abs(a - focus) - Math.abs(b - focus))[0],
+        left: pair
+          .map((p) => p.getBoundingClientRect().left)
+          .sort((a, b) => Math.abs(a - focus) - Math.abs(b - focus))[0],
         current: t.getAttribute('aria-current') === 'true',
         opacity: Math.min(...pair.map((p) => Number(getComputedStyle(p.querySelector('img')!).opacity))),
       };
@@ -102,7 +109,9 @@ test.describe('gallery slider', () => {
     await page.goto('/gallery/');
   });
 
-  test('starts on the first photo, in a primary frame at 10%, with a title smaller than the old one', async ({ page }) => {
+  test('starts on the first photo, in a primary frame at 10%, with a title smaller than the old one', async ({
+    page,
+  }) => {
     const s = await expectAt(page, 0);
     expect(s.frameColor).toBe('rgba(137, 141, 127, 0.1)');
     expect(s.titles[0].size).toBeLessThan(102);
@@ -164,7 +173,9 @@ test.describe('gallery slider', () => {
     await expectAt(page, N - 1);
   });
 
-  test('the big photo changes with a hard cut, like Bruno Arizio: never two photos or a half-revealed one', async ({ page }) => {
+  test('the big photo changes with a hard cut, like Bruno Arizio: never two photos or a half-revealed one', async ({
+    page,
+  }) => {
     await page.evaluate(() => {
       const w = window as any;
       w.__cut = [];
@@ -174,7 +185,12 @@ test.describe('gallery slider', () => {
         const partial = slides.some((s) => {
           const cs = getComputedStyle(s);
           const img = getComputedStyle(s.querySelector('img')!);
-          return (cs.clipPath !== 'none' && cs.clipPath !== '') || Number(cs.opacity) < 1 || Number(img.opacity) < 1 || img.transform !== 'none';
+          return (
+            (cs.clipPath !== 'none' && cs.clipPath !== '') ||
+            Number(cs.opacity) < 1 ||
+            Number(img.opacity) < 1 ||
+            img.transform !== 'none'
+          );
         });
         w.__cut.push({ shown: shown.length, partial });
         w.__raf = requestAnimationFrame(loop);
@@ -194,7 +210,6 @@ test.describe('gallery slider', () => {
     expect(frames.filter((f) => f.shown !== 1)).toEqual([]);
     expect(frames.filter((f) => f.partial)).toEqual([]);
   });
-
 });
 
 test('gallery: reduced motion still navigates', async ({ browser }) => {

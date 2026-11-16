@@ -43,7 +43,10 @@ test('loader: covers the page, then leaves in time and hands over to the hero', 
 test('hero waits for the loader: it is still hidden while the loader is on screen', async ({ page }) => {
   await page.goto(URL);
   await page.waitForTimeout(400);
-  const ty = await page.$eval('.hero-line > span', (e) => e.getBoundingClientRect().top - e.parentElement!.getBoundingClientRect().top);
+  const ty = await page.$eval(
+    '.hero-line > span',
+    (e) => e.getBoundingClientRect().top - e.parentElement!.getBoundingClientRect().top,
+  );
   expect(ty).toBeGreaterThan(10);
 });
 

@@ -103,7 +103,8 @@ test('card: follows the mouse with a gentle 3D tilt (at most 5°) and settles ba
 test('card: the motto and the hours ignore the pointer, links stay clickable', async ({ page }) => {
   await ready(page);
   const card = page.locator('[data-card]');
-  for (const sel of ['[data-block="motto"]', '[data-block="hours"]']) await expect(card.locator(sel)).toHaveCSS('pointer-events', 'none');
+  for (const sel of ['[data-block="motto"]', '[data-block="hours"]'])
+    await expect(card.locator(sel)).toHaveCSS('pointer-events', 'none');
   await expect(card.locator('a[href="mailto:hello@rggndr.it"]')).toHaveCSS('pointer-events', 'auto');
 });
 

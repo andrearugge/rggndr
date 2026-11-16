@@ -12,6 +12,7 @@ interface Props {
 const { items } = Astro.props;
 const pad = (n: number) => String(n).padStart(2, '0');
 ---
+
 <section
   data-gallery
   data-index="0"
@@ -39,7 +40,11 @@ const pad = (n: number) => String(n).padStart(2, '0');
       </div>
       <div data-gallery-stage class="relative flex-1 overflow-hidden lg:w-1/2">
         {items.map((item, i) => (
-          <figure data-gallery-slide data-active={i === 0 ? '' : undefined} class="absolute inset-0 flex items-center justify-center p-[6%]">
+          <figure
+            data-gallery-slide
+            data-active={i === 0 ? '' : undefined}
+            class="absolute inset-0 flex items-center justify-center p-[6%]"
+          >
             <img
               src={item.src}
               alt={item.title}
@@ -54,7 +59,10 @@ const pad = (n: number) => String(n).padStart(2, '0');
         ))}
       </div>
     </div>
-    <div data-gallery-thumbs class="relative -mx-4 h-[25%] cursor-grab md:-mx-6 touch-pan-y overflow-x-auto overflow-y-hidden select-none">
+    <div
+      data-gallery-thumbs
+      class="relative -mx-4 h-[25%] cursor-grab md:-mx-6 touch-pan-y overflow-x-auto overflow-y-hidden select-none"
+    >
       <ol data-gallery-track class="flex h-full gap-2">
         {items.map((item, i) => (
           <li data-gallery-item class="h-full shrink-0">

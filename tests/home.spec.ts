@@ -26,14 +26,22 @@ test.describe('reduced motion', () => {
   test('home fully visible, no loader', async ({ page }) => {
     await page.goto('/');
     await expect(page.locator('[data-loader]')).toHaveCount(0, { timeout: 500 });
-    const moved = await page.$$eval('.hero-line > span', (els) =>
-      els.filter((e) => {
-        const cs = getComputedStyle(e);
-        return (cs.transform !== 'none' && new DOMMatrix(cs.transform).m42 !== 0) || (cs.translate !== 'none' && cs.translate !== '0px');
-      }).length,
+    const moved = await page.$$eval(
+      '.hero-line > span',
+      (els) =>
+        els.filter((e) => {
+          const cs = getComputedStyle(e);
+          return (
+            (cs.transform !== 'none' && new DOMMatrix(cs.transform).m42 !== 0) ||
+            (cs.translate !== 'none' && cs.translate !== '0px')
+          );
+        }).length,
     );
     expect(moved).toBe(0);
-    const hidden = await page.$$eval('[data-reveal]', (els) => els.filter((e) => getComputedStyle(e).visibility !== 'visible').length);
+    const hidden = await page.$$eval(
+      '[data-reveal]',
+      (els) => els.filter((e) => getComputedStyle(e).visibility !== 'visible').length,
+    );
     expect(hidden).toBe(0);
   });
 });
@@ -45,7 +53,9 @@ test.describe('without javascript', () => {
     await page.goto('/gallery/');
     await expect(page.locator('[data-gallery-slide] img').first()).toBeVisible();
     await expect(page.locator('[data-gallery-title]').first()).toBeVisible();
-    const strip = await page.locator('[data-gallery-thumbs]').evaluate((e) => ({ sw: e.scrollWidth, cw: e.clientWidth }));
+    const strip = await page
+      .locator('[data-gallery-thumbs]')
+      .evaluate((e) => ({ sw: e.scrollWidth, cw: e.clientWidth }));
     expect(strip.sw).toBeGreaterThan(strip.cw);
   });
 });

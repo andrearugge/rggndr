@@ -1,19 +1,29 @@
 ---
 import Base from '../../../layouts/Base.astro';
 ---
+
 <Base title="Lab — fixture split" noindex>
   <main class="p-6 space-y-10">
     <p id="mixed" data-reveal="text" style="width:900px;font-size:64px;line-height:1">
       AB <span style="font-size:14px">small</span> CD EF GH IJ
     </p>
     <p id="link" data-reveal="text" style="width:300px;font-size:20px">
-      Some text with <a id="lk" href="#x">a link that wraps across several lines</a> end.
+      Some text with{' '}
+      <a id="lk" href="#x">
+        a link that wraps across several lines
+      </a>{' '}
+      end.
     </p>
     <p id="shortlink" data-reveal="text" style="width:300px;font-size:20px">
-      Currently Partner &amp; Design Director at <a href="#b">Beconcept</a>, where I design for the edge of digital innovation.
+      Currently Partner &amp; Design Director at <a href="#b">Beconcept</a>, where I design for the edge of digital
+      innovation.
     </p>
-    <p id="lead" data-reveal="text" style="font-size:20px"><svg class="lead-icon" width="10" height="10"></svg> Lead text</p>
-    <p id="hidden" data-reveal="text" class="hidden">Hidden text stays here</p>
+    <p id="lead" data-reveal="text" style="font-size:20px">
+      <svg class="lead-icon" width="10" height="10"></svg> Lead text
+    </p>
+    <p id="hidden" data-reveal="text" class="hidden">
+      Hidden text stays here
+    </p>
     <p id="fontsize" data-reveal="text" style="width:400px;font-size:20px;line-height:1.2">
       Combining creativity with strategic thinking to shape purposeful digital products, one line at a time.
     </p>

@@ -1,25 +1,25 @@
-@import "tailwindcss";
+@import 'tailwindcss';
 
 /* ------------------------------------------------------------------ */
 /* Font (self-hosted). Editorial non fa parte del sito: solo nella card */
 /* ------------------------------------------------------------------ */
 @font-face {
-  font-family: "Compact";
-  src: url("/fonts/CompactBlack.woff2") format("woff2");
+  font-family: 'Compact';
+  src: url('/fonts/CompactBlack.woff2') format('woff2');
   font-weight: 900;
   font-style: normal;
   font-display: swap;
 }
 @font-face {
-  font-family: "Montreal";
-  src: url("/fonts/Montreal-Regular.woff2") format("woff2");
+  font-family: 'Montreal';
+  src: url('/fonts/Montreal-Regular.woff2') format('woff2');
   font-weight: 400;
   font-style: normal;
   font-display: swap;
 }
 @font-face {
-  font-family: "Montreal";
-  src: url("/fonts/Montreal-Bold.woff2") format("woff2");
+  font-family: 'Montreal';
+  src: url('/fonts/Montreal-Bold.woff2') format('woff2');
   font-weight: 700;
   font-style: normal;
   font-display: swap;
@@ -40,8 +40,8 @@
   --color-current: currentColor;
 
   --font-*: initial;
-  --font-compact: "Compact", Helvetica, Arial, sans-serif;
-  --font-montreal: "Montreal", Helvetica, Arial, sans-serif;
+  --font-compact: 'Compact', Helvetica, Arial, sans-serif;
+  --font-montreal: 'Montreal', Helvetica, Arial, sans-serif;
 
   --ease-out-power4: cubic-bezier(0.165, 0.84, 0.44, 1);
 }
@@ -126,7 +126,7 @@
     visibility: visible;
   }
 }
-[data-reveal="image"] {
+[data-reveal='image'] {
   overflow: hidden;
 }
 

@@ -8,7 +8,9 @@ async function ready(page: Page) {
 }
 
 async function heights(page: Page) {
-  return page.$$eval('[data-reveal]', (els) => Object.fromEntries(els.map((e) => [e.id, Math.round(e.getBoundingClientRect().height)])));
+  return page.$$eval('[data-reveal]', (els) =>
+    Object.fromEntries(els.map((e) => [e.id, Math.round(e.getBoundingClientRect().height)])),
+  );
 }
 
 test.beforeEach(async ({ page }) => page.setViewportSize({ width: 1280, height: 900 }));
@@ -61,7 +63,9 @@ test('split text is read once by screen readers', async ({ page }) => {
   await ready(page);
   const el = page.locator('#fontsize');
   await expect(el.locator('.sr-only')).toHaveText(/Combining creativity .* one line at a time\./);
-  const hiddenLines = await el.evaluate((e) => [...e.querySelectorAll('.line')].every((l) => l.closest('[aria-hidden="true"]')));
+  const hiddenLines = await el.evaluate((e) =>
+    [...e.querySelectorAll('.line')].every((l) => l.closest('[aria-hidden="true"]')),
+  );
   expect(hiddenLines).toBe(true);
 });
 
@@ -87,7 +91,10 @@ test('content shows even if the reveal module fails', async ({ page }) => {
   await page.route(/\.(js|ts)(\?.*)?$/, (route) => route.abort());
   await page.goto('/');
   await page.waitForTimeout(3500);
-  const hidden = await page.$$eval('[data-reveal]', (els) => els.filter((e) => getComputedStyle(e).visibility !== 'visible').length);
+  const hidden = await page.$$eval(
+    '[data-reveal]',
+    (els) => els.filter((e) => getComputedStyle(e).visibility !== 'visible').length,
+  );
   expect(hidden).toBe(0);
 });
 

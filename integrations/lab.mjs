@@ -15,7 +15,11 @@ const astroFiles = (dir) =>
 
 /** `index.astro` → `/lab`, `fixtures/split.astro` → `/lab/fixtures/split`. */
 const patternOf = (file) => {
-  const route = relative(PAGES, file).split(sep).join('/').replace(/\.astro$/, '').replace(/(^|\/)index$/, '');
+  const route = relative(PAGES, file)
+    .split(sep)
+    .join('/')
+    .replace(/\.astro$/, '')
+    .replace(/(^|\/)index$/, '');
   return route ? `/lab/${route}` : '/lab';
 };
 

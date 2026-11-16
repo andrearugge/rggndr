@@ -12,6 +12,6 @@ export default defineConfig({
   integrations: [lab()],
   devToolbar: { enabled: false },
   vite: {
-    plugins: [tailwindcss()]
-  }
+    plugins: [tailwindcss()],
+  },
 });

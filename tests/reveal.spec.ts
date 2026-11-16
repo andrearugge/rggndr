@@ -53,9 +53,7 @@ async function staticLines(browser: Browser, width: number, url: string, selecto
 /** Linee prodotte dallo split. */
 async function splitLines(page: Page, selector: string): Promise<string[]> {
   await page.waitForFunction((sel) => document.querySelectorAll(`${sel} .line`).length > 0, selector);
-  return page.$$eval(`${selector} .line`, (els) =>
-    els.map((e) => (e.textContent ?? '').replace(/\s+/g, ' ').trim()),
-  );
+  return page.$$eval(`${selector} .line`, (els) => els.map((e) => (e.textContent ?? '').replace(/\s+/g, ' ').trim()));
 }
 
 async function allRevealsVisible(page: Page) {
@@ -135,7 +133,9 @@ test('hero intro ends with every line in place', async ({ page }) => {
     }),
   );
   expect(offsets.every((o) => o.ty === 0 && (o.translate === 'none' || o.translate === '0px'))).toBe(true);
-  const infos = await page.$$eval('.hero-info', (els) => els.filter((e) => getComputedStyle(e).display !== 'none').map((e) => getComputedStyle(e).opacity));
+  const infos = await page.$$eval('.hero-info', (els) =>
+    els.filter((e) => getComputedStyle(e).display !== 'none').map((e) => getComputedStyle(e).opacity),
+  );
   expect(infos.every((o) => o === '1')).toBe(true);
 });
 

@@ -34,7 +34,8 @@ export function initGallery(root: HTMLElement): () => void {
     return c;
   });
   const items = [...originals, ...copies];
-  const thumbsOf = (i: number) => [originals[i], copies[i]].map((li) => li.querySelector<HTMLElement>('[data-gallery-thumb]')!);
+  const thumbsOf = (i: number) =>
+    [originals[i], copies[i]].map((li) => li.querySelector<HTMLElement>('[data-gallery-thumb]')!);
 
   // Da flusso normale (senza JS) a posizionamento libero
   strip.style.overflow = 'hidden';
@@ -207,7 +208,9 @@ export function initGallery(root: HTMLElement): () => void {
     strip.style.cursor = '';
     if (!d.moved) {
       // clic: la miniatura sotto il puntatore diventa attiva
-      const li = (document.elementFromPoint(e.clientX, e.clientY) as HTMLElement | null)?.closest<HTMLElement>('[data-gallery-item]');
+      const li = (document.elementFromPoint(e.clientX, e.clientY) as HTMLElement | null)?.closest<HTMLElement>(
+        '[data-gallery-item]',
+      );
       const j = li ? items.indexOf(li) : -1;
       if (j >= 0) goTo(j % n);
       return;

@@ -48,7 +48,8 @@ export function splitLines(el: HTMLElement): LineSplit | null {
   const fragments: DocumentFragment[] = [];
   for (let i = 0; i < starts.length; i++) {
     const range = document.createRange();
-    if (i === 0) range.setStart(el, 0); // conserva eventuali nodi prima del primo carattere
+    if (i === 0)
+      range.setStart(el, 0); // conserva eventuali nodi prima del primo carattere
     else range.setStart(starts[i].node, starts[i].offset);
     if (i + 1 < starts.length) range.setEnd(starts[i + 1].node, starts[i + 1].offset);
     else range.setEnd(el, el.childNodes.length);
@@ -62,8 +63,15 @@ export function splitLines(el: HTMLElement): LineSplit | null {
   const readable = document.createElement('span');
   readable.className = 'sr-only';
   Object.assign(readable.style, {
-    position: 'absolute', width: '1px', height: '1px', padding: '0', margin: '-1px',
-    overflow: 'hidden', clip: 'rect(0, 0, 0, 0)', whiteSpace: 'nowrap', border: '0',
+    position: 'absolute',
+    width: '1px',
+    height: '1px',
+    padding: '0',
+    margin: '-1px',
+    overflow: 'hidden',
+    clip: 'rect(0, 0, 0, 0)',
+    whiteSpace: 'nowrap',
+    border: '0',
   });
   readable.textContent = label;
   const visual = document.createElement('span');
